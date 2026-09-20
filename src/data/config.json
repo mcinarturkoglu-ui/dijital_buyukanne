@@ -1,0 +1,23 @@
+{
+  "appStore": "#",
+  "googlePlay": "#",
+  "contact": {
+    "email": "info@dijitalbuyukanne.com",
+    "phone": "",
+    "address": "Türkiye"
+  },
+  "social": {
+    "instagram": "#",
+    "twitter": "#",
+    "linkedin": "#",
+    "youtube": "#"
+  },
+  "babySensAI": {
+    "url": "https://babysensai.com"
+  },
+  "seo": {
+    "siteName": "DijitalBüyükanne",
+    "siteUrl": "https://dijitalbuyukanne.com",
+    "defaultOgImage": "/images/og-default.jpg"
+  }
+}

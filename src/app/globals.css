@@ -1,0 +1,150 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+:root {
+  --font-inter: 'Inter', system-ui, sans-serif;
+  --navy: #082A46;
+  --turquoise: #14BBB7;
+  --coral: #FF7965;
+  --off-white: #F7FAFA;
+  --soft-gray: #EDF3F4;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-inter);
+  background-color: var(--off-white);
+  color: var(--navy);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-inter);
+    font-weight: 700;
+    line-height: 1.2;
+    color: #082A46;
+  }
+}
+
+@layer components {
+  .section-padding {
+    @apply py-20 md:py-28 px-4 md:px-8;
+  }
+
+  .container-max {
+    @apply max-w-6xl mx-auto;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 bg-coral text-white font-semibold rounded-xl hover:bg-coral-600 transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-6 py-3 bg-transparent border-2 border-navy text-navy font-semibold rounded-xl hover:bg-navy hover:text-white transition-all duration-200;
+  }
+
+  .btn-outline-white {
+    @apply inline-flex items-center justify-center px-6 py-3 bg-transparent border-2 border-white text-white font-semibold rounded-xl hover:bg-white hover:text-navy transition-all duration-200;
+  }
+
+  .card {
+    @apply bg-white rounded-3xl shadow-card hover:shadow-card-hover transition-all duration-300 p-8;
+  }
+
+  .eyebrow {
+    @apply text-turquoise text-sm font-semibold tracking-wider uppercase;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-navy to-turquoise bg-clip-text text-transparent;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .animate-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Phone mockup styles */
+.phone-frame {
+  position: relative;
+  width: 240px;
+  height: 480px;
+  background: #1a1a2e;
+  border-radius: 40px;
+  padding: 12px;
+  box-shadow: 0 30px 80px rgba(8,42,70,0.25), inset 0 0 0 2px rgba(255,255,255,0.1);
+}
+
+.phone-screen {
+  width: 100%;
+  height: 100%;
+  background: white;
+  border-radius: 30px;
+  overflow: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #EDF3F4;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #14BBB7;
+  border-radius: 3px;
+}
+
+/* Mobile sticky bottom bar */
+.sticky-bottom-cta {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: white;
+  border-top: 1px solid #EDF3F4;
+  padding: 12px 16px;
+  box-shadow: 0 -4px 20px rgba(8,42,70,0.1);
+}
+
+/* Animate fade-up */
+.fade-up-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.fade-up-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
