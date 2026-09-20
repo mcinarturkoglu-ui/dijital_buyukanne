@@ -51,26 +51,27 @@ export default function PilotModel() {
                 </div>
               )}
 
-              <div className="bg-white/5 border border-white/10 rounded-3xl p-7 hover:bg-white/10 hover:border-turquoise/30 transition-all duration-300 flex flex-col h-full">
+              <div className="bg-white/5 border border-white/10 rounded-3xl p-7 hover:bg-white/10 hover:border-turquoise/50 hover:shadow-2xl hover:shadow-turquoise/10 hover:-translate-y-2 transition-all duration-300 flex flex-col h-full group cursor-default">
                 {/* Number */}
-                <span className="text-turquoise/30 font-black text-5xl leading-none mb-4 select-none">
+                <span className="text-turquoise/30 group-hover:text-turquoise/70 font-black text-5xl leading-none mb-4 select-none transition-colors duration-300">
                   {number}
                 </span>
 
                 {/* Icon */}
-                <div className="w-11 h-11 rounded-xl bg-turquoise/15 flex items-center justify-center mb-5">
-                  <Icon className="w-5 h-5 text-turquoise" />
+                <div className="w-12 h-12 rounded-2xl bg-turquoise/15 group-hover:bg-turquoise group-hover:text-navy flex items-center justify-center mb-5 transition-all duration-300 shadow-sm">
+                  <Icon className="w-6 h-6 text-turquoise group-hover:text-navy transition-colors" />
                 </div>
 
                 {/* Title */}
-                <h3 className="text-white font-bold text-lg tracking-wide mb-2">{title}</h3>
+                <h3 className="text-white font-bold text-lg tracking-wide mb-2 group-hover:text-turquoise transition-colors duration-200">{title}</h3>
 
                 {/* Description */}
-                <p className="text-white/60 text-sm leading-relaxed flex-1">{description}</p>
+                <p className="text-white/70 text-sm leading-relaxed flex-1">{description}</p>
               </div>
             </div>
           ))}
         </div>
+
 
         {/* Bottom message + CTA */}
         <div className="mt-16 flex flex-col items-center text-center gap-6">

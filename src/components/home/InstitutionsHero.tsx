@@ -44,92 +44,102 @@ export default function InstitutionsHero() {
         {/* 3 Phone Mockups */}
         <div className="flex flex-col md:flex-row items-center justify-center gap-6 lg:gap-8 mb-16 pt-4">
           {/* Ankara */}
-          <div className="transform md:-rotate-3 md:translate-y-4 transition-transform hover:rotate-0 duration-300">
-            <PhoneMockup size="sm" label="Ankara DijitalBüyükanne">
-              <div className="p-4 bg-gray-50 h-full flex flex-col">
-                <div className="bg-[#E31E24] text-white p-3 rounded-2xl mb-3 text-center shadow-sm">
-                  <div className="w-8 h-8 mx-auto mb-1 rounded-full bg-white/20 flex items-center justify-center font-bold text-xs">
-                    ABB
+          <div className="transform md:-rotate-3 md:translate-y-4 transition-all duration-500 hover:rotate-0 hover:translate-y-0 hover:scale-105 group">
+            <div className="relative">
+              <div className="absolute inset-0 bg-[#E31E24]/20 rounded-[40px] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <PhoneMockup size="sm" label="Ankara DijitalBüyükanne">
+                <div className="p-4 bg-gray-50 h-full flex flex-col">
+                  <div className="bg-[#E31E24] text-white p-3 rounded-2xl mb-3 text-center shadow-sm">
+                    <div className="w-8 h-8 mx-auto mb-1 rounded-full bg-white/20 flex items-center justify-center font-bold text-xs">
+                      ABB
+                    </div>
+                    <h4 className="text-xs font-bold">Ankara Büyükşehir</h4>
+                    <p className="text-[10px] opacity-80">DijitalBüyükanne</p>
                   </div>
-                  <h4 className="text-xs font-bold">Ankara Büyükşehir</h4>
-                  <p className="text-[10px] opacity-80">DijitalBüyükanne</p>
+                  <div className="space-y-2 flex-1">
+                    <div className="bg-white p-2 rounded-xl text-[11px] shadow-sm border border-gray-100 flex items-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-[#E31E24] animate-pulse"></span>
+                      Başkent Bebek Paketi
+                    </div>
+                    <div className="bg-white p-2 rounded-xl text-[11px] shadow-sm border border-gray-100 flex items-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-[#E31E24]"></span>
+                      Gelişimsel Takip
+                    </div>
+                    <div className="bg-white p-2 rounded-xl text-[11px] shadow-sm border border-gray-100 flex items-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-[#E31E24]"></span>
+                      Anne-Çocuk Sağlığı
+                    </div>
+                  </div>
                 </div>
-                <div className="space-y-2 flex-1">
-                  <div className="bg-white p-2 rounded-xl text-[11px] shadow-sm border border-gray-100 flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-[#E31E24]"></span>
-                    Başkent Bebek Paketi
-                  </div>
-                  <div className="bg-white p-2 rounded-xl text-[11px] shadow-sm border border-gray-100 flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-[#E31E24]"></span>
-                    Gelişimsel Takip
-                  </div>
-                  <div className="bg-white p-2 rounded-xl text-[11px] shadow-sm border border-gray-100 flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-[#E31E24]"></span>
-                    Anne-Çocuk Sağlığı
-                  </div>
-                </div>
-              </div>
-            </PhoneMockup>
+              </PhoneMockup>
+            </div>
           </div>
 
           {/* Keçiören (Featured Center) */}
-          <div className="transform md:scale-105 z-20 shadow-2xl transition-transform duration-300">
-            <PhoneMockup size="md" label="Keçiören DijitalBüyükanne">
-              <div className="p-4 bg-gray-50 h-full flex flex-col">
-                <div className="bg-[#0066B3] text-white p-3.5 rounded-2xl mb-3 text-center shadow-md">
-                  <div className="w-9 h-9 mx-auto mb-1 rounded-full bg-white/20 flex items-center justify-center font-bold text-xs">
-                    KB
+          <div className="transform md:scale-105 z-20 shadow-2xl transition-all duration-500 hover:scale-110 group">
+            <div className="relative">
+              <div className="absolute inset-0 bg-[#0066B3]/30 rounded-[40px] blur-3xl opacity-50 group-hover:opacity-100 transition-opacity duration-300 animate-pulse-glow" />
+              <PhoneMockup size="md" label="Keçiören DijitalBüyükanne">
+                <div className="p-4 bg-gray-50 h-full flex flex-col">
+                  <div className="bg-[#0066B3] text-white p-3.5 rounded-2xl mb-3 text-center shadow-md">
+                    <div className="w-9 h-9 mx-auto mb-1 rounded-full bg-white/20 flex items-center justify-center font-bold text-xs">
+                      KB
+                    </div>
+                    <h4 className="text-sm font-bold">Keçiören Belediyesi</h4>
+                    <p className="text-[11px] opacity-90 font-medium">DijitalBüyükanne Aile Kapısı</p>
                   </div>
-                  <h4 className="text-sm font-bold">Keçiören Belediyesi</h4>
-                  <p className="text-[11px] opacity-90 font-medium">DijitalBüyükanne Aile Kapısı</p>
+                  <div className="space-y-2 flex-1 text-gray-700">
+                    <div className="bg-white p-2.5 rounded-xl text-xs font-medium shadow-sm border border-gray-100 flex items-center justify-between hover:border-turquoise transition-colors">
+                      <span>Anne & Bebek Atölyesi</span>
+                      <span className="text-[10px] bg-blue-50 text-[#0066B3] px-1.5 py-0.5 rounded font-bold">Aktif</span>
+                    </div>
+                    <div className="bg-white p-2.5 rounded-xl text-xs font-medium shadow-sm border border-gray-100 flex items-center justify-between hover:border-turquoise transition-colors">
+                      <span>Hareket & Cilt Analizi</span>
+                      <span className="text-[10px] bg-teal-50 text-turquoise px-1.5 py-0.5 rounded font-bold">AI Destekli</span>
+                    </div>
+                    <div className="bg-white p-2.5 rounded-xl text-xs font-medium shadow-sm border border-gray-100 flex items-center justify-between hover:border-turquoise transition-colors">
+                      <span>Uzman Danışmanlığı</span>
+                      <span className="text-[10px] bg-emerald-50 text-emerald-600 px-1.5 py-0.5 rounded font-bold">Ücretsiz</span>
+                    </div>
+                  </div>
                 </div>
-                <div className="space-y-2 flex-1 text-gray-700">
-                  <div className="bg-white p-2.5 rounded-xl text-xs font-medium shadow-sm border border-gray-100 flex items-center justify-between">
-                    <span>Anne & Bebek Atölyesi</span>
-                    <span className="text-[10px] bg-blue-50 text-[#0066B3] px-1.5 py-0.5 rounded">Aktif</span>
-                  </div>
-                  <div className="bg-white p-2.5 rounded-xl text-xs font-medium shadow-sm border border-gray-100 flex items-center justify-between">
-                    <span>Hareket & Cilt Analizi</span>
-                    <span className="text-[10px] bg-teal-50 text-turquoise px-1.5 py-0.5 rounded">AI Destekli</span>
-                  </div>
-                  <div className="bg-white p-2.5 rounded-xl text-xs font-medium shadow-sm border border-gray-100 flex items-center justify-between">
-                    <span>Uzman Danışmanlığı</span>
-                    <span className="text-[10px] bg-emerald-50 text-emerald-600 px-1.5 py-0.5 rounded">Ücretsiz</span>
-                  </div>
-                </div>
-              </div>
-            </PhoneMockup>
+              </PhoneMockup>
+            </div>
           </div>
 
           {/* Kurumunuz */}
-          <div className="transform md:rotate-3 md:translate-y-4 transition-transform hover:rotate-0 duration-300">
-            <PhoneMockup size="sm" label="Kurumunuz DijitalBüyükanne">
-              <div className="p-4 bg-gray-50 h-full flex flex-col">
-                <div className="bg-gradient-to-r from-turquoise to-turquoise-600 text-white p-3 rounded-2xl mb-3 text-center shadow-sm">
-                  <div className="w-8 h-8 mx-auto mb-1 rounded-full bg-white/20 flex items-center justify-center font-bold text-xs">
-                    LOGO
+          <div className="transform md:rotate-3 md:translate-y-4 transition-all duration-500 hover:rotate-0 hover:translate-y-0 hover:scale-105 group">
+            <div className="relative">
+              <div className="absolute inset-0 bg-turquoise/25 rounded-[40px] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <PhoneMockup size="sm" label="Kurumunuz DijitalBüyükanne">
+                <div className="p-4 bg-gray-50 h-full flex flex-col">
+                  <div className="bg-gradient-to-r from-turquoise to-turquoise-600 text-white p-3 rounded-2xl mb-3 text-center shadow-sm">
+                    <div className="w-8 h-8 mx-auto mb-1 rounded-full bg-white/20 flex items-center justify-center font-bold text-xs">
+                      LOGO
+                    </div>
+                    <h4 className="text-xs font-bold">Kurumunuz Adına</h4>
+                    <p className="text-[10px] opacity-80">Özel Markalanmış</p>
                   </div>
-                  <h4 className="text-xs font-bold">Kurumunuz Adına</h4>
-                  <p className="text-[10px] opacity-80">Özel Markalanmış</p>
+                  <div className="space-y-2 flex-1">
+                    <div className="bg-white p-2 rounded-xl text-[11px] shadow-sm border border-gray-100 flex items-center gap-2 text-gray-600">
+                      <span className="w-2 h-2 rounded-full bg-turquoise animate-pulse"></span>
+                      Kendi Renk & Logonuz
+                    </div>
+                    <div className="bg-white p-2 rounded-xl text-[11px] shadow-sm border border-gray-100 flex items-center gap-2 text-gray-600">
+                      <span className="w-2 h-2 rounded-full bg-turquoise"></span>
+                      Özelleştirilmiş Hizmetler
+                    </div>
+                    <div className="bg-white p-2 rounded-xl text-[11px] shadow-sm border border-gray-100 flex items-center gap-2 text-gray-600">
+                      <span className="w-2 h-2 rounded-full bg-turquoise"></span>
+                      Şeffaf Etki Raporu
+                    </div>
+                  </div>
                 </div>
-                <div className="space-y-2 flex-1">
-                  <div className="bg-white p-2 rounded-xl text-[11px] shadow-sm border border-gray-100 flex items-center gap-2 text-gray-600">
-                    <span className="w-2 h-2 rounded-full bg-turquoise"></span>
-                    Kendi Renk & Logonuz
-                  </div>
-                  <div className="bg-white p-2 rounded-xl text-[11px] shadow-sm border border-gray-100 flex items-center gap-2 text-gray-600">
-                    <span className="w-2 h-2 rounded-full bg-turquoise"></span>
-                    Özelleştirilmiş Hizmetler
-                  </div>
-                  <div className="bg-white p-2 rounded-xl text-[11px] shadow-sm border border-gray-100 flex items-center gap-2 text-gray-600">
-                    <span className="w-2 h-2 rounded-full bg-turquoise"></span>
-                    Şeffaf Etki Raporu
-                  </div>
-                </div>
-              </div>
-            </PhoneMockup>
+              </PhoneMockup>
+            </div>
           </div>
         </div>
+
 
         {/* Feature list checklist */}
         <div className="bg-white/5 border border-white/10 rounded-3xl p-8 lg:p-10 mb-12 backdrop-blur-sm">

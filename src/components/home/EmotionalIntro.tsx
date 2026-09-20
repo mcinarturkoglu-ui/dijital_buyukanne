@@ -31,25 +31,26 @@ export default function EmotionalIntro() {
             {milestones.map((milestone, i) => (
               <div
                 key={i}
-                className="relative flex flex-col items-center text-center group"
+                className="relative flex flex-col items-center text-center group cursor-default"
               >
                 {/* Card */}
-                <div className="relative z-10 w-20 h-20 rounded-3xl bg-[#EDF3F4] group-hover:bg-[#14BBB7]/10 transition-colors duration-300 flex flex-col items-center justify-center mb-4 border-2 border-transparent group-hover:border-[#14BBB7]/30">
-                  <span className="text-3xl leading-none mb-1">{milestone.emoji}</span>
-                  <span className="text-[10px] font-semibold text-[#14BBB7] tracking-wider uppercase">
+                <div className="relative z-10 w-24 h-24 rounded-3xl bg-soft-gray group-hover:bg-white group-hover:shadow-card-hover group-hover:-translate-y-2 transition-all duration-300 flex flex-col items-center justify-center mb-4 border-2 border-transparent group-hover:border-turquoise/40">
+                  <span className="text-3xl leading-none mb-1 group-hover:scale-125 transition-transform duration-300">{milestone.emoji}</span>
+                  <span className="text-[10px] font-bold text-turquoise tracking-wider uppercase">
                     {milestone.age}
                   </span>
                 </div>
 
                 {/* Turquoise accent line */}
-                <div className="w-8 h-0.5 bg-[#14BBB7]/40 rounded-full mb-3" />
+                <div className="w-10 h-1 bg-turquoise/20 group-hover:bg-turquoise group-hover:w-16 rounded-full mb-3 transition-all duration-300" />
 
                 {/* Milestone label */}
-                <p className="font-semibold text-[#082A46] text-sm leading-snug">{milestone.label}</p>
+                <p className="font-bold text-navy text-sm leading-snug group-hover:text-turquoise transition-colors duration-200">{milestone.label}</p>
               </div>
             ))}
           </div>
         </div>
+
 
         {/* Divider */}
         <div className="mt-16 flex items-center justify-center gap-4">

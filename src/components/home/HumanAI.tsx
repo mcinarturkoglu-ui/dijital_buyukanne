@@ -24,29 +24,29 @@ const expertBullets = [
 
 function RadialDiagram() {
   const radius = 120;
-  const centerSize = 96;
+  const centerSize = 100;
 
   return (
-    <div className="relative w-80 h-80 flex items-center justify-center mx-auto">
-      {/* Outermost glow ring */}
-      <div className="absolute inset-0 rounded-full bg-turquoise/10 border border-turquoise/20" />
+    <div className="relative w-84 h-84 md:w-96 md:h-96 flex items-center justify-center mx-auto my-4">
+      {/* Outermost rotating/pulsing glow ring */}
+      <div className="absolute inset-0 rounded-full bg-turquoise/10 border-2 border-dashed border-turquoise/30 animate-spin" style={{ animationDuration: '35s' }} />
       {/* Mid ring */}
-      <div className="absolute w-64 h-64 rounded-full bg-turquoise/15 border border-turquoise/30 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+      <div className="absolute w-72 h-72 rounded-full bg-turquoise/10 border border-turquoise/40 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-pulse-glow" />
       {/* Inner navy circle */}
       <div
-        className="absolute rounded-full bg-navy flex flex-col items-center justify-center shadow-xl z-10"
+        className="absolute rounded-full bg-navy flex flex-col items-center justify-center shadow-2xl z-10 border-4 border-white/20 transition-transform duration-300 hover:scale-110 cursor-default"
         style={{ width: centerSize, height: centerSize, top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
       >
-        <p className="text-white font-black text-[9px] tracking-widest text-center leading-tight uppercase px-1">
-          Uzman<br />Desteği
+        <p className="text-white font-black text-[11px] tracking-wider text-center leading-tight uppercase px-2">
+          Uzman<br /><span className="text-turquoise">Desteği</span>
         </p>
       </div>
 
       {/* Segment labels placed around the circle */}
       {segments.map(({ label, angle }) => {
         const rad = (angle - 90) * (Math.PI / 180);
-        const x = 50 + radius * Math.cos(rad) / 1.6;
-        const y = 50 + radius * Math.sin(rad) / 1.6;
+        const x = 50 + radius * Math.cos(rad) / 1.7;
+        const y = 50 + radius * Math.sin(rad) / 1.7;
         return (
           <div
             key={label}
@@ -57,7 +57,7 @@ function RadialDiagram() {
               transform: 'translate(-50%, -50%)',
             }}
           >
-            <span className="bg-white border border-turquoise/30 text-navy text-[10px] font-bold px-2.5 py-1 rounded-full shadow-sm whitespace-nowrap">
+            <span className="bg-white border-2 border-turquoise/40 text-navy text-[11px] font-bold px-3 py-1.5 rounded-2xl shadow-md hover:bg-turquoise hover:text-white hover:scale-115 transition-all duration-300 cursor-default whitespace-nowrap">
               {label}
             </span>
           </div>
@@ -66,6 +66,7 @@ function RadialDiagram() {
     </div>
   );
 }
+
 
 export default function HumanAI() {
   return (

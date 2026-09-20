@@ -234,24 +234,25 @@ export default function SolutionSection() {
             {features.map((feature, i) => (
               <div
                 key={i}
-                className="bg-white rounded-3xl shadow-card hover:shadow-card-hover transition-all duration-300 p-6 flex gap-5 items-start group"
+                className="bg-white rounded-3xl shadow-card hover:shadow-card-hover hover:-translate-x-2 border border-gray-100/80 hover:border-turquoise/40 transition-all duration-300 p-6 flex gap-5 items-start group cursor-default"
               >
                 {/* Number badge + icon */}
                 <div className="shrink-0 flex flex-col items-center gap-2">
-                  <span className="text-xs font-black text-[#14BBB7] tracking-wider">{feature.number}</span>
-                  <div className="w-10 h-10 rounded-2xl bg-[#14BBB7]/10 text-[#14BBB7] flex items-center justify-center group-hover:bg-[#14BBB7] group-hover:text-white transition-all duration-300">
+                  <span className="text-xs font-black text-turquoise tracking-wider group-hover:scale-110 transition-transform">{feature.number}</span>
+                  <div className="w-12 h-12 rounded-2xl bg-turquoise/10 text-turquoise flex items-center justify-center group-hover:bg-turquoise group-hover:text-white group-hover:scale-105 transition-all duration-300 shadow-sm">
                     {feature.icon}
                   </div>
                 </div>
 
                 {/* Text */}
-                <div>
-                  <h3 className="font-bold text-[#082A46] text-base mb-1.5">{feature.title}</h3>
-                  <p className="text-[#082A46]/60 text-sm leading-relaxed">{feature.description}</p>
+                <div className="flex-1">
+                  <h3 className="font-bold text-navy text-base mb-1.5 group-hover:text-turquoise transition-colors duration-200">{feature.title}</h3>
+                  <p className="text-navy/60 text-sm leading-relaxed">{feature.description}</p>
                 </div>
               </div>
             ))}
           </div>
+
         </div>
 
         {/* Slogan Footer */}

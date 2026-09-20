@@ -14,8 +14,8 @@ import InstitutionValue from "@/components/home/InstitutionValue";
 import SocialImpactModel from "@/components/home/SocialImpactModel";
 import ImpactJourney from "@/components/home/ImpactJourney";
 import InclusiveAccess from "@/components/home/InclusiveAccess";
-import SupportPrograms from "@/components/home/SupportPrograms";
 import MeasurableImpact from "@/components/home/MeasurableImpact";
+
 import TransparentReporting from "@/components/home/TransparentReporting";
 import Visibility from "@/components/home/Visibility";
 import SupportersPreview from "@/components/home/SupportersPreview";
@@ -82,11 +82,9 @@ export default function HomePage() {
       {/* Section 15: Inclusive Access */}
       <InclusiveAccess />
 
-      {/* Section 16: Support Programs */}
-      <SupportPrograms />
-
-      {/* Section 17: Measurable Impact */}
+      {/* Section 16: Measurable Impact */}
       <MeasurableImpact />
+
 
       {/* Section 18: Transparent Reporting */}
       <TransparentReporting />

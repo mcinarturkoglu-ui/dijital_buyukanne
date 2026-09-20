@@ -43,21 +43,22 @@ export default function NeedSection() {
           {needs.map((need, i) => (
             <div
               key={i}
-              className="bg-white rounded-3xl shadow-card hover:shadow-card-hover transition-all duration-300 p-8 flex flex-col gap-4 group"
+              className="bg-white rounded-3xl shadow-card hover:shadow-card-hover hover:-translate-y-2 border border-gray-100/80 hover:border-turquoise/30 transition-all duration-300 p-8 flex flex-col gap-4 group cursor-default"
             >
               {/* Icon */}
-              <div className="w-14 h-14 rounded-2xl bg-[#14BBB7]/10 text-[#14BBB7] flex items-center justify-center group-hover:bg-[#14BBB7] group-hover:text-white transition-all duration-300">
+              <div className="w-16 h-16 rounded-2xl bg-turquoise/10 text-turquoise flex items-center justify-center group-hover:bg-turquoise group-hover:text-white group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-sm">
                 {need.icon}
               </div>
 
               {/* Title */}
-              <h3 className="text-xl font-bold text-[#082A46]">{need.title}</h3>
+              <h3 className="text-xl font-bold text-navy group-hover:text-turquoise transition-colors duration-200">{need.title}</h3>
 
               {/* Description */}
-              <p className="text-[#082A46]/60 text-sm leading-relaxed">{need.description}</p>
+              <p className="text-navy/70 text-sm leading-relaxed">{need.description}</p>
             </div>
           ))}
         </div>
+
 
         {/* Blockquote Highlight */}
         <div className="relative bg-[#082A46] rounded-3xl px-8 md:px-12 py-8 overflow-hidden">
