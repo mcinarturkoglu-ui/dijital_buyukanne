@@ -9,7 +9,8 @@ import {
   ExternalLink, 
   CheckCircle,
   Shield,
-  Layers
+  Layers,
+  Droplets,
 } from "lucide-react";
 import { generatePageMetadata } from "@/lib/metadata";
 
@@ -30,6 +31,11 @@ export default function BabySensAIPage() {
       title: "Görüntü İşleme & Cilt Analizi",
       desc: "Fotoğraflar üzerinden ciltteki yaygın lezyon ve kızarıklıklar için bilgilendirici ön sınıflandırma.",
       icon: Scan,
+    },
+    {
+      title: "Bebek Bezi & Dışkı Spektrofotometrisi",
+      desc: "Dışkı rengini uluslararası Pediatrik Renk Skalası (Biliyer Atrezi & CMPA) ile eşleştiren optik analiz modeli.",
+      icon: Droplets,
     },
     {
       title: "Dijital Gelişim Takip Modeli",

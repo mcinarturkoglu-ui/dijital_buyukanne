@@ -14,6 +14,7 @@ import {
   Sparkles,
   Volume2,
   Video,
+  Droplets,
 } from 'lucide-react';
 
 const menuItems = [
@@ -31,6 +32,11 @@ const menuItems = [
     icon: <ScanLine size={18} />,
     label: 'Cilt Analizi',
     desc: 'Fotoğrafla ön bilgilendirme',
+  },
+  {
+    icon: <Droplets size={18} />,
+    label: 'Bebek Bezi & Dışkı',
+    desc: 'Pediatrik renk ve sindirim takibi',
   },
   {
     icon: <MessageCircleHeart size={18} />,

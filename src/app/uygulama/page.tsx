@@ -14,7 +14,8 @@ import {
   Calendar,
   CheckCircle,
   Download,
-  ArrowRight
+  ArrowRight,
+  Droplets,
 } from "lucide-react";
 import { PhoneMockup } from "@/components/ui/PhoneMockup";
 import { generatePageMetadata } from "@/lib/metadata";
@@ -30,6 +31,7 @@ export default function UygulamaPage() {
     { title: "Bebeğim", desc: "Kişiselleştirilmiş gelişim günlüğü ve profil", icon: Baby },
     { title: "Hareket Analizi", desc: "0-6 ay yapay zekâ destekli video değerlendirmesi", icon: Activity },
     { title: "Cilt Analizi", desc: "Fotoğraf üzerinden ön bilgilendirme ve yönlendirme", icon: Sparkles },
+    { title: "Bebek Bezi Analizi", desc: "Dışkı rengi, kıvamı ve pediatrik renk kartı taraması", icon: Droplets },
     { title: "Büyükanne'ye Sor", desc: "7/24 yaşa uygun dijital aile asistanı rehberliği", icon: MessageCircle },
     { title: "Uzmanına Danış", desc: "İhtiyaç halinde alanında uzman desteğine erişim", icon: UserCheck },
     { title: "Uyku Düzeni", desc: "Aylık uyku rutinleri, yatış ve uyanış önerileri", icon: Moon },

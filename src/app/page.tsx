@@ -6,6 +6,7 @@ import TimelineSection from "@/components/home/TimelineSection";
 import SolutionSection from "@/components/home/SolutionSection";
 import MotionAnalysis from "@/components/home/MotionAnalysis";
 import SkinAnalysis from "@/components/home/SkinAnalysis";
+import StoolAnalysis from "@/components/home/StoolAnalysis";
 import DigitalAssistant from "@/components/home/DigitalAssistant";
 import HumanAI from "@/components/home/HumanAI";
 import InstitutionsHero from "@/components/home/InstitutionsHero";
@@ -58,7 +59,10 @@ export default function HomePage() {
       {/* Section 7: Skin Analysis */}
       <SkinAnalysis />
 
-      {/* Section 8: Digital Assistant */}
+      {/* Section 8: Diaper & Stool Analysis */}
+      <StoolAnalysis />
+
+      {/* Section 9: Digital Assistant */}
       <DigitalAssistant />
 
       {/* Section 9: Human + AI */}

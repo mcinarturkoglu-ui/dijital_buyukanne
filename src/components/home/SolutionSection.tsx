@@ -12,6 +12,7 @@ import {
   BarChart2,
   Moon,
   ChevronRight,
+  Droplets,
 } from 'lucide-react';
 
 const features = [
@@ -31,13 +32,20 @@ const features = [
   },
   {
     number: '03',
+    icon: <Droplets size={20} />,
+    title: 'Bebek Bezi & Dışkı Analizi',
+    description:
+      'Pediatrik renk kartı eşleştirmesi, sindirim ve olası alerji ön taraması.',
+  },
+  {
+    number: '04',
     icon: <MessageCircleHeart size={20} />,
     title: '0–24 Ay Dijital Aile Asistanı',
     description:
       'Uyku, beslenme, emzirme, bakım ve gelişim konularında yaşa uygun dijital rehberlik.',
   },
   {
-    number: '04',
+    number: '05',
     icon: <Stethoscope size={20} />,
     title: 'Uzman Danışmanlığı',
     description: 'İhtiyaç halinde uygun uzman desteğine erişim.',
@@ -261,7 +269,7 @@ export default function SolutionSection() {
             <span className="w-2 h-2 rounded-full bg-[#14BBB7]" />
             <p className="text-white font-bold text-xl md:text-2xl">
               Tek uygulama.{' '}
-              <span className="text-[#14BBB7]">Dört güçlü hizmet.</span>
+              <span className="text-[#14BBB7]">Beş güçlü hizmet.</span>
             </p>
             <span className="w-2 h-2 rounded-full bg-[#FF7965]" />
           </div>
