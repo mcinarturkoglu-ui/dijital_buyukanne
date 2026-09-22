@@ -18,8 +18,11 @@ const linePoints = [20, 35, 28, 55, 45, 70, 65, 85];
 
 export default function MeasurableImpact() {
   return (
-    <section className="py-20 md:py-28 px-4 md:px-8 bg-white">
-      <div className="max-w-6xl mx-auto">
+    <section className="py-20 md:py-28 px-4 md:px-8 bg-white relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-turquoise/3 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="max-w-6xl mx-auto relative z-10">
         <SectionHeader
           eyebrow="Ölçülebilir Etki"
           title="Desteğin etkisi görülebilir."
@@ -28,26 +31,26 @@ export default function MeasurableImpact() {
 
         {/* Örnek Görünüm Badge */}
         <div className="flex justify-center mt-6 mb-10">
-          <span className="inline-flex items-center gap-2 bg-turquoise/10 border border-turquoise/30 text-turquoise text-sm font-semibold tracking-wider uppercase px-5 py-2 rounded-full">
+          <span className="inline-flex items-center gap-2 bg-turquoise/5 border border-turquoise/20 text-turquoise text-sm font-semibold tracking-wider uppercase px-5 py-2 rounded-full">
             <span className="w-2 h-2 rounded-full bg-turquoise animate-pulse inline-block" />
             Örnek Görünüm
           </span>
         </div>
 
         {/* Dashboard Mockup */}
-        <div className="bg-soft-gray rounded-3xl shadow-card overflow-hidden border border-gray-100">
+        <div className="premium-card overflow-hidden border border-gray-100">
 
           {/* Dashboard Header */}
-          <div className="bg-navy px-6 py-4 flex items-center justify-between">
+          <div className="bg-gradient-to-r from-navy to-[#0e3b61] px-6 py-4 flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="flex gap-1.5">
-                <span className="w-3 h-3 rounded-full bg-red-400 opacity-80" />
-                <span className="w-3 h-3 rounded-full bg-yellow-400 opacity-80" />
-                <span className="w-3 h-3 rounded-full bg-green-400 opacity-80" />
+                <span className="w-3 h-3 rounded-full bg-red-400/80 hover:bg-red-400 transition-colors cursor-default" />
+                <span className="w-3 h-3 rounded-full bg-yellow-400/80 hover:bg-yellow-400 transition-colors cursor-default" />
+                <span className="w-3 h-3 rounded-full bg-green-400/80 hover:bg-green-400 transition-colors cursor-default" />
               </div>
               <span className="text-white/60 text-xs font-mono ml-2">DijitalBüyükanne · Yönetim Paneli</span>
             </div>
-            <span className="text-white/40 text-xs hidden md:block">Kurum Yöneticisi Görünümü</span>
+            <span className="text-white/30 text-xs hidden md:block">Kurum Yöneticisi Görünümü</span>
           </div>
 
           <div className="p-6 md:p-8">
@@ -56,12 +59,12 @@ export default function MeasurableImpact() {
               {stats.map((stat, i) => (
                 <div
                   key={i}
-                  className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex flex-col gap-2"
+                  className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 hover:border-turquoise/20 hover:shadow-card transition-all duration-300 flex flex-col gap-2 group"
                 >
                   <div className="flex items-center justify-between">
                     <span className="text-xs text-gray-400 font-medium leading-tight">{stat.label}</span>
                     <span
-                      className="w-2 h-2 rounded-full flex-shrink-0"
+                      className="w-2 h-2 rounded-full flex-shrink-0 group-hover:scale-125 transition-transform"
                       style={{ backgroundColor: i % 2 === 0 ? '#14BBB7' : '#082A46' }}
                     />
                   </div>
@@ -75,7 +78,7 @@ export default function MeasurableImpact() {
               ))}
 
               {/* Extra placeholder card */}
-              <div className="bg-turquoise/10 rounded-2xl p-4 border border-turquoise/20 flex flex-col justify-center items-center gap-1 col-span-1">
+              <div className="bg-turquoise/5 rounded-2xl p-4 border border-turquoise/15 flex flex-col justify-center items-center gap-1 col-span-1 hover:bg-turquoise/10 transition-colors duration-300">
                 <span className="text-turquoise text-2xl font-bold">+</span>
                 <span className="text-xs text-gray-400 text-center">Daha fazla gösterge</span>
               </div>
@@ -94,7 +97,7 @@ export default function MeasurableImpact() {
                   {barData.map((h, i) => (
                     <div key={i} className="flex-1 flex flex-col items-center gap-1">
                       <div
-                        className="w-full rounded-t-lg transition-all duration-500"
+                        className="w-full rounded-t-lg transition-all duration-700 hover:opacity-100"
                         style={{
                           height: `${h}%`,
                           backgroundColor: i % 3 === 0 ? '#14BBB7' : i % 3 === 1 ? '#082A46' : '#14BBB7',
@@ -123,7 +126,7 @@ export default function MeasurableImpact() {
                     <path
                       d={`M 0,${80 - linePoints[0]} ${linePoints.map((v, i) => `L ${i * (200 / 7)},${80 - v}`).join(' ')} L 200,80 L 0,80 Z`}
                       fill="#14BBB7"
-                      fillOpacity="0.12"
+                      fillOpacity="0.1"
                     />
                     <polyline
                       points={linePoints.map((v, i) => `${i * (200 / 7)},${80 - v}`).join(' ')}

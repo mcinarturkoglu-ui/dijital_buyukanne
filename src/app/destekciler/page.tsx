@@ -66,7 +66,7 @@ export default function DestekcilerPage() {
             {filteredSupporters.map((s) => (
               <div
                 key={s.id}
-                className="bg-white border border-gray-100 rounded-3xl p-6 shadow-sm hover:shadow-md transition-all flex flex-col justify-between"
+                className="premium-card bg-white border border-gray-100/90 rounded-3xl p-6 shadow-sm hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between group"
               >
                 <div>
                   <div className="flex items-center justify-between mb-4">

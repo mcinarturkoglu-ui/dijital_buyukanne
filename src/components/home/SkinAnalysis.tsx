@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Camera, Cpu, BookOpen, Sparkles, CheckCircle2, Scan, RefreshCw, ZoomIn, Eye, ShieldAlert, Sliders } from 'lucide-react';
+import { Camera, Cpu, BookOpen, Sparkles, CheckCircle2, Scan, RefreshCw, ZoomIn, Eye, ShieldAlert, Sliders, Info } from 'lucide-react';
 import SectionHeader from '@/components/ui/SectionHeader';
 import PhoneMockup from '@/components/ui/PhoneMockup';
 
@@ -66,7 +66,7 @@ function SkinAnalysisPhoneContent() {
             <span className="text-[9px] text-white/50">BabySensAI Vision v2.1</span>
           </div>
         </div>
-        <div className="flex items-center gap-1.5 bg-turquoise/15 text-turquoise px-2.5 py-1 rounded-full text-[9px] font-mono border border-turquoise/30">
+        <div className="flex items-center gap-1.5 bg-turquoise/15 text-turquoise px-2.5 py-1 rounded-full text-[9px] font-mono border border-turquoise/30 font-bold">
           <span className="w-1.5 h-1.5 rounded-full bg-turquoise animate-ping" />
           <span>CANLI HUD</span>
         </div>
@@ -98,91 +98,63 @@ function SkinAnalysisPhoneContent() {
           <div
             className={`relative transition-transform duration-500 ${
               zoomLevel === '2x' ? 'scale-125' : 'scale-100'
-            } flex items-center justify-center`}
+            }`}
           >
-            {/* Skin Spot Simulation (Erythema / Irritation) */}
-            <div className="relative w-20 h-20 rounded-full flex items-center justify-center">
-              <div className="absolute inset-0 rounded-full bg-red-500/35 blur-md animate-pulse" />
-              <div className="w-10 h-10 rounded-full bg-red-600/45 blur-xs" />
-            </div>
-
-            {/* AI Real-time Bounding Reticle */}
-            <div className="absolute w-24 h-24 border-2 border-dashed border-turquoise rounded-2xl flex flex-col items-center justify-between p-1 pointer-events-none shadow-[0_0_15px_rgba(20,187,183,0.5)]">
-              {/* Corner brackets */}
-              <div className="w-full flex justify-between">
-                <span className="w-2.5 h-2.5 border-t-2 border-l-2 border-turquoise" />
-                <span className="w-2.5 h-2.5 border-t-2 border-r-2 border-turquoise" />
-              </div>
-              <div className="text-[8px] font-mono text-turquoise font-bold bg-black/60 px-1.5 py-0.5 rounded">
-                ROI: %99.2 Netlik
-              </div>
-              <div className="w-full flex justify-between">
-                <span className="w-2.5 h-2.5 border-b-2 border-l-2 border-turquoise" />
-                <span className="w-2.5 h-2.5 border-b-2 border-r-2 border-turquoise" />
-              </div>
+            {/* Skin Target Ring Area */}
+            <div className="w-28 h-28 rounded-full border-2 border-dashed border-coral/80 relative flex items-center justify-center">
+              <div className="w-16 h-16 rounded-full bg-coral/30 blur-md animate-pulse" />
+              
+              {/* Corner HUD Markers */}
+              <div className="absolute -top-1 -left-1 w-3 h-3 border-t-2 border-l-2 border-turquoise" />
+              <div className="absolute -top-1 -right-1 w-3 h-3 border-t-2 border-r-2 border-turquoise" />
+              <div className="absolute -bottom-1 -left-1 w-3 h-3 border-b-2 border-l-2 border-turquoise" />
+              <div className="absolute -bottom-1 -right-1 w-3 h-3 border-b-2 border-r-2 border-turquoise" />
             </div>
           </div>
 
-          {/* Vertical Scan Laser */}
+          {/* Moving Laser Scanner Line */}
           {scanStep === 1 && (
-            <div className="absolute inset-x-0 h-1 bg-gradient-to-r from-transparent via-turquoise to-transparent shadow-[0_0_10px_#14BBB7] animate-laserscan pointer-events-none" />
+            <div className="absolute inset-x-0 h-1 bg-gradient-to-r from-transparent via-turquoise to-transparent animate-laser-scan shadow-[0_0_12px_#14BBB7]" />
           )}
 
-          {/* Filter Badge on Screen */}
-          <div className="absolute top-2 left-2 flex items-center gap-1.5">
-            <span className="bg-black/70 backdrop-blur-md text-[8px] font-mono px-2 py-0.5 rounded text-turquoise border border-white/10 uppercase">
-              {filterMode === 'rgb' ? 'Doğal Işık' : filterMode === 'contrast' ? 'Eritem Kontrastı' : 'AI Isı Modu'}
+          {/* Viewfinder Overlay Telemetry */}
+          <div className="absolute top-2 left-2 right-2 flex items-center justify-between text-[8px] font-mono text-white/80 pointer-events-none">
+            <span className="bg-black/60 px-1.5 py-0.5 rounded backdrop-blur">ISO 100 • F/1.8</span>
+            <span className="bg-black/60 px-1.5 py-0.5 rounded backdrop-blur text-turquoise">
+              {filterMode.toUpperCase()} MODU
             </span>
           </div>
 
-          {/* Zoom Toggle Pill */}
-          <div className="absolute top-2 right-2">
+          {/* Bottom Zoom & Filter Pill in Viewfinder */}
+          <div className="absolute bottom-2 inset-x-2 flex items-center justify-between pointer-events-auto">
+            <div className="flex gap-1 bg-black/60 p-1 rounded-lg backdrop-blur">
+              {(['rgb', 'contrast', 'ai'] as const).map((m) => (
+                <button
+                  key={m}
+                  onClick={() => setFilterMode(m)}
+                  className={`text-[8px] font-mono px-1.5 py-0.5 rounded uppercase font-bold transition-colors ${
+                    filterMode === m ? 'bg-turquoise text-navy' : 'text-white/60 hover:text-white'
+                  }`}
+                >
+                  {m}
+                </button>
+              ))}
+            </div>
+
             <button
               onClick={() => setZoomLevel(zoomLevel === '1x' ? '2x' : '1x')}
-              className="bg-black/70 backdrop-blur-md text-[9px] font-mono px-2 py-0.5 rounded text-white border border-white/15 hover:border-turquoise"
+              className="text-[8px] font-mono bg-black/60 text-white/90 px-2 py-1 rounded-lg backdrop-blur flex items-center gap-1 font-bold"
             >
-              {zoomLevel}
+              <ZoomIn size={9} />
+              <span>{zoomLevel}</span>
             </button>
-          </div>
-
-          {/* Status Label on Viewport */}
-          <div className="absolute bottom-2 inset-x-2 flex items-center justify-between pointer-events-none">
-            <span className="text-[8px] font-mono bg-black/70 px-2 py-0.5 rounded text-white/80">
-              {scanStep === 0 && 'Fotoğraf Alındı'}
-              {scanStep === 1 && 'Piksel Yoğunluğu Taranıyor...'}
-              {scanStep === 2 && 'Ön Bilgilendirme Çıkarıldı'}
-            </span>
-            <span className="text-[8px] font-mono text-emerald-400 font-bold bg-black/70 px-2 py-0.5 rounded">
-              {scanStep === 0 ? '%35 Hazır' : scanStep === 1 ? '%78 Taranıyor' : '%99.2 Güven'}
-            </span>
           </div>
         </div>
 
-        {/* Filter Selection Controls */}
-        <div className="flex items-center justify-between gap-1 bg-slate-900/80 p-1.5 rounded-xl border border-white/10">
-          {[
-            { id: 'rgb', label: 'Doğal RGB' },
-            { id: 'contrast', label: 'Eritem / Kontrast' },
-            { id: 'ai', label: 'AI Termal' },
-          ].map((f) => (
-            <button
-              key={f.id}
-              onClick={() => setFilterMode(f.id as any)}
-              className={`flex-1 py-1 rounded-lg text-[9px] font-bold transition-all ${
-                filterMode === f.id
-                  ? 'bg-turquoise text-navy shadow-sm'
-                  : 'text-white/60 hover:text-white'
-              }`}
-            >
-              {f.label}
-            </button>
-          ))}
-        </div>
-
-        {/* Dynamic Status / Result Breakdown */}
-        <div className="bg-slate-900 rounded-xl p-3 border border-white/10 flex-1 flex flex-col justify-between">
-          <div>
-            <div className="flex items-center justify-between mb-1.5">
+        {/* Real-time Analysis Card inside Phone */}
+        <div className="bg-slate-900/90 border border-white/10 rounded-2xl p-2.5 flex-1 flex flex-col justify-between">
+          <div className="space-y-1.5">
+            <div className="flex items-center justify-between">
               <span className="text-[10px] font-bold text-white flex items-center gap-1.5">
                 {scanStep === 2 ? (
                   <CheckCircle2 size={12} className="text-emerald-400" />
@@ -208,7 +180,7 @@ function SkinAnalysisPhoneContent() {
             <span className="text-[8px] text-white/40">Teşhis amacı taşımaz</span>
             <button
               onClick={triggerCapture}
-              className="text-[9px] font-bold text-navy bg-turquoise hover:bg-white px-3 py-1 rounded-lg transition-colors flex items-center gap-1 shadow-sm"
+              className="text-[9px] font-bold text-navy bg-turquoise hover:bg-white px-3 py-1 rounded-lg transition-colors flex items-center gap-1 shadow-sm cursor-pointer"
             >
               <Camera size={11} />
               <span>Anında Tara</span>
@@ -222,8 +194,12 @@ function SkinAnalysisPhoneContent() {
 
 export default function SkinAnalysis() {
   return (
-    <section className="py-20 md:py-28 px-4 md:px-8 bg-soft-gray overflow-hidden" id="cilt-analizi">
-      <div className="max-w-6xl mx-auto">
+    <section className="py-20 md:py-28 px-4 md:px-8 bg-soft-gray relative overflow-hidden" id="cilt-analizi">
+      {/* Decorative ambient blur */}
+      <div className="absolute top-1/4 -left-20 w-96 h-96 bg-coral/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-10 -right-20 w-96 h-96 bg-turquoise/5 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="max-w-6xl mx-auto relative z-10">
         <SectionHeader
           eyebrow="AI Cilt Analizi"
           title="Fotoğraf çek. Yükle. Saniyeler içinde ön değerlendirme al."
@@ -248,12 +224,12 @@ export default function SkinAnalysis() {
                           {step.number}
                         </div>
                         {i < steps.length - 1 && (
-                          <div className="w-0.5 h-8 border-l-2 border-dashed border-navy/20 mt-1" />
+                          <div className="w-0.5 h-8 border-l-2 border-dashed border-turquoise/40 mt-1" />
                         )}
                       </div>
 
                       {/* Content Card */}
-                      <div className="bg-white rounded-2xl p-5 flex-1 shadow-sm border border-gray-100 hover:shadow-card-hover hover:border-turquoise/30 hover:-translate-x-1.5 transition-all duration-300 flex items-start gap-4 group cursor-default">
+                      <div className="premium-card bg-white rounded-2xl p-5 flex-1 shadow-sm border border-gray-100/90 hover:shadow-card-hover hover:border-turquoise/40 transition-all duration-300 flex items-start gap-4 group cursor-default">
                         <div className="w-11 h-11 rounded-xl bg-soft-gray group-hover:bg-turquoise/15 flex items-center justify-center flex-shrink-0 transition-colors">
                           <Icon className={`w-5 h-5 ${step.iconColor} group-hover:scale-110 transition-transform`} />
                         </div>
@@ -269,7 +245,7 @@ export default function SkinAnalysis() {
             </div>
 
             {/* Info alert card */}
-            <div className="bg-white border-l-4 border-turquoise rounded-2xl p-6 shadow-sm border border-gray-100/80">
+            <div className="bg-white border-l-4 border-turquoise rounded-2xl p-6 shadow-sm border border-gray-100/80 relative overflow-hidden">
               <div className="flex items-center gap-2 mb-2">
                 <Sparkles size={16} className="text-turquoise" />
                 <span className="text-xs font-bold text-navy uppercase tracking-wider">Erken Farkındalık Rehberi</span>

@@ -14,6 +14,7 @@ import {
   Flame,
   TrendingUp,
   CheckCircle2,
+  Info,
 } from 'lucide-react';
 import SectionHeader from '@/components/ui/SectionHeader';
 
@@ -150,8 +151,12 @@ export default function MotionAnalysis() {
   const rFootY = isTummy ? 180 : isCrawl ? 165 : 195 + Math.sin(t * 1.5) * 12;
 
   return (
-    <section className="py-20 md:py-28 px-4 md:px-8 bg-white overflow-hidden" id="hareket-analizi">
-      <div className="max-w-6xl mx-auto">
+    <section className="py-20 md:py-28 px-4 md:px-8 bg-white relative overflow-hidden" id="hareket-analizi">
+      {/* Decorative ambient blur */}
+      <div className="absolute top-1/3 -right-20 w-96 h-96 bg-turquoise/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-10 -left-20 w-80 h-80 bg-coral/5 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="max-w-6xl mx-auto relative z-10">
         <SectionHeader
           eyebrow="AI Hareket Analizi Stüdyosu"
           title="Bir video, bebeğinizin gelişiminde binlerce veri noktası sunar."
@@ -168,10 +173,10 @@ export default function MotionAnalysis() {
                 setActiveScenarioIndex(idx);
                 setProgress(15);
               }}
-              className={`px-4 py-2.5 rounded-2xl text-xs md:text-sm font-bold transition-all duration-300 flex items-center gap-2 ${
+              className={`px-4 py-2.5 rounded-2xl text-xs md:text-sm font-bold transition-all duration-300 flex items-center gap-2 cursor-pointer ${
                 activeScenarioIndex === idx
-                  ? 'bg-navy text-white shadow-lg shadow-navy/20 scale-105 border-2 border-turquoise'
-                  : 'bg-soft-gray text-navy/70 hover:bg-turquoise/10 hover:text-navy border border-gray-200'
+                  ? 'bg-gradient-to-r from-navy to-[#0f3454] text-white shadow-lg shadow-navy/20 scale-105 border-2 border-turquoise'
+                  : 'bg-soft-gray text-navy/70 hover:bg-turquoise/10 hover:text-navy border border-gray-200 hover:border-turquoise/30'
               }`}
             >
               <span className={`w-2 h-2 rounded-full ${activeScenarioIndex === idx ? 'bg-turquoise animate-pulse' : 'bg-navy/30'}`} />
@@ -187,7 +192,7 @@ export default function MotionAnalysis() {
           <div className="lg:col-span-5 flex flex-col gap-4">
             
             {/* Active Scenario Card */}
-            <div className="bg-gradient-to-br from-[#082A46] to-[#0e3b61] text-white p-6 rounded-3xl shadow-xl border border-white/10 relative overflow-hidden">
+            <div className="bg-gradient-to-br from-[#082A46] via-[#093254] to-[#0e3b61] text-white p-6 rounded-3xl shadow-xl border border-white/10 relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-turquoise/15 rounded-full blur-2xl pointer-events-none" />
               
               <div className="flex items-center justify-between gap-2 mb-3">
@@ -202,13 +207,13 @@ export default function MotionAnalysis() {
 
               {/* Real-time score cards */}
               <div className="grid grid-cols-2 gap-2 pt-3 border-t border-white/15">
-                <div className="bg-white/10 rounded-xl p-2.5">
+                <div className="bg-white/10 rounded-2xl p-3 border border-white/5 backdrop-blur-sm">
                   <p className="text-[10px] text-white/60 uppercase tracking-wider font-semibold">GMA Akıcılık</p>
-                  <p className="text-base font-bold text-emerald-300 font-mono mt-0.5">{currentScenario.metrics.gma}</p>
+                  <p className="text-base font-extrabold text-emerald-300 font-mono mt-0.5">{currentScenario.metrics.gma}</p>
                 </div>
-                <div className="bg-white/10 rounded-xl p-2.5">
+                <div className="bg-white/10 rounded-2xl p-3 border border-white/5 backdrop-blur-sm">
                   <p className="text-[10px] text-white/60 uppercase tracking-wider font-semibold">Bilateral Simetri</p>
-                  <p className="text-base font-bold text-turquoise font-mono mt-0.5">{currentScenario.metrics.symmetry}</p>
+                  <p className="text-base font-extrabold text-turquoise font-mono mt-0.5">{currentScenario.metrics.symmetry}</p>
                 </div>
               </div>
             </div>
@@ -220,9 +225,9 @@ export default function MotionAnalysis() {
                 return (
                   <div
                     key={step.label}
-                    className="flex items-center gap-3.5 p-3.5 rounded-2xl bg-white border border-gray-100 shadow-sm hover:border-turquoise/40 hover:shadow-md transition-all duration-200 group cursor-default"
+                    className="premium-card flex items-center gap-3.5 p-3.5 rounded-2xl bg-white border border-gray-100/90 shadow-sm hover:border-turquoise/40 hover:shadow-card-hover transition-all duration-300 group cursor-default"
                   >
-                    <div className={`w-10 h-10 rounded-xl ${step.iconBg} flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform`}>
+                    <div className={`w-10 h-10 rounded-xl ${step.iconBg} flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300`}>
                       <Icon className={`w-5 h-5 ${step.color}`} />
                     </div>
                     <div className="flex-1 min-w-0">
@@ -262,13 +267,13 @@ export default function MotionAnalysis() {
               {/* Vertical Laser Scanline (Active when playing) */}
               {isPlaying && (
                 <div
-                  className="absolute inset-x-0 h-1 bg-gradient-to-r from-transparent via-turquoise to-transparent opacity-80 pointer-events-none shadow-[0_0_12px_#14BBB7] transition-all duration-150"
+                  className="absolute inset-x-0 h-1 bg-gradient-to-r from-transparent via-turquoise to-transparent opacity-85 pointer-events-none shadow-[0_0_12px_#14BBB7] transition-all duration-150"
                   style={{ top: `${(progress * 0.8 + 10)}%` }}
                 />
               )}
 
               {/* Top Video HUD Bar */}
-              <div className="relative z-20 p-3.5 flex items-center justify-between text-white border-b border-white/10 bg-slate-950/40 backdrop-blur-md">
+              <div className="relative z-20 p-3.5 flex items-center justify-between text-white border-b border-white/10 bg-slate-950/60 backdrop-blur-md">
                 <div className="flex items-center gap-2.5">
                   <span className="flex h-2.5 w-2.5 relative">
                     {isPlaying && <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75" />}
@@ -283,7 +288,7 @@ export default function MotionAnalysis() {
                 </div>
 
                 <div className="flex items-center gap-2">
-                  <div className="flex items-center gap-1 bg-turquoise/20 border border-turquoise/40 text-turquoise text-[10px] font-mono px-2.5 py-0.5 rounded-full">
+                  <div className="flex items-center gap-1 bg-turquoise/20 border border-turquoise/40 text-turquoise text-[10px] font-mono px-2.5 py-0.5 rounded-full font-bold">
                     <Sparkles size={10} />
                     <span>PoseTracker v2.4</span>
                   </div>
@@ -297,7 +302,7 @@ export default function MotionAnalysis() {
               <div className="relative z-10 flex-1 flex items-center justify-center p-4">
                 
                 {/* SVG Skeleton & Joint Vectors */}
-                <svg viewBox="0 0 280 220" className="w-full h-full max-w-[420px] drop-shadow-[0_0_10px_rgba(20,187,183,0.3)]">
+                <svg viewBox="0 0 280 220" className="w-full h-full max-w-[420px] drop-shadow-[0_0_12px_rgba(20,187,183,0.35)]">
                   <defs>
                     {/* Heatmap Gradients */}
                     <radialGradient id="heatGlow" cx="50%" cy="50%" r="50%">
@@ -379,18 +384,18 @@ export default function MotionAnalysis() {
                 </svg>
 
                 {/* Real-time Dynamic Metric Pill on Screen */}
-                <div className="absolute top-4 left-4 bg-navy/85 backdrop-blur-md border border-white/20 rounded-xl p-2.5 text-[10px] text-white/90 space-y-1 shadow-xl pointer-events-none">
+                <div className="absolute top-4 left-4 bg-[#082A46]/90 backdrop-blur-md border border-white/20 rounded-2xl p-3 text-[10px] text-white/90 space-y-1 shadow-2xl pointer-events-none">
                   <div className="flex items-center gap-1.5 text-turquoise font-bold">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
                     <span>Kinematik Akış</span>
                   </div>
                   <p className="font-mono text-[9px]">GMA: <span className="text-emerald-400 font-bold">{currentScenario.metrics.gma}</span></p>
-                  <p className="font-mono text-[9px]">Sapma: <span className="text-turquoise font-bold">±%0.8 (Kabul Edilebilir)</span></p>
+                  <p className="font-mono text-[9px]">Sapma: <span className="text-turquoise font-bold">±%0.8 (Normal)</span></p>
                 </div>
 
-                {/* Live Kinematics Telemetry Waveform (Bottom overlay on video) */}
+                {/* Live Kinematics Telemetry Waveform */}
                 {showTelemetry && (
-                  <div className="absolute bottom-2 left-4 right-4 bg-black/50 backdrop-blur-md rounded-xl p-2 border border-white/10 flex items-center justify-between gap-3 pointer-events-none">
+                  <div className="absolute bottom-2 left-4 right-4 bg-black/60 backdrop-blur-md rounded-2xl p-2.5 border border-white/10 flex items-center justify-between gap-3 pointer-events-none">
                     <div className="flex flex-col">
                       <span className="text-[8px] font-mono text-white/60 uppercase">Akıcılık Hız Eğrisi</span>
                       <span className="text-[10px] font-mono text-emerald-400 font-bold">3.2 cm/sn (Stabil)</span>
@@ -426,7 +431,7 @@ export default function MotionAnalysis() {
                   title="İlerleme çubuğuna tıklayın"
                 >
                   <div
-                    className="h-full bg-gradient-to-r from-turquoise to-coral transition-all duration-100 rounded-full"
+                    className="h-full bg-gradient-to-r from-turquoise via-teal-300 to-coral transition-all duration-100 rounded-full"
                     style={{ width: `${progress}%` }}
                   />
                 </div>
@@ -438,7 +443,7 @@ export default function MotionAnalysis() {
                   <div className="flex items-center gap-2">
                     <button
                       onClick={() => setIsPlaying(!isPlaying)}
-                      className="w-8 h-8 rounded-xl bg-turquoise text-navy hover:bg-white flex items-center justify-center transition-colors font-bold shadow-md"
+                      className="w-8 h-8 rounded-xl bg-turquoise text-navy hover:bg-white flex items-center justify-center transition-colors font-bold shadow-md cursor-pointer"
                       title={isPlaying ? 'Durdur' : 'Oynat'}
                     >
                       {isPlaying ? <Pause size={14} /> : <Play size={14} className="ml-0.5" />}
@@ -446,7 +451,7 @@ export default function MotionAnalysis() {
 
                     <button
                       onClick={() => setProgress(0)}
-                      className="w-8 h-8 rounded-xl bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors text-white/80 hover:text-white"
+                      className="w-8 h-8 rounded-xl bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors text-white/80 hover:text-white cursor-pointer"
                       title="Başa Al"
                     >
                       <RotateCcw size={13} />
@@ -454,7 +459,7 @@ export default function MotionAnalysis() {
 
                     <button
                       onClick={() => setPlaybackSpeed(playbackSpeed === 1 ? 0.5 : 1)}
-                      className="px-2 py-1 rounded-lg bg-white/10 hover:bg-white/20 text-[10px] font-mono text-white/80"
+                      className="px-2.5 py-1 rounded-lg bg-white/10 hover:bg-white/20 text-[10px] font-mono text-white/80 cursor-pointer"
                       title="Oynatma Hızı"
                     >
                       {playbackSpeed}x {playbackSpeed === 0.5 && '(Ağır Çekim)'}
@@ -469,7 +474,7 @@ export default function MotionAnalysis() {
                   <div className="flex items-center gap-1 sm:gap-2">
                     <button
                       onClick={() => setShowSkeleton(!showSkeleton)}
-                      className={`px-2 py-1 rounded-lg text-[10px] font-semibold flex items-center gap-1 transition-all ${
+                      className={`px-2.5 py-1 rounded-lg text-[10px] font-semibold flex items-center gap-1 transition-all cursor-pointer ${
                         showSkeleton ? 'bg-turquoise/30 text-turquoise border border-turquoise/50' : 'bg-white/5 text-white/40'
                       }`}
                     >
@@ -479,7 +484,7 @@ export default function MotionAnalysis() {
 
                     <button
                       onClick={() => setShowHeatmap(!showHeatmap)}
-                      className={`px-2 py-1 rounded-lg text-[10px] font-semibold flex items-center gap-1 transition-all ${
+                      className={`px-2.5 py-1 rounded-lg text-[10px] font-semibold flex items-center gap-1 transition-all cursor-pointer ${
                         showHeatmap ? 'bg-coral/30 text-coral border border-coral/50' : 'bg-white/5 text-white/40'
                       }`}
                     >
@@ -489,7 +494,7 @@ export default function MotionAnalysis() {
 
                     <button
                       onClick={() => setShowTelemetry(!showTelemetry)}
-                      className={`px-2 py-1 rounded-lg text-[10px] font-semibold flex items-center gap-1 transition-all ${
+                      className={`px-2.5 py-1 rounded-lg text-[10px] font-semibold flex items-center gap-1 transition-all cursor-pointer ${
                         showTelemetry ? 'bg-emerald-500/30 text-emerald-300 border border-emerald-500/50' : 'bg-white/5 text-white/40'
                       }`}
                     >
@@ -502,13 +507,13 @@ export default function MotionAnalysis() {
             </div>
 
             {/* Bottom Status bar */}
-            <div className="bg-slate-50 border border-slate-200 rounded-2xl p-3 flex items-center justify-between text-xs text-navy/80">
+            <div className="bg-slate-50 border border-slate-200/80 rounded-2xl p-3 flex items-center justify-between text-xs text-navy/80 shadow-sm">
               <div className="flex items-center gap-2">
                 <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
-                <span className="font-semibold text-navy">Dijital GMA Değerlendirmesi:</span>
-                <span className="text-navy/70">Akıcı, değişken ve simetrik spontan motor paterni izleniyor.</span>
+                <span className="font-bold text-navy">Dijital GMA Değerlendirmesi:</span>
+                <span className="text-navy/70 hidden sm:inline">Akıcı, değişken ve simetrik spontan motor paterni izleniyor.</span>
               </div>
-              <span className="text-[11px] font-bold text-turquoise bg-turquoise/10 px-2.5 py-1 rounded-full shrink-0">
+              <span className="text-[11px] font-bold text-turquoise bg-turquoise/10 px-2.5 py-1 rounded-full shrink-0 border border-turquoise/20">
                 BabySensAI Core
               </span>
             </div>
@@ -516,9 +521,10 @@ export default function MotionAnalysis() {
         </div>
 
         {/* Disclaimer Note */}
-        <div className="mt-14 bg-soft-gray border-l-4 border-turquoise rounded-r-2xl px-6 py-4 max-w-3xl mx-auto">
+        <div className="mt-14 bg-soft-gray border-l-4 border-turquoise rounded-2xl p-5 md:p-6 max-w-3xl mx-auto shadow-sm flex items-start gap-3.5">
+          <Info size={20} className="text-turquoise shrink-0 mt-0.5" />
           <p className="text-xs md:text-sm text-navy/70 leading-relaxed">
-            <strong className="font-semibold text-navy">Önemli Bilgilendirme: </strong>
+            <strong className="font-bold text-navy">Önemli Bilgilendirme: </strong>
             DijitalBüyükanne ve BabySensAI teknolojisi tanı ve klinik teşhis koymaz. Hizmet, ailelere erken farkındalık kazandırmak, bebeğin gelişim aşamalarını düzenli kayıt altına almak ve gerektiğinde doğru uzman hekime başvurmayı kolaylaştırmak amacıyla tasarlanmıştır.
           </p>
         </div>
@@ -526,4 +532,3 @@ export default function MotionAnalysis() {
     </section>
   );
 }
-

@@ -137,12 +137,12 @@ export default function KurumlarPage() {
             return (
               <div
                 key={idx}
-                className="bg-white p-7 rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition-all hover:-translate-y-1"
+                className="premium-card bg-white p-7 rounded-3xl border border-gray-100/90 shadow-sm hover:shadow-card-hover transition-all duration-300 group cursor-default"
               >
-                <div className="w-12 h-12 rounded-2xl bg-turquoise/10 text-turquoise flex items-center justify-center mb-5">
+                <div className="w-12 h-12 rounded-2xl bg-turquoise/10 text-turquoise group-hover:bg-turquoise group-hover:text-navy flex items-center justify-center mb-5 transition-all duration-300 group-hover:scale-105">
                   <Icon size={24} />
                 </div>
-                <h3 className="font-bold text-navy text-lg mb-2">{f.title}</h3>
+                <h3 className="font-bold text-navy text-lg mb-2 group-hover:text-turquoise transition-colors">{f.title}</h3>
                 <p className="text-sm text-gray-600 leading-relaxed">{f.desc}</p>
               </div>
             );
@@ -162,22 +162,22 @@ export default function KurumlarPage() {
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-left">
-            <div className="bg-white p-5 rounded-2xl shadow-sm">
+            <div className="premium-card bg-white p-5 rounded-2xl shadow-sm hover:shadow-md border border-gray-100/80 transition-all duration-300">
               <span className="text-coral font-bold text-xs uppercase tracking-wider">Aşama 01</span>
               <h4 className="font-bold text-navy mt-1 mb-2">Pilot</h4>
               <p className="text-xs text-gray-600">Belirli sayıda hedef aileyle sistemi canlıya alın.</p>
             </div>
-            <div className="bg-white p-5 rounded-2xl shadow-sm">
+            <div className="premium-card bg-white p-5 rounded-2xl shadow-sm hover:shadow-md border border-gray-100/80 transition-all duration-300">
               <span className="text-turquoise font-bold text-xs uppercase tracking-wider">Aşama 02</span>
               <h4 className="font-bold text-navy mt-1 mb-2">Ölçümle</h4>
               <p className="text-xs text-gray-600">Katılım ve memnuniyet metriklerini panelden izleyin.</p>
             </div>
-            <div className="bg-white p-5 rounded-2xl shadow-sm">
+            <div className="premium-card bg-white p-5 rounded-2xl shadow-sm hover:shadow-md border border-gray-100/80 transition-all duration-300">
               <span className="text-navy font-bold text-xs uppercase tracking-wider">Aşama 03</span>
               <h4 className="font-bold text-navy mt-1 mb-2">Geliştir</h4>
               <p className="text-xs text-gray-600">Yerel ihtiyaçlara göre içerik ve servisleri uyarlayın.</p>
             </div>
-            <div className="bg-white p-5 rounded-2xl shadow-sm">
+            <div className="premium-card bg-white p-5 rounded-2xl shadow-sm hover:shadow-md border border-gray-100/80 transition-all duration-300">
               <span className="text-coral font-bold text-xs uppercase tracking-wider">Aşama 04</span>
               <h4 className="font-bold text-navy mt-1 mb-2">Ölçekle</h4>
               <p className="text-xs text-gray-600">Başarısı tescillenen modeli ilçe veya il geneline açın.</p>

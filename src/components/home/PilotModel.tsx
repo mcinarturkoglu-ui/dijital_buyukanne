@@ -31,8 +31,11 @@ const phases = [
 
 export default function PilotModel() {
   return (
-    <section className="py-20 md:py-28 px-4 md:px-8 bg-navy">
-      <div className="max-w-6xl mx-auto">
+    <section className="py-20 md:py-28 px-4 md:px-8 bg-navy relative overflow-hidden">
+      {/* Background decorations */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-turquoise/5 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="max-w-6xl mx-auto relative z-10">
         <SectionHeader
           eyebrow="Başlamak Kolay"
           title="Pilotla başla. Ölç. Geliştir. Yaygınlaştır."
@@ -47,26 +50,29 @@ export default function PilotModel() {
               {/* Connecting arrow — visible on lg between cards */}
               {i < phases.length - 1 && (
                 <div className="hidden lg:flex absolute -right-4 top-1/2 -translate-y-1/2 z-10 items-center">
-                  <ChevronRight className="w-6 h-6 text-turquoise/50" strokeWidth={2.5} />
+                  <ChevronRight className="w-6 h-6 text-turquoise/40 animate-pulse" strokeWidth={2.5} style={{ animationDelay: `${i * 0.3}s` }} />
                 </div>
               )}
 
-              <div className="bg-white/5 border border-white/10 rounded-3xl p-7 hover:bg-white/10 hover:border-turquoise/50 hover:shadow-2xl hover:shadow-turquoise/10 hover:-translate-y-2 transition-all duration-300 flex flex-col h-full group cursor-default">
+              <div className="glass-card-dark rounded-3xl p-7 hover:bg-white/10 hover:border-turquoise/40 hover:shadow-2xl hover:shadow-turquoise/10 hover:-translate-y-3 transition-all duration-500 flex flex-col h-full group cursor-default">
                 {/* Number */}
-                <span className="text-turquoise/30 group-hover:text-turquoise/70 font-black text-5xl leading-none mb-4 select-none transition-colors duration-300">
+                <span className="text-turquoise/20 group-hover:text-turquoise/50 font-black text-5xl leading-none mb-4 select-none transition-colors duration-500">
                   {number}
                 </span>
 
                 {/* Icon */}
-                <div className="w-12 h-12 rounded-2xl bg-turquoise/15 group-hover:bg-turquoise group-hover:text-navy flex items-center justify-center mb-5 transition-all duration-300 shadow-sm">
+                <div className="w-12 h-12 rounded-2xl bg-turquoise/10 group-hover:bg-turquoise group-hover:text-navy flex items-center justify-center mb-5 transition-all duration-500 shadow-sm group-hover:shadow-md group-hover:shadow-turquoise/25 group-hover:scale-110">
                   <Icon className="w-6 h-6 text-turquoise group-hover:text-navy transition-colors" />
                 </div>
 
                 {/* Title */}
-                <h3 className="text-white font-bold text-lg tracking-wide mb-2 group-hover:text-turquoise transition-colors duration-200">{title}</h3>
+                <h3 className="text-white font-bold text-lg tracking-wide mb-2 group-hover:text-turquoise transition-colors duration-300">{title}</h3>
 
                 {/* Description */}
-                <p className="text-white/70 text-sm leading-relaxed flex-1">{description}</p>
+                <p className="text-white/60 text-sm leading-relaxed flex-1">{description}</p>
+
+                {/* Bottom accent */}
+                <div className="mt-4 w-8 h-0.5 bg-turquoise/20 group-hover:w-full group-hover:bg-turquoise/40 rounded-full transition-all duration-700" />
               </div>
             </div>
           ))}
@@ -75,12 +81,12 @@ export default function PilotModel() {
 
         {/* Bottom message + CTA */}
         <div className="mt-16 flex flex-col items-center text-center gap-6">
-          <p className="text-white/80 text-lg md:text-xl max-w-xl leading-relaxed">
+          <p className="text-white/70 text-lg md:text-xl max-w-xl leading-relaxed">
             Büyük bütçe ayırmadan önce pilot ile başlayabilirsiniz.
           </p>
           <Link
             href="/kurumlar#form"
-            className="inline-flex items-center gap-2 bg-coral text-white font-semibold px-8 py-4 rounded-2xl hover:bg-coral/90 transition-all duration-200 text-base shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+            className="shimmer-btn inline-flex items-center gap-2 bg-gradient-to-r from-coral to-coral-600 text-white font-semibold px-8 py-4 rounded-2xl transition-all duration-300 text-base shadow-lg hover:shadow-xl hover:shadow-coral/25 hover:-translate-y-1"
           >
             Pilot Program Görüşmesi Planla
             <ArrowRight className="w-5 h-5" />

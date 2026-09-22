@@ -71,21 +71,21 @@ export default function HakkimizdaPage() {
       {/* Mission & Vision */}
       <section className="py-20 px-4 md:px-8 max-w-5xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm">
-            <div className="w-12 h-12 rounded-2xl bg-coral/10 text-coral flex items-center justify-center mb-5">
-              <Target size={24} />
+          <div className="premium-card bg-white p-8 md:p-10 rounded-3xl border border-gray-100/90 shadow-sm hover:shadow-card-hover transition-all duration-300 group">
+            <div className="w-14 h-14 rounded-2xl bg-coral/10 text-coral flex items-center justify-center mb-5 group-hover:scale-105 transition-transform">
+              <Target size={26} />
             </div>
-            <h3 className="text-2xl font-bold text-navy mb-3">Misyonumuz</h3>
+            <h3 className="text-2xl font-bold text-navy mb-3 group-hover:text-coral transition-colors">Misyonumuz</h3>
             <p className="text-gray-600 text-sm leading-relaxed">
               Teknolojinin sunduğu imkânları, bilimsel pediatrik bilgi ve uzman desteğiyle harmanlayarak; Türkiye&apos;deki tüm bebeklerin ilk 24 aylık gelişim döneminde eşit, güvenilir ve sürekli bir rehberlik ağına erişebilmesini sağlamak.
             </p>
           </div>
 
-          <div className="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm">
-            <div className="w-12 h-12 rounded-2xl bg-turquoise/10 text-turquoise flex items-center justify-center mb-5">
-              <Eye size={24} />
+          <div className="premium-card bg-white p-8 md:p-10 rounded-3xl border border-gray-100/90 shadow-sm hover:shadow-card-hover transition-all duration-300 group">
+            <div className="w-14 h-14 rounded-2xl bg-turquoise/10 text-turquoise flex items-center justify-center mb-5 group-hover:scale-105 transition-transform">
+              <Eye size={26} />
             </div>
-            <h3 className="text-2xl font-bold text-navy mb-3">Vizyonumuz</h3>
+            <h3 className="text-2xl font-bold text-navy mb-3 group-hover:text-turquoise transition-colors">Vizyonumuz</h3>
             <p className="text-gray-600 text-sm leading-relaxed">
               Yerel yönetimlerin, sivil toplumun ve ailelerin aynı dijital çatıda buluştuğu; erken dönem farkındalığının en üst seviyeye ulaştığı, çocuk odaklı dijital belediyecilik ve sosyal destek standartlarını yeniden tanımlamak.
             </p>
@@ -105,11 +105,14 @@ export default function HakkimizdaPage() {
             {values.map((v, idx) => {
               const Icon = v.icon;
               return (
-                <div key={idx} className="bg-white p-6 rounded-2xl shadow-sm">
-                  <div className="w-10 h-10 rounded-xl bg-navy/5 text-navy flex items-center justify-center mb-4">
-                    <Icon size={20} className="text-turquoise" />
+                <div
+                  key={idx}
+                  className="premium-card bg-white p-6 rounded-3xl border border-gray-100/90 shadow-sm hover:shadow-card-hover transition-all duration-300 group"
+                >
+                  <div className="w-12 h-12 rounded-2xl bg-navy/5 text-navy group-hover:bg-turquoise/10 flex items-center justify-center mb-4 transition-colors">
+                    <Icon size={22} className="text-turquoise group-hover:scale-110 transition-transform" />
                   </div>
-                  <h4 className="font-bold text-navy text-base mb-2">{v.title}</h4>
+                  <h4 className="font-bold text-navy text-base mb-2 group-hover:text-turquoise transition-colors">{v.title}</h4>
                   <p className="text-xs text-gray-600 leading-relaxed">{v.desc}</p>
                 </div>
               );
