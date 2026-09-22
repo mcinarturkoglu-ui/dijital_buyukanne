@@ -154,11 +154,14 @@ export default function BabySensAIPage() {
             {techAreas.map((t, idx) => {
               const Icon = t.icon;
               return (
-                <div key={idx} className="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-all">
-                  <div className="w-12 h-12 rounded-xl bg-navy/5 text-navy flex items-center justify-center mb-4">
-                    <Icon size={24} className="text-turquoise" />
+                <div
+                  key={idx}
+                  className="premium-card bg-white p-6 rounded-3xl border border-gray-100/90 shadow-sm hover:shadow-card-hover transition-all duration-300 group cursor-default"
+                >
+                  <div className="w-12 h-12 rounded-2xl bg-navy/5 text-navy group-hover:bg-turquoise/10 flex items-center justify-center mb-4 transition-colors">
+                    <Icon size={24} className="text-turquoise group-hover:scale-110 transition-transform" />
                   </div>
-                  <h4 className="font-bold text-navy text-base mb-2">{t.title}</h4>
+                  <h4 className="font-bold text-navy text-base mb-2 group-hover:text-turquoise transition-colors">{t.title}</h4>
                   <p className="text-xs text-gray-600 leading-relaxed">{t.desc}</p>
                 </div>
               );

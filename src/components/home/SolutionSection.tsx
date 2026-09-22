@@ -242,20 +242,23 @@ export default function SolutionSection() {
             {features.map((feature, i) => (
               <div
                 key={i}
-                className="bg-white rounded-3xl shadow-card hover:shadow-card-hover hover:-translate-x-2 border border-gray-100/80 hover:border-turquoise/40 transition-all duration-300 p-6 flex gap-5 items-start group cursor-default"
+                className="premium-card border border-gray-100/80 hover:border-turquoise/30 p-6 flex gap-5 items-start group cursor-default relative"
               >
+                {/* Left accent gradient bar */}
+                <div className="absolute left-0 top-4 bottom-4 w-0.5 bg-turquoise/15 group-hover:bg-gradient-to-b group-hover:from-turquoise group-hover:to-teal-400 group-hover:w-1 rounded-full transition-all duration-500" />
+
                 {/* Number badge + icon */}
-                <div className="shrink-0 flex flex-col items-center gap-2">
-                  <span className="text-xs font-black text-turquoise tracking-wider group-hover:scale-110 transition-transform">{feature.number}</span>
-                  <div className="w-12 h-12 rounded-2xl bg-turquoise/10 text-turquoise flex items-center justify-center group-hover:bg-turquoise group-hover:text-white group-hover:scale-105 transition-all duration-300 shadow-sm">
+                <div className="shrink-0 flex flex-col items-center gap-2 pl-2">
+                  <span className="text-xs font-black text-turquoise/30 group-hover:text-turquoise tracking-wider transition-colors duration-300">{feature.number}</span>
+                  <div className="w-12 h-12 rounded-2xl bg-turquoise/10 text-turquoise flex items-center justify-center group-hover:bg-turquoise group-hover:text-white group-hover:scale-110 group-hover:shadow-md group-hover:shadow-turquoise/25 transition-all duration-500">
                     {feature.icon}
                   </div>
                 </div>
 
                 {/* Text */}
                 <div className="flex-1">
-                  <h3 className="font-bold text-navy text-base mb-1.5 group-hover:text-turquoise transition-colors duration-200">{feature.title}</h3>
-                  <p className="text-navy/60 text-sm leading-relaxed">{feature.description}</p>
+                  <h3 className="font-bold text-navy text-base mb-1.5 group-hover:text-turquoise transition-colors duration-300">{feature.title}</h3>
+                  <p className="text-navy/55 text-sm leading-relaxed">{feature.description}</p>
                 </div>
               </div>
             ))}
@@ -265,13 +268,13 @@ export default function SolutionSection() {
 
         {/* Slogan Footer */}
         <div className="mt-20 text-center">
-          <div className="inline-flex items-center gap-3 bg-[#082A46] rounded-3xl px-8 py-5">
-            <span className="w-2 h-2 rounded-full bg-[#14BBB7]" />
-            <p className="text-white font-bold text-xl md:text-2xl">
+          <div className="shimmer-btn inline-flex items-center gap-3 bg-gradient-to-r from-[#082A46] via-[#0e3b61] to-[#082A46] rounded-3xl px-8 py-5 shadow-lg">
+            <span className="w-2.5 h-2.5 rounded-full bg-turquoise animate-pulse" />
+            <p className="text-white font-extrabold text-xl md:text-2xl tracking-tight">
               Tek uygulama.{' '}
-              <span className="text-[#14BBB7]">Beş güçlü hizmet.</span>
+              <span className="text-turquoise">Beş güçlü hizmet.</span>
             </p>
-            <span className="w-2 h-2 rounded-full bg-[#FF7965]" />
+            <span className="w-2.5 h-2.5 rounded-full bg-coral animate-pulse" style={{ animationDelay: '0.5s' }} />
           </div>
         </div>
       </div>

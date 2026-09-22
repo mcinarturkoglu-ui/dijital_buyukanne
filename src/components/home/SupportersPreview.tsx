@@ -37,8 +37,11 @@ const supporters = [
 
 export default function SupportersPreview() {
   return (
-    <section className="py-20 md:py-28 px-4 md:px-8 bg-off-white">
-      <div className="max-w-6xl mx-auto">
+    <section className="py-20 md:py-28 px-4 md:px-8 bg-off-white relative overflow-hidden">
+      {/* Background mesh */}
+      <div className="absolute inset-0 bg-gradient-mesh pointer-events-none opacity-30" />
+
+      <div className="max-w-6xl mx-auto relative z-10">
         <SectionHeader
           eyebrow="Destekçilerimiz"
           title="Bu yolculuğu birlikte büyütüyoruz."
@@ -51,22 +54,22 @@ export default function SupportersPreview() {
           {supporters.map((s, i) => (
             <div
               key={i}
-              className="bg-white rounded-3xl shadow-card hover:shadow-card-hover transition-all duration-300 overflow-hidden flex flex-col"
+              className="premium-card overflow-hidden flex flex-col border border-gray-100/80 group"
             >
-              {/* Card top accent bar */}
-              <div className="h-1.5 w-full" style={{ backgroundColor: s.color }} />
+              {/* Card top accent bar — gradient */}
+              <div className="h-1.5 w-full" style={{ background: `linear-gradient(90deg, ${s.color}, ${s.accent})` }} />
 
               <div className="p-7 flex flex-col flex-1">
                 {/* Logo placeholder */}
                 <div
-                  className="w-14 h-14 rounded-2xl flex items-center justify-center text-white font-bold text-lg mb-5 flex-shrink-0"
+                  className="w-14 h-14 rounded-2xl flex items-center justify-center text-white font-bold text-lg mb-5 flex-shrink-0 shadow-md group-hover:scale-105 group-hover:shadow-lg transition-all duration-500"
                   style={{ backgroundColor: s.color }}
                 >
                   {s.initials}
                 </div>
 
                 {/* Institution name */}
-                <h3 className="text-navy font-bold text-lg leading-tight">{s.name}</h3>
+                <h3 className="text-navy font-bold text-lg leading-tight group-hover:text-turquoise transition-colors duration-300">{s.name}</h3>
 
                 {/* Program name */}
                 <p
@@ -89,11 +92,11 @@ export default function SupportersPreview() {
                 <div className="mt-6 pt-5 border-t border-gray-100">
                   <Link
                     href="/destekciler"
-                    className="inline-flex items-center gap-1.5 text-sm font-semibold hover:gap-2.5 transition-all duration-200"
+                    className="inline-flex items-center gap-1.5 text-sm font-semibold hover:gap-2.5 transition-all duration-300 group/link"
                     style={{ color: s.color }}
                   >
                     Detayları Gör
-                    <ExternalLink className="w-3.5 h-3.5" />
+                    <ExternalLink className="w-3.5 h-3.5 group-hover/link:rotate-12 transition-transform duration-300" />
                   </Link>
                 </div>
               </div>
@@ -110,7 +113,7 @@ export default function SupportersPreview() {
         <div className="flex justify-center mt-8">
           <Link
             href="/destekciler"
-            className="inline-flex items-center gap-2 border-2 border-navy text-navy font-semibold px-7 py-3.5 rounded-xl hover:bg-navy hover:text-white transition-all duration-200"
+            className="inline-flex items-center gap-2 border-2 border-navy text-navy font-semibold px-7 py-3.5 rounded-xl hover:bg-navy hover:text-white transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
           >
             Tüm Destekçileri Gör
             <ArrowRight className="w-4 h-4" />

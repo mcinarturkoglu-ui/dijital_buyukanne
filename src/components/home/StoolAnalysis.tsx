@@ -14,6 +14,7 @@ import {
   ShieldCheck,
   Droplets,
   HelpCircle,
+  Info,
 } from 'lucide-react';
 import SectionHeader from '@/components/ui/SectionHeader';
 import PhoneMockup from '@/components/ui/PhoneMockup';
@@ -134,7 +135,7 @@ function DiaperPhoneContent({
             <span className="text-[9px] text-white/50">StoolColorVision v2.3</span>
           </div>
         </div>
-        <div className="flex items-center gap-1.5 bg-turquoise/15 text-turquoise px-2 py-0.5 rounded-full text-[9px] font-mono border border-turquoise/30">
+        <div className="flex items-center gap-1.5 bg-turquoise/15 text-turquoise px-2 py-0.5 rounded-full text-[9px] font-mono border border-turquoise/30 font-bold">
           <span className="w-1.5 h-1.5 rounded-full bg-turquoise animate-ping" />
           <span>CANLI HUD</span>
         </div>
@@ -192,7 +193,7 @@ function DiaperPhoneContent({
 
           {/* Scanning line */}
           {isScanning && (
-            <div className="absolute inset-x-0 h-1 bg-gradient-to-r from-transparent via-turquoise to-transparent shadow-[0_0_10px_#14BBB7] animate-laserscan pointer-events-none" />
+            <div className="absolute inset-x-0 h-1 bg-gradient-to-r from-transparent via-turquoise to-transparent shadow-[0_0_10px_#14BBB7] animate-laser-scan pointer-events-none" />
           )}
 
           {/* Viewport Top Badge */}
@@ -216,7 +217,7 @@ function DiaperPhoneContent({
             <button
               key={s.id}
               onClick={() => setActiveSample(s)}
-              className={`flex-1 min-w-[65px] py-1 px-1.5 rounded-lg text-[8px] font-bold transition-all text-center truncate ${
+              className={`flex-1 min-w-[65px] py-1 px-1.5 rounded-lg text-[8px] font-bold transition-all text-center truncate cursor-pointer ${
                 activeSample.id === s.id
                   ? 'bg-turquoise text-navy font-black shadow-sm'
                   : 'text-white/60 hover:text-white bg-white/5'
@@ -259,7 +260,7 @@ function DiaperPhoneContent({
             <span className="text-[8px] text-white/40">Pediatrik renk eşleştirmesi</span>
             <button
               onClick={handleScan}
-              className="text-[9px] font-bold text-navy bg-turquoise hover:bg-white px-3 py-1 rounded-lg transition-colors flex items-center gap-1 shadow-sm"
+              className="text-[9px] font-bold text-navy bg-turquoise hover:bg-white px-3 py-1 rounded-lg transition-colors flex items-center gap-1 shadow-sm cursor-pointer"
             >
               <Camera size={11} />
               <span>Yeniden Tara</span>
@@ -275,8 +276,12 @@ export default function StoolAnalysis() {
   const [activeSample, setActiveSample] = useState(stoolSamples[0]);
 
   return (
-    <section className="py-20 md:py-28 px-4 md:px-8 bg-white overflow-hidden" id="bez-analizi">
-      <div className="max-w-6xl mx-auto">
+    <section className="py-20 md:py-28 px-4 md:px-8 bg-white relative overflow-hidden" id="bez-analizi">
+      {/* Decorative ambient background */}
+      <div className="absolute top-1/3 -left-20 w-96 h-96 bg-turquoise/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-10 -right-20 w-96 h-96 bg-coral/5 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="max-w-6xl mx-auto relative z-10">
         <SectionHeader
           eyebrow="AI Bebek Bezi & Dışkı Analizi"
           title="Bebek bezindeki ipuçlarını yapay zekâ ile saniyeler içinde anlayın."
@@ -285,20 +290,20 @@ export default function StoolAnalysis() {
         />
 
         {/* 4 Stool Color Categories Preview Bar */}
-        <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-3.5">
           {stoolSamples.map((sample) => (
             <button
               key={sample.id}
               onClick={() => setActiveSample(sample)}
-              className={`p-4 rounded-2xl border text-left transition-all duration-300 relative overflow-hidden group ${
+              className={`premium-card p-4 rounded-2xl border text-left transition-all duration-300 relative overflow-hidden group cursor-pointer ${
                 activeSample.id === sample.id
-                  ? 'border-turquoise bg-turquoise/5 shadow-md shadow-turquoise/10 scale-102'
-                  : 'border-gray-200 hover:border-turquoise/40 hover:bg-slate-50'
+                  ? 'border-turquoise bg-turquoise/5 shadow-md shadow-turquoise/15 scale-102 ring-2 ring-turquoise/30'
+                  : 'border-gray-200/90 hover:border-turquoise/40 hover:bg-slate-50'
               }`}
             >
               <div className="flex items-center justify-between mb-2">
                 <span
-                  className="w-4 h-4 rounded-full border border-black/10 shadow-sm"
+                  className="w-4 h-4 rounded-full border border-black/10 shadow-sm shrink-0"
                   style={{ backgroundColor: sample.colorHex }}
                 />
                 <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${sample.badgeColor}`}>
@@ -322,7 +327,9 @@ export default function StoolAnalysis() {
           <div className="lg:col-span-7 flex flex-col gap-6">
             
             {/* Active Sample Medical Insight Box */}
-            <div className="bg-gradient-to-br from-[#082A46] to-[#0d3455] text-white p-6 rounded-3xl shadow-xl border border-white/10 relative overflow-hidden">
+            <div className="bg-gradient-to-br from-[#082A46] via-[#093254] to-[#0d3455] text-white p-6 md:p-7 rounded-3xl shadow-xl border border-white/10 relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-36 h-36 bg-turquoise/15 rounded-full blur-2xl pointer-events-none" />
+
               <div className="flex items-center justify-between gap-2 mb-3">
                 <div className="flex items-center gap-2">
                   <span className={`w-2.5 h-2.5 rounded-full ${activeSample.statusDot} animate-pulse`} />
@@ -335,18 +342,18 @@ export default function StoolAnalysis() {
                 </span>
               </div>
 
-              <h3 className="text-xl font-bold text-white mb-2">{activeSample.title}</h3>
+              <h3 className="text-xl md:text-2xl font-bold text-white mb-2">{activeSample.title}</h3>
               <p className="text-xs md:text-sm text-white/80 leading-relaxed mb-4">
                 {activeSample.findings}
               </p>
 
               {/* Clinical Advice */}
-              <div className="bg-white/10 rounded-2xl p-3.5 border border-white/10">
-                <div className="flex items-center gap-1.5 text-turquoise text-xs font-bold mb-1">
-                  <HeartHandshake size={14} />
+              <div className="bg-white/10 rounded-2xl p-4 border border-white/10 backdrop-blur-sm">
+                <div className="flex items-center gap-1.5 text-turquoise text-xs font-bold mb-1.5">
+                  <HeartHandshake size={15} />
                   <span>Uzman & Ebeveyn Rehberliği</span>
                 </div>
-                <p className="text-xs text-white/90 leading-relaxed">
+                <p className="text-xs md:text-sm text-white/90 leading-relaxed">
                   {activeSample.advice}
                 </p>
               </div>
@@ -359,9 +366,9 @@ export default function StoolAnalysis() {
                 return (
                   <div
                     key={step.step}
-                    className="flex items-start gap-4 p-4 rounded-2xl bg-white border border-gray-100 shadow-sm hover:shadow-card-hover hover:border-turquoise/30 transition-all duration-300 group cursor-default"
+                    className="premium-card flex items-start gap-4 p-4 rounded-2xl bg-white border border-gray-100/90 shadow-sm hover:shadow-card-hover hover:border-turquoise/35 transition-all duration-300 group cursor-default"
                   >
-                    <div className={`w-10 h-10 rounded-xl ${step.bgColor} text-white flex items-center justify-center shrink-0 font-bold text-sm shadow-sm group-hover:scale-105 transition-transform`}>
+                    <div className={`w-10 h-10 rounded-xl ${step.bgColor} text-white flex items-center justify-center shrink-0 font-bold text-sm shadow-sm group-hover:scale-110 transition-transform duration-300`}>
                       {step.step}
                     </div>
                     <div>
@@ -393,9 +400,10 @@ export default function StoolAnalysis() {
         </div>
 
         {/* Disclaimer Card */}
-        <div className="mt-14 bg-soft-gray border-l-4 border-turquoise rounded-r-2xl px-6 py-4 max-w-3xl mx-auto">
+        <div className="mt-14 bg-soft-gray border-l-4 border-turquoise rounded-2xl p-5 md:p-6 max-w-3xl mx-auto shadow-sm flex items-start gap-3.5">
+          <Info size={20} className="text-turquoise shrink-0 mt-0.5" />
           <p className="text-xs md:text-sm text-navy/70 leading-relaxed">
-            <strong className="font-semibold text-navy">Önemli Klinik Bilgilendirme: </strong>
+            <strong className="font-bold text-navy">Önemli Klinik Bilgilendirme: </strong>
             Bebek bezi analiz modülü tıbbi laboratuvar testi veya kesin teşhis aracı değildir. Pediatrik dışkı renk skalası ile görsel ön değerlendirme sunarak ebeveynlerde erken farkındalık oluşturmayı ve gerektiğinde hekim muayenesini geciktirmemeyi amaçlar.
           </p>
         </div>

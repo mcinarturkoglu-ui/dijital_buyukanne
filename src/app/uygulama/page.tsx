@@ -149,13 +149,13 @@ export default function UygulamaPage() {
             return (
               <div
                 key={idx}
-                className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all hover:-translate-y-1 flex flex-col justify-between"
+                className="premium-card bg-white p-5 rounded-2xl border border-gray-100/90 shadow-sm hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between group cursor-default"
               >
                 <div>
-                  <div className="w-10 h-10 rounded-xl bg-turquoise/10 text-turquoise flex items-center justify-center mb-4">
+                  <div className="w-10 h-10 rounded-xl bg-turquoise/10 text-turquoise group-hover:bg-turquoise group-hover:text-navy flex items-center justify-center mb-4 transition-all duration-300 group-hover:scale-110">
                     <Icon size={20} />
                   </div>
-                  <h3 className="font-bold text-navy text-sm mb-1">{m.title}</h3>
+                  <h3 className="font-bold text-navy text-sm mb-1 group-hover:text-turquoise transition-colors">{m.title}</h3>
                   <p className="text-xs text-gray-600 leading-relaxed">{m.desc}</p>
                 </div>
               </div>

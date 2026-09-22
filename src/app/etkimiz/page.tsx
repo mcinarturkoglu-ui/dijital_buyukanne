@@ -56,10 +56,10 @@ export default function EtkimizPage() {
             return (
               <div
                 key={idx}
-                className="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition-all flex flex-col items-center justify-center text-center"
+                className="premium-card bg-white p-8 rounded-3xl border border-gray-100/90 shadow-sm hover:shadow-card-hover transition-all duration-300 flex flex-col items-center justify-center text-center group cursor-default"
               >
-                <div className="w-12 h-12 rounded-2xl bg-gray-50 flex items-center justify-center mb-4">
-                  <Icon size={24} className={m.color} />
+                <div className="w-14 h-14 rounded-2xl bg-gray-50 group-hover:bg-turquoise/10 flex items-center justify-center mb-4 transition-all duration-300 group-hover:scale-110">
+                  <Icon size={26} className={`${m.color} transition-transform`} />
                 </div>
                 <AnimatedCounter
                   value={m.value}
