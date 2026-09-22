@@ -1,151 +1,212 @@
-import { Zap, ShieldCheck, Check, Sparkles } from 'lucide-react';
+'use client';
+
+import { useState } from 'react';
+import {
+  Zap,
+  ShieldCheck,
+  Check,
+  Sparkles,
+  Stethoscope,
+  Activity,
+  Droplets,
+  Moon,
+  Heart,
+  ChevronRight,
+  Info,
+} from 'lucide-react';
 import SectionHeader from '@/components/ui/SectionHeader';
 
-const segments = [
-  { label: 'Uyku', angle: 0 },
-  { label: 'Beslenme', angle: 60 },
-  { label: 'Emzirme', angle: 120 },
-  { label: 'Hareket', angle: 180 },
-  { label: 'Cilt', angle: 240 },
-  { label: 'Genel Gelişim', angle: 300 },
+const modules = [
+  {
+    id: 'hareket',
+    label: 'Hareket (GMA)',
+    angle: 0,
+    icon: Activity,
+    aiRole: '18 eklem noktasının simetri ve hızını saniyeler içinde hesaplar.',
+    expertRole: 'Pediatrik fizyoterapist olası nörolojik gecikmeyi teyit eder.',
+  },
+  {
+    id: 'cilt',
+    label: 'Cilt Analizi',
+    angle: 60,
+    icon: Sparkles,
+    aiRole: 'Piksel bazlı eritem ve döküntü yayılımını derin öğrenmeyle sınıflandırır.',
+    expertRole: 'Çocuk dermatoloğu güvenli krem veya klinik reçete oluşturur.',
+  },
+  {
+    id: 'dışkı',
+    label: 'Bez & Dışkı',
+    angle: 120,
+    icon: Droplets,
+    aiRole: 'Dışkı rengini Biliyer Atrezi ve süt alerjisi kartıyla eşleştirir.',
+    expertRole: 'Çocuk hekimi acil safra veya alerji tetkiklerini başlatır.',
+  },
+  {
+    id: 'uyku',
+    label: '7/24 Uyku Asistanı',
+    angle: 180,
+    icon: Moon,
+    aiRole: 'Gece 03:00’te atak dönemi rutinleri ve beyaz gürültü önerir.',
+    expertRole: 'Uyku danışmanı kronik uykusuzlukta özel ebeveyn planı yazar.',
+  },
+  {
+    id: 'beslenme',
+    label: 'Beslenme & Emzirme',
+    angle: 240,
+    icon: Heart,
+    aiRole: 'Aylık kilo/bez takibine göre yaşa uygun tokluk göstergelerini analiz eder.',
+    expertRole: 'Laktasyon ve beslenme uzmanı kilo duraklamalarında devreye girer.',
+  },
+  {
+    id: 'gelisim',
+    label: 'Genel Gelişim',
+    angle: 300,
+    icon: Stethoscope,
+    aiRole: 'Aylık kilometre taşlarını objektif grafiklerle izler.',
+    expertRole: 'Pediatrist genel gelişim tablosunu periyodik muayenede onaylar.',
+  },
 ];
-
-const aiBullets = [
-  '7/24 erişim',
-  'Hızlı yanıt',
-  'Kişiselleştirilmiş rehberlik',
-];
-
-const expertBullets = [
-  'Güven',
-  'Klinik değerlendirme',
-  'Gerektiğinde devreye girer',
-];
-
-function RadialDiagram() {
-  const radius = 120;
-  const centerSize = 100;
-
-  return (
-    <div className="relative w-84 h-84 md:w-96 md:h-96 flex items-center justify-center mx-auto my-4">
-      {/* Outermost rotating/pulsing glow ring */}
-      <div className="absolute inset-0 rounded-full bg-turquoise/5 border-2 border-dashed border-turquoise/20 animate-spin" style={{ animationDuration: '35s' }} />
-      {/* Mid ring */}
-      <div className="absolute w-72 h-72 rounded-full bg-turquoise/5 border border-turquoise/20 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-pulse-glow" />
-      {/* Inner glow */}
-      <div className="absolute w-52 h-52 rounded-full bg-turquoise/5 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
-      {/* Inner navy circle */}
-      <div
-        className="absolute rounded-full bg-gradient-to-br from-navy to-[#0e3b61] flex flex-col items-center justify-center shadow-2xl z-10 border-4 border-white/15 transition-transform duration-300 hover:scale-110 cursor-default"
-        style={{ width: centerSize, height: centerSize, top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
-      >
-        <p className="text-white font-black text-[11px] tracking-wider text-center leading-tight uppercase px-2">
-          Uzman<br /><span className="text-turquoise">Desteği</span>
-        </p>
-      </div>
-
-      {/* Segment labels placed around the circle */}
-      {segments.map(({ label, angle }) => {
-        const rad = (angle - 90) * (Math.PI / 180);
-        const x = 50 + radius * Math.cos(rad) / 1.7;
-        const y = 50 + radius * Math.sin(rad) / 1.7;
-        return (
-          <div
-            key={label}
-            className="absolute flex items-center justify-center"
-            style={{
-              left: `${x}%`,
-              top: `${y}%`,
-              transform: 'translate(-50%, -50%)',
-            }}
-          >
-            <span className="bg-white border border-turquoise/20 text-navy text-[11px] font-bold px-3 py-1.5 rounded-2xl shadow-card hover:bg-turquoise hover:text-white hover:scale-110 hover:shadow-card-glow transition-all duration-300 cursor-default whitespace-nowrap">
-              {label}
-            </span>
-          </div>
-        );
-      })}
-    </div>
-  );
-}
-
 
 export default function HumanAI() {
+  const [activeModule, setActiveModule] = useState(modules[0]);
+
   return (
-    <section className="py-20 md:py-28 px-4 md:px-8 bg-off-white relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-turquoise/5 rounded-full blur-3xl pointer-events-none" />
+    <section className="py-20 md:py-28 px-4 md:px-8 bg-gradient-to-b from-white via-soft-gray/30 to-white relative overflow-hidden" id="insan-ve-ai">
+      {/* Background ambient lighting */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-turquoise/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-6xl mx-auto relative z-10">
         <SectionHeader
-          eyebrow="İnsan + Yapay Zekâ"
-          title="Yapay zekâ destekler. Uzman gerektiğinde devreye girer."
-          subtitle="Dijital teknolojiler ailelerin bilgiye ve desteğe ulaşmasını kolaylaştırırken insan uzmanlığı güvenin merkezinde kalır."
+          eyebrow="İnsan + Yapay Zekâ Dengesi"
+          title="Yapay zekâ 7/24 destekler. Uzman hekim güvenin merkezindedir."
+          subtitle="Teknoloji bilgiye ve takibe erişimi demokratikleştirirken, klinik karar ve şefkat her zaman hekim ve uzmanlarımızın rehberliğinde kalır."
           centered
         />
 
-        {/* Circular diagram */}
-        <div className="mt-16 flex justify-center">
-          <RadialDiagram />
-        </div>
+        {/* Interactive Neural Radar Area */}
+        <div className="mt-16 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          {/* LEFT 6 COLS: The High-Tech Radial Neural Radar */}
+          <div className="lg:col-span-6 flex justify-center">
+            <div className="relative w-80 h-80 sm:w-96 sm:h-96 flex items-center justify-center select-none">
+              
+              {/* Outer Pulsing Rings */}
+              <div className="absolute inset-0 rounded-full border border-turquoise/20 animate-spin" style={{ animationDuration: '40s' }} />
+              <div className="absolute inset-6 rounded-full border border-dashed border-turquoise/30 animate-spin" style={{ animationDuration: '25s', animationDirection: 'reverse' }} />
+              <div className="absolute inset-16 rounded-full bg-gradient-to-tr from-turquoise/10 via-transparent to-coral/10 animate-pulse-glow" />
 
-        {/* Two-column bullets */}
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* AI column */}
-          <div className="premium-card p-8 border border-turquoise/10 hover:border-turquoise/30">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-turquoise/15 to-turquoise/5 flex items-center justify-center">
-                <Zap className="w-6 h-6 text-turquoise" />
+              {/* Central Doctor / Expert Node */}
+              <div className="relative w-28 h-28 rounded-full bg-gradient-to-br from-navy via-[#0d3455] to-navy flex flex-col items-center justify-center p-3 text-center shadow-2xl border-4 border-white z-20 group hover:scale-105 transition-transform duration-300">
+                <div className="w-8 h-8 rounded-full bg-turquoise/20 flex items-center justify-center mb-1 text-turquoise">
+                  <Stethoscope size={16} />
+                </div>
+                <span className="text-white font-extrabold text-[11px] leading-tight">UZMAN</span>
+                <span className="text-turquoise font-bold text-[9px] uppercase tracking-wider">DESTEĞİ</span>
+                <span className="absolute -bottom-1 w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
               </div>
-              <div>
-                <h3 className="text-xl font-bold text-navy">Yapay Zekâ</h3>
-                <p className="text-xs text-navy/40">BabySensAI Motoru</p>
-              </div>
-            </div>
-            <ul className="flex flex-col gap-4">
-              {aiBullets.map((item) => (
-                <li key={item} className="flex items-center gap-3 group">
-                  <div className="w-6 h-6 rounded-full bg-turquoise/10 group-hover:bg-turquoise flex items-center justify-center flex-shrink-0 transition-all duration-300">
-                    <Check className="w-3.5 h-3.5 text-turquoise group-hover:text-white transition-colors" />
+
+              {/* Orbiting Modules */}
+              {modules.map((mod) => {
+                const rad = (mod.angle - 90) * (Math.PI / 180);
+                const radius = 135;
+                const x = 50 + (radius * Math.cos(rad)) / 1.8;
+                const y = 50 + (radius * Math.sin(rad)) / 1.8;
+                const isSelected = activeModule.id === mod.id;
+                const Icon = mod.icon;
+
+                return (
+                  <div
+                    key={mod.id}
+                    className="absolute flex items-center justify-center z-30 transition-all duration-300"
+                    style={{
+                      left: `${x}%`,
+                      top: `${y}%`,
+                      transform: 'translate(-50%, -50%)',
+                    }}
+                  >
+                    <button
+                      onClick={() => setActiveModule(mod)}
+                      className={`px-3 py-2 rounded-2xl text-xs font-bold transition-all duration-300 flex items-center gap-1.5 shadow-md ${
+                        isSelected
+                          ? 'bg-turquoise text-navy scale-110 shadow-lg shadow-turquoise/30 ring-4 ring-turquoise/20'
+                          : 'bg-white text-navy/80 hover:bg-slate-50 hover:text-navy border border-gray-200'
+                      }`}
+                    >
+                      <Icon size={12} className={isSelected ? 'text-navy' : 'text-turquoise'} />
+                      <span className="whitespace-nowrap">{mod.label}</span>
+                    </button>
                   </div>
-                  <span className="text-navy/75 text-sm font-medium group-hover:text-navy transition-colors">{item}</span>
-                </li>
-              ))}
-            </ul>
+                );
+              })}
+            </div>
           </div>
 
-          {/* Expert column */}
-          <div className="premium-card p-8 border border-navy/10 hover:border-navy/20">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-navy/10 to-navy/5 flex items-center justify-center">
-                <ShieldCheck className="w-6 h-6 text-navy" />
+          {/* RIGHT 6 COLS: Live Interactive Insight Box */}
+          <div className="lg:col-span-6 flex flex-col gap-4">
+            
+            <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-gray-100 relative overflow-hidden">
+              <div className="flex items-center justify-between mb-4 pb-3 border-b border-gray-100">
+                <div className="flex items-center gap-2">
+                  <span className="w-2.5 h-2.5 rounded-full bg-turquoise animate-pulse" />
+                  <span className="text-xs font-bold text-navy uppercase tracking-wider">
+                    {activeModule.label} Entegrasyonu
+                  </span>
+                </div>
+                <span className="text-[10px] font-mono bg-turquoise/10 text-turquoise px-2.5 py-0.5 rounded-full font-bold">
+                  Birlikte Çalışma Prensibi
+                </span>
               </div>
-              <div>
-                <h3 className="text-xl font-bold text-navy">Uzman Desteği</h3>
-                <p className="text-xs text-navy/40">Klinik Değerlendirme</p>
+
+              {/* AI Layer */}
+              <div className="bg-slate-50 rounded-2xl p-4 border border-slate-200/80 mb-3">
+                <div className="flex items-center gap-2 mb-1.5">
+                  <Zap size={15} className="text-turquoise" />
+                  <h4 className="text-xs font-bold text-navy uppercase tracking-wider">1. Yapay Zekâ (BabySensAI)</h4>
+                </div>
+                <p className="text-xs sm:text-sm text-navy/75 leading-relaxed">
+                  {activeModule.aiRole}
+                </p>
+              </div>
+
+              {/* Specialist Layer */}
+              <div className="bg-gradient-to-br from-[#082A46] to-[#0c3556] text-white rounded-2xl p-4 shadow-md">
+                <div className="flex items-center gap-2 mb-1.5">
+                  <ShieldCheck size={15} className="text-emerald-400" />
+                  <h4 className="text-xs font-bold text-white uppercase tracking-wider">2. Uzman Hekim & Pedagog</h4>
+                </div>
+                <p className="text-xs sm:text-sm text-white/85 leading-relaxed">
+                  {activeModule.expertRole}
+                </p>
+              </div>
+
+              {/* Tip */}
+              <div className="mt-4 flex items-center justify-between text-[11px] text-navy/50">
+                <span>Modüllere tıklayarak işleyişi inceleyebilirsiniz</span>
+                <span className="text-turquoise font-semibold">Güven + Bilim</span>
               </div>
             </div>
-            <ul className="flex flex-col gap-4">
-              {expertBullets.map((item) => (
-                <li key={item} className="flex items-center gap-3 group">
-                  <div className="w-6 h-6 rounded-full bg-navy/10 group-hover:bg-navy flex items-center justify-center flex-shrink-0 transition-all duration-300">
-                    <Check className="w-3.5 h-3.5 text-navy group-hover:text-white transition-colors" />
-                  </div>
-                  <span className="text-navy/75 text-sm font-medium group-hover:text-navy transition-colors">{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
 
-        {/* Tagline */}
-        <div className="mt-12 flex justify-center">
-          <div className="shimmer-btn inline-flex items-center gap-3 bg-gradient-to-r from-navy via-[#0e3b61] to-navy text-white px-8 py-4 rounded-full shadow-lg">
-            <Zap className="w-4 h-4 text-turquoise" />
-            <p className="font-semibold text-sm tracking-wide">
-              Yapay zekâ + uzmanlık + sürekli takip
-            </p>
-            <ShieldCheck className="w-4 h-4 text-turquoise" />
+            {/* Bottom summary pills */}
+            <div className="grid grid-cols-2 gap-3">
+              <div className="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-3">
+                <div className="w-8 h-8 rounded-xl bg-turquoise/15 text-turquoise flex items-center justify-center font-black text-sm">
+                  24/7
+                </div>
+                <div>
+                  <p className="text-xs font-bold text-navy leading-none">Anlık İzlem</p>
+                  <p className="text-[10px] text-navy/50 mt-0.5">Kesintisiz erişim</p>
+                </div>
+              </div>
+              <div className="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-3">
+                <div className="w-8 h-8 rounded-xl bg-coral/15 text-coral flex items-center justify-center font-black text-sm">
+                  100%
+                </div>
+                <div>
+                  <p className="text-xs font-bold text-navy leading-none">Klinik Güven</p>
+                  <p className="text-[10px] text-navy/50 mt-0.5">Hekim doğrulaması</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
