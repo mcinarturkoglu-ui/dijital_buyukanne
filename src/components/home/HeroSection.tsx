@@ -501,6 +501,22 @@ export default function HeroSection() {
               <ShieldCheck size={17} className="text-sky-600 shrink-0" />
               <span>Pediatri Bilim Kurulu Standartları • Tanı Koymaz, Bilgilendirir ve Uzman Hekime Yönlendirir</span>
             </div>
+
+            {/* Sosyal Kanıt — 3 Stat Rozeti */}
+            <div className="flex flex-wrap items-center gap-3 mt-3">
+              <div className="flex items-center gap-2 bg-white/95 border border-sky-100 px-3.5 py-2 rounded-xl shadow-xs text-xs">
+                <span className="text-[#0284C7] font-black text-sm">12.400+</span>
+                <span className="text-slate-500 font-medium">Güvenen Aile</span>
+              </div>
+              <div className="flex items-center gap-2 bg-white/95 border border-sky-100 px-3.5 py-2 rounded-xl shadow-xs text-xs">
+                <span className="text-[#0284C7] font-black text-sm">15+</span>
+                <span className="text-slate-500 font-medium">Uzman Hekim</span>
+              </div>
+              <div className="flex items-center gap-2 bg-white/95 border border-coral/20 px-3.5 py-2 rounded-xl shadow-xs text-xs">
+                <span className="text-coral font-black text-sm">24 Ay</span>
+                <span className="text-slate-500 font-medium">Kesintisiz Takip</span>
+              </div>
+            </div>
           </div>
 
           {/* SAĞ KOLON — İNTERAKTİF TELEFON VE ROZETLER */}

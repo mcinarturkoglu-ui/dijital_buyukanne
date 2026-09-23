@@ -73,7 +73,7 @@ export default function HumanAI() {
   return (
     <section className="py-20 md:py-28 px-4 md:px-8 bg-gradient-to-b from-white via-soft-gray/30 to-white relative overflow-hidden" id="insan-ve-ai">
       {/* Background ambient lighting */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-turquoise/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-sky-50/60 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-6xl mx-auto relative z-10">
         <SectionHeader
@@ -91,17 +91,17 @@ export default function HumanAI() {
             <div className="relative w-80 h-80 sm:w-96 sm:h-96 flex items-center justify-center select-none">
               
               {/* Outer Pulsing Rings */}
-              <div className="absolute inset-0 rounded-full border border-turquoise/20 animate-spin" style={{ animationDuration: '40s' }} />
-              <div className="absolute inset-6 rounded-full border border-dashed border-turquoise/30 animate-spin" style={{ animationDuration: '25s', animationDirection: 'reverse' }} />
-              <div className="absolute inset-16 rounded-full bg-gradient-to-tr from-turquoise/10 via-transparent to-coral/10 animate-pulse-glow" />
+              <div className="absolute inset-0 rounded-full border border-sky-200/60 animate-spin" style={{ animationDuration: '40s' }} />
+              <div className="absolute inset-6 rounded-full border border-dashed border-sky-300/50 animate-spin" style={{ animationDuration: '25s', animationDirection: 'reverse' }} />
+              <div className="absolute inset-16 rounded-full bg-gradient-to-tr from-sky-100/50 via-transparent to-coral/10 animate-pulse-glow" />
 
               {/* Central Doctor / Expert Node */}
-              <div className="relative w-28 h-28 rounded-full bg-gradient-to-br from-navy via-[#0d3455] to-navy flex flex-col items-center justify-center p-3 text-center shadow-2xl border-4 border-white z-20 group hover:scale-105 transition-transform duration-300">
-                <div className="w-8 h-8 rounded-full bg-turquoise/20 flex items-center justify-center mb-1 text-turquoise">
+              <div className="relative w-28 h-28 rounded-full bg-gradient-to-br from-[#0B2545] via-[#0d3461] to-[#0B2545] flex flex-col items-center justify-center p-3 text-center shadow-2xl border-4 border-white z-20 group hover:scale-105 transition-transform duration-300">
+                <div className="w-8 h-8 rounded-full bg-sky-400/20 flex items-center justify-center mb-1 text-sky-300">
                   <Stethoscope size={16} />
                 </div>
                 <span className="text-white font-extrabold text-[11px] leading-tight">UZMAN</span>
-                <span className="text-turquoise font-bold text-[9px] uppercase tracking-wider">DESTEĞİ</span>
+                <span className="text-sky-300 font-bold text-[9px] uppercase tracking-wider">DESTEĞİ</span>
                 <span className="absolute -bottom-1 w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
               </div>
 
@@ -128,11 +128,11 @@ export default function HumanAI() {
                       onClick={() => setActiveModule(mod)}
                       className={`px-3 py-2 rounded-2xl text-xs font-bold transition-all duration-300 flex items-center gap-1.5 shadow-md ${
                         isSelected
-                          ? 'bg-turquoise text-navy scale-110 shadow-lg shadow-turquoise/30 ring-4 ring-turquoise/20'
-                          : 'bg-white text-navy/80 hover:bg-slate-50 hover:text-navy border border-gray-200'
+                          ? 'bg-sky-500 text-white scale-110 shadow-lg shadow-sky-400/30 ring-4 ring-sky-400/25'
+                          : 'bg-white text-navy/80 hover:bg-sky-50 hover:text-navy border border-gray-200'
                       }`}
                     >
-                      <Icon size={12} className={isSelected ? 'text-navy' : 'text-turquoise'} />
+                      <Icon size={12} className={isSelected ? 'text-white' : 'text-sky-500'} />
                       <span className="whitespace-nowrap">{mod.label}</span>
                     </button>
                   </div>
@@ -147,12 +147,12 @@ export default function HumanAI() {
             <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-gray-100 relative overflow-hidden">
               <div className="flex items-center justify-between mb-4 pb-3 border-b border-gray-100">
                 <div className="flex items-center gap-2">
-                  <span className="w-2.5 h-2.5 rounded-full bg-turquoise animate-pulse" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-sky-400 animate-pulse" />
                   <span className="text-xs font-bold text-navy uppercase tracking-wider">
                     {activeModule.label} Entegrasyonu
                   </span>
                 </div>
-                <span className="text-[10px] font-mono bg-turquoise/10 text-turquoise px-2.5 py-0.5 rounded-full font-bold">
+                <span className="text-[10px] font-mono bg-sky-50 text-sky-600 border border-sky-200 px-2.5 py-0.5 rounded-full font-bold">
                   Birlikte Çalışma Prensibi
                 </span>
               </div>
@@ -160,7 +160,7 @@ export default function HumanAI() {
               {/* AI Layer */}
               <div className="bg-slate-50 rounded-2xl p-4 border border-slate-200/80 mb-3">
                 <div className="flex items-center gap-2 mb-1.5">
-                  <Zap size={15} className="text-turquoise" />
+                  <Zap size={15} className="text-sky-500" />
                   <h4 className="text-xs font-bold text-navy uppercase tracking-wider">1. Yapay Zekâ (BabySensAI)</h4>
                 </div>
                 <p className="text-xs sm:text-sm text-navy/75 leading-relaxed">
@@ -169,7 +169,7 @@ export default function HumanAI() {
               </div>
 
               {/* Specialist Layer */}
-              <div className="bg-gradient-to-br from-[#082A46] to-[#0c3556] text-white rounded-2xl p-4 shadow-md">
+              <div className="bg-gradient-to-br from-[#0B2545] to-[#0d3461] text-white rounded-2xl p-4 shadow-md">
                 <div className="flex items-center gap-2 mb-1.5">
                   <ShieldCheck size={15} className="text-emerald-400" />
                   <h4 className="text-xs font-bold text-white uppercase tracking-wider">2. Uzman Hekim & Pedagog</h4>
@@ -182,14 +182,14 @@ export default function HumanAI() {
               {/* Tip */}
               <div className="mt-4 flex items-center justify-between text-[11px] text-navy/50">
                 <span>Modüllere tıklayarak işleyişi inceleyebilirsiniz</span>
-                <span className="text-turquoise font-semibold">Güven + Bilim</span>
+                <span className="text-sky-500 font-semibold">Güven + Bilim</span>
               </div>
             </div>
 
             {/* Bottom summary pills */}
             <div className="grid grid-cols-2 gap-3">
               <div className="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-3">
-                <div className="w-8 h-8 rounded-xl bg-turquoise/15 text-turquoise flex items-center justify-center font-black text-sm">
+                <div className="w-8 h-8 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center font-black text-sm border border-sky-100">
                   24/7
                 </div>
                 <div>
