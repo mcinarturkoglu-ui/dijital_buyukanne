@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -78,6 +78,14 @@ function RotaryWheel({ className = "w-12 h-12" }: { className?: string }) {
 export default function RotaryPartnershipPage() {
   const [babyCount, setBabyCount] = useState<number>(500);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+
+  // Site açıldığında doğrudan açılabilir pencere (popup) ile açılsın
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsModalOpen(true);
+    }, 400);
+    return () => clearTimeout(timer);
+  }, []);
 
   // Calculate projected impacts dynamically
   const gmaScans = babyCount;
