@@ -1,6 +1,6 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Check, ArrowRight, Building2, Smartphone } from "lucide-react";
-import { PhoneMockup } from "@/components/ui/PhoneMockup";
 
 export default function InstitutionsHero() {
   const features = [
@@ -98,66 +98,27 @@ export default function InstitutionsHero() {
             <div className="absolute inset-0 bg-turquoise/20 rounded-[50px] blur-3xl opacity-70 pointer-events-none transform scale-90" />
 
             {/* Üst Yüzen Rozet */}
-            <div className="absolute -top-4 right-2 sm:right-6 z-30 hidden sm:flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-turquoise/40 text-turquoise text-[11px] font-bold shadow-xl backdrop-blur-md">
+            <div className="absolute -top-3 right-2 sm:right-8 z-30 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-turquoise/40 text-turquoise text-[11px] font-bold shadow-xl backdrop-blur-md">
               <Building2 size={13} />
               <span>%100 White-Label</span>
             </div>
 
             {/* Alt Yüzen Rozet */}
-            <div className="absolute -bottom-4 left-2 sm:left-6 z-30 hidden sm:flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-white/20 text-white/90 text-[11px] font-semibold shadow-xl backdrop-blur-md">
+            <div className="absolute -bottom-3 left-2 sm:left-8 z-30 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-white/20 text-white/90 text-[11px] font-semibold shadow-xl backdrop-blur-md">
               <Smartphone size={13} className="text-turquoise" />
               <span>App Store & Google Play</span>
             </div>
 
-            {/* Kurumunuz DijitalBüyükanne Phone Mockup */}
-            <div className="relative transform hover:scale-105 transition-all duration-500 group">
-              <PhoneMockup size="lg" label="Kurumunuz DijitalBüyükanne">
-                <div className="p-4 bg-gray-50 h-full flex flex-col">
-                  {/* Kurumsal Header */}
-                  <div className="bg-gradient-to-r from-turquoise to-[#0fa29f] text-white p-4 rounded-2xl mb-3.5 text-center shadow-md">
-                    <div className="w-10 h-10 mx-auto mb-1.5 rounded-full bg-white/20 flex items-center justify-center font-black text-xs tracking-wider shadow-inner">
-                      LOGO
-                    </div>
-                    <h4 className="text-sm font-extrabold tracking-tight">Kurumunuz Adına</h4>
-                    <p className="text-[11px] opacity-90 font-medium">Özel Markalanmış Aile Kapısı</p>
-                  </div>
-
-                  {/* Menü / Hizmet Kartları */}
-                  <div className="space-y-2.5 flex-1">
-                    <div className="bg-white p-3 rounded-xl text-xs shadow-sm border border-gray-100 flex items-center gap-2.5 text-gray-700 hover:border-turquoise transition-colors">
-                      <span className="w-2.5 h-2.5 rounded-full bg-turquoise animate-pulse flex-shrink-0" />
-                      <div className="flex flex-col">
-                        <span className="font-bold text-slate-800">Kendi Renk & Logonuz</span>
-                        <span className="text-[10px] text-slate-500 font-normal">Kurumsal kimlikle tam uyumlu</span>
-                      </div>
-                    </div>
-
-                    <div className="bg-white p-3 rounded-xl text-xs shadow-sm border border-gray-100 flex items-center gap-2.5 text-gray-700 hover:border-turquoise transition-colors">
-                      <span className="w-2.5 h-2.5 rounded-full bg-turquoise flex-shrink-0" />
-                      <div className="flex flex-col">
-                        <span className="font-bold text-slate-800">Özelleştirilmiş Hizmetler</span>
-                        <span className="text-[10px] text-slate-500 font-normal">Atölyeler & sosyal yardımlar</span>
-                      </div>
-                    </div>
-
-                    <div className="bg-white p-3 rounded-xl text-xs shadow-sm border border-gray-100 flex items-center gap-2.5 text-gray-700 hover:border-turquoise transition-colors">
-                      <span className="w-2.5 h-2.5 rounded-full bg-turquoise flex-shrink-0" />
-                      <div className="flex flex-col">
-                        <span className="font-bold text-slate-800">Şeffaf Etki Raporu</span>
-                        <span className="text-[10px] text-slate-500 font-normal">Canlı katma değer ve SROI</span>
-                      </div>
-                    </div>
-
-                    <div className="bg-white p-3 rounded-xl text-xs shadow-sm border border-gray-100 flex items-center gap-2.5 text-gray-700 hover:border-turquoise transition-colors">
-                      <span className="w-2.5 h-2.5 rounded-full bg-coral flex-shrink-0" />
-                      <div className="flex flex-col">
-                        <span className="font-bold text-slate-800">Yapay Zekâ + Hekim Köprüsü</span>
-                        <span className="text-[10px] text-slate-500 font-normal">7/24 kesintisiz koruma kalkanı</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </PhoneMockup>
+            {/* Kurumunuz DijitalBüyükanne Gerçek Görsel */}
+            <div className="relative group max-w-[300px] sm:max-w-[340px] mx-auto transform hover:scale-[1.03] transition-all duration-500">
+              <Image
+                src="/images/kurumunuz-dijitalbuyukanne.png"
+                alt="Kurumunuz DijitalBüyükanne Özel Mobil Uygulaması"
+                width={340}
+                height={660}
+                priority
+                className="w-full h-auto object-contain drop-shadow-2xl rounded-3xl"
+              />
             </div>
           </div>
 
