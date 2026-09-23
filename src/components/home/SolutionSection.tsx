@@ -21,34 +21,34 @@ const features = [
     icon: <Activity size={20} />,
     title: '0–6 Ay Hareket Analizi',
     description:
-      'Kısa videolardan yapay zekâ destekli gelişimsel hareket değerlendirmesi.',
+      'Kısa videolardan yapay zekâ ön taraması; şüpheli bulgularda pediatrik uzman kontrolü ve hekim yönlendirmesi.',
   },
   {
     number: '02',
     icon: <ScanLine size={20} />,
     title: 'Yapay Zekâ Destekli Cilt Analizi',
     description:
-      'Fotoğraf üzerinden bilgilendirici ön değerlendirme ve gerektiğinde yönlendirme.',
+      'Fotoğraf üzerinden eritem ve bariyer analizi; riskli döküntülerde hekim kontrolü köprüsü.',
   },
   {
     number: '03',
     icon: <Droplets size={20} />,
     title: 'Bebek Bezi & Dışkı Analizi',
     description:
-      'Pediatrik renk kartı eşleştirmesi, sindirim ve olası alerji ön taraması.',
+      'Pediatrik renk skalası eşleştirmesi; anormal renk ve sindirim ipuçlarında gecikmeden hekim uyarısı.',
   },
   {
     number: '04',
     icon: <MessageCircleHeart size={20} />,
     title: '0–24 Ay Dijital Aile Asistanı',
     description:
-      'Uyku, beslenme, emzirme, bakım ve gelişim konularında yaşa uygun dijital rehberlik.',
+      'Uyku, beslenme, emzirme, bakım ve gelişim konularında yaşa uygun 7/24 bilimsel dijital rehberlik.',
   },
   {
     number: '05',
     icon: <Stethoscope size={20} />,
-    title: 'Uzman Danışmanlığı',
-    description: 'İhtiyaç halinde uygun uzman desteğine erişim.',
+    title: 'Uzman & Doktor Kontrol Güvencesi',
+    description: 'Yapay zekâ tek başına karar vermez; kritik süreçlerde çocuk hekimi ve uzmanların rehberliği esastır.',
   },
 ];
 
@@ -169,9 +169,9 @@ export default function SolutionSection() {
       <div className="max-w-6xl mx-auto">
 
         <SectionHeader
-          eyebrow="Çözüm"
-          title="Ailenin yanında dijital bir yol arkadaşı."
-          subtitle="0–24 ay boyunca takip, rehberlik ve destek."
+          eyebrow="Çözüm & Güvenlik"
+          title="Ailenin yanında dijital bir yol arkadaşı ve uzman hekim güvencesi."
+          subtitle="Yapay zekâ 7/24 ön tarama ve takip sağlar; kritik durumlarda uzman hekimlerimiz ve danışmanlarımız kontrolü devralır."
           centered
         />
 

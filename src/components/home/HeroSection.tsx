@@ -83,11 +83,11 @@ function HeroAppScreen({
           </div>
           <div>
             <span className="text-white font-black text-xs tracking-wide block leading-none">DijitalBüyükanne</span>
-            <span className="text-[8px] text-indigo-300 font-mono">CANLI TEST ORTAMI</span>
+            <span className="text-[8px] text-indigo-300 font-mono">DEMO</span>
           </div>
         </div>
         <div className="flex items-center gap-1.5 bg-indigo-500/20 px-2.5 py-1 rounded-full border border-indigo-400/40">
-          <span className="w-1.5 h-1.5 rounded-full bg-indigo-300 animate-ping" />
+          <span className="w-1.5 h-1.5 rounded-full bg-indigo-300 animate-pulse" />
           <span className="text-[8px] font-mono text-indigo-200 font-bold uppercase tracking-wider">
             BabySensAI v2.4
           </span>
@@ -105,7 +105,7 @@ function HeroAppScreen({
           }`}
         >
           <Activity size={11} className={activeScreen === 'video' ? 'animate-pulse' : ''} />
-          <span>Kinematik Video</span>
+          <span>Hareket Analizi</span>
         </button>
 
         <button
@@ -117,7 +117,7 @@ function HeroAppScreen({
           }`}
         >
           <ScanLine size={11} />
-          <span>Bez & Cilt Spektro</span>
+          <span>Bez & Cilt Analizi</span>
         </button>
 
         <button
@@ -129,7 +129,7 @@ function HeroAppScreen({
           }`}
         >
           <MessageCircle size={11} />
-          <span>7/24 Rehber</span>
+          <span>Dijital Asistan</span>
         </button>
       </div>
 
@@ -141,59 +141,59 @@ function HeroAppScreen({
           <div className="flex-1 flex flex-col justify-between bg-slate-950/90 rounded-2xl border border-white/10 p-3 relative overflow-hidden backdrop-blur-md">
             {/* Luminous laser scanline */}
             <div
-              className="absolute inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-turquoise to-transparent shadow-[0_0_12px_#14BBB7] pointer-events-none transition-all duration-75"
+              className="absolute inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-sky-400 to-transparent shadow-[0_0_12px_#38BDF8] pointer-events-none transition-all duration-75"
               style={{ top: `${videoProgress}%` }}
             />
 
             {/* Video HUD Telemetry bar */}
             <div className="flex items-center justify-between text-[8px] font-mono text-white/90 pb-1 border-b border-white/10">
               <span className="flex items-center gap-1 text-coral font-bold bg-coral/15 px-2 py-0.5 rounded-full border border-coral/30">
-                <span className="w-1.5 h-1.5 rounded-full bg-coral animate-ping" />
-                60 FPS KİNEMATİK
+                <span className="w-1.5 h-1.5 rounded-full bg-coral animate-pulse" />
+                60 FPS HAREKET
               </span>
-              <span className="text-turquoise font-bold bg-turquoise/15 px-2 py-0.5 rounded-full border border-turquoise/30">
+              <span className="text-sky-300 font-bold bg-sky-400/15 px-2 py-0.5 rounded-full border border-sky-400/30">
                 GMA Akış: %98.4
               </span>
             </div>
 
             {/* Video Motion Skeleton SVG with Glowing Landmarks */}
             <div className="relative w-full h-36 flex items-center justify-center my-auto">
-              <svg viewBox="0 0 160 120" className="w-full h-full stroke-turquoise stroke-[2] fill-none drop-shadow-[0_0_8px_rgba(20,187,183,0.5)]">
+              <svg viewBox="0 0 160 120" className="w-full h-full stroke-sky-400 stroke-[2] fill-none drop-shadow-[0_0_8px_rgba(56,189,248,0.5)]">
                 {/* Torso / Omurga Ekseni */}
-                <line x1="80" y1="42" x2="80" y2="70" stroke="#14BBB7" strokeWidth="2.5" />
+                <line x1="80" y1="42" x2="80" y2="70" stroke="#38BDF8" strokeWidth="2.5" />
                 
                 {/* Head */}
-                <circle cx="80" cy={34 + Math.sin(videoProgress * 0.1) * 3} r="8" fill="#082A46" stroke="#14BBB7" strokeWidth="2" />
+                <circle cx="80" cy={34 + Math.sin(videoProgress * 0.1) * 3} r="8" fill="#082A46" stroke="#38BDF8" strokeWidth="2" />
                 
                 {/* Shoulder Line */}
-                <line x1="68" y1="46" x2="92" y2="46" stroke="#14BBB7" strokeWidth="1.5" />
+                <line x1="68" y1="46" x2="92" y2="46" stroke="#38BDF8" strokeWidth="1.5" />
 
                 {/* Left Arm & Joints */}
                 <line x1="68" y1="46" x2={52 + Math.cos(videoProgress * 0.15) * 6} y2={54 + Math.sin(videoProgress * 0.15) * 4} />
                 <line x1={52 + Math.cos(videoProgress * 0.15) * 6} y1={54 + Math.sin(videoProgress * 0.15) * 4} x2={42 + Math.sin(videoProgress * 0.2) * 6} y2={42 + Math.cos(videoProgress * 0.2) * 5} />
                 <circle cx={52 + Math.cos(videoProgress * 0.15) * 6} cy={54 + Math.sin(videoProgress * 0.15) * 4} r="2.5" fill="#FF7965" />
-                <circle cx={42 + Math.sin(videoProgress * 0.2) * 6} cy={42 + Math.cos(videoProgress * 0.2) * 5} r="2.5" fill="#14BBB7" />
+                <circle cx={42 + Math.sin(videoProgress * 0.2) * 6} cy={42 + Math.cos(videoProgress * 0.2) * 5} r="2.5" fill="#38BDF8" />
 
                 {/* Right Arm & Joints */}
                 <line x1="92" y1="46" x2={108 + Math.sin(videoProgress * 0.15) * 6} y2={54 + Math.cos(videoProgress * 0.15) * 4} />
                 <line x1={108 + Math.sin(videoProgress * 0.15) * 6} y1={54 + Math.cos(videoProgress * 0.15) * 4} x2={118 + Math.cos(videoProgress * 0.2) * 6} y2={42 + Math.sin(videoProgress * 0.2) * 5} />
                 <circle cx={108 + Math.sin(videoProgress * 0.15) * 6} cy={54 + Math.cos(videoProgress * 0.15) * 4} r="2.5" fill="#FF7965" />
-                <circle cx={118 + Math.cos(videoProgress * 0.2) * 6} cy={42 + Math.sin(videoProgress * 0.2) * 5} r="2.5" fill="#14BBB7" />
+                <circle cx={118 + Math.cos(videoProgress * 0.2) * 6} cy={42 + Math.sin(videoProgress * 0.2) * 5} r="2.5" fill="#38BDF8" />
 
                 {/* Pelvis / Kalça Hattı */}
-                <line x1="72" y1="70" x2="88" y2="70" stroke="#14BBB7" strokeWidth="1.5" />
+                <line x1="72" y1="70" x2="88" y2="70" stroke="#38BDF8" strokeWidth="1.5" />
 
                 {/* Left Leg & Joints */}
                 <line x1="72" y1="70" x2={60 + Math.sin(videoProgress * 0.2) * 8} y2={88 + Math.cos(videoProgress * 0.2) * 4} />
                 <line x1={60 + Math.sin(videoProgress * 0.2) * 8} y1={88 + Math.cos(videoProgress * 0.2) * 4} x2={54 + Math.cos(videoProgress * 0.25) * 7} y2={104 + Math.sin(videoProgress * 0.25) * 4} />
                 <circle cx={60 + Math.sin(videoProgress * 0.2) * 8} cy={88 + Math.cos(videoProgress * 0.2) * 4} r="2.5" fill="#FF7965" />
-                <circle cx={54 + Math.cos(videoProgress * 0.25) * 7} cy={104 + Math.sin(videoProgress * 0.25) * 4} r="2.5" fill="#14BBB7" />
+                <circle cx={54 + Math.cos(videoProgress * 0.25) * 7} cy={104 + Math.sin(videoProgress * 0.25) * 4} r="2.5" fill="#38BDF8" />
 
                 {/* Right Leg & Joints */}
                 <line x1="88" y1="70" x2={100 + Math.cos(videoProgress * 0.2) * 8} y2={88 + Math.sin(videoProgress * 0.2) * 4} />
                 <line x1={100 + Math.cos(videoProgress * 0.2) * 8} y1={88 + Math.sin(videoProgress * 0.2) * 4} x2={106 + Math.sin(videoProgress * 0.25) * 7} y2={104 + Math.cos(videoProgress * 0.25) * 4} />
                 <circle cx={100 + Math.cos(videoProgress * 0.2) * 8} cy={88 + Math.sin(videoProgress * 0.2) * 4} r="2.5" fill="#FF7965" />
-                <circle cx={106 + Math.sin(videoProgress * 0.25) * 7} cy={104 + Math.cos(videoProgress * 0.25) * 4} r="2.5" fill="#14BBB7" />
+                <circle cx={106 + Math.sin(videoProgress * 0.25) * 7} cy={104 + Math.cos(videoProgress * 0.25) * 4} r="2.5" fill="#38BDF8" />
               </svg>
             </div>
 
@@ -201,7 +201,7 @@ function HeroAppScreen({
             <div className="bg-white/[0.07] rounded-xl p-2.5 flex flex-col gap-1.5 border border-white/10">
               <div className="w-full h-1.5 bg-white/20 rounded-full overflow-hidden">
                 <div
-                  className="h-full bg-gradient-to-r from-turquoise via-teal-300 to-coral rounded-full transition-all duration-100"
+                  className="h-full bg-gradient-to-r from-sky-400 via-cyan-300 to-coral rounded-full transition-all duration-100"
                   style={{ width: `${videoProgress}%` }}
                 />
               </div>
@@ -216,14 +216,14 @@ function HeroAppScreen({
           </div>
         )}
 
-        {/* SCREEN 2: BEBEK BEZİ & CİLT SPEKTROFOTOMETRİSİ */}
+        {/* SCREEN 2: BEBEK BEZİ & CİLT ANALİZİ */}
         {activeScreen === 'scan' && (
           <div className="flex-1 flex flex-col justify-between bg-slate-950/90 rounded-2xl border border-white/10 p-3 backdrop-blur-md">
             <div>
               <div className="flex items-center justify-between mb-2">
-                <span className="text-[9px] font-bold text-turquoise uppercase tracking-wider flex items-center gap-1.5">
-                  <Eye size={12} className="text-turquoise" />
-                  Optik Spektrometre
+                <span className="text-[9px] font-bold text-sky-300 uppercase tracking-wider flex items-center gap-1.5">
+                  <Eye size={12} className="text-sky-400" />
+                  Optik Analiz
                 </span>
                 <span className="text-[8px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 font-bold border border-emerald-500/30">
                   ✓ Güvenli Referans
@@ -231,12 +231,12 @@ function HeroAppScreen({
               </div>
 
               {/* Optical Reticle Card */}
-              <div className="relative my-2 p-3 rounded-2xl bg-white/[0.04] border border-turquoise/40 flex items-center gap-3 overflow-hidden">
+              <div className="relative my-2 p-3 rounded-2xl bg-white/[0.04] border border-sky-400/40 flex items-center gap-3 overflow-hidden">
                 {/* Reticle Brackets in Corners */}
-                <div className="absolute top-1.5 left-1.5 w-2 h-2 border-t-2 border-l-2 border-turquoise" />
-                <div className="absolute top-1.5 right-1.5 w-2 h-2 border-t-2 border-r-2 border-turquoise" />
-                <div className="absolute bottom-1.5 left-1.5 w-2 h-2 border-b-2 border-l-2 border-turquoise" />
-                <div className="absolute bottom-1.5 right-1.5 w-2 h-2 border-b-2 border-r-2 border-turquoise" />
+                <div className="absolute top-1.5 left-1.5 w-2 h-2 border-t-2 border-l-2 border-sky-400" />
+                <div className="absolute top-1.5 right-1.5 w-2 h-2 border-t-2 border-r-2 border-sky-400" />
+                <div className="absolute bottom-1.5 left-1.5 w-2 h-2 border-b-2 border-l-2 border-sky-400" />
+                <div className="absolute bottom-1.5 right-1.5 w-2 h-2 border-b-2 border-r-2 border-sky-400" />
 
                 <div className={`w-12 h-12 rounded-xl bg-gradient-to-br from-amber-300 via-amber-400 to-amber-600 flex items-center justify-center font-mono font-bold text-[10px] text-navy shadow-inner border border-white/30 shrink-0 transition-transform ${
                   scanPulse ? 'scale-105' : 'scale-100'
@@ -246,7 +246,7 @@ function HeroAppScreen({
                 <div className="min-w-0 flex-1">
                   <p className="text-[10px] font-bold text-white">Altın Sarısı / Normal Renk</p>
                   <p className="text-[8px] text-white/60 mt-0.5">Sindirim dengesi ve safra pigmenti olağan</p>
-                  <div className="mt-1.5 flex items-center gap-1.5 text-[8px] text-turquoise font-semibold">
+                  <div className="mt-1.5 flex items-center gap-1.5 text-[8px] text-sky-300 font-semibold">
                     <ShieldCheck size={11} />
                     <span>Pediatrik Kart No. 4 Eşleşmesi (%99.1)</span>
                   </div>
@@ -258,7 +258,7 @@ function HeroAppScreen({
                 {['#E8E8E8', '#F5D77F', '#E5B842', '#C68B2C', '#6B8E23'].map((c, i) => (
                   <div
                     key={i}
-                    className={`h-2 flex-1 rounded-full border ${i === 2 ? 'ring-2 ring-turquoise ring-offset-1 ring-offset-slate-900 border-white' : 'border-transparent opacity-60'}`}
+                    className={`h-2 flex-1 rounded-full border ${i === 2 ? 'ring-2 ring-sky-400 ring-offset-1 ring-offset-slate-900 border-white' : 'border-transparent opacity-60'}`}
                     style={{ backgroundColor: c }}
                   />
                 ))}
@@ -266,7 +266,7 @@ function HeroAppScreen({
             </div>
 
             <div className="bg-white/5 rounded-xl p-2.5 border border-white/5 text-[9px] leading-relaxed text-white/85">
-              <span className="text-turquoise font-bold block mb-0.5">Klinik Değerlendirme Köprüsü:</span>
+              <span className="text-sky-300 font-bold block mb-0.5">Klinik Değerlendirme Köprüsü:</span>
               Dışkı ve cilt bariyeri olağan seyrinde. Acil hekim müdahalesi gerekmemekte; rutin aile hekimi izlemi önerilir.
             </div>
           </div>
@@ -281,7 +281,7 @@ function HeroAppScreen({
                   <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
                   {assistantPrompts[selectedPrompt].badge}
                 </span>
-                <span className="text-white/40">7/24 Aktif</span>
+                <span className="text-emerald-400 font-bold">7/24 Aktif</span>
               </div>
 
               {/* Parent chat message */}
@@ -290,9 +290,9 @@ function HeroAppScreen({
               </div>
 
               {/* Assistant response message */}
-              <div className="bg-gradient-to-br from-turquoise/20 via-teal-900/30 to-blue-900/20 text-white text-[9px] p-2.5 rounded-2xl rounded-tl-none mr-2 leading-relaxed border border-turquoise/35 shadow-md">
-                <span className="text-turquoise font-bold block mb-0.5 flex items-center gap-1 text-[10px]">
-                  <Sparkles size={11} className="text-turquoise" />
+              <div className="bg-gradient-to-br from-sky-500/20 via-sky-900/30 to-blue-900/20 text-white text-[9px] p-2.5 rounded-2xl rounded-tl-none mr-2 leading-relaxed border border-sky-400/30 shadow-md">
+                <span className="text-sky-300 font-bold block mb-0.5 flex items-center gap-1 text-[10px]">
+                  <Sparkles size={11} className="text-sky-300" />
                   DijitalBüyükanne Rehberliği:
                 </span>
                 {assistantPrompts[selectedPrompt].a}
@@ -307,7 +307,7 @@ function HeroAppScreen({
                   onClick={() => setSelectedPrompt(idx)}
                   className={`text-[8px] font-bold px-2 py-1 rounded-xl transition-all shrink-0 border ${
                     selectedPrompt === idx
-                      ? 'bg-turquoise text-navy border-turquoise font-black shadow-sm'
+                      ? 'bg-sky-400 text-navy border-sky-400 font-black shadow-sm'
                       : 'bg-white/5 text-white/70 hover:bg-white/10 border-white/10'
                   }`}
                 >
@@ -320,14 +320,14 @@ function HeroAppScreen({
 
         {/* Bottom Nav */}
         <div className="bg-slate-900/90 border border-white/10 rounded-xl px-3 py-1.5 flex justify-around items-center shrink-0 mt-2">
-          {['Kinematik', 'Spektro', '7/24 Rehber'].map((nav, i) => (
+          {['Hareket', 'Tarama', 'Asistan'].map((nav, i) => (
             <span
               key={i}
               className={`text-[8px] font-bold transition-colors ${
                 (activeScreen === 'video' && i === 0) ||
                 (activeScreen === 'scan' && i === 1) ||
                 (activeScreen === 'assistant' && i === 2)
-                  ? 'text-turquoise'
+                  ? 'text-sky-300'
                   : 'text-white/40'
               }`}
             >
@@ -410,12 +410,12 @@ export default function HeroSection() {
 
             {/* Description — Sade, Empatik ve Vizyoner */}
             <p className="text-slate-600 text-base sm:text-lg leading-relaxed mb-7 max-w-xl font-normal">
-              Geleneksel aile şefkatini modern <strong>yapay zekâ kinematik izlemi</strong> (Prechtl GMA), optik renk spektrometresi ve <strong>pediatrik rehberlikle</strong> buluşturuyoruz. İlk 1.000 günde evinizden gelişim basamaklarını güvenle takip edin; gece 03:00&apos;te bile yalnız kalmayın.
+              Geleneksel büyükanne şefkatini modern <strong>yapay zekâ teknolojisiyle</strong> buluşturuyoruz. Bebeğinizin hareketini, cildini ve gelişimini <strong>evden takip edin</strong> — gece 03:00&apos;te bile uzman gibi yanınızdayız.
             </p>
 
             {/* 3 Somut Hizmet Kartı — Yaptığımız İşi Anında Yansıtan Alan */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full max-w-xl mb-7">
-              {/* Hizmet 1: Kinematik */}
+              {/* Hizmet 1: Hareket Analizi */}
               <div
                 onClick={() => setActiveScreen('video')}
                 className={`p-3.5 rounded-2xl border transition-all cursor-pointer text-left ${
@@ -426,10 +426,10 @@ export default function HeroSection() {
               >
                 <div className="flex items-center gap-1.5 text-sky-900 font-bold text-xs mb-1">
                   <Activity size={14} className="text-sky-600" />
-                  <span>0–6 Ay Kinematik</span>
+                  <span>0–6 Ay Hareket</span>
                 </div>
                 <p className="text-[11px] text-slate-500 leading-snug">
-                  30 sn videodan Prechtl GMA ile motor simetri takibi.
+                  Kısa videodan Prechtl GMA ile motor gelişim ve simetri takibi.
                 </p>
               </div>
 
@@ -438,16 +438,16 @@ export default function HeroSection() {
                 onClick={() => setActiveScreen('scan')}
                 className={`p-3.5 rounded-2xl border transition-all cursor-pointer text-left ${
                   activeScreen === 'scan'
-                    ? 'bg-white border-teal-400 ring-2 ring-teal-400/25 shadow-md -translate-y-0.5'
-                    : 'bg-white/90 border-slate-200/80 hover:bg-white hover:border-teal-300 shadow-xs'
+                    ? 'bg-white border-sky-400 ring-2 ring-sky-400/25 shadow-md -translate-y-0.5'
+                    : 'bg-white/90 border-slate-200/80 hover:bg-white hover:border-sky-300 shadow-xs'
                 }`}
               >
-                <div className="flex items-center gap-1.5 text-teal-900 font-bold text-xs mb-1">
-                  <ScanLine size={14} className="text-teal-600" />
-                  <span>Bez & Cilt Spektro</span>
+                <div className="flex items-center gap-1.5 text-sky-950 font-bold text-xs mb-1">
+                  <ScanLine size={14} className="text-sky-600" />
+                  <span>Bez & Cilt Analizi</span>
                 </div>
                 <p className="text-[11px] text-slate-500 leading-snug">
-                  DSÖ skalalarıyla fotoğraftan renk ve döküntü ön taraması.
+                  Pediatrik skalalarla fotoğraftan renk ve döküntü ön taraması.
                 </p>
               </div>
 
@@ -462,44 +462,20 @@ export default function HeroSection() {
               >
                 <div className="flex items-center gap-1.5 text-coral font-bold text-xs mb-1">
                   <MessageCircle size={14} className="text-coral" />
-                  <span>Gece 03:00 Şefkat</span>
+                  <span>7/24 Dijital Asistan</span>
                 </div>
                 <p className="text-[11px] text-slate-500 leading-snug">
-                  Panik yapmadan uyku, beslenme ve hekim yönlendirmesi.
+                  Panik yapmadan uyku, beslenme ve güvenilir hekim yönlendirmesi.
                 </p>
               </div>
             </div>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-wrap items-center gap-3.5 mb-7">
-              <Link
-                href="#hareket-analizi"
-                className="relative overflow-hidden group px-7 py-4 text-sm md:text-base font-bold rounded-2xl bg-gradient-to-r from-[#FF5A43] via-[#FF6D55] to-[#F0442B] text-white shadow-lg shadow-coral/30 hover:shadow-coral/50 hover:-translate-y-0.5 active:scale-98 transition-all inline-flex items-center justify-center gap-2.5"
-              >
-                <Play size={16} className="fill-white" />
-                <span>Canlı AI Simülasyonunu Dene</span>
-              </Link>
-              
-              <Link
-                href="#dijitalbuyukanne"
-                className="px-6 py-4 text-sm md:text-base font-bold rounded-2xl border border-sky-200/90 bg-white/95 text-[#0B1E3B] hover:bg-white shadow-xs hover:-translate-y-0.5 active:scale-98 transition-all inline-flex items-center justify-center"
-              >
-                Özellikleri Keşfet
-              </Link>
-
-              <Link
-                href="/kurumlar"
-                className="px-5 py-4 text-sm md:text-base font-bold text-sky-950 hover:text-sky-800 bg-white/90 hover:bg-white border border-sky-200/90 rounded-2xl shadow-xs transition-all inline-flex items-center gap-1.5 group backdrop-blur-sm"
-              >
-                <span>Kurumlar İçin</span>
-                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform text-sky-600" />
-              </Link>
-            </div>
-
-            {/* Bilimsel Güvenlik & Pediatri Onayı Rozeti */}
-            <div className="flex items-center gap-2.5 text-slate-700 text-xs bg-white/95 border border-sky-100 px-4 py-2.5 rounded-2xl shadow-xs backdrop-blur-md">
-              <ShieldCheck size={17} className="text-sky-600 shrink-0" />
-              <span>Pediatri Bilim Kurulu Standartları • Tanı Koymaz, Bilgilendirir ve Uzman Hekime Yönlendirir</span>
+            {/* Bilimsel Güvenlik, Uzman Hekim Kontrolü & Pediatri Onayı */}
+            <div className="flex items-start sm:items-center gap-3 text-slate-700 text-xs sm:text-sm bg-white/95 border border-sky-100 p-3.5 rounded-2xl shadow-xs backdrop-blur-md mb-2">
+              <ShieldCheck size={20} className="text-sky-600 shrink-0 mt-0.5 sm:mt-0" />
+              <div className="leading-relaxed">
+                <span className="font-bold text-[#0B1E3B]">Yapay zekâ tek başına karar vermez:</span> Tüm taramalar pediatri bilim kurulu standartlarındadır; kritik veya riskli bulgularda sonuçlar <strong>uzman hekimlerimizin ve danışmanlarımızın kontrolü</strong> eşliğinde aileye ve hekime sevk protokolüyle aktarılır.
+              </div>
             </div>
 
             {/* Sosyal Kanıt — 3 Stat Rozeti */}

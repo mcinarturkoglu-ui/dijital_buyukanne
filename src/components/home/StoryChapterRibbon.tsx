@@ -7,7 +7,7 @@ interface StoryChapterRibbonProps {
   description: string;
   anchorId?: string;
   theme?: 'light' | 'dark';
-  accent?: 'turquoise' | 'coral' | 'emerald';
+  accent?: 'turquoise' | 'sky' | 'coral' | 'emerald';
 }
 
 export default function StoryChapterRibbon({
@@ -17,16 +17,22 @@ export default function StoryChapterRibbon({
   description,
   anchorId,
   theme = 'light',
-  accent = 'turquoise',
+  accent = 'sky',
 }: StoryChapterRibbonProps) {
   const isDark = theme === 'dark';
 
   const accentStyles = {
     turquoise: {
-      badgeBg: 'bg-turquoise/10 border-turquoise/30 text-turquoise',
-      dot: 'bg-turquoise',
-      glow: 'shadow-turquoise/30',
-      line: 'via-turquoise/40',
+      badgeBg: 'bg-sky-50 border-sky-200 text-sky-600',
+      dot: 'bg-sky-500',
+      glow: 'shadow-sky-500/30',
+      line: 'via-sky-400/40',
+    },
+    sky: {
+      badgeBg: 'bg-sky-50 border-sky-200 text-sky-600',
+      dot: 'bg-sky-500',
+      glow: 'shadow-sky-500/30',
+      line: 'via-sky-400/40',
     },
     coral: {
       badgeBg: 'bg-coral/10 border-coral/30 text-coral',

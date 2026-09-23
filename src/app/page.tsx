@@ -68,11 +68,11 @@ export default function HomePage() {
       <StoryChapterRibbon
         chapterNumber="BÖLÜM 03"
         chapterTitle="KLİNİK TARAMA PROTOKOLLERİ"
-        headline="Yapay Zekâ Destekli 3 Hayati Koruma Kalkanı"
+        headline="Yapay Zekâ Destekli 3 Akıllı Tarama Protokolü"
         description="Ebeveyn gözünden kaçabilecek erken motor asimetrileri, cilt hassasiyetleri ve sindirim ipuçları için algoritmik ön tarama ve hekim sevk köprüsü."
         anchorId="ribbon-3"
         theme="light"
-        accent="turquoise"
+        accent="sky"
       />
 
       {/* ─────────────────────────────────────────────────────────────
@@ -132,11 +132,11 @@ export default function HomePage() {
       <StoryChapterRibbon
         chapterNumber="BÖLÜM 06"
         chapterTitle="KAMU İŞ BİRLİĞİ & SOSYAL ETKİ"
-        headline="Yerel Yönetimler İçin Şehir Ölçeğinde Koruma"
+        headline="Yerel Yönetimler İçin Şehir Ölçeğinde Aile Ekosistemi"
         description="Büyükşehir ve ilçe belediyeleriyle entegre olarak her haneye ücretsiz ulaşan kurumsal mobil altyapı, ölçülebilir sosyal etki ve veri destekli kamu sağlığı yönetimi."
         anchorId="ribbon-6"
         theme="light"
-        accent="coral"
+        accent="sky"
       />
 
       {/* ─────────────────────────────────────────────────────────────

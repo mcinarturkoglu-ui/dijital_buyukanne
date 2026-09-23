@@ -11,7 +11,7 @@ const topicsData = [
     audioTitle: 'Gece Uyanmaları & Güvenli Uyku Tavsiyesi',
     audioDuration: '00:42',
     transcript:
-      'Canım benim hiç telaşlanma. Bebeğin bu ayda büyüme atağında olduğu için gece sık uyanabilir. Sakin bir sesle kucağına al, ışığı yakmadan pışpışla ve karnını nazikçe ov...',
+      'Canım benim hiç telaşlanma. Bebeğin bu ayda büyüme atağında olduğu için gece sık uyanabilir. Sakin bir sesle kucağına al, ışığı yakmadan fısıldayın ve karnını nazikçe ovun...',
     userMessage: 'Bebeğim gece 03:00’te aniden ağlayarak uyandı, ne yapabilirim?',
     assistantResponse:
       'Merhaba sevgili anne/baba! Gece 03:00 uyanmaları büyüme ataklarında çok yaygındır. Ortamı karartın, doğrudan göz temasını azaltarak fısıltı tonunda konuşun. Ateş veya huzursuzluk belirtisi yoksa sakinleşip uykuya geçişini bekleyin.',
@@ -63,18 +63,18 @@ function ChatPhoneContent({
       {/* Chat header */}
       <div className="bg-gradient-to-r from-[#0b2842] to-[#0f3454] px-3.5 py-3 flex items-center justify-between border-b border-white/10 shrink-0">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-turquoise to-teal-400 flex items-center justify-center text-navy font-black shadow-md">
+          <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-sky-400 to-sky-300 flex items-center justify-center text-navy font-black shadow-md">
             👵
           </div>
           <div>
             <p className="text-white font-bold text-xs leading-none">DijitalBüyükanne</p>
             <p className="text-emerald-400 text-[8px] mt-0.5 font-medium flex items-center gap-1">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              Canlı Nöbetçi Rehber • 7/24
+              7/24 Canlı Destek
             </p>
           </div>
         </div>
-        <span className="text-[9px] bg-turquoise/20 text-turquoise border border-turquoise/40 px-2.5 py-0.5 rounded-full font-mono font-bold">
+        <span className="text-[9px] bg-sky-400/20 text-sky-300 border border-sky-400/40 px-2.5 py-0.5 rounded-full font-mono font-bold">
           BabySensAI
         </span>
       </div>
@@ -104,7 +104,7 @@ function ChatPhoneContent({
               <span
                 key={i}
                 className={`flex-1 rounded-full transition-all duration-150 ${
-                  isPlayingAudio ? 'bg-turquoise animate-soundwave' : 'bg-white/20'
+                  isPlayingAudio ? 'bg-sky-400 animate-soundwave' : 'bg-white/20'
                 }`}
                 style={{
                   height: isPlayingAudio ? `${h}%` : '20%',
@@ -128,24 +128,24 @@ function ChatPhoneContent({
 
         {/* Assistant Response Bubble */}
         <div className="flex items-start gap-2">
-          <div className="w-6 h-6 rounded-full bg-turquoise/20 flex items-center justify-center text-xs shrink-0 mt-1">
+          <div className="w-6 h-6 rounded-full bg-sky-400/20 flex items-center justify-center text-xs shrink-0 mt-1">
             👵
           </div>
           <div className="max-w-[85%] bg-slate-900 border border-white/10 text-white text-[11px] p-3 rounded-2xl rounded-tl-sm shadow-md space-y-2 leading-relaxed">
             {isTyping ? (
               <div className="flex items-center gap-1 py-1">
-                <span className="w-1.5 h-1.5 rounded-full bg-turquoise animate-bounce" />
-                <span className="w-1.5 h-1.5 rounded-full bg-turquoise animate-bounce [animation-delay:0.2s]" />
-                <span className="w-1.5 h-1.5 rounded-full bg-turquoise animate-bounce [animation-delay:0.4s]" />
+                <span className="w-1.5 h-1.5 rounded-full bg-sky-400 animate-bounce" />
+                <span className="w-1.5 h-1.5 rounded-full bg-sky-400 animate-bounce [animation-delay:0.2s]" />
+                <span className="w-1.5 h-1.5 rounded-full bg-sky-400 animate-bounce [animation-delay:0.4s]" />
               </div>
             ) : (
               <>
                 <p className="text-white/90">{activeTopicData.assistantResponse}</p>
                 <div className="pt-2 border-t border-white/10 space-y-1">
-                  <span className="text-[9px] font-bold text-turquoise block">💡 Tavsiye Edilen Adımlar:</span>
+                  <span className="text-[9px] font-bold text-sky-300 block">💡 Tavsiye Edilen Adımlar:</span>
                   {activeTopicData.tips.map((t, idx) => (
                     <p key={idx} className="text-[9px] text-white/70 flex items-center gap-1">
-                      <span className="w-1 h-1 rounded-full bg-turquoise shrink-0" />
+                      <span className="w-1 h-1 rounded-full bg-sky-400 shrink-0" />
                       <span>{t}</span>
                     </p>
                   ))}
@@ -165,7 +165,7 @@ function ChatPhoneContent({
           readOnly
           className="flex-1 bg-white/5 border border-white/10 rounded-xl px-3 py-1.5 text-[10px] text-white/80 placeholder:text-white/30 focus:outline-none"
         />
-        <button className="w-7 h-7 rounded-xl bg-turquoise text-navy flex items-center justify-center hover:bg-white transition-colors shrink-0">
+        <button className="w-7 h-7 rounded-xl bg-sky-400 text-navy flex items-center justify-center hover:bg-sky-300 transition-colors shrink-0">
           <Send size={12} />
         </button>
       </div>
@@ -206,7 +206,7 @@ export default function DigitalAssistant() {
           {/* Left: Text & Audio Voice Experience (7 Cols) */}
           <div className="lg:col-span-7 flex flex-col gap-6">
             <SectionHeader
-              eyebrow="7/24 Dijital Aile Asistanı & Sesli Rehber"
+              eyebrow="7/24 Dijital Aile Asistanı"
               title="Anne ve babaların soruları mesai saatlerini beklemez."
               light
             />
@@ -245,7 +245,7 @@ export default function DigitalAssistant() {
               </div>
 
               {/* Spoken Quote Transcript */}
-              <blockquote className="text-white/90 text-sm md:text-base italic leading-relaxed pl-4 border-l-2 border-turquoise">
+              <blockquote className="text-white/90 text-sm md:text-base italic leading-relaxed pl-4 border-l-2 border-sky-400">
                 &ldquo;{activeTopic.transcript}&rdquo;
               </blockquote>
 
@@ -255,7 +255,7 @@ export default function DigitalAssistant() {
                   <span
                     key={idx}
                     className={`flex-1 rounded-full transition-all duration-200 ${
-                      isPlayingAudio ? 'bg-gradient-to-t from-turquoise via-teal-300 to-white animate-soundwave' : 'bg-white/20'
+                      isPlayingAudio ? 'bg-gradient-to-t from-sky-400 via-cyan-300 to-white animate-soundwave' : 'bg-white/20'
                     }`}
                     style={{
                       height: isPlayingAudio ? `${h}%` : '15%',
@@ -279,8 +279,8 @@ export default function DigitalAssistant() {
                     }}
                     className={`px-4 py-2.5 rounded-2xl text-xs font-bold transition-all duration-300 cursor-pointer ${
                       activeTopicIndex === idx
-                        ? 'bg-turquoise text-navy shadow-lg shadow-turquoise/20 scale-105 ring-2 ring-turquoise/40'
-                        : 'border border-turquoise/40 bg-turquoise/10 text-turquoise hover:bg-turquoise/20'
+                        ? 'bg-sky-400 text-navy shadow-lg shadow-sky-400/20 scale-105 ring-2 ring-sky-300/40'
+                        : 'border border-sky-400/40 bg-sky-400/10 text-sky-300 hover:bg-sky-400/20'
                     }`}
                   >
                     {item.topic}
@@ -293,7 +293,7 @@ export default function DigitalAssistant() {
           {/* Right: Phone Mockup (5 Cols) */}
           <div className="lg:col-span-5 flex justify-center">
             <div className="relative animate-float-slow">
-              <div className="absolute inset-0 bg-turquoise/25 rounded-[40px] blur-3xl opacity-40 scale-95" />
+              <div className="absolute inset-0 bg-sky-400/20 rounded-[40px] blur-3xl opacity-40 scale-95" />
               <PhoneMockup size="md" dark label="7/24 Canlı Aile Asistanı">
                 <ChatPhoneContent
                   activeTopicData={activeTopic}
