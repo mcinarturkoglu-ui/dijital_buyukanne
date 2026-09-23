@@ -411,11 +411,11 @@ export default function RotaryEcosystemModal({ isOpen, onClose }: RotaryEcosyste
               Simülatörü Gör
             </a>
             <a
-              href="#rotary-basvuru"
+              href="mailto:kurumsal@dijitalbuyukanne.com?subject=Rotary%20Kul%C3%BCp%20Ortakl%C4%B1k%20Bilgisi"
               onClick={onClose}
               className="flex-1 sm:flex-none px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#F7A81B] to-amber-500 text-[#17458F] font-black text-xs text-center shadow-md hover:scale-105 transition-all cursor-pointer flex items-center justify-center gap-1.5"
             >
-              <span>Kulübümüz İçin Protokol İsteyin</span>
+              <span>Kulüp Bilgisi & İletişim</span>
               <ArrowRight size={14} />
             </a>
           </div>
