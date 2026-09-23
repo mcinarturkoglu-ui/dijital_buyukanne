@@ -2,247 +2,331 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import PhoneMockup from '@/components/ui/PhoneMockup';
 import {
   Baby,
-  Activity,
   ScanLine,
-  MessageCircleHeart,
-  Stethoscope,
   ChevronDown,
   Play,
   Sparkles,
-  Volume2,
-  Video,
-  Droplets,
   ArrowRight,
   ShieldCheck,
+  Activity,
+  Heart,
+  MessageCircle,
+  Eye,
+  CheckCircle2,
+  Clock,
 } from 'lucide-react';
-
-const menuItems = [
-  {
-    icon: <Baby size={18} />,
-    label: 'Bebeğim',
-    desc: 'Gelişim takibi ve günlük kayıtlar',
-  },
-  {
-    icon: <Activity size={18} />,
-    label: 'Hareket Analizi',
-    desc: 'Yapay zekâ destekli değerlendirme',
-  },
-  {
-    icon: <ScanLine size={18} />,
-    label: 'Cilt Analizi',
-    desc: 'Fotoğrafla ön bilgilendirme',
-  },
-  {
-    icon: <Droplets size={18} />,
-    label: 'Bebek Bezi & Dışkı',
-    desc: 'Pediatrik renk ve sindirim takibi',
-  },
-  {
-    icon: <MessageCircleHeart size={18} />,
-    label: "Dijital Büyükanne'ye Sor",
-    desc: 'Her soru için güvenilir rehberlik',
-  },
-  {
-    icon: <Stethoscope size={18} />,
-    label: 'Uzmanına Danış',
-    desc: 'Doğru desteğe kolay erişim',
-  },
-];
 
 function HeroAppScreen({
   activeScreen,
   setActiveScreen,
 }: {
-  activeScreen: 'menu' | 'video' | 'voice';
-  setActiveScreen: (s: 'menu' | 'video' | 'voice') => void;
+  activeScreen: 'video' | 'scan' | 'assistant';
+  setActiveScreen: (s: 'video' | 'scan' | 'assistant') => void;
 }) {
-  const [videoProgress, setVideoProgress] = useState(30);
+  const [videoProgress, setVideoProgress] = useState(35);
+  const [scanPulse, setScanPulse] = useState(false);
+  const [selectedPrompt, setSelectedPrompt] = useState<number>(0);
 
+  // Video scanner animation
   useEffect(() => {
     if (activeScreen !== 'video') return;
     const t = setInterval(() => {
-      setVideoProgress((prev) => (prev >= 98 ? 10 : prev + 2));
-    }, 150);
+      setVideoProgress((prev) => (prev >= 96 ? 12 : prev + 2));
+    }, 120);
     return () => clearInterval(t);
   }, [activeScreen]);
 
+  // Scan pulse animation
+  useEffect(() => {
+    if (activeScreen !== 'scan') return;
+    const t = setInterval(() => {
+      setScanPulse((prev) => !prev);
+    }, 1200);
+    return () => clearInterval(t);
+  }, [activeScreen]);
+
+  const assistantPrompts = [
+    {
+      q: 'Bebeğim gece aniden uyandı ve huzursuz. Ne yapmalıyım?',
+      a: 'Derin bir nefes alın 🌿 4. ay atak döneminde gece uyanmaları çok doğaldır. Işıkları açmadan ten teması kurup hafifçe pışpışlayın; adım adım sakinleştireceğiz.',
+      badge: 'Gece 03:24 • Uyku Rutini',
+    },
+    {
+      q: 'Bezinde hafif yeşilimsi renk gördüm, endişelenmeli miyim?',
+      a: 'Bebek bezindeki yeşil ton genellikle hızlı bağırsak geçişinden veya beslenme değişiminden kaynaklanır. Renk taramamız güvenli aralıkta; genel neşesi iyiyse gözleme devam edin 🍼',
+      badge: 'Sabah 09:15 • Sindirim İzlemi',
+    },
+    {
+      q: 'Yüzünde küçük kızarıklıklar çıktı, alerji olabilir mi?',
+      a: 'Yenidoğanlarda toksik eritem veya sıcaklık döküntüsü yaygındır. Cilt fotoğraflı ön taramamız alerjik bir bariyer hasarı tespit etmedi; serin tutarak izleyebilirsiniz 🩺',
+      badge: 'Öğle 14:02 • Cilt Hassasiyeti',
+    },
+  ];
+
   return (
-    <div className="flex flex-col h-full bg-[#081a2b] text-white rounded-[28px] overflow-hidden select-none">
+    <div className="flex flex-col h-full bg-[#121633] text-white rounded-[28px] overflow-hidden select-none border border-white/15 shadow-2xl">
       {/* App Header */}
-      <div className="bg-gradient-to-r from-[#082A46] to-[#0d3b61] px-4 pt-5 pb-3 flex items-center justify-between border-b border-white/10 shrink-0">
+      <div className="bg-gradient-to-r from-[#1E2554] via-[#2A346C] to-[#1E2554] px-4 pt-5 pb-3 flex items-center justify-between border-b border-white/10 shrink-0">
         <div className="flex items-center gap-2">
-          <div className="w-7 h-7 rounded-full bg-gradient-to-tr from-[#14BBB7] to-teal-300 flex items-center justify-center text-[#082A46] font-black shadow-sm">
-            <Baby size={14} className="stroke-[2.5]" />
+          <div className="w-8 h-8 rounded-full bg-white/10 border border-white/20 flex items-center justify-center p-0.5 shadow-sm overflow-hidden">
+            <Image
+              src="/images/mascot.png"
+              alt="Dijital Büyükanne Maskot"
+              width={32}
+              height={32}
+              className="w-full h-full object-contain"
+            />
           </div>
-          <span className="text-white font-bold text-xs tracking-wide">DijitalBüyükanne</span>
+          <div>
+            <span className="text-white font-black text-xs tracking-wide block leading-none">DijitalBüyükanne</span>
+            <span className="text-[8px] text-indigo-300 font-mono">CANLI TEST ORTAMI</span>
+          </div>
         </div>
-        <span className="text-[8px] font-mono bg-turquoise/20 text-turquoise px-2 py-0.5 rounded-full border border-turquoise/40 font-bold">
-          BabySensAI
-        </span>
+        <div className="flex items-center gap-1.5 bg-indigo-500/20 px-2.5 py-1 rounded-full border border-indigo-400/40">
+          <span className="w-1.5 h-1.5 rounded-full bg-indigo-300 animate-ping" />
+          <span className="text-[8px] font-mono text-indigo-200 font-bold uppercase tracking-wider">
+            BabySensAI v2.4
+          </span>
+        </div>
       </div>
 
       {/* Screen Mode Switcher Tabs inside Phone */}
-      <div className="flex items-center justify-between bg-slate-900/90 p-1.5 border-b border-white/10 shrink-0 gap-1">
-        <button
-          onClick={() => setActiveScreen('menu')}
-          className={`flex-1 py-1.5 rounded-lg text-[9px] font-bold transition-all ${
-            activeScreen === 'menu'
-              ? 'bg-turquoise text-navy shadow-sm'
-              : 'text-white/60 hover:text-white hover:bg-white/5'
-          }`}
-        >
-          📱 Menü
-        </button>
+      <div className="flex items-center justify-between bg-slate-900/90 p-1.5 border-b border-white/10 shrink-0 gap-1.5">
         <button
           onClick={() => setActiveScreen('video')}
-          className={`flex-1 py-1.5 rounded-lg text-[9px] font-bold transition-all flex items-center justify-center gap-1 ${
+          className={`flex-1 py-1.5 rounded-xl text-[9px] font-bold transition-all flex items-center justify-center gap-1.5 ${
             activeScreen === 'video'
-              ? 'bg-coral text-white shadow-sm'
+              ? 'bg-gradient-to-r from-coral to-[#e8634f] text-white shadow-md shadow-coral/30 ring-1 ring-white/20'
               : 'text-white/60 hover:text-white hover:bg-white/5'
           }`}
         >
-          <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
-          <span>🎥 AI Video</span>
+          <Activity size={11} className={activeScreen === 'video' ? 'animate-pulse' : ''} />
+          <span>Kinematik Video</span>
         </button>
+
         <button
-          onClick={() => setActiveScreen('voice')}
-          className={`flex-1 py-1.5 rounded-lg text-[9px] font-bold transition-all ${
-            activeScreen === 'voice'
-              ? 'bg-turquoise text-navy shadow-sm'
+          onClick={() => setActiveScreen('scan')}
+          className={`flex-1 py-1.5 rounded-xl text-[9px] font-bold transition-all flex items-center justify-center gap-1.5 ${
+            activeScreen === 'scan'
+              ? 'bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-bold shadow-md shadow-indigo-500/30 ring-1 ring-white/20'
               : 'text-white/60 hover:text-white hover:bg-white/5'
           }`}
         >
-          🎙️ Sesli Not
+          <ScanLine size={11} />
+          <span>Bez & Cilt Spektro</span>
+        </button>
+
+        <button
+          onClick={() => setActiveScreen('assistant')}
+          className={`flex-1 py-1.5 rounded-xl text-[9px] font-bold transition-all flex items-center justify-center gap-1.5 ${
+            activeScreen === 'assistant'
+              ? 'bg-gradient-to-r from-violet-600 to-indigo-700 text-white shadow-md shadow-violet-500/30 ring-1 ring-white/20'
+              : 'text-white/60 hover:text-white hover:bg-white/5'
+          }`}
+        >
+          <MessageCircle size={11} />
+          <span>7/24 Rehber</span>
         </button>
       </div>
 
       {/* Main Content Body */}
-      <div className="flex-1 overflow-hidden flex flex-col justify-between p-3">
-        {activeScreen === 'menu' && (
-          <div className="flex flex-col gap-2 overflow-y-auto pr-0.5">
-            <div className="bg-gradient-to-r from-turquoise/15 to-turquoise/5 p-2.5 rounded-2xl border border-turquoise/25">
-              <p className="text-[9px] text-turquoise font-bold uppercase tracking-wider flex items-center gap-1">
-                <Sparkles size={10} />
-                Hoş Geldiniz
-              </p>
-              <p className="text-white font-semibold text-[11px] mt-0.5">Bebeğinizin yanındayız 👶</p>
-            </div>
-            {menuItems.map((item, i) => (
-              <div
-                key={i}
-                className="bg-white/[0.08] hover:bg-white/[0.14] rounded-2xl px-3 py-2 flex items-center gap-2.5 border border-white/5 transition-all duration-200 group cursor-default"
-              >
-                <div className="w-7 h-7 rounded-xl bg-turquoise/20 group-hover:bg-turquoise/30 flex items-center justify-center text-turquoise shrink-0 transition-colors">
-                  {item.icon}
-                </div>
-                <div className="min-w-0">
-                  <p className="text-white font-bold text-[10px] leading-tight truncate group-hover:text-turquoise transition-colors">
-                    {item.label}
-                  </p>
-                  <p className="text-white/60 text-[8px] leading-tight truncate mt-0.5">{item.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-
+      <div className="flex-1 overflow-hidden flex flex-col justify-between p-3 relative">
+        
+        {/* SCREEN 1: AI VIDEO KİNEMATİK GMA HAREKET ANALİZİ */}
         {activeScreen === 'video' && (
-          <div className="flex-1 flex flex-col justify-between bg-slate-950 rounded-2xl border border-white/10 p-2.5 relative overflow-hidden">
-            {/* Real-time scanline */}
+          <div className="flex-1 flex flex-col justify-between bg-slate-950/90 rounded-2xl border border-white/10 p-3 relative overflow-hidden backdrop-blur-md">
+            {/* Luminous laser scanline */}
             <div
-              className="absolute inset-x-0 h-0.5 bg-gradient-to-r from-transparent via-turquoise to-transparent shadow-[0_0_10px_#14BBB7] pointer-events-none"
+              className="absolute inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-turquoise to-transparent shadow-[0_0_12px_#14BBB7] pointer-events-none transition-all duration-75"
               style={{ top: `${videoProgress}%` }}
             />
 
-            {/* Video Header overlay */}
-            <div className="flex items-center justify-between text-[8px] text-white/80 font-mono">
-              <span className="flex items-center gap-1 text-red-400 font-bold bg-red-500/10 px-1.5 py-0.5 rounded border border-red-500/20">
-                <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-ping" />
-                CANLI ANALİZ
+            {/* Video HUD Telemetry bar */}
+            <div className="flex items-center justify-between text-[8px] font-mono text-white/90 pb-1 border-b border-white/10">
+              <span className="flex items-center gap-1 text-coral font-bold bg-coral/15 px-2 py-0.5 rounded-full border border-coral/30">
+                <span className="w-1.5 h-1.5 rounded-full bg-coral animate-ping" />
+                60 FPS KİNEMATİK
               </span>
-              <span className="text-turquoise font-bold">GMA: %98.2</span>
+              <span className="text-turquoise font-bold bg-turquoise/15 px-2 py-0.5 rounded-full border border-turquoise/30">
+                GMA Akış: %98.4
+              </span>
             </div>
 
-            {/* Video Motion Skeleton SVG */}
-            <div className="relative w-full h-36 flex items-center justify-center">
-              <svg viewBox="0 0 160 120" className="w-full h-full stroke-turquoise stroke-[2] fill-none drop-shadow-[0_0_6px_rgba(20,187,183,0.4)]">
-                {/* Moving infant limbs */}
-                <circle cx="80" cy={35 + Math.sin(videoProgress * 0.1) * 3} r="7" fill="#082A46" stroke="#14BBB7" strokeWidth="2" />
-                <line x1="80" y1="42" x2="80" y2="70" />
-                {/* Left Arm */}
-                <line x1="80" y1="50" x2={55 + Math.cos(videoProgress * 0.15) * 6} y2={45 + Math.sin(videoProgress * 0.15) * 6} />
-                {/* Right Arm */}
-                <line x1="80" y1="50" x2={105 + Math.sin(videoProgress * 0.15) * 6} y2={45 + Math.cos(videoProgress * 0.15) * 6} />
-                {/* Left Leg */}
-                <line x1="80" y1="70" x2={62 + Math.sin(videoProgress * 0.2) * 8} y2={95 + Math.cos(videoProgress * 0.2) * 6} />
-                {/* Right Leg */}
-                <line x1="80" y1="70" x2={98 + Math.cos(videoProgress * 0.2) * 8} y2={95 + Math.sin(videoProgress * 0.2) * 6} />
+            {/* Video Motion Skeleton SVG with Glowing Landmarks */}
+            <div className="relative w-full h-36 flex items-center justify-center my-auto">
+              <svg viewBox="0 0 160 120" className="w-full h-full stroke-turquoise stroke-[2] fill-none drop-shadow-[0_0_8px_rgba(20,187,183,0.5)]">
+                {/* Torso / Omurga Ekseni */}
+                <line x1="80" y1="42" x2="80" y2="70" stroke="#14BBB7" strokeWidth="2.5" />
+                
+                {/* Head */}
+                <circle cx="80" cy={34 + Math.sin(videoProgress * 0.1) * 3} r="8" fill="#082A46" stroke="#14BBB7" strokeWidth="2" />
+                
+                {/* Shoulder Line */}
+                <line x1="68" y1="46" x2="92" y2="46" stroke="#14BBB7" strokeWidth="1.5" />
+
+                {/* Left Arm & Joints */}
+                <line x1="68" y1="46" x2={52 + Math.cos(videoProgress * 0.15) * 6} y2={54 + Math.sin(videoProgress * 0.15) * 4} />
+                <line x1={52 + Math.cos(videoProgress * 0.15) * 6} y1={54 + Math.sin(videoProgress * 0.15) * 4} x2={42 + Math.sin(videoProgress * 0.2) * 6} y2={42 + Math.cos(videoProgress * 0.2) * 5} />
+                <circle cx={52 + Math.cos(videoProgress * 0.15) * 6} cy={54 + Math.sin(videoProgress * 0.15) * 4} r="2.5" fill="#FF7965" />
+                <circle cx={42 + Math.sin(videoProgress * 0.2) * 6} cy={42 + Math.cos(videoProgress * 0.2) * 5} r="2.5" fill="#14BBB7" />
+
+                {/* Right Arm & Joints */}
+                <line x1="92" y1="46" x2={108 + Math.sin(videoProgress * 0.15) * 6} y2={54 + Math.cos(videoProgress * 0.15) * 4} />
+                <line x1={108 + Math.sin(videoProgress * 0.15) * 6} y1={54 + Math.cos(videoProgress * 0.15) * 4} x2={118 + Math.cos(videoProgress * 0.2) * 6} y2={42 + Math.sin(videoProgress * 0.2) * 5} />
+                <circle cx={108 + Math.sin(videoProgress * 0.15) * 6} cy={54 + Math.cos(videoProgress * 0.15) * 4} r="2.5" fill="#FF7965" />
+                <circle cx={118 + Math.cos(videoProgress * 0.2) * 6} cy={42 + Math.sin(videoProgress * 0.2) * 5} r="2.5" fill="#14BBB7" />
+
+                {/* Pelvis / Kalça Hattı */}
+                <line x1="72" y1="70" x2="88" y2="70" stroke="#14BBB7" strokeWidth="1.5" />
+
+                {/* Left Leg & Joints */}
+                <line x1="72" y1="70" x2={60 + Math.sin(videoProgress * 0.2) * 8} y2={88 + Math.cos(videoProgress * 0.2) * 4} />
+                <line x1={60 + Math.sin(videoProgress * 0.2) * 8} y1={88 + Math.cos(videoProgress * 0.2) * 4} x2={54 + Math.cos(videoProgress * 0.25) * 7} y2={104 + Math.sin(videoProgress * 0.25) * 4} />
+                <circle cx={60 + Math.sin(videoProgress * 0.2) * 8} cy={88 + Math.cos(videoProgress * 0.2) * 4} r="2.5" fill="#FF7965" />
+                <circle cx={54 + Math.cos(videoProgress * 0.25) * 7} cy={104 + Math.sin(videoProgress * 0.25) * 4} r="2.5" fill="#14BBB7" />
+
+                {/* Right Leg & Joints */}
+                <line x1="88" y1="70" x2={100 + Math.cos(videoProgress * 0.2) * 8} y2={88 + Math.sin(videoProgress * 0.2) * 4} />
+                <line x1={100 + Math.cos(videoProgress * 0.2) * 8} y1={88 + Math.sin(videoProgress * 0.2) * 4} x2={106 + Math.sin(videoProgress * 0.25) * 7} y2={104 + Math.cos(videoProgress * 0.25) * 4} />
+                <circle cx={100 + Math.cos(videoProgress * 0.2) * 8} cy={88 + Math.sin(videoProgress * 0.2) * 4} r="2.5" fill="#FF7965" />
+                <circle cx={106 + Math.sin(videoProgress * 0.25) * 7} cy={104 + Math.cos(videoProgress * 0.25) * 4} r="2.5" fill="#14BBB7" />
               </svg>
             </div>
 
-            {/* Video bottom scrubber */}
-            <div className="bg-white/10 rounded-xl p-2 flex flex-col gap-1 border border-white/5">
+            {/* Live Kinematic Diagnostics Card */}
+            <div className="bg-white/[0.07] rounded-xl p-2.5 flex flex-col gap-1.5 border border-white/10">
               <div className="w-full h-1.5 bg-white/20 rounded-full overflow-hidden">
                 <div
-                  className="h-full bg-gradient-to-r from-turquoise to-coral rounded-full transition-all"
+                  className="h-full bg-gradient-to-r from-turquoise via-teal-300 to-coral rounded-full transition-all duration-100"
                   style={{ width: `${videoProgress}%` }}
                 />
               </div>
-              <div className="flex items-center justify-between text-[8px] font-mono text-white/70">
-                <span>00:{String(Math.floor(videoProgress / 3)).padStart(2, '0')} / 00:30</span>
+              <div className="flex items-center justify-between text-[8px] font-mono">
+                <span className="text-white/70">Açı: 114° • Hız: 0.42 m/s</span>
                 <span className="text-emerald-400 font-bold flex items-center gap-1">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                  Hareket Akıcı
+                  <CheckCircle2 size={10} className="text-emerald-400" />
+                  Prechtl Fidgety Normal
                 </span>
               </div>
             </div>
           </div>
         )}
 
-        {activeScreen === 'voice' && (
-          <div className="flex-1 flex flex-col justify-between bg-slate-950 rounded-2xl border border-white/10 p-3">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-xl bg-turquoise/20 flex items-center justify-center text-turquoise text-lg">
-                👵
+        {/* SCREEN 2: BEBEK BEZİ & CİLT SPEKTROFOTOMETRİSİ */}
+        {activeScreen === 'scan' && (
+          <div className="flex-1 flex flex-col justify-between bg-slate-950/90 rounded-2xl border border-white/10 p-3 backdrop-blur-md">
+            <div>
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-[9px] font-bold text-turquoise uppercase tracking-wider flex items-center gap-1.5">
+                  <Eye size={12} className="text-turquoise" />
+                  Optik Spektrometre
+                </span>
+                <span className="text-[8px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 font-bold border border-emerald-500/30">
+                  ✓ Güvenli Referans
+                </span>
               </div>
-              <div>
-                <p className="text-white font-bold text-[10px]">Büyükanne Sesli Notu</p>
-                <p className="text-white/50 text-[8px]">Uyku Rutini Rehberi</p>
+
+              {/* Optical Reticle Card */}
+              <div className="relative my-2 p-3 rounded-2xl bg-white/[0.04] border border-turquoise/40 flex items-center gap-3 overflow-hidden">
+                {/* Reticle Brackets in Corners */}
+                <div className="absolute top-1.5 left-1.5 w-2 h-2 border-t-2 border-l-2 border-turquoise" />
+                <div className="absolute top-1.5 right-1.5 w-2 h-2 border-t-2 border-r-2 border-turquoise" />
+                <div className="absolute bottom-1.5 left-1.5 w-2 h-2 border-b-2 border-l-2 border-turquoise" />
+                <div className="absolute bottom-1.5 right-1.5 w-2 h-2 border-b-2 border-r-2 border-turquoise" />
+
+                <div className={`w-12 h-12 rounded-xl bg-gradient-to-br from-amber-300 via-amber-400 to-amber-600 flex items-center justify-center font-mono font-bold text-[10px] text-navy shadow-inner border border-white/30 shrink-0 transition-transform ${
+                  scanPulse ? 'scale-105' : 'scale-100'
+                }`}>
+                  #E5B842
+                </div>
+                <div className="min-w-0 flex-1">
+                  <p className="text-[10px] font-bold text-white">Altın Sarısı / Normal Renk</p>
+                  <p className="text-[8px] text-white/60 mt-0.5">Sindirim dengesi ve safra pigmenti olağan</p>
+                  <div className="mt-1.5 flex items-center gap-1.5 text-[8px] text-turquoise font-semibold">
+                    <ShieldCheck size={11} />
+                    <span>Pediatrik Kart No. 4 Eşleşmesi (%99.1)</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Color spectrum mini bar */}
+              <div className="flex gap-1 items-center justify-between px-1 my-2">
+                {['#E8E8E8', '#F5D77F', '#E5B842', '#C68B2C', '#6B8E23'].map((c, i) => (
+                  <div
+                    key={i}
+                    className={`h-2 flex-1 rounded-full border ${i === 2 ? 'ring-2 ring-turquoise ring-offset-1 ring-offset-slate-900 border-white' : 'border-transparent opacity-60'}`}
+                    style={{ backgroundColor: c }}
+                  />
+                ))}
               </div>
             </div>
 
-            {/* Animated Soundwave bars */}
-            <div className="flex items-center justify-center gap-1 h-12 bg-white/5 rounded-xl px-2">
-              {[30, 70, 100, 45, 85, 30, 95, 60, 40, 80, 50, 90, 35].map((h, idx) => (
-                <span
+            <div className="bg-white/5 rounded-xl p-2.5 border border-white/5 text-[9px] leading-relaxed text-white/85">
+              <span className="text-turquoise font-bold block mb-0.5">Klinik Değerlendirme Köprüsü:</span>
+              Dışkı ve cilt bariyeri olağan seyrinde. Acil hekim müdahalesi gerekmemekte; rutin aile hekimi izlemi önerilir.
+            </div>
+          </div>
+        )}
+
+        {/* SCREEN 3: 7/24 ŞEFKATLİ DİJİTAL ASİSTAN */}
+        {activeScreen === 'assistant' && (
+          <div className="flex-1 flex flex-col justify-between bg-slate-950/90 rounded-2xl border border-white/10 p-2.5 backdrop-blur-md">
+            <div className="space-y-2">
+              <div className="flex items-center justify-between text-[8px] text-white/60 border-b border-white/10 pb-1.5">
+                <span className="flex items-center gap-1.5 font-bold text-blue-400">
+                  <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
+                  {assistantPrompts[selectedPrompt].badge}
+                </span>
+                <span className="text-white/40">7/24 Aktif</span>
+              </div>
+
+              {/* Parent chat message */}
+              <div className="bg-white/10 text-white text-[9px] p-2.5 rounded-2xl rounded-tr-none ml-3 leading-relaxed border border-white/10 shadow-sm">
+                {assistantPrompts[selectedPrompt].q}
+              </div>
+
+              {/* Assistant response message */}
+              <div className="bg-gradient-to-br from-turquoise/20 via-teal-900/30 to-blue-900/20 text-white text-[9px] p-2.5 rounded-2xl rounded-tl-none mr-2 leading-relaxed border border-turquoise/35 shadow-md">
+                <span className="text-turquoise font-bold block mb-0.5 flex items-center gap-1 text-[10px]">
+                  <Sparkles size={11} className="text-turquoise" />
+                  DijitalBüyükanne Rehberliği:
+                </span>
+                {assistantPrompts[selectedPrompt].a}
+              </div>
+            </div>
+
+            {/* Quick interactive prompt selector */}
+            <div className="flex gap-1.5 overflow-x-auto pt-1.5 border-t border-white/10">
+              {['Gece Uyanması', 'Bez Rengi', 'Cilt Döküntüsü'].map((label, idx) => (
+                <button
                   key={idx}
-                  className="w-1.5 rounded-full bg-gradient-to-t from-turquoise to-teal-300 animate-soundwave"
-                  style={{
-                    height: `${h}%`,
-                    animationDelay: `${(idx % 4) * 0.2}s`,
-                  }}
-                />
+                  onClick={() => setSelectedPrompt(idx)}
+                  className={`text-[8px] font-bold px-2 py-1 rounded-xl transition-all shrink-0 border ${
+                    selectedPrompt === idx
+                      ? 'bg-turquoise text-navy border-turquoise font-black shadow-sm'
+                      : 'bg-white/5 text-white/70 hover:bg-white/10 border-white/10'
+                  }`}
+                >
+                  {label}
+                </button>
               ))}
             </div>
-
-            <p className="text-[9px] text-white/80 italic leading-relaxed text-center bg-white/5 p-2 rounded-xl border border-white/5">
-              &ldquo;Kuzum ışıkları açmadan hafifçe pışpışla, şimdi sakinleşecek...&rdquo;
-            </p>
           </div>
         )}
 
         {/* Bottom Nav */}
-        <div className="bg-slate-900 border border-white/10 rounded-xl px-3 py-1.5 flex justify-around items-center shrink-0 mt-2">
-          {['Ana Sayfa', 'Video', 'Cilt', 'Asistan'].map((nav, i) => (
+        <div className="bg-slate-900/90 border border-white/10 rounded-xl px-3 py-1.5 flex justify-around items-center shrink-0 mt-2">
+          {['Kinematik', 'Spektro', '7/24 Rehber'].map((nav, i) => (
             <span
               key={i}
-              className={`text-[8px] font-bold ${
-                (activeScreen === 'menu' && i === 0) ||
-                (activeScreen === 'video' && i === 1) ||
-                (activeScreen === 'voice' && i === 3)
+              className={`text-[8px] font-bold transition-colors ${
+                (activeScreen === 'video' && i === 0) ||
+                (activeScreen === 'scan' && i === 1) ||
+                (activeScreen === 'assistant' && i === 2)
                   ? 'text-turquoise'
                   : 'text-white/40'
               }`}
@@ -257,140 +341,213 @@ function HeroAppScreen({
 }
 
 export default function HeroSection() {
-  const [activeScreen, setActiveScreen] = useState<'menu' | 'video' | 'voice'>('video');
+  const [activeScreen, setActiveScreen] = useState<'video' | 'scan' | 'assistant'>('video');
 
   return (
     <section
-      className="relative overflow-hidden pt-36 sm:pt-40 lg:pt-44 pb-20 sm:pb-24"
-      style={{ background: 'linear-gradient(135deg, #061e33 0%, #082A46 45%, #0a3558 75%, #0d1f30 100%)' }}
+      className="relative overflow-hidden pt-32 sm:pt-36 lg:pt-40 pb-20 sm:pb-28 bg-gradient-to-b from-[#FFFFFF] via-[#F8FBFE] via-35%-[#F0F8FF] via-70%-[#E1F1FD] to-[#D5ECFB]"
     >
-      {/* Decorative ambient glowing circles & background mesh */}
+      {/* Spectacular ambient glowing aurora orbs - radiant sky cyan, warm peach & mint */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div
-          className="absolute -top-32 -right-32 w-[550px] h-[550px] rounded-full opacity-15 animate-pulse-glow"
-          style={{ background: 'radial-gradient(circle, #14BBB7 0%, transparent 70%)' }}
+          className="absolute -top-32 right-1/4 w-[600px] h-[600px] rounded-full opacity-35 blur-3xl animate-pulse-glow"
+          style={{ background: 'radial-gradient(circle, #38BDF8 0%, #BAE6FD 50%, transparent 80%)' }}
         />
         <div
-          className="absolute -bottom-48 -left-24 w-[450px] h-[450px] rounded-full opacity-15 animate-pulse-glow"
-          style={{ background: 'radial-gradient(circle, #FF7965 0%, transparent 70%)', animationDelay: '1.5s' }}
+          className="absolute top-1/3 -left-32 w-[500px] h-[500px] rounded-full opacity-25 blur-3xl animate-pulse-glow"
+          style={{ background: 'radial-gradient(circle, #FF7965 0%, #FED7AA 50%, transparent 80%)', animationDelay: '2s' }}
         />
         <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full opacity-5 pointer-events-none"
-          style={{ border: '1px dashed #14BBB7' }}
+          className="absolute bottom-10 right-10 w-[450px] h-[450px] rounded-full opacity-25 blur-3xl"
+          style={{ background: 'radial-gradient(circle, #2DD4BF 0%, transparent 70%)' }}
         />
-        {/* Subtle grid pattern overlay */}
+        
+        {/* Subtle geometric precision ring */}
         <div
-          className="absolute inset-0 opacity-[0.03]"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] rounded-full opacity-[0.05] pointer-events-none"
+          style={{ border: '1.5px dashed #0284C7' }}
+        />
+        
+        {/* Precision micro-grid pattern */}
+        <div
+          className="absolute inset-0 opacity-[0.025] pointer-events-none"
           style={{
-            backgroundImage: 'radial-gradient(#ffffff 1px, transparent 1px)',
+            backgroundImage: 'radial-gradient(#0284C7 1px, transparent 1px)',
             backgroundSize: '24px 24px',
           }}
         />
       </div>
 
       <div className="relative z-10 max-w-6xl mx-auto px-4 md:px-8 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
 
-          {/* LEFT — Copy */}
-          <div className="flex flex-col items-start hero-fade-left">
-            {/* Eyebrow Badge */}
-            <div className="inline-flex items-center gap-2.5 text-xs font-bold tracking-wider uppercase text-turquoise bg-turquoise/10 border border-turquoise/30 rounded-full px-4 py-2 mb-6 backdrop-blur-md shadow-sm">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-turquoise opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-turquoise" />
-              </span>
-              <span>0–24 Ay Bebek ve Aile Destek Ekosistemi</span>
+          {/* SOL KOLON — MANŞET & DEĞER ÖNERMESİ */}
+          <div className="lg:col-span-7 flex flex-col items-start hero-fade-left">
+            
+            {/* Luminous System Indicator Pill with 3D Mascot */}
+            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/95 border border-sky-200/90 text-sky-950 text-xs font-bold tracking-wider uppercase mb-5 shadow-xs backdrop-blur-md">
+              <Image
+                src="/images/mascot.png"
+                alt="Dijital Büyükanne Maskot"
+                width={20}
+                height={20}
+                className="w-5 h-5 object-contain"
+              />
+              <span>0–24 AY BEBEK VE AİLE DESTEK EKOSİSTEMİ</span>
             </div>
 
-            {/* H1 */}
-            <h1 className="text-4xl md:text-5xl lg:text-[3.35rem] font-extrabold text-white leading-[1.15] mb-6 tracking-tight">
+            {/* H1 — Dramatik, İç Açıcı ve Güven Veren Başlık */}
+            <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] font-black text-[#0B1E3B] leading-[1.1] mb-5 tracking-tight">
               Her bebeğin bir{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-turquoise via-teal-300 to-turquoise drop-shadow-sm">
-                Dijital Büyükannesi
+              <span className="relative inline-block">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0284C7] via-[#0EA5E9] to-[#FF5A43]">
+                  Dijital Büyükannesi
+                </span>
+                <span className="absolute -bottom-1 left-0 w-full h-[3px] bg-gradient-to-r from-[#0284C7] via-[#0EA5E9] to-[#FF5A43] rounded-full opacity-70" />
               </span>{' '}
               olsun.
             </h1>
 
-            {/* Description */}
-            <p className="text-white/85 text-lg md:text-xl leading-relaxed mb-8 max-w-xl font-normal">
-              DijitalBüyükanne; ailelerin bebeklerinin gelişim yolculuğunu takip etmelerine yardımcı olan, güvenilir bilgiye erişimi kolaylaştıran, yapay zekâ destekli video hareket ve cilt analizlerini uzman desteğiyle buluşturan yeni nesil dijital platformdur.
+            {/* Description — Sade, Empatik ve Vizyoner */}
+            <p className="text-slate-600 text-base sm:text-lg leading-relaxed mb-7 max-w-xl font-normal">
+              Geleneksel aile şefkatini modern <strong>yapay zekâ kinematik izlemi</strong> (Prechtl GMA), optik renk spektrometresi ve <strong>pediatrik rehberlikle</strong> buluşturuyoruz. İlk 1.000 günde evinizden gelişim basamaklarını güvenle takip edin; gece 03:00&apos;te bile yalnız kalmayın.
             </p>
 
+            {/* 3 Somut Hizmet Kartı — Yaptığımız İşi Anında Yansıtan Alan */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full max-w-xl mb-7">
+              {/* Hizmet 1: Kinematik */}
+              <div
+                onClick={() => setActiveScreen('video')}
+                className={`p-3.5 rounded-2xl border transition-all cursor-pointer text-left ${
+                  activeScreen === 'video'
+                    ? 'bg-white border-sky-400 ring-2 ring-sky-400/25 shadow-md -translate-y-0.5'
+                    : 'bg-white/90 border-slate-200/80 hover:bg-white hover:border-sky-300 shadow-xs'
+                }`}
+              >
+                <div className="flex items-center gap-1.5 text-sky-900 font-bold text-xs mb-1">
+                  <Activity size={14} className="text-sky-600" />
+                  <span>0–6 Ay Kinematik</span>
+                </div>
+                <p className="text-[11px] text-slate-500 leading-snug">
+                  30 sn videodan Prechtl GMA ile motor simetri takibi.
+                </p>
+              </div>
+
+              {/* Hizmet 2: Bez & Cilt */}
+              <div
+                onClick={() => setActiveScreen('scan')}
+                className={`p-3.5 rounded-2xl border transition-all cursor-pointer text-left ${
+                  activeScreen === 'scan'
+                    ? 'bg-white border-teal-400 ring-2 ring-teal-400/25 shadow-md -translate-y-0.5'
+                    : 'bg-white/90 border-slate-200/80 hover:bg-white hover:border-teal-300 shadow-xs'
+                }`}
+              >
+                <div className="flex items-center gap-1.5 text-teal-900 font-bold text-xs mb-1">
+                  <ScanLine size={14} className="text-teal-600" />
+                  <span>Bez & Cilt Spektro</span>
+                </div>
+                <p className="text-[11px] text-slate-500 leading-snug">
+                  DSÖ skalalarıyla fotoğraftan renk ve döküntü ön taraması.
+                </p>
+              </div>
+
+              {/* Hizmet 3: Asistan */}
+              <div
+                onClick={() => setActiveScreen('assistant')}
+                className={`p-3.5 rounded-2xl border transition-all cursor-pointer text-left ${
+                  activeScreen === 'assistant'
+                    ? 'bg-white border-coral ring-2 ring-coral/25 shadow-md -translate-y-0.5'
+                    : 'bg-white/90 border-slate-200/80 hover:bg-white hover:border-coral/40 shadow-xs'
+                }`}
+              >
+                <div className="flex items-center gap-1.5 text-coral font-bold text-xs mb-1">
+                  <MessageCircle size={14} className="text-coral" />
+                  <span>Gece 03:00 Şefkat</span>
+                </div>
+                <p className="text-[11px] text-slate-500 leading-snug">
+                  Panik yapmadan uyku, beslenme ve hekim yönlendirmesi.
+                </p>
+              </div>
+            </div>
+
             {/* CTA Buttons */}
-            <div className="flex flex-wrap items-center gap-3.5 mb-8">
+            <div className="flex flex-wrap items-center gap-3.5 mb-7">
               <Link
                 href="#hareket-analizi"
-                className="relative overflow-hidden group px-6 py-4 text-sm md:text-base font-bold rounded-2xl bg-gradient-to-r from-coral to-[#e8634f] text-white shadow-lg hover:shadow-glow-coral hover:-translate-y-0.5 active:scale-98 transition-all duration-300 inline-flex items-center justify-center gap-2.5"
+                className="relative overflow-hidden group px-7 py-4 text-sm md:text-base font-bold rounded-2xl bg-gradient-to-r from-[#FF5A43] via-[#FF6D55] to-[#F0442B] text-white shadow-lg shadow-coral/30 hover:shadow-coral/50 hover:-translate-y-0.5 active:scale-98 transition-all inline-flex items-center justify-center gap-2.5"
               >
-                {/* Button shine sweep */}
-                <span className="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-[300%] transition-transform duration-1000 ease-out pointer-events-none" />
                 <Play size={16} className="fill-white" />
-                <span className="relative z-10">Canlı AI Simülasyonunu İzle</span>
+                <span>Canlı AI Simülasyonunu Dene</span>
               </Link>
               
               <Link
                 href="#dijitalbuyukanne"
-                className="px-6 py-4 text-sm md:text-base font-bold rounded-2xl border-2 border-white/30 bg-white/10 backdrop-blur-md text-white hover:bg-white hover:text-navy hover:border-white shadow-sm hover:shadow-lg hover:-translate-y-0.5 active:scale-98 transition-all duration-300 inline-flex items-center justify-center"
+                className="px-6 py-4 text-sm md:text-base font-bold rounded-2xl border border-sky-200/90 bg-white/95 text-[#0B1E3B] hover:bg-white shadow-xs hover:-translate-y-0.5 active:scale-98 transition-all inline-flex items-center justify-center"
               >
                 Özellikleri Keşfet
               </Link>
 
               <Link
                 href="/kurumlar"
-                className="px-4 py-4 text-sm md:text-base font-bold text-turquoise hover:text-white transition-colors inline-flex items-center gap-1.5 group"
+                className="px-5 py-4 text-sm md:text-base font-bold text-sky-950 hover:text-sky-800 bg-white/90 hover:bg-white border border-sky-200/90 rounded-2xl shadow-xs transition-all inline-flex items-center gap-1.5 group backdrop-blur-sm"
               >
                 <span>Kurumlar İçin</span>
-                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform text-sky-600" />
               </Link>
             </div>
 
-            {/* Trust badge */}
-            <div className="flex items-center gap-2.5 text-white/70 text-xs md:text-sm bg-white/5 border border-white/10 px-4 py-2 rounded-xl backdrop-blur-sm">
-              <ShieldCheck size={16} className="text-turquoise shrink-0" />
-              <span>BabySensAI Kinematik Motoru • Bilim + Yapay Zekâ + Uzman Desteği</span>
+            {/* Bilimsel Güvenlik & Pediatri Onayı Rozeti */}
+            <div className="flex items-center gap-2.5 text-slate-700 text-xs bg-white/95 border border-sky-100 px-4 py-2.5 rounded-2xl shadow-xs backdrop-blur-md">
+              <ShieldCheck size={17} className="text-sky-600 shrink-0" />
+              <span>Pediatri Bilim Kurulu Standartları • Tanı Koymaz, Bilgilendirir ve Uzman Hekime Yönlendirir</span>
             </div>
           </div>
 
-          {/* RIGHT — Interactive Phone Mockup */}
-          <div className="flex justify-center lg:justify-end hero-fade-right">
-            <div className="relative animate-float-slow">
+          {/* SAĞ KOLON — İNTERAKTİF TELEFON VE ROZETLER */}
+          <div className="lg:col-span-5 flex justify-center lg:justify-end hero-fade-right">
+            <div className="relative animate-float-slow w-full max-w-[340px] sm:max-w-[360px]">
+              
+              {/* Luminous Phone Glow Effect */}
               <div
-                className="absolute inset-0 rounded-[40px] blur-3xl opacity-40 scale-95 animate-pulse-glow"
-                style={{ background: 'radial-gradient(circle, #14BBB7 0%, #082A46 80%)' }}
+                className="absolute inset-0 rounded-[48px] blur-3xl opacity-35 scale-95 pointer-events-none animate-pulse-glow"
+                style={{ background: 'radial-gradient(circle, #38BDF8 0%, #FF7965 60%, transparent 80%)' }}
               />
 
-              {/* Interactive pill 1 */}
+              {/* Yüzen Rozet 1: Kinematik Video */}
               <button
                 onClick={() => setActiveScreen('video')}
-                className="hidden sm:flex items-center gap-2 absolute -left-8 sm:-left-12 top-20 bg-[#082A46]/90 backdrop-blur-xl text-white text-xs font-bold px-4 py-2.5 rounded-2xl shadow-2xl z-20 border border-white/20 hover:scale-105 hover:border-coral transition-all duration-200 cursor-pointer group"
+                className={`hidden sm:flex items-center gap-2 absolute -left-8 top-12 backdrop-blur-xl text-xs font-bold px-3.5 py-2 rounded-2xl shadow-xl border transition-all duration-300 cursor-pointer z-20 ${
+                  activeScreen === 'video'
+                    ? 'bg-white text-sky-950 border-sky-300 ring-2 ring-sky-400/30 scale-105'
+                    : 'bg-white/95 text-slate-700 border-sky-100 hover:scale-105'
+                }`}
               >
-                <span className="w-2.5 h-2.5 rounded-full bg-coral animate-ping" />
-                <span className="group-hover:text-coral transition-colors">🎥 AI Video Takibi</span>
+                <span className="w-2 h-2 rounded-full bg-coral animate-ping" />
+                <span>🎥 18 Eklem GMA Takibi</span>
               </button>
 
-              {/* Interactive pill 2 */}
-              <button
-                onClick={() => setActiveScreen('voice')}
-                className="hidden sm:flex items-center gap-2 absolute -right-6 sm:-right-10 bottom-16 bg-[#082A46]/90 backdrop-blur-xl text-white text-xs font-bold px-4 py-2.5 rounded-2xl shadow-2xl z-20 border border-white/20 hover:scale-105 hover:border-turquoise transition-all duration-200 cursor-pointer group"
-              >
-                <span className="w-2.5 h-2.5 rounded-full bg-turquoise animate-pulse" />
-                <span className="group-hover:text-turquoise transition-colors">🎙️ 7/24 Büyükanne Sesi</span>
-              </button>
+              {/* Yüzen Rozet 2: Hekim Köprüsü */}
+              <div className="hidden sm:flex items-center gap-2 absolute -right-6 bottom-16 bg-white/95 text-[#0B1E3B] text-xs font-bold px-3.5 py-2 rounded-2xl shadow-xl border border-sky-100 backdrop-blur-md z-20">
+                <CheckCircle2 size={14} className="text-sky-600" />
+                <span>🩺 Uzman Hekim Köprüsü</span>
+              </div>
 
-              <PhoneMockup size="lg" dark label="Canlı İnteraktif Simülatör">
+              {/* The Phone Shell */}
+              <PhoneMockup size="lg" dark label="Canlı Mobil Deneyim">
                 <HeroAppScreen activeScreen={activeScreen} setActiveScreen={setActiveScreen} />
               </PhoneMockup>
             </div>
           </div>
+
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 animate-bounce z-10 pointer-events-none">
-        <span className="text-white/60 text-[10px] tracking-widest uppercase font-bold bg-white/10 px-3 py-1 rounded-full border border-white/10 backdrop-blur-sm">
+      {/* Aşağı Kaydır İndikatörü */}
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 animate-bounce z-10 pointer-events-none">
+        <span className="text-slate-600 text-[10px] tracking-widest uppercase font-bold bg-white/90 px-3 py-1 rounded-full border border-indigo-100 shadow-xs backdrop-blur-md">
           Aşağı Kaydır
         </span>
-        <ChevronDown size={16} className="text-turquoise" />
+        <ChevronDown size={14} className="text-indigo-600" />
       </div>
 
       <style>{`

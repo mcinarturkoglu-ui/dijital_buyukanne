@@ -21,7 +21,7 @@ import SectionHeader from '@/components/ui/SectionHeader';
 const scenarios = [
   {
     id: 'fidgety',
-    title: '0–3 Ay: Fidgety Hareketleri',
+    title: '0–3 Ay: Fidgety (Spontan) Hareketler',
     ageRange: '0–3 Ay',
     focus: 'Genel Spontan Motor Değerlendirmesi (GMA)',
     description: 'Bebek sırtüstü uzanırken omuz, dirsek, kalça ve ayak bileklerindeki akıcı ve değişken spontan hareketler taranır.',
@@ -29,19 +29,11 @@ const scenarios = [
   },
   {
     id: 'tummy',
-    title: '4–6 Ay: Karın Üstü & Baş Simetrisi',
-    ageRange: '4–6 Ay',
+    title: '3–6 Ay: Karın Üstü & Baş-Boyun Simetrisi',
+    ageRange: '3–6 Ay',
     focus: 'Boyun ve Sırt Kas Tonusu',
     description: 'Yüzüstü pozisyonda başı kaldırma açısı, dirseklerden destek alma dengesi ve iki taraf arasındaki simetri ölçülür.',
     metrics: { gma: '%96.1 Normal', symmetry: '%99.0', smoothness: 'Yüksek', status: 'Simetrik Baş Kontrolü' },
-  },
-  {
-    id: 'crawl',
-    title: '7–10 Ay: Emekleme Koordinasyonu',
-    ageRange: '7–10 Ay',
-    focus: 'Çapraz Kol-Bacak İtiş Dinamiği',
-    description: 'Sol kol-sağ bacak koordinasyonu ve gövde dengesi yapay zekâ kinematik modeli ile saniye bazlı analiz edilir.',
-    metrics: { gma: '%97.8 Normal', symmetry: '%96.5', smoothness: 'İleri Seviye', status: 'Koordinasyon Başarılı' },
   },
 ];
 
@@ -114,41 +106,40 @@ export default function MotionAnalysis() {
   // Dynamic Joint Coordinates calculated per frame
   const t = progress * 0.15;
   const isTummy = activeScenarioIndex === 1;
-  const isCrawl = activeScenarioIndex === 2;
 
   // Head
   const headX = 140 + Math.sin(t * 0.9) * 4;
-  const headY = isTummy ? 45 + Math.sin(t * 1.2) * 5 : isCrawl ? 60 + Math.sin(t) * 3 : 50 + Math.sin(t * 0.8) * 4;
+  const headY = isTummy ? 45 + Math.sin(t * 1.2) * 5 : 50 + Math.sin(t * 0.8) * 4;
 
   // Torso center
   const chestX = 140;
-  const chestY = isTummy ? 85 : isCrawl ? 95 : 95;
+  const chestY = isTummy ? 85 : 95;
   const pelvisX = 140 + Math.sin(t * 0.5) * 2;
-  const pelvisY = isTummy ? 125 : isCrawl ? 125 : 135;
+  const pelvisY = isTummy ? 125 : 135;
 
   // Left Arm (upper & hand)
-  const lElbowX = isTummy ? 100 + Math.cos(t) * 4 : isCrawl ? 95 + Math.cos(t * 1.2) * 6 : 95 + Math.cos(t) * 10;
-  const lElbowY = isTummy ? 95 : isCrawl ? 115 : 90 + Math.sin(t * 1.1) * 8;
-  const lHandX = isTummy ? 85 + Math.sin(t) * 3 : isCrawl ? 80 + Math.sin(t * 1.2) * 8 : 70 + Math.cos(t * 1.3) * 12;
-  const lHandY = isTummy ? 120 : isCrawl ? 140 : 80 + Math.sin(t * 1.4) * 10;
+  const lElbowX = isTummy ? 100 + Math.cos(t) * 4 : 95 + Math.cos(t) * 10;
+  const lElbowY = isTummy ? 95 : 90 + Math.sin(t * 1.1) * 8;
+  const lHandX = isTummy ? 85 + Math.sin(t) * 3 : 70 + Math.cos(t * 1.3) * 12;
+  const lHandY = isTummy ? 120 : 80 + Math.sin(t * 1.4) * 10;
 
   // Right Arm (upper & hand)
-  const rElbowX = isTummy ? 180 + Math.sin(t) * 4 : isCrawl ? 185 + Math.sin(t * 1.2) * 6 : 185 + Math.sin(t) * 10;
-  const rElbowY = isTummy ? 95 : isCrawl ? 115 : 90 + Math.cos(t * 1.1) * 8;
-  const rHandX = isTummy ? 195 + Math.cos(t) * 3 : isCrawl ? 200 + Math.cos(t * 1.2) * 8 : 210 + Math.sin(t * 1.3) * 12;
-  const rHandY = isTummy ? 120 : isCrawl ? 140 : 80 + Math.cos(t * 1.4) * 10;
+  const rElbowX = isTummy ? 180 + Math.sin(t) * 4 : 185 + Math.sin(t) * 10;
+  const rElbowY = isTummy ? 95 : 90 + Math.cos(t * 1.1) * 8;
+  const rHandX = isTummy ? 195 + Math.cos(t) * 3 : 210 + Math.sin(t * 1.3) * 12;
+  const rHandY = isTummy ? 120 : 80 + Math.cos(t * 1.4) * 10;
 
   // Left Leg (knee & foot)
-  const lKneeX = isTummy ? 115 + Math.sin(t * 0.8) * 5 : isCrawl ? 110 + Math.cos(t * 1.2) * 6 : 110 + Math.sin(t) * 8;
-  const lKneeY = isTummy ? 155 : isCrawl ? 145 : 165 + Math.cos(t * 1.2) * 10;
-  const lFootX = isTummy ? 105 + Math.cos(t) * 6 : isCrawl ? 95 + Math.sin(t * 1.2) * 6 : 95 + Math.sin(t * 1.3) * 12;
-  const lFootY = isTummy ? 180 : isCrawl ? 165 : 195 + Math.cos(t * 1.5) * 12;
+  const lKneeX = isTummy ? 115 + Math.sin(t * 0.8) * 5 : 110 + Math.sin(t) * 8;
+  const lKneeY = isTummy ? 155 : 165 + Math.cos(t * 1.2) * 10;
+  const lFootX = isTummy ? 105 + Math.cos(t) * 6 : 95 + Math.sin(t * 1.3) * 12;
+  const lFootY = isTummy ? 180 : 195 + Math.cos(t * 1.5) * 12;
 
   // Right Leg (knee & foot)
-  const rKneeX = isTummy ? 165 + Math.cos(t * 0.8) * 5 : isCrawl ? 170 + Math.sin(t * 1.2) * 6 : 170 + Math.cos(t) * 8;
-  const rKneeY = isTummy ? 155 : isCrawl ? 145 : 165 + Math.sin(t * 1.2) * 10;
-  const rFootX = isTummy ? 175 + Math.sin(t) * 6 : isCrawl ? 185 + Math.cos(t * 1.2) * 6 : 185 + Math.cos(t * 1.3) * 12;
-  const rFootY = isTummy ? 180 : isCrawl ? 165 : 195 + Math.sin(t * 1.5) * 12;
+  const rKneeX = isTummy ? 165 + Math.cos(t * 0.8) * 5 : 170 + Math.cos(t) * 8;
+  const rKneeY = isTummy ? 155 : 165 + Math.sin(t * 1.2) * 10;
+  const rFootX = isTummy ? 175 + Math.sin(t) * 6 : 185 + Math.cos(t * 1.3) * 12;
+  const rFootY = isTummy ? 180 : 195 + Math.sin(t * 1.5) * 12;
 
   return (
     <section className="py-20 md:py-28 px-4 md:px-8 bg-white relative overflow-hidden" id="hareket-analizi">

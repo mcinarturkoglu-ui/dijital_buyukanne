@@ -94,8 +94,8 @@ export default function HomePage() {
         headline="7/24 Dijital Rehberlik ve Hekim Güvencesi"
         description="Günün her saatinde güvenilir ilk danışma ve yapay zekâ filtreli uzman yönlendirmesiyle ailelerin yanındayız. Klinik kararlar uzman hekimlerin sorumluluğunda yürütülür."
         anchorId="ribbon-4"
-        theme="dark"
-        accent="turquoise"
+        theme="light"
+        accent="coral"
       />
 
       {/* ─────────────────────────────────────────────────────────────
@@ -114,8 +114,8 @@ export default function HomePage() {
         headline="Özel Gereksinimli Çocuklar ve Bilimsel Çerçeve"
         description="Prematüre doğum, serebral palsi riski veya gelişimsel gecikmelerde erken müdahale penceresini yakalayan klinik metodoloji ve bağımsız Bilimsel Danışma Kurulu güvencesi."
         anchorId="ribbon-5"
-        theme="dark"
-        accent="emerald"
+        theme="light"
+        accent="coral"
       />
 
       {/* ─────────────────────────────────────────────────────────────

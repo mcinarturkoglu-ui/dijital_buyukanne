@@ -47,8 +47,8 @@ export default function StoryChapterRibbon({
       id={anchorId}
       className={`relative py-14 md:py-20 px-4 select-none overflow-hidden transition-colors border-y ${
         isDark
-          ? 'bg-gradient-to-b from-[#061e32] via-[#082A46] to-[#061e32] text-white border-white/5'
-          : 'bg-gradient-to-b from-slate-50 via-white to-slate-50 text-navy border-slate-100'
+          ? 'bg-gradient-to-b from-[#0B2545] via-[#10345E] to-[#0B2545] text-white border-white/10'
+          : 'bg-gradient-to-b from-[#F0F8FF] via-white to-[#F0F8FF] text-[#0B1E3B] border-sky-100/70'
       }`}
     >
       {/* Central architectural connector line */}

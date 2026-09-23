@@ -183,13 +183,13 @@ export default function DigitalAssistant() {
     <section
       className="py-20 md:py-28 px-4 md:px-8 text-white relative overflow-hidden"
       style={{
-        background: 'linear-gradient(135deg, #051624 0%, #082A46 50%, #0a3355 100%)',
+        background: 'linear-gradient(180deg, #121634 0%, #1A2048 50%, #15193B 100%)',
       }}
       id="dijitalbuyukanne"
     >
       {/* Background ambient lighting & grid overlay */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-1/4 -right-24 w-[500px] h-[500px] bg-turquoise/10 rounded-full blur-3xl animate-pulse-glow" />
+        <div className="absolute top-1/4 -right-24 w-[500px] h-[500px] bg-indigo-500/15 rounded-full blur-3xl animate-pulse-glow" />
         <div className="absolute bottom-10 -left-24 w-[400px] h-[400px] bg-coral/10 rounded-full blur-3xl animate-pulse-glow" style={{ animationDelay: '1.5s' }} />
         <div
           className="absolute inset-0 opacity-[0.03]"
@@ -213,12 +213,12 @@ export default function DigitalAssistant() {
 
             {/* Big bold night tagline */}
             <div className="flex items-center gap-4 bg-white/5 p-4 rounded-3xl border border-white/10 backdrop-blur-sm">
-              <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-turquoise/20 to-turquoise/5 border border-turquoise/40 flex items-center justify-center shrink-0 shadow-lg shadow-turquoise/10 animate-float-slow">
-                <Moon className="w-7 h-7 text-turquoise" />
+              <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-indigo-500/30 to-purple-500/20 border border-indigo-400/40 flex items-center justify-center shrink-0 shadow-lg shadow-indigo-500/10 animate-float-slow">
+                <Moon className="w-7 h-7 text-indigo-300" />
               </div>
               <div>
                 <p className="text-2xl sm:text-4xl font-extrabold text-white leading-tight tracking-tight">
-                  Gece 03.00&apos;te <span className="text-transparent bg-clip-text bg-gradient-to-r from-turquoise to-teal-300">bile yanınızda.</span>
+                  Gece 03.00&apos;te <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 via-purple-300 to-coral">bile yanınızda.</span>
                 </p>
                 <p className="text-white/70 text-xs sm:text-sm mt-1">
                   Yapay zekâ hızı ve anneanne şefkatiyle bilimsel rehberlik.

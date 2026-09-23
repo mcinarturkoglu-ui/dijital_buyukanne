@@ -15,17 +15,17 @@ export default function InstitutionsHero() {
   ];
 
   return (
-    <section className="py-20 md:py-28 px-4 md:px-8 bg-gradient-to-b from-[#082A46] via-[#093254] to-[#0a3558] text-white relative overflow-hidden">
+    <section className="py-20 md:py-28 px-4 md:px-8 bg-gradient-to-b from-white via-[#F0F8FF] to-white text-[#0B1E3B] relative overflow-hidden">
       {/* Background glow & accents */}
-      <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-turquoise/10 rounded-full blur-3xl pointer-events-none animate-pulse-glow" />
+      <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-sky-200/40 rounded-full blur-3xl pointer-events-none animate-pulse-glow" />
       <div
         className="absolute bottom-0 left-10 w-96 h-96 bg-coral/10 rounded-full blur-3xl pointer-events-none animate-pulse-glow"
         style={{ animationDelay: '2s' }}
       />
       <div
-        className="absolute inset-0 opacity-[0.03] pointer-events-none"
+        className="absolute inset-0 opacity-[0.025] pointer-events-none"
         style={{
-          backgroundImage: 'radial-gradient(#ffffff 1px, transparent 1px)',
+          backgroundImage: 'radial-gradient(#0284C7 1px, transparent 1px)',
           backgroundSize: '24px 24px',
         }}
       />
@@ -35,24 +35,24 @@ export default function InstitutionsHero() {
           
           {/* Sol Kolon: Kurumsal Başlık, Değer Önermesi ve Özellikler */}
           <div className="lg:col-span-7 flex flex-col items-start text-left">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-turquoise/15 text-turquoise text-xs font-bold tracking-wider uppercase mb-5 border border-turquoise/30 backdrop-blur-md">
-              <Building2 size={14} />
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sky-50 text-sky-950 text-xs font-bold tracking-wider uppercase mb-5 border border-sky-200/80 shadow-xs backdrop-blur-md">
+              <Building2 size={14} className="text-sky-600" />
               <span>Kurumlar & Belediyeler İçin</span>
             </div>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight mb-4">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#0B1E3B] leading-tight mb-4">
               Bu, kurumunuzun kendi{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-turquoise via-teal-300 to-turquoise">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0284C7] via-[#0EA5E9] to-[#FF5A43]">
                 aile uygulaması
               </span>{' '}
               olabilir.
             </h2>
 
-            <p className="text-lg sm:text-xl text-turquoise-300 font-semibold mb-4">
+            <p className="text-lg sm:text-xl text-sky-900 font-semibold mb-4">
               Şehrinize ve kurumunuza özel DijitalBüyükanne.
             </p>
 
-            <p className="text-white/80 text-sm sm:text-base leading-relaxed mb-8 max-w-xl font-normal">
+            <p className="text-slate-600 text-sm sm:text-base leading-relaxed mb-8 max-w-xl font-normal">
               DijitalBüyükanne altyapısı belediyenizin veya kurumunuzun adı, logosu, kurumsal renkleri ve yerel hizmetleriyle tamamen özelleştirilebilir ve mobil uygulama mağazalarında kurumunuza özel resmi uygulama olarak yayınlanabilir.
             </p>
 
@@ -61,12 +61,12 @@ export default function InstitutionsHero() {
               {features.map((feature, idx) => (
                 <div
                   key={idx}
-                  className="flex items-center gap-2.5 p-2.5 rounded-xl bg-white/[0.04] border border-white/5 hover:border-turquoise/30 hover:bg-white/[0.07] transition-all group"
+                  className="flex items-center gap-2.5 p-2.5 rounded-xl bg-white border border-sky-100 hover:border-sky-300 hover:shadow-xs transition-all group"
                 >
-                  <div className="w-5 h-5 rounded-lg bg-turquoise/20 group-hover:bg-turquoise group-hover:text-navy flex items-center justify-center flex-shrink-0 text-turquoise transition-colors">
+                  <div className="w-5 h-5 rounded-lg bg-sky-100 text-sky-700 group-hover:bg-sky-600 group-hover:text-white flex items-center justify-center flex-shrink-0 transition-colors">
                     <Check size={12} className="stroke-[3]" />
                   </div>
-                  <span className="text-white/90 text-xs font-medium group-hover:text-white transition-colors">
+                  <span className="text-slate-800 text-xs font-medium transition-colors">
                     {feature}
                   </span>
                 </div>
@@ -77,7 +77,7 @@ export default function InstitutionsHero() {
             <div className="flex flex-wrap items-center gap-4">
               <Link
                 href="/kurumlar"
-                className="relative overflow-hidden group inline-flex items-center gap-2.5 px-7 py-3.5 bg-gradient-to-r from-coral to-[#e8634f] hover:bg-coral-600 text-white font-bold rounded-2xl transition-all duration-300 shadow-lg hover:shadow-glow-coral hover:-translate-y-0.5 active:scale-98 text-sm sm:text-base"
+                className="relative overflow-hidden group inline-flex items-center gap-2.5 px-7 py-3.5 bg-gradient-to-r from-[#FF5A43] via-[#FF6D55] to-[#F0442B] hover:bg-coral-600 text-white font-bold rounded-2xl transition-all duration-300 shadow-lg shadow-coral/30 hover:shadow-coral/50 hover:-translate-y-0.5 active:scale-98 text-sm sm:text-base"
               >
                 <span className="relative z-10">Kurumumuz İçin Demo İstiyorum</span>
                 <ArrowRight size={16} className="relative z-10 group-hover:translate-x-1 transition-transform" />
@@ -85,7 +85,7 @@ export default function InstitutionsHero() {
 
               <a
                 href="#sosyal-etki"
-                className="inline-flex items-center gap-2 px-5 py-3.5 rounded-2xl border border-white/15 bg-white/5 hover:bg-white/10 text-white/90 hover:text-white text-sm font-semibold transition-colors"
+                className="inline-flex items-center gap-2 px-5 py-3.5 rounded-2xl border border-sky-200/90 bg-white text-[#0B1E3B] hover:bg-slate-50 text-sm font-semibold transition-colors shadow-xs"
               >
                 <span>Sosyal Etkiyi Hesapla</span>
               </a>
@@ -95,17 +95,17 @@ export default function InstitutionsHero() {
           {/* Sağ Kolon: Kurumunuz Adına Özelleştirilmiş Genel Mobil Görsel */}
           <div className="lg:col-span-5 flex justify-center lg:justify-end relative">
             {/* Arka plan ışıltı halkası */}
-            <div className="absolute inset-0 bg-turquoise/20 rounded-[50px] blur-3xl opacity-70 pointer-events-none transform scale-90" />
+            <div className="absolute inset-0 bg-sky-200/40 rounded-[50px] blur-3xl opacity-70 pointer-events-none transform scale-90" />
 
             {/* Üst Yüzen Rozet */}
-            <div className="absolute -top-3 right-2 sm:right-8 z-30 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-turquoise/40 text-turquoise text-[11px] font-bold shadow-xl backdrop-blur-md">
-              <Building2 size={13} />
+            <div className="absolute -top-3 right-2 sm:right-8 z-30 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/95 border border-sky-200 text-sky-950 text-[11px] font-bold shadow-xl backdrop-blur-md">
+              <Building2 size={13} className="text-sky-600" />
               <span>%100 White-Label</span>
             </div>
 
             {/* Alt Yüzen Rozet */}
-            <div className="absolute -bottom-3 left-2 sm:left-8 z-30 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-white/20 text-white/90 text-[11px] font-semibold shadow-xl backdrop-blur-md">
-              <Smartphone size={13} className="text-turquoise" />
+            <div className="absolute -bottom-3 left-2 sm:left-8 z-30 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/95 border border-sky-200 text-slate-800 text-[11px] font-semibold shadow-xl backdrop-blur-md">
+              <Smartphone size={13} className="text-sky-600" />
               <span>App Store & Google Play</span>
             </div>
 

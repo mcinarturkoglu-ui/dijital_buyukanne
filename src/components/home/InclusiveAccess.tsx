@@ -470,55 +470,55 @@ export default function InclusiveAccess() {
   const stageData = isSupported ? currentStage.supported : currentStage.unsupported;
 
   return (
-    <section className="py-20 md:py-28 px-4 md:px-8 bg-gradient-to-b from-navy via-[#07253e] to-navy text-white relative overflow-hidden" id="kapsayici-erisim">
+    <section className="py-20 md:py-28 px-4 md:px-8 bg-gradient-to-b from-[#F5F8FD] via-white to-[#F5F8FD] text-[#13193E] relative overflow-hidden" id="kapsayici-erisim">
       {/* Background radial glows */}
-      <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-turquoise/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-indigo-200/30 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-10 left-0 w-[500px] h-[500px] bg-coral/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-6xl mx-auto relative z-10">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-10">
-          <div className="inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-turquoise bg-turquoise/15 border border-turquoise/30 px-4 py-1.5 rounded-full mb-4">
-            <HeartHandshake size={14} className="text-turquoise" />
+          <div className="inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-indigo-900 bg-indigo-50 border border-indigo-200 px-4 py-1.5 rounded-full mb-4 shadow-xs">
+            <HeartHandshake size={14} className="text-indigo-600" />
             <span>Kapsayıcı Sağlık & Erken Müdahale Modeli</span>
           </div>
-          <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight leading-tight">
+          <h2 className="text-3xl md:text-5xl font-extrabold text-[#13193E] tracking-tight leading-tight">
             Gelişimsel risk taşıyan her bebek, <br className="hidden sm:inline" />
-            <span className="text-turquoise">zamanında destekle özgürce yürüyebilir.</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-700 via-purple-600 to-coral">zamanında destekle özgürce yürüyebilir.</span>
           </h2>
-          <p className="mt-4 text-base md:text-lg text-white/70 leading-relaxed font-normal">
+          <p className="mt-4 text-base md:text-lg text-slate-600 leading-relaxed font-normal">
             Serebral palsi riski, prematüre doğum veya motor gecikmelerde ilk 24 ayın nöroplastisitesi eşsizdir. 
             Aşağıdaki canlı simülasyonla erken müdahalenin bir çocuğun hayatını nasıl dönüştürdüğünü adım adım keşfedin.
           </p>
         </div>
 
         {/* Dual Mode Switcher Bar */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 max-w-2xl mx-auto mb-8 bg-white/5 p-1.5 rounded-2xl border border-white/10 backdrop-blur-md">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 max-w-2xl mx-auto mb-8 bg-slate-100/90 p-1.5 rounded-2xl border border-indigo-100 shadow-xs">
           <button
             onClick={() => setMode('supported')}
             className={`w-full sm:w-1/2 py-3 px-4 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all ${
               mode === 'supported'
-                ? 'bg-gradient-to-r from-turquoise to-emerald-500 text-navy shadow-lg shadow-turquoise/25 scale-[1.02]'
-                : 'text-white/70 hover:text-white hover:bg-white/5'
+                ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-md shadow-indigo-500/25 scale-[1.02]'
+                : 'text-slate-600 hover:text-slate-900 hover:bg-white/60'
             }`}
           >
             <ShieldCheck size={16} />
             <span>Dijital Büyükanne Erken Müdahalesi</span>
-            <span className="text-[10px] bg-navy/20 px-1.5 py-0.5 rounded font-mono font-bold">Önerilen</span>
+            <span className="text-[10px] bg-white/20 px-1.5 py-0.5 rounded font-mono font-bold">Önerilen</span>
           </button>
 
           <button
             onClick={() => setMode('unsupported')}
             className={`w-full sm:w-1/2 py-3 px-4 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all ${
               mode === 'unsupported'
-                ? 'bg-slate-700 text-white shadow-lg shadow-black/30 border border-slate-600 scale-[1.02]'
-                : 'text-white/70 hover:text-white hover:bg-white/5'
+                ? 'bg-slate-700 text-white shadow-md border border-slate-600 scale-[1.02]'
+                : 'text-slate-600 hover:text-slate-900 hover:bg-white/60'
             }`}
           >
-            <AlertCircle size={16} className="text-amber-400" />
+            <AlertCircle size={16} className="text-amber-500" />
             <span>Geleneksel / Desteksiz Süreç</span>
-            <span className="text-[10px] bg-white/10 px-1.5 py-0.5 rounded font-mono">Gecikmeli</span>
+            <span className="text-[10px] bg-slate-200 px-1.5 py-0.5 rounded font-mono">Gecikmeli</span>
           </button>
         </div>
 
@@ -531,26 +531,26 @@ export default function InclusiveAccess() {
               className={`p-3.5 rounded-2xl text-left transition-all border ${
                 activeStage === idx
                   ? isSupported
-                    ? 'bg-white/15 border-turquoise shadow-md shadow-turquoise/20'
-                    : 'bg-slate-800 border-slate-500 shadow-md'
-                  : 'bg-white/5 border-white/10 hover:bg-white/10 opacity-70 hover:opacity-100'
+                    ? 'bg-white border-indigo-500 shadow-md ring-2 ring-indigo-400/20'
+                    : 'bg-white border-slate-500 shadow-md ring-2 ring-slate-400/20'
+                  : 'bg-white/70 border-indigo-100 hover:bg-white opacity-80 hover:opacity-100 shadow-xs'
               }`}
             >
               <div className="flex items-center justify-between mb-1">
-                <span className="text-xs font-mono font-bold text-turquoise">{stage.age}</span>
-                {activeStage === idx && <span className="w-2 h-2 rounded-full bg-turquoise animate-ping" />}
+                <span className="text-xs font-mono font-bold text-indigo-700">{stage.age}</span>
+                {activeStage === idx && <span className="w-2 h-2 rounded-full bg-indigo-600 animate-ping" />}
               </div>
-              <p className="text-xs sm:text-sm font-bold text-white truncate">{stage.title}</p>
+              <p className="text-xs sm:text-sm font-bold text-slate-800 truncate">{stage.title}</p>
             </button>
           ))}
         </div>
 
         {/* Main Simulation Theater Card */}
         <div
-          className={`rounded-3xl p-6 sm:p-9 border transition-all duration-500 backdrop-blur-xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-center ${
+          className={`rounded-3xl p-6 sm:p-9 border transition-all duration-500 shadow-xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-center ${
             isSupported
-              ? 'bg-white/[0.07] border-turquoise/30 shadow-2xl shadow-turquoise/10'
-              : 'bg-slate-900/90 border-slate-700 shadow-2xl'
+              ? 'bg-white border-indigo-100 shadow-indigo-100/50'
+              : 'bg-slate-50 border-slate-200 shadow-slate-100'
           }`}
         >
           {/* Left Column: Stage Story & Evidence (7 Cols) */}
@@ -559,29 +559,29 @@ export default function InclusiveAccess() {
               <span
                 className={`text-xs font-bold px-3 py-1 rounded-full border ${
                   isSupported
-                    ? 'bg-turquoise/20 text-turquoise border-turquoise/40'
-                    : 'bg-slate-700 text-slate-300 border-slate-600'
+                    ? 'bg-indigo-50 text-indigo-800 border-indigo-200'
+                    : 'bg-slate-200 text-slate-700 border-slate-300'
                 }`}
               >
                 {currentStage.badge}
               </span>
-              <span className="text-xs font-mono text-white/60 bg-white/10 px-2.5 py-1 rounded-full">
+              <span className="text-xs font-mono text-slate-600 bg-slate-100 px-2.5 py-1 rounded-full border border-slate-200">
                 {currentStage.age}
               </span>
               <span
                 className={`text-xs font-semibold px-2.5 py-1 rounded-full ml-auto ${
-                  isSupported ? 'bg-emerald-500/20 text-emerald-300' : 'bg-amber-500/20 text-amber-300'
+                  isSupported ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-amber-50 text-amber-800 border border-amber-200'
                 }`}
               >
                 {stageData.status}
               </span>
             </div>
 
-            <h3 className="text-2xl sm:text-3xl font-extrabold text-white leading-snug">
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-[#13193E] leading-snug">
               {currentStage.title}
             </h3>
 
-            <p className="text-sm text-white/75 leading-relaxed">
+            <p className="text-sm text-slate-600 leading-relaxed font-normal">
               {currentStage.subtitle}
             </p>
 
@@ -589,19 +589,19 @@ export default function InclusiveAccess() {
             <div
               className={`p-4 rounded-2xl border flex flex-col gap-2.5 ${
                 isSupported
-                  ? 'bg-turquoise/10 border-turquoise/25'
-                  : 'bg-slate-800/80 border-slate-700'
+                  ? 'bg-indigo-50/60 border-indigo-100'
+                  : 'bg-slate-100 border-slate-200'
               }`}
             >
-              <p className="text-xs font-bold uppercase tracking-wider text-white/90">
+              <p className="text-xs font-bold uppercase tracking-wider text-slate-800">
                 {stageData.heading}
               </p>
               {stageData.points.map((pt, i) => (
-                <div key={i} className="flex items-start gap-2.5 text-xs sm:text-sm text-white/80">
+                <div key={i} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 font-normal">
                   {isSupported ? (
-                    <CheckCircle2 size={16} className="text-turquoise shrink-0 mt-0.5" />
+                    <CheckCircle2 size={16} className="text-indigo-600 shrink-0 mt-0.5" />
                   ) : (
-                    <AlertCircle size={16} className="text-amber-400 shrink-0 mt-0.5" />
+                    <AlertCircle size={16} className="text-amber-500 shrink-0 mt-0.5" />
                   )}
                   <span>{pt}</span>
                 </div>
@@ -612,11 +612,11 @@ export default function InclusiveAccess() {
             <div className="flex items-center gap-4 pt-2">
               <div
                 className={`px-4 py-2.5 rounded-2xl border flex items-center gap-3 ${
-                  isSupported ? 'bg-white/10 border-turquoise/30' : 'bg-slate-800 border-slate-700'
+                  isSupported ? 'bg-indigo-50 border-indigo-200' : 'bg-slate-100 border-slate-200'
                 }`}
               >
-                <div className="text-2xl font-black text-turquoise">{stageData.statValue}</div>
-                <div className="text-[11px] text-white/70 font-medium leading-tight max-w-[180px]">
+                <div className="text-2xl font-black text-indigo-700">{stageData.statValue}</div>
+                <div className="text-[11px] text-slate-600 font-medium leading-tight max-w-[180px]">
                   {stageData.statLabel}
                 </div>
               </div>
@@ -627,8 +627,8 @@ export default function InclusiveAccess() {
                   onClick={() => setIsPlaying(!isPlaying)}
                   className={`p-2.5 rounded-xl border transition-all text-xs font-bold flex items-center gap-1.5 ${
                     isPlaying
-                      ? 'bg-turquoise text-navy border-turquoise'
-                      : 'bg-white/10 text-white hover:bg-white/20 border-white/20'
+                      ? 'bg-indigo-600 text-white border-indigo-600'
+                      : 'bg-white text-slate-700 hover:bg-slate-50 border-slate-200 shadow-xs'
                   }`}
                   title={isPlaying ? 'Durdur' : 'Otomatik Oynat'}
                 >

@@ -1,29 +1,31 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Instagram, Twitter, Linkedin, Youtube, Baby, ArrowUpRight, Heart } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="relative bg-gradient-to-b from-navy via-[#0a3050] to-[#061e33] text-white overflow-hidden">
+    <footer className="relative bg-gradient-to-b from-[#1E234D] via-[#161A3A] to-[#0E1128] text-white overflow-hidden">
       {/* Top gradient mesh decorative element */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-turquoise/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-coral/5 rounded-full blur-3xl" />
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-coral/10 rounded-full blur-3xl" />
       </div>
 
       {/* Top accent gradient line */}
-      <div className="h-px bg-gradient-to-r from-transparent via-turquoise/40 to-transparent" />
+      <div className="h-px bg-gradient-to-r from-transparent via-indigo-400/30 to-transparent" />
 
       <div className="container-max px-4 md:px-8 py-16 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <Link href="/" className="flex items-center gap-2.5 mb-4 group">
-              <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-turquoise to-turquoise-700 flex items-center justify-center shadow-md shadow-turquoise/20 group-hover:shadow-turquoise/40 group-hover:scale-105 transition-all duration-300">
-                <Baby className="w-5 h-5 text-white" />
-              </div>
-              <span className="font-bold text-xl">
-                Dijital<span className="text-turquoise">Büyükanne</span>
-              </span>
+            <Link href="/" className="inline-flex items-center gap-2.5 mb-4 group bg-white/95 hover:bg-white rounded-2xl px-3.5 py-2 shadow-sm transition-all duration-300">
+              <Image
+                src="/images/logo.png"
+                alt="Dijital Büyükanne"
+                width={170}
+                height={55}
+                className="h-9 w-auto object-contain group-hover:scale-102 transition-transform duration-300"
+              />
             </Link>
             <p className="text-white/60 text-sm leading-relaxed max-w-sm">
               DijitalBüyükanne; aileleri, uzmanları, teknolojiyi ve sosyal

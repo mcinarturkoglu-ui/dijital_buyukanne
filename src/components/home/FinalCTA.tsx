@@ -3,10 +3,10 @@ import { ArrowRight, Heart, Sparkles } from "lucide-react";
 
 export default function FinalCTA() {
   return (
-    <section className="relative py-28 px-4 md:px-8 bg-gradient-to-br from-[#082A46] via-[#0b3353] to-[#051c30] text-white overflow-hidden">
+    <section className="relative py-28 px-4 md:px-8 bg-gradient-to-br from-[#181D42] via-[#222958] to-[#1E234D] text-white overflow-hidden">
       {/* Decorative background elements */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-turquoise/8 rounded-full blur-3xl pointer-events-none animate-pulse-glow" />
-      <div className="absolute top-0 right-0 w-96 h-96 bg-coral/8 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-indigo-500/10 rounded-full blur-3xl pointer-events-none animate-pulse-glow" />
+      <div className="absolute top-0 right-0 w-96 h-96 bg-coral/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-turquoise/5 rounded-full blur-3xl pointer-events-none" />
 
       {/* Subtle grid pattern */}

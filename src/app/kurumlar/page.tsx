@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { 
   Building2, 
   Users, 
@@ -14,7 +15,11 @@ import {
   TrendingUp, 
   CheckCircle2, 
   Send,
-  Sparkles
+  Sparkles,
+  ArrowRight,
+  ShieldCheck,
+  Smartphone,
+  Award
 } from "lucide-react";
 import { PhoneMockup } from "@/components/ui/PhoneMockup";
 
@@ -88,33 +93,134 @@ export default function KurumlarPage() {
   return (
     <div className="pt-20">
       {/* Hero */}
-      <section className="bg-gradient-to-b from-navy to-[#0a3150] text-white py-20 px-4 md:px-8 relative overflow-hidden">
-        <div className="absolute top-10 right-10 w-96 h-96 bg-turquoise/15 rounded-full blur-3xl pointer-events-none" />
-        <div className="max-w-6xl mx-auto text-center relative z-10">
-          <span className="inline-block px-4 py-1.5 rounded-full bg-turquoise/20 text-turquoise text-xs font-semibold tracking-wider uppercase mb-4">
-            Belediyeler, STK&apos;lar ve Sosyal Sorumluluk Kuruluşları
-          </span>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 tracking-tight text-white leading-tight">
-            Kurumunuzun sosyal etkisini <br className="hidden sm:inline" />
-            <span className="text-turquoise">teknolojiyle büyütün.</span>
-          </h1>
-          <p className="text-lg md:text-xl text-white/80 max-w-3xl mx-auto mb-10 leading-relaxed font-light">
-            DijitalBüyükanne; kamu ve sivil toplum kuruluşları için özelleştirilebilir, ölçülebilir ve sürdürülebilir dijital aile destek altyapısı sunar.
-          </p>
+      <section className="bg-gradient-to-b from-[#061e33] via-[#082A46] to-[#0a3558] text-white py-20 lg:py-28 px-4 md:px-8 relative overflow-hidden">
+        {/* Ambient lighting glows */}
+        <div className="absolute top-0 right-1/4 w-[550px] h-[550px] bg-turquoise/15 rounded-full blur-3xl pointer-events-none animate-pulse-glow" />
+        <div className="absolute bottom-0 left-10 w-96 h-96 bg-coral/10 rounded-full blur-3xl pointer-events-none" />
+        <div
+          className="absolute inset-0 opacity-[0.03] pointer-events-none"
+          style={{
+            backgroundImage: 'radial-gradient(#ffffff 1px, transparent 1px)',
+            backgroundSize: '24px 24px',
+          }}
+        />
 
-          <div className="flex flex-wrap items-center justify-center gap-4">
-            <a
-              href="#form"
-              className="px-8 py-4 bg-coral hover:bg-coral-600 text-white font-bold rounded-2xl transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
-            >
-              Görüşme Talep Et
-            </a>
-            <a
-              href="#ozellikler"
-              className="px-8 py-4 bg-white/10 hover:bg-white/20 border border-white/30 text-white font-semibold rounded-2xl transition-all"
-            >
-              Hizmetleri Keşfet
-            </a>
+        <div className="max-w-6xl mx-auto relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
+            
+            {/* Sol Kolon: Kurumsal Değer & Aksiyon */}
+            <div className="lg:col-span-7 flex flex-col items-start text-left">
+              {/* Luminous Institution Eyebrow */}
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.06] text-turquoise text-xs font-bold tracking-wider uppercase mb-6 border border-turquoise/30 backdrop-blur-md shadow-lg shadow-turquoise/10">
+                <Building2 size={15} />
+                <span>Belediyeler, Kamu Kurumları ve Sosyal Sorumluluk Liderleri</span>
+              </div>
+
+              {/* H1 Manşet */}
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black mb-6 tracking-tight text-white leading-[1.14]">
+                Kurumunuzun sosyal etkisini <br className="hidden sm:inline" />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-turquoise via-teal-300 to-coral">
+                  teknoloji ve şefkatle büyütün.
+                </span>
+              </h1>
+
+              {/* Açıklama */}
+              <p className="text-base sm:text-lg lg:text-xl text-white/85 mb-8 leading-relaxed font-normal max-w-2xl">
+                DijitalBüyükanne; kamu ve sivil toplum kuruluşları için <strong>kendi adınız ve kurumsal kimliğinizle</strong> ailelere uzanan, ilk 1.000 günde her haneye eşit ulaşan ve <strong>şeffaf meclis sunumlarına hazır</strong> yeni nesil dijital sosyal belediyecilik altyapısı sunar.
+              </p>
+
+              {/* 3 Kurumsal Değer Kartı */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full mb-8">
+                <div className="p-4 rounded-2xl bg-white/[0.04] border border-white/10 backdrop-blur-md hover:bg-white/[0.07] transition-all">
+                  <span className="text-turquoise text-xs font-bold block mb-1 flex items-center gap-1.5">
+                    <Smartphone size={14} />
+                    %100 White-Label
+                  </span>
+                  <span className="text-white/70 text-xs leading-relaxed">
+                    Kendi logonuz ve kurumsal renklerinizle resmi mağaza yayını.
+                  </span>
+                </div>
+
+                <div className="p-4 rounded-2xl bg-white/[0.04] border border-white/10 backdrop-blur-md hover:bg-white/[0.07] transition-all">
+                  <span className="text-coral text-xs font-bold block mb-1 flex items-center gap-1.5">
+                    <FileText size={14} />
+                    Meclis Karar Taslağı
+                  </span>
+                  <span className="text-white/70 text-xs leading-relaxed">
+                    Mevzuata uygun, hazır kurumsal iş birliği ve protokol paketi.
+                  </span>
+                </div>
+
+                <div className="p-4 rounded-2xl bg-white/[0.04] border border-white/10 backdrop-blur-md hover:bg-white/[0.07] transition-all">
+                  <span className="text-emerald-400 text-xs font-bold block mb-1 flex items-center gap-1.5">
+                    <ShieldCheck size={14} />
+                    Risk Taşımayan Pilot
+                  </span>
+                  <span className="text-white/70 text-xs leading-relaxed">
+                    100–500 aile ile hızlı başlangıç ve kademeli yaygınlaştırma.
+                  </span>
+                </div>
+              </div>
+
+              {/* Aksiyon Butonları */}
+              <div className="flex flex-wrap items-center gap-4">
+                <a
+                  href="#form"
+                  className="relative overflow-hidden group px-8 py-4 bg-gradient-to-r from-coral to-[#e8634f] hover:bg-coral-600 text-white font-bold rounded-2xl transition-all shadow-xl shadow-coral/30 hover:shadow-coral/50 hover:-translate-y-0.5 active:scale-98 text-sm sm:text-base inline-flex items-center gap-2.5"
+                >
+                  <span className="relative z-10">Kurumsal Protokol Görüşmesi Talep Et</span>
+                  <ArrowRight size={18} className="relative z-10 group-hover:translate-x-1 transition-transform" />
+                </a>
+
+                <a
+                  href="#ozellikler"
+                  className="px-7 py-4 bg-white/10 hover:bg-white/20 border border-white/25 text-white font-bold rounded-2xl transition-all text-sm sm:text-base inline-flex items-center gap-2"
+                >
+                  <span>Hizmetleri Keşfet</span>
+                </a>
+
+                <Link
+                  href="/#sosyal-etki"
+                  className="text-turquoise hover:text-white transition-colors text-sm font-semibold inline-flex items-center gap-1.5 px-3 py-2 group"
+                >
+                  <span>Sosyal Etki Simülatörü</span>
+                  <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Sağ Kolon: Kurumsal White-Label Mobil Vitrini */}
+            <div className="lg:col-span-5 flex justify-center lg:justify-end relative">
+              <div className="relative group max-w-[310px] sm:max-w-[340px] mx-auto transform hover:scale-[1.02] transition-all duration-500">
+                {/* Glow backdrop */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-turquoise/30 via-teal-500/20 to-coral/20 rounded-[48px] blur-2xl opacity-70 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+
+                {/* Yüzen Rozet Üst */}
+                <div className="absolute -top-3 right-2 sm:right-6 z-30 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-turquoise/40 text-turquoise text-[11px] font-bold shadow-xl backdrop-blur-md">
+                  <Award size={13} />
+                  <span>Şeffaf SROI Raporu</span>
+                </div>
+
+                {/* Yüzen Rozet Alt */}
+                <div className="absolute -bottom-3 left-2 sm:left-6 z-30 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-white/20 text-white/90 text-[11px] font-semibold shadow-xl backdrop-blur-md">
+                  <CheckCircle2 size={13} className="text-turquoise" />
+                  <span>Sayıştay & Mevzuat Uyumlu</span>
+                </div>
+
+                {/* Gerçek Görsel */}
+                <div className="relative z-10">
+                  <Image
+                    src="/images/kurumunuz-dijitalbuyukanne.png"
+                    alt="Kurumunuz Adına Özelleştirilmiş DijitalBüyükanne Uygulaması"
+                    width={340}
+                    height={660}
+                    priority
+                    className="w-full h-auto object-contain drop-shadow-2xl rounded-3xl"
+                  />
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>

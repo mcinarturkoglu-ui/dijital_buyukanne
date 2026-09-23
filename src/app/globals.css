@@ -6,11 +6,11 @@
 
 :root {
   --font-inter: 'Inter', system-ui, sans-serif;
-  --navy: #082A46;
-  --turquoise: #14BBB7;
-  --coral: #FF7965;
-  --off-white: #F7FAFA;
-  --soft-gray: #EDF3F4;
+  --navy: #0C1E3C;
+  --sky-brand: #0284C7;
+  --coral: #FF5A43;
+  --off-white: #FAFBFD;
+  --soft-gray: #F0F8FF;
 }
 
 * {
@@ -36,7 +36,7 @@ body {
     font-family: var(--font-inter);
     font-weight: 700;
     line-height: 1.2;
-    color: #082A46;
+    color: #0B1E3B;
   }
 }
 
