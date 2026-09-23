@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import StoryProgressTracker from "@/components/home/StoryProgressTracker";
+import StoryChapterRibbon from "@/components/home/StoryChapterRibbon";
 import HeroSection from "@/components/home/HeroSection";
 import TimelineSection from "@/components/home/TimelineSection";
 import SolutionSection from "@/components/home/SolutionSection";
@@ -32,56 +34,122 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <>
-      {/* 1. Hero: Etkileşimli Simülatör ve Ana Giriş */}
-      <HeroSection />
+      {/* Yönetici Düzeyi Akıllı Gezinme Çubuğu (Masaüstü) */}
+      <StoryProgressTracker />
 
-      {/* 2. İnteraktif 0-24 Ay Bebek Gelişim Simülatörü & Kilometre Taşları */}
-      <TimelineSection />
+      {/* ─────────────────────────────────────────────────────────────
+          BÖLÜM 01: EKOSİSTEM VE VİZYON
+          0-24 Ay Bebek ve Aile Destek Platformu Ana Giriş
+          ───────────────────────────────────────────────────────────── */}
+      <div id="bolum-1" className="scroll-mt-16">
+        <HeroSection />
+      </div>
 
-      {/* 3. Çözüm: Tek Uygulama, 5 Güçlü Hizmet */}
-      <SolutionSection />
+      {/* Kurumsal Geçiş 01 -> 02 */}
+      <StoryChapterRibbon
+        chapterNumber="BÖLÜM 02"
+        chapterTitle="NÖROGELİŞİMSEL DÖNGÜ"
+        headline="İlk 24 Ay: Büyümenin Kritik Kilometre Taşları"
+        description="İlk iki yılda beyin ve motor gelişiminin temelleri atılır. Yapılandırılmış simülatörümüzle her ayın nörogelişimsel sıçramalarını yakından takip edin."
+        anchorId="ribbon-2"
+        theme="light"
+        accent="coral"
+      />
 
-      {/* 4. Canlı Deneyim Odası: AI Dışkı/Bez Analizi & Gece Asistanı Canlı Testi */}
-      <InteractiveSandbox />
+      {/* ─────────────────────────────────────────────────────────────
+          BÖLÜM 02: 0–24 AY BİLİMSEL GELİŞİM TAKİBİ
+          İnteraktif kilometre taşları ve ay bazlı gelişim simülatörü
+          ───────────────────────────────────────────────────────────── */}
+      <div id="bolum-2" className="scroll-mt-16">
+        <TimelineSection />
+      </div>
 
-      {/* 5. AI Hareket Analizi Video Stüdyosu */}
-      <MotionAnalysis />
+      {/* Kurumsal Geçiş 02 -> 03 */}
+      <StoryChapterRibbon
+        chapterNumber="BÖLÜM 03"
+        chapterTitle="KLİNİK TARAMA PROTOKOLLERİ"
+        headline="Yapay Zekâ Destekli 3 Hayati Koruma Kalkanı"
+        description="Ebeveyn gözünden kaçabilecek erken motor asimetrileri, cilt lezyonları ve biliyer atrezi şüphesi taşıyan akolik dışkı bulguları için algoritmik ön tarama ve hekim sevk köprüsü."
+        anchorId="ribbon-3"
+        theme="light"
+        accent="turquoise"
+      />
 
-      {/* 6. AI Cilt Analizi Kamera Vizörü */}
-      <SkinAnalysis />
+      {/* ─────────────────────────────────────────────────────────────
+          BÖLÜM 03: YAPAY ZEKÂ TARAMA PROTOKOLLERİ
+          Hareket, Cilt ve Dışkı/Bez Analizi Canlı Deneyim Odası
+          ───────────────────────────────────────────────────────────── */}
+      <div id="bolum-3" className="scroll-mt-16">
+        <SolutionSection />
+        <InteractiveSandbox />
+        <MotionAnalysis />
+        <SkinAnalysis />
+        <StoolAnalysis />
+      </div>
 
-      {/* 7. AI Bebek Bezi & Dışkı Analizi (Biliyer Atrezi & Alerji Taraması) */}
-      <StoolAnalysis />
+      {/* Kurumsal Geçiş 03 -> 04 */}
+      <StoryChapterRibbon
+        chapterNumber="BÖLÜM 04"
+        chapterTitle="KESİNTİSİZ DESTEK EKOSİSTEMİ"
+        headline="7/24 Dijital Rehberlik ve Hekim Güvencesi"
+        description="Günün her saatinde güvenilir ilk danışma ve yapay zekâ filtreli uzman yönlendirmesiyle ailelerin yanındayız. Klinik kararlar uzman hekimlerin sorumluluğunda yürütülür."
+        anchorId="ribbon-4"
+        theme="dark"
+        accent="turquoise"
+      />
 
-      {/* 8. 7/24 Dijital Büyükanne & Ses Dalgalı Gece Asistanı */}
-      <DigitalAssistant />
+      {/* ─────────────────────────────────────────────────────────────
+          BÖLÜM 04: 7/24 DİJİTAL ASİSTAN & HEKİM GÜVENCESİ
+          7/24 Dijital Asistan & İnsan-AI Denge Radarı
+          ───────────────────────────────────────────────────────────── */}
+      <div id="bolum-4" className="scroll-mt-16">
+        <DigitalAssistant />
+        <HumanAI />
+      </div>
 
-      {/* 9. İnsan + Yapay Zekâ Nöral Ekosistem Radarı */}
-      <HumanAI />
+      {/* Kurumsal Geçiş 04 -> 05 */}
+      <StoryChapterRibbon
+        chapterNumber="BÖLÜM 05"
+        chapterTitle="KAPSAYICI SAĞLIK & BİLİM"
+        headline="Özel Gereksinimli Çocuklar ve Bilimsel Çerçeve"
+        description="Prematüre doğum, serebral palsi riski veya gelişimsel gecikmelerde erken müdahale penceresini yakalayan klinik metodoloji ve bağımsız Bilimsel Danışma Kurulu güvencesi."
+        anchorId="ribbon-5"
+        theme="dark"
+        accent="emerald"
+      />
 
-      {/* 10. Kapsayıcı Sağlık: Özel Gereksinimli Çocuklar İçin Erken Müdahale & Sağlıklı Büyüme Simülasyonu */}
-      <InclusiveAccess />
+      {/* ─────────────────────────────────────────────────────────────
+          BÖLÜM 05: KAPSAYICI SAĞLIK & BİLİMSEL OMURGA
+          Erken Müdahale, Bilim Kurulu & Gerçek Hayat Başarı Hikayeleri
+          ───────────────────────────────────────────────────────────── */}
+      <div id="bolum-5" className="scroll-mt-16">
+        <InclusiveAccess />
+        <ScientificBoard />
+        <CaseStudies />
+      </div>
 
-      {/* 11. Bilimsel Danışma Kurulu & Klinik Güven Çerçevesi */}
-      <ScientificBoard />
+      {/* Kurumsal Geçiş 05 -> 06 */}
+      <StoryChapterRibbon
+        chapterNumber="BÖLÜM 06"
+        chapterTitle="KAMU İŞ BİRLİĞİ & SOSYAL ETKİ"
+        headline="Yerel Yönetimler İçin Şehir Ölçeğinde Koruma"
+        description="Büyükşehir ve ilçe belediyeleriyle entegre olarak her haneye ücretsiz ulaşan kurumsal mobil altyapı, ölçülebilir sosyal etki ve veri destekli kamu sağlığı yönetimi."
+        anchorId="ribbon-6"
+        theme="light"
+        accent="coral"
+      />
 
-      {/* 12. Gerçek Hayattan Etki Hikayeleri (Zeynep Bebek, Emir Bebek & Pilot Belediye) */}
-      <CaseStudies />
-
-      {/* 13. Kurumlar & Belediyeler İçin Şehir Uygulaması (Ankara, Keçiören vb.) */}
-      <InstitutionsHero />
-
-      {/* 14. Sosyal Etki & Bütçe Hesaplayıcısı (Belediyeler İçin Canlı ROI & Protokol Modalı) */}
-      <SocialImpactCalculator />
-
-      {/* 15. Ölçülebilir Sosyal Etki Paneli */}
-      <MeasurableImpact />
-
-      {/* 16. Destekçilerimiz & Güven Ağı */}
-      <SupportersPreview />
-
-      {/* 17. Duygusal Kapanış & Çift Yönlü Aksiyon */}
-      <FinalCTA />
+      {/* ─────────────────────────────────────────────────────────────
+          BÖLÜM 06: KURUMSAL MODEL & SOSYAL ETKİ
+          Kurumsal Çözümler, Sosyal Etki & Bütçe Hesaplayıcı, Büyük Çağrı
+          ───────────────────────────────────────────────────────────── */}
+      <div id="bolum-6" className="scroll-mt-16">
+        <InstitutionsHero />
+        <SocialImpactCalculator />
+        <MeasurableImpact />
+        <SupportersPreview />
+        <FinalCTA />
+      </div>
     </>
   );
 }
