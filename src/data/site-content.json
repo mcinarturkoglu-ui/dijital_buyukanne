@@ -1,0 +1,108 @@
+{
+  "hero": {
+    "eyebrow": "0–24 Ay Bebek ve Aile Destek Ekosistemi",
+    "title": "Her bebeğin bir Dijital Büyükannesi olsun.",
+    "subtitle": "Yapay zekâ destekli gelişimsel tarama, 7/24 dijital aile asistanı ve uzman hekim güvencesiyle ebeveynlerin yanındayız.",
+    "ctaPrimary": "DijitalBüyükanne'yi Keşfet",
+    "ctaSecondary": "Kurumunuz İçin İnceleyin",
+    "trustBadge": "Bilim + Yapay Zekâ + Sosyal Sorumluluk",
+    "appTitle": "DijitalBüyükanne",
+    "appBadge": "BabySensAI Destekli"
+  },
+  "chapterRibbons": {
+    "ribbon2": {
+      "chapterNumber": "BÖLÜM 02",
+      "chapterTitle": "NÖROGELİŞİMSEL DÖNGÜ",
+      "headline": "İlk 24 Ay: Büyümenin Kritik Kilometre Taşları",
+      "description": "İlk iki yılda beyin ve motor gelişiminin temelleri atılır. Yapılandırılmış simülatörümüzle her ayın nörogelişimsel sıçramalarını yakından takip edin."
+    },
+    "ribbon3": {
+      "chapterNumber": "BÖLÜM 03",
+      "chapterTitle": "KLİNİK TARAMA PROTOKOLLERİ",
+      "headline": "Yapay Zekâ Destekli 3 Akıllı Tarama Protokolü",
+      "description": "Ebeveyn gözünden kaçabilecek erken motor asimetrileri, cilt hassasiyetleri ve sindirim ipuçları için algoritmik ön tarama ve hekim sevk köprüsü."
+    },
+    "ribbon4": {
+      "chapterNumber": "BÖLÜM 04",
+      "chapterTitle": "KESİNTİSİZ DESTEK EKOSİSTEMİ",
+      "headline": "7/24 Dijital Rehberlik ve Hekim Güvencesi",
+      "description": "Günün her saatinde güvenilir ilk danışma ve yapay zekâ filtreli uzman yönlendirmesiyle ailelerin yanındayız. Klinik kararlar uzman hekimlerin sorumluluğunda yürütülür."
+    },
+    "ribbon5": {
+      "chapterNumber": "BÖLÜM 05",
+      "chapterTitle": "KURUMSAL SOSYAL ETKİ",
+      "headline": "Sosyal Belediyecilik ve Kurumsal İşbirlikleri",
+      "description": "DijitalBüyükanne, belediyeler ve sosyal sorumluluk odaklı kurumlar için kendi şehirlerinde yaşayan ailelere doğrudan ulaşan anahtar teslim bir dijital aile destek altyapısıdır."
+    },
+    "ribbon6": {
+      "chapterNumber": "BÖLÜM 06",
+      "chapterTitle": "DESTEKÇİLER & KATILIM ÇAĞRISI",
+      "headline": "Bu Yolculuğu Birlikte Büyütüyoruz",
+      "description": "Daha fazla bebeğe ve aileye ulaşmak için belediyeler, sivil toplum kuruluşları ve sosyal etki odaklı şirketlerle el ele veriyoruz."
+    }
+  },
+  "motionAnalysis": {
+    "eyebrow": "0–6 Ay Hareket Analizi",
+    "title": "Bir video, önemli ipuçları sunabilir.",
+    "subtitle": "Ev ortamında çekilen kısa videolardan bebeğin motor gelişim kalıplarını analiz eden algoritmik ön tarama.",
+    "step1Title": "Evde Video Çekimi",
+    "step1Desc": "Bebeğiniz sırtüstü rahat bir ortamdayken 2-3 dakikalık doğal hareket videosunu yükleyin.",
+    "step2Title": "Yapay Zekâ Analizi",
+    "step2Desc": "BabySensAI algoritmaları, yaşa özgü spontan hareketleri (General Movements) tarar.",
+    "step3Title": "Gelişimsel Rapor & Yönlendirme",
+    "step3Desc": "Detaylı gelişimsel takip raporu oluşturulur; asimetri veya risk durumunda ilgili uzman hekime yönlendirilir.",
+    "disclaimer": "Bu hizmet kesin tanı koymaz; gelişimsel farkındalık ve bilgilendirme amacıyla tasarlanmıştır."
+  },
+  "skinAnalysis": {
+    "eyebrow": "Yapay Zekâ Cilt Analizi",
+    "title": "Fotoğraf çek. Yükle. Anında ön değerlendirme al.",
+    "subtitle": "Klinik karar yerine aileyi bilgilendirmeyi, 41 farklı yaygın bebek cilt durumunu algoritmik olarak taramayı ve gerektiğinde hekime yönlendirmeyi amaçlayan dijital yardımcı servis.",
+    "step1Title": "Fotoğraf Çekin",
+    "step1Desc": "Bebeğin cildindeki kızarıklık, döküntü veya bez bölgesini iyi ışık altında fotoğraflayın.",
+    "step2Title": "BabySensAI Taraması",
+    "step2Desc": "Gelişmiş görüntü işleme algoritmaları lezyon kalıbını saniyeler içinde analiz eder.",
+    "step3Title": "Bilgilendirme & Sevk",
+    "step3Desc": "Şefkatli bakım tavsiyeleri sunulur; ateş veya enfeksiyon belirtilerinde acil hekim uyarısı verilir.",
+    "disclaimer": "Bu sistem tıbbi bir teşhis aracı değildir. Kesin teşhis ve reçete yalnızca uzman hekimler tarafından konulur."
+  },
+  "stoolAnalysis": {
+    "eyebrow": "Yapay Zekâ Bez & Dışkı Analizi",
+    "title": "Bez fotoğrafından sindirim ve hidrasyon ön taraması.",
+    "subtitle": "Bristol skalası ve pediatrik kılavuzlara dayalı algoritmik renk, kıvam ve kan/mukus tespiti.",
+    "disclaimer": "Dışkı analizi ebeveyne rehberlik amacıyla hazırlanmıştır; hekim muayenesinin yerini almaz."
+  },
+  "digitalAssistant": {
+    "eyebrow": "7/24 Dijital Aile Asistanı",
+    "title": "Anne ve babaların soruları mesai saatlerini beklemez.",
+    "nightTagline": "Gece 03.00'te bile yanınızda.",
+    "subtitle": "Yapay zekâ hızı ve anneanne şefkatiyle bilimsel rehberlik.",
+    "wisdomBadge": "Büyükanne Tavsiyesi",
+    "wisdomNote": "Şefkatli & Bilimsel"
+  },
+  "institutionsHero": {
+    "eyebrow": "Kurumlar & Belediyeler İçin",
+    "title": "Bu, kurumunuzun kendi aile uygulaması olabilir.",
+    "subtitle": "Şehrinize özel bir DijitalBüyükanne. Tüm teknik altyapı bizden, yerel sosyal etki kurumunuzun markasıyla ailelere.",
+    "ctaText": "Kurumumuz İçin Demo İstiyorum",
+    "checklist": [
+      "Kuruma özel mobil uygulama (White-label)",
+      "Kurumsal logo ve görsel kimlik entegrasyonu",
+      "App Store & Google Play yayını",
+      "Kuruma özel kullanıcı kayıt & referans kodu",
+      "Bölgeye özel aile ve bebek programları",
+      "Kurum içi sosyal hizmet duyuruları",
+      "Gelişmiş yönetim ve analitik paneli",
+      "Bölgesel etki ve kullanım istatistikleri",
+      "Sosyal etki raporlaması ve KPI takibi",
+      "Uzman yönlendirme ve randevu entegrasyonu",
+      "KVKK uyumlu güvenli veri altyapısı"
+    ]
+  },
+  "finalCTA": {
+    "eyebrow": "Birlikte Başlayalım",
+    "title": "Her bebeğe şefkat, her aileye güvenilir rehberlik.",
+    "subtitle": "İster yeni ebeveyn olun ister kurum yöneticisi; DijitalBüyükanne ailesine bugün katılın.",
+    "primaryButton": "Uygulamayı İnceleyin",
+    "secondaryButton": "Kurumsal Demo Alın"
+  }
+}

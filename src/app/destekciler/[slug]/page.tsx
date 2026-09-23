@@ -1,7 +1,21 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import fs from "fs";
+import path from "path";
 import { ArrowLeft, MapPin, Calendar, Heart, Users, CheckCircle, Info } from "lucide-react";
 import supportersData from "@/data/supporters.json";
+
+export const dynamic = "force-dynamic";
+
+function getLiveSupporters(): any[] {
+  try {
+    const dataFilePath = path.join(process.cwd(), "src/data/supporters.json");
+    const content = fs.readFileSync(dataFilePath, "utf-8");
+    return JSON.parse(content).supporters || [];
+  } catch {
+    return supportersData.supporters || [];
+  }
+}
 
 interface Props {
   params: {
@@ -10,13 +24,15 @@ interface Props {
 }
 
 export async function generateStaticParams() {
-  return supportersData.supporters.map((s) => ({
+  const supporters = getLiveSupporters();
+  return supporters.map((s) => ({
     slug: s.slug,
   }));
 }
 
 export default function DestekciDetailPage({ params }: Props) {
-  const supporter = supportersData.supporters.find((s) => s.slug === params.slug);
+  const supporters = getLiveSupporters();
+  const supporter = supporters.find((s: any) => s.slug === params.slug);
 
   if (!supporter) {
     notFound();

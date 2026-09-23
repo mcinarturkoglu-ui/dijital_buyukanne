@@ -1,12 +1,24 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Building, MapPin, ArrowRight, Sparkles } from "lucide-react";
 import supportersData from "@/data/supporters.json";
 
 export default function DestekcilerPage() {
   const [filter, setFilter] = useState("all");
+  const [supporters, setSupporters] = useState<any[]>(supportersData.supporters);
+
+  useEffect(() => {
+    fetch('/api/admin/supporters')
+      .then((res) => res.json())
+      .then((data) => {
+        if (data?.supporters) {
+          setSupporters(data.supporters);
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   const categories = [
     { id: "all", label: "Tümü" },
@@ -18,7 +30,8 @@ export default function DestekcilerPage() {
     { id: "diger", label: "Diğer" },
   ];
 
-  const filteredSupporters = supportersData.supporters.filter((s) => {
+  const filteredSupporters = supporters.filter((s) => {
+    if (!s.active && s.active !== undefined) return false;
     if (filter === "all") return true;
     return s.type.toLowerCase() === filter.toLowerCase();
   });

@@ -1,15 +1,14 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { MessageCircle, Moon, Play, Pause, Volume2, Sparkles, Send, Bot, HeartHandshake } from 'lucide-react';
+import { MessageCircle, Moon, Sparkles, Send, Bot, HeartHandshake } from 'lucide-react';
 import SectionHeader from '@/components/ui/SectionHeader';
 import PhoneMockup from '@/components/ui/PhoneMockup';
+import siteContent from '@/data/site-content.json';
 
 const topicsData = [
   {
     topic: 'Uyku & Gece Uyanmaları',
-    audioTitle: 'Gece Uyanmaları & Güvenli Uyku Tavsiyesi',
-    audioDuration: '00:42',
     transcript:
       'Canım benim hiç telaşlanma. Bebeğin bu ayda büyüme atağında olduğu için gece sık uyanabilir. Sakin bir sesle kucağına al, ışığı yakmadan fısıldayın ve karnını nazikçe ovun...',
     userMessage: 'Bebeğim gece 03:00’te aniden ağlayarak uyandı, ne yapabilirim?',
@@ -19,8 +18,6 @@ const topicsData = [
   },
   {
     topic: 'Gaz Sancısı & Masaj',
-    audioTitle: 'Gaz Çıkarma ve Karın Masajı Rehberi',
-    audioDuration: '00:38',
     transcript:
       'Yavrumun bacaklarını bisiklet çevirir gibi nazikçe karnına doğru it. Saat yönünde dairesel hareketlerle göbeğinin etrafını sıvazla. Rahatladığını hissedeceksin...',
     userMessage: 'Karnı çok sert ve bacaklarını karnına çekip ağlıyor.',
@@ -30,8 +27,6 @@ const topicsData = [
   },
   {
     topic: 'Emzirme & Beslenme',
-    audioTitle: 'Doğru Kavrama ve Tokluk İpuçları',
-    audioDuration: '00:45',
     transcript:
       'Bebeğin memeyi tam kavraması için çenesinin iyice yaslandığından ve alt dudağının dışa kıvrıldığından emin ol. Acele etme, sakin bir nefes al...',
     userMessage: 'Yeterince doyup doymadığını nasıl anlarım?',
@@ -43,12 +38,8 @@ const topicsData = [
 
 function ChatPhoneContent({
   activeTopicData,
-  isPlayingAudio,
-  setIsPlayingAudio,
 }: {
   activeTopicData: (typeof topicsData)[0];
-  isPlayingAudio: boolean;
-  setIsPlayingAudio: (val: boolean) => void;
 }) {
   const [isTyping, setIsTyping] = useState(false);
 
@@ -77,43 +68,6 @@ function ChatPhoneContent({
         <span className="text-[9px] bg-sky-400/20 text-sky-300 border border-sky-400/40 px-2.5 py-0.5 rounded-full font-mono font-bold">
           BabySensAI
         </span>
-      </div>
-
-      {/* Embedded Audio Voice Note Widget */}
-      <div className="bg-slate-900/90 border-b border-white/10 p-2.5 flex items-center gap-2.5">
-        <button
-          onClick={() => setIsPlayingAudio(!isPlayingAudio)}
-          className="w-8 h-8 rounded-xl bg-coral hover:bg-coral/80 text-white flex items-center justify-center shrink-0 transition-colors shadow-sm cursor-pointer"
-          title={isPlayingAudio ? 'Durdur' : 'Sesli Notu Dinle'}
-        >
-          {isPlayingAudio ? <Pause size={13} /> : <Play size={13} className="ml-0.5" />}
-        </button>
-
-        <div className="flex-1 min-w-0">
-          <div className="flex items-center justify-between">
-            <span className="text-[9px] font-bold text-white/90 truncate flex items-center gap-1">
-              <Volume2 size={10} className="text-coral" />
-              <span>Büyükanne Sesli Notu</span>
-            </span>
-            <span className="text-[8px] font-mono text-white/50">{activeTopicData.audioDuration}</span>
-          </div>
-
-          {/* Soundwave line inside phone */}
-          <div className="flex items-center gap-0.5 h-3 mt-1">
-            {[40, 80, 50, 90, 60, 30, 85, 70, 95, 40, 60, 80, 50].map((h, i) => (
-              <span
-                key={i}
-                className={`flex-1 rounded-full transition-all duration-150 ${
-                  isPlayingAudio ? 'bg-sky-400 animate-soundwave' : 'bg-white/20'
-                }`}
-                style={{
-                  height: isPlayingAudio ? `${h}%` : '20%',
-                  animationDelay: `${(i % 5) * 0.15}s`,
-                }}
-              />
-            ))}
-          </div>
-        </div>
       </div>
 
       {/* Chat scroll body */}
@@ -175,7 +129,6 @@ function ChatPhoneContent({
 
 export default function DigitalAssistant() {
   const [activeTopicIndex, setActiveTopicIndex] = useState(0);
-  const [isPlayingAudio, setIsPlayingAudio] = useState(false);
 
   const activeTopic = topicsData[activeTopicIndex];
 
@@ -203,11 +156,11 @@ export default function DigitalAssistant() {
       <div className="max-w-6xl mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
-          {/* Left: Text & Audio Voice Experience (7 Cols) */}
+          {/* Left: Text & Guidance Experience (7 Cols) */}
           <div className="lg:col-span-7 flex flex-col gap-6">
             <SectionHeader
-              eyebrow="7/24 Dijital Aile Asistanı"
-              title="Anne ve babaların soruları mesai saatlerini beklemez."
+              eyebrow={siteContent.digitalAssistant?.eyebrow || "7/24 Dijital Aile Asistanı"}
+              title={siteContent.digitalAssistant?.title || "Anne ve babaların soruları mesai saatlerini beklemez."}
               light
             />
 
@@ -218,52 +171,33 @@ export default function DigitalAssistant() {
               </div>
               <div>
                 <p className="text-2xl sm:text-4xl font-extrabold text-white leading-tight tracking-tight">
-                  Gece 03.00&apos;te <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 via-purple-300 to-coral">bile yanınızda.</span>
+                  {siteContent.digitalAssistant?.nightTagline || "Gece 03.00'te bile yanınızda."}
                 </p>
                 <p className="text-white/70 text-xs sm:text-sm mt-1">
-                  Yapay zekâ hızı ve anneanne şefkatiyle bilimsel rehberlik.
+                  {siteContent.digitalAssistant?.subtitle || "Yapay zekâ hızı ve anneanne şefkatiyle bilimsel rehberlik."}
                 </p>
               </div>
             </div>
 
-            {/* Interactive Voice Note Preview Card */}
+            {/* Guidance / Wisdom Quote Card */}
             <div className="glass-card-dark rounded-3xl p-6 shadow-2xl relative overflow-hidden border border-white/15">
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-2">
-                  <span className="w-3 h-3 rounded-full bg-coral animate-ping" />
-                  <span className="text-xs font-bold text-coral uppercase tracking-wider">
-                    Sesli Büyükanne Rehberi
+                  <span className="w-2.5 h-2.5 rounded-full bg-sky-400" />
+                  <span className="text-xs font-bold text-sky-300 uppercase tracking-wider flex items-center gap-1.5">
+                    <Sparkles size={14} className="text-sky-300" />
+                    {siteContent.digitalAssistant?.wisdomBadge || "Büyükanne Tavsiyesi"}
                   </span>
                 </div>
-                <button
-                  onClick={() => setIsPlayingAudio(!isPlayingAudio)}
-                  className="px-4 py-2 rounded-full bg-gradient-to-r from-coral to-[#e8634f] hover:bg-coral/80 text-white font-bold text-xs flex items-center gap-1.5 transition-all shadow-md cursor-pointer active:scale-98"
-                >
-                  {isPlayingAudio ? <Pause size={13} /> : <Play size={13} />}
-                  <span>{isPlayingAudio ? 'Durdur' : 'Sesli Dinle'}</span>
-                </button>
+                <span className="text-[10px] text-white/50 font-mono px-2.5 py-1 rounded-full bg-white/5 border border-white/10">
+                  {siteContent.digitalAssistant?.wisdomNote || "Şefkatli & Bilimsel"}
+                </span>
               </div>
 
               {/* Spoken Quote Transcript */}
               <blockquote className="text-white/90 text-sm md:text-base italic leading-relaxed pl-4 border-l-2 border-sky-400">
                 &ldquo;{activeTopic.transcript}&rdquo;
               </blockquote>
-
-              {/* Dynamic Soundwave Visualizer in Large format */}
-              <div className="mt-5 flex items-center gap-1 h-7">
-                {[20, 50, 85, 100, 40, 70, 95, 30, 60, 85, 100, 50, 75, 40, 90, 65, 35, 80, 55, 100, 45, 70, 90, 30, 60, 85].map((h, idx) => (
-                  <span
-                    key={idx}
-                    className={`flex-1 rounded-full transition-all duration-200 ${
-                      isPlayingAudio ? 'bg-gradient-to-t from-sky-400 via-cyan-300 to-white animate-soundwave' : 'bg-white/20'
-                    }`}
-                    style={{
-                      height: isPlayingAudio ? `${h}%` : '15%',
-                      animationDelay: `${(idx % 6) * 0.12}s`,
-                    }}
-                  />
-                ))}
-              </div>
             </div>
 
             {/* Topic Selector Pills */}
@@ -273,10 +207,7 @@ export default function DigitalAssistant() {
                 {topicsData.map((item, idx) => (
                   <button
                     key={item.topic}
-                    onClick={() => {
-                      setActiveTopicIndex(idx);
-                      setIsPlayingAudio(true);
-                    }}
+                    onClick={() => setActiveTopicIndex(idx)}
                     className={`px-4 py-2.5 rounded-2xl text-xs font-bold transition-all duration-300 cursor-pointer ${
                       activeTopicIndex === idx
                         ? 'bg-sky-400 text-navy shadow-lg shadow-sky-400/20 scale-105 ring-2 ring-sky-300/40'
@@ -297,8 +228,6 @@ export default function DigitalAssistant() {
               <PhoneMockup size="md" dark label="7/24 Canlı Aile Asistanı">
                 <ChatPhoneContent
                   activeTopicData={activeTopic}
-                  isPlayingAudio={isPlayingAudio}
-                  setIsPlayingAudio={setIsPlayingAudio}
                 />
               </PhoneMockup>
             </div>

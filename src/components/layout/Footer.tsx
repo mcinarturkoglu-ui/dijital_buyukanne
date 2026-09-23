@@ -172,6 +172,7 @@ export default function Footer() {
               { href: "/gizlilik", label: "Gizlilik" },
               { href: "/kullanim-kosullari", label: "Kullanım Koşulları" },
               { href: "/cerezler", label: "Çerezler" },
+              { href: "/admin", label: "Yönetici Girişi" },
             ].map((link) => (
               <Link
                 key={link.href}

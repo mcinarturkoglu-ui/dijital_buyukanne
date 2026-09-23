@@ -1,271 +1,501 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Camera, Cpu, BookOpen, Sparkles, CheckCircle2, Scan, RefreshCw, ZoomIn, Eye, ShieldAlert, Sliders, Info } from 'lucide-react';
+import {
+  Camera,
+  Cpu,
+  Sparkles,
+  CheckCircle2,
+  Scan,
+  RotateCw,
+  ZoomIn,
+  Stethoscope,
+  Info,
+  ShieldCheck,
+  ChevronRight,
+  Zap,
+} from 'lucide-react';
 import SectionHeader from '@/components/ui/SectionHeader';
 import PhoneMockup from '@/components/ui/PhoneMockup';
 
-const steps = [
+/* ── 0–2 Yaş Pediatrik 41 Cilt Tablosu Senaryoları (Ebeveyn Gözlemi ➔ YZ Tespiti) ── */
+interface SkinDiagnosisCase {
+  id: string;
+  parentObservation: string;
+  region: string;
+  dotColor: string;
+  gradientBg: string;
+  severity: 'safe' | 'warning' | 'urgent';
+  aiDetection: {
+    title: string;
+    catalog: string;
+    confidence: string;
+    pattern: string;
+    description: string;
+    doctorAction: string;
+  };
+}
+
+const skinCases: SkinDiagnosisCase[] = [
   {
-    number: '1',
-    icon: Camera,
-    label: '1. Yüksek Çözünürlüklü Çekim',
-    desc: 'Bebeğinizin cildindeki kızarıklık veya döküntüyü doğal ışık altında fotoğraflayın.',
-    iconColor: 'text-coral',
-    circleBg: 'bg-coral',
+    id: 'case-1',
+    parentObservation: 'Yanaklarda pütürlü kuruluk ve kızarık döküntü',
+    region: 'Yanak & Çene Kıvrımı • 4. Ay',
+    dotColor: '#F43F5E',
+    gradientBg: 'from-rose-400/60 via-red-300/40 to-amber-200/40',
+    severity: 'warning',
+    aiDetection: {
+      title: 'İnfantil Atopik Dermatit (Bebeklik Egzaması)',
+      catalog: 'Derma-41 / No. 04',
+      confidence: '%98.2 Eşleşme',
+      pattern: 'Eritem: %72 • Bariyer Hasarı',
+      description: 'Yanak yüzeyinde mikro pullanma ve atopik eritem plakları saptandı. Enfeksiyöz veya acil bir mikrobiyal döküntü değildir.',
+      doctorAction: 'Parfümsüz ve seramid içerikli hipoalerjenik nemlendiriciyle günde 2 kez bariyer desteği sağlayın. Kaşıntı uykuyu etkiliyorsa çocuk hekiminize danışınız.',
+    },
   },
   {
-    number: '2',
-    icon: Cpu,
-    label: '2. Multi-Spektral AI Taraması',
-    desc: 'BabySensAI piksel renk dağılımını ve eritem yoğunluğunu pediatrik veri havuzuyla eşleştirir.',
-    iconColor: 'text-turquoise',
-    circleBg: 'bg-turquoise',
+    id: 'case-2',
+    parentObservation: 'Gövdede minik sarı-beyaz benekli pembe lekeler',
+    region: 'Gövde & Sırt • 5 Günlük',
+    dotColor: '#FB7185',
+    gradientBg: 'from-amber-200/60 via-rose-300/40 to-slate-100/40',
+    severity: 'safe',
+    aiDetection: {
+      title: 'Toksik Eritem (Yenidoğan Selim Döküntüsü)',
+      catalog: 'Derma-41 / No. 12',
+      confidence: '%99.1 Eşleşme',
+      pattern: 'Fizyolojik Selim Papül Morfolojisi',
+      description: 'Yenidoğanların yaklaşık %50’sinde ilk haftalarda görülen tamamen doğal ve selim bir cilt uyumudur. Bebeğe rahatsızlık vermez.',
+      doctorAction: 'Herhangi bir merhem, losyon veya tıbbi müdahaleye gerek yoktur; 7-10 günde kendiliğinden geçer. Rutin hekim izlemi yeterlidir.',
+    },
   },
   {
-    number: '3',
-    icon: BookOpen,
-    label: '3. Bilgilendirici Ön Rapor ve Tavsiye',
-    desc: 'Bebek cildi için güvenli bakım adımları listelenir, gerekiyorsa uzman randevusu önerilir.',
-    iconColor: 'text-navy',
-    circleBg: 'bg-navy',
+    id: 'case-3',
+    parentObservation: 'Saçlı deride sarımsı yağlı kabuk ve pulcuklar',
+    region: 'Baş Derisi & Kaş • 2. Ay',
+    dotColor: '#F59E0B',
+    gradientBg: 'from-yellow-400/60 via-amber-300/40 to-orange-200/40',
+    severity: 'safe',
+    aiDetection: {
+      title: 'Seboreik Dermatit (Bebek Konağı)',
+      catalog: 'Derma-41 / No. 07',
+      confidence: '%98.6 Eşleşme',
+      pattern: 'Hiperkeratoz & Sebum Artışı',
+      description: 'Yağ bezlerinin geçici fazla çalışmasıyla oluşan zararsız kabuklanmadır. Alerjiye bağlı değildir ve kaşıntı yapmaz.',
+      doctorAction: 'Banyo öncesi bebek yağıyla yumuşatıp yumuşak uçlu fırçayla nazikçe tarayınız; kabukları asla tırnakla kazımayınız.',
+    },
+  },
+  {
+    id: 'case-4',
+    parentObservation: 'Boyunda terleme sonrası minik kırmızı pütürler',
+    region: 'Boyun Kıvrımı • Sıcak Ortam',
+    dotColor: '#EF4444',
+    gradientBg: 'from-red-400/60 via-rose-400/40 to-pink-200/40',
+    severity: 'safe',
+    aiDetection: {
+      title: 'Miliaria Rubra (Kırmızı İsilik)',
+      catalog: 'Derma-41 / No. 19',
+      confidence: '%98.9 Eşleşme',
+      pattern: 'Ter Kanalı Tıkanıklığı',
+      description: 'Gelişmekte olan ter bezi kanallarının tıkanmasıyla oluşan ter kabarcıklarıdır; iltihap veya mikrobiyal enfeksiyon içermez.',
+      doctorAction: 'Oda sıcaklığını 21-22°C tutun, ince pamuklu giydirin ve ılık suyla ferahlatın; kalın yağlı kremler sürmeyiniz.',
+    },
+  },
+  {
+    id: 'case-5',
+    parentObservation: 'Ek gıda sonrası aniden kabaran kırmızı harita lekeleri',
+    region: 'Tüm Vücut & Bacaklar • 7. Ay',
+    dotColor: '#DC2626',
+    gradientBg: 'from-red-600/70 via-rose-500/50 to-red-400/40',
+    severity: 'urgent',
+    aiDetection: {
+      title: 'Akut Alerjik Ürtiker (Besin Reaksiyonu)',
+      catalog: 'Derma-41 / No. 34',
+      confidence: '%96.5 Kritik Uyarı',
+      pattern: 'Akut Histaminik Ödem Plakları',
+      description: 'Hızlı kabaran ödemli histaminik eritem morfolojisi saptandı. Yeni başlanan gıda içeriğine karşı alerjik tepki gelişmiş olabilir.',
+      doctorAction: 'ÖNCELİKLİ HEKİM BAŞVURUSU: Dudak/göz çevresinde şişme veya solunum sıkıntısı varsa acilen acil servise; izole lekelerde çocuk doktorunuza başvurunuz.',
+    },
   },
 ];
 
-function SkinAnalysisPhoneContent() {
-  const [scanStep, setScanStep] = useState<0 | 1 | 2>(1); // 0: photo, 1: scanning, 2: evaluated
-  const [filterMode, setFilterMode] = useState<'rgb' | 'contrast' | 'ai'>('contrast');
-  const [zoomLevel, setZoomLevel] = useState<'1x' | '2x'>('1x');
-  const [isFlashing, setIsFlashing] = useState(false);
+/* ── 4 Adımlı Klinik İş Akışı ── */
+const clinicalWorkflow = [
+  {
+    num: '1',
+    title: 'Ebeveyn Belirtiyi Fotoğraflar',
+    desc: 'Anne veya baba teşhis adı bilmeden sadece gördüğü döküntüyü doğal gün ışığında telefon kamerasıyla çeker.',
+  },
+  {
+    num: '2',
+    title: 'BabySensAI 41 Lezyonu Tarar',
+    desc: 'Piksel bazlı eritem derinliği, yüzeyel bariyer kaybı ve mikro morfoloji 41 pediatrik cilt tablosu havuzuyla eşleştirilir.',
+  },
+  {
+    num: '3',
+    title: 'Anlık Ön Değerlendirme & Bilgilendirme',
+    desc: 'Durumun zararsız mı (konak, isilik, toksik eritem), takip mi yoksa öncelikli hekim kontrolü mü olduğu saniyeler içinde sunulur.',
+  },
+  {
+    num: '4',
+    title: 'Pediatri ve Hekim Güvencesi Protokolü',
+    desc: 'Gereksiz antibiyotik/kortizonlu merhem kullanımının önüne geçilir; kritik durumlarda gecikmeden çocuk hekimi köprüsü kurulur.',
+  },
+];
 
-  // Auto scan cycle
+export default function SkinAnalysis() {
+  const [selectedCaseIndex, setSelectedCaseIndex] = useState(0);
+  
+  // Animasyon Aşaması: 0: Odaklanma/Vizör, 1: Flaş/Deklanşör, 2: Lazer Taraması, 3: Teşhis & Rapor
+  const [animStep, setAnimStep] = useState<0 | 1 | 2 | 3>(0);
+  const [isAutoPlay, setIsAutoPlay] = useState(true);
+
+  const currentCase = skinCases[selectedCaseIndex];
+
+  // Döngüsel Canlı Mobil Deneyim Akışı
   useEffect(() => {
-    const cycle = setInterval(() => {
-      setScanStep((prev) => ((prev + 1) % 3) as 0 | 1 | 2);
-    }, 4000);
-    return () => clearInterval(cycle);
-  }, []);
+    if (!isAutoPlay) return;
 
-  const triggerCapture = () => {
-    setIsFlashing(true);
-    setTimeout(() => setIsFlashing(false), 200);
-    setScanStep(1);
-    setTimeout(() => setScanStep(2), 1500);
+    let timer: NodeJS.Timeout;
+    if (animStep === 0) {
+      // 2.6 sn vizör odaklanması
+      timer = setTimeout(() => setAnimStep(1), 2600);
+    } else if (animStep === 1) {
+      // 0.8 sn flaş ve fotoğraf donması
+      timer = setTimeout(() => setAnimStep(2), 800);
+    } else if (animStep === 2) {
+      // 2.4 sn lazer tarama & piksel sınıflandırması
+      timer = setTimeout(() => setAnimStep(3), 2400);
+    } else if (animStep === 3) {
+      // 4.5 sn sonuç raporu gösterimi, sonra başa dön
+      timer = setTimeout(() => setAnimStep(0), 4500);
+    }
+
+    return () => clearTimeout(timer);
+  }, [animStep, isAutoPlay]);
+
+  const handleSelectCase = (idx: number) => {
+    setSelectedCaseIndex(idx);
+    setAnimStep(0);
   };
 
   return (
-    <div className="h-full flex flex-col bg-slate-950 text-white select-none">
-      {/* App header */}
-      <div className="bg-slate-900/90 backdrop-blur-md px-3.5 py-3 flex items-center justify-between border-b border-white/10 shrink-0">
-        <div className="flex items-center gap-2">
-          <div className="w-7 h-7 rounded-xl bg-coral/20 flex items-center justify-center">
-            <Camera className="w-4 h-4 text-coral" />
-          </div>
-          <div>
-            <span className="text-white font-bold text-xs leading-none block">AI Cilt Kamerası</span>
-            <span className="text-[9px] text-white/50">BabySensAI Vision v2.1</span>
-          </div>
-        </div>
-        <div className="flex items-center gap-1.5 bg-turquoise/15 text-turquoise px-2.5 py-1 rounded-full text-[9px] font-mono border border-turquoise/30 font-bold">
-          <span className="w-1.5 h-1.5 rounded-full bg-turquoise animate-ping" />
-          <span>CANLI HUD</span>
-        </div>
-      </div>
-
-      {/* Main Viewport: Camera Optical HUD */}
-      <div className="flex-1 p-3 flex flex-col gap-2.5 overflow-hidden">
-        
-        {/* Optical Viewfinder Box */}
-        <div className="relative aspect-[4/3] rounded-2xl bg-slate-950 border-2 border-white/20 overflow-hidden flex items-center justify-center">
-          
-          {/* Simulated baby cheek skin gradient according to filter */}
-          <div
-            className={`absolute inset-0 transition-all duration-500 ${
-              filterMode === 'rgb'
-                ? 'bg-gradient-to-tr from-[#fcd5ce] via-[#fae1dd] to-[#f8edeb]'
-                : filterMode === 'contrast'
-                ? 'bg-gradient-to-tr from-[#9d0208]/30 via-[#d00000]/20 to-[#370617]/30 backdrop-contrast-150'
-                : 'bg-gradient-to-tr from-[#14BBB7]/40 via-[#082A46] to-[#FF7965]/40'
-            }`}
-          />
-
-          {/* Shutter Flash Effect */}
-          {isFlashing && (
-            <div className="absolute inset-0 bg-white z-50 animate-fade-out pointer-events-none" />
-          )}
-
-          {/* Optical Zoom Level Transform */}
-          <div
-            className={`relative transition-transform duration-500 ${
-              zoomLevel === '2x' ? 'scale-125' : 'scale-100'
-            }`}
-          >
-            {/* Skin Target Ring Area */}
-            <div className="w-28 h-28 rounded-full border-2 border-dashed border-coral/80 relative flex items-center justify-center">
-              <div className="w-16 h-16 rounded-full bg-coral/30 blur-md animate-pulse" />
-              
-              {/* Corner HUD Markers */}
-              <div className="absolute -top-1 -left-1 w-3 h-3 border-t-2 border-l-2 border-turquoise" />
-              <div className="absolute -top-1 -right-1 w-3 h-3 border-t-2 border-r-2 border-turquoise" />
-              <div className="absolute -bottom-1 -left-1 w-3 h-3 border-b-2 border-l-2 border-turquoise" />
-              <div className="absolute -bottom-1 -right-1 w-3 h-3 border-b-2 border-r-2 border-turquoise" />
-            </div>
-          </div>
-
-          {/* Moving Laser Scanner Line */}
-          {scanStep === 1 && (
-            <div className="absolute inset-x-0 h-1 bg-gradient-to-r from-transparent via-turquoise to-transparent animate-laser-scan shadow-[0_0_12px_#14BBB7]" />
-          )}
-
-          {/* Viewfinder Overlay Telemetry */}
-          <div className="absolute top-2 left-2 right-2 flex items-center justify-between text-[8px] font-mono text-white/80 pointer-events-none">
-            <span className="bg-black/60 px-1.5 py-0.5 rounded backdrop-blur">ISO 100 • F/1.8</span>
-            <span className="bg-black/60 px-1.5 py-0.5 rounded backdrop-blur text-turquoise">
-              {filterMode.toUpperCase()} MODU
-            </span>
-          </div>
-
-          {/* Bottom Zoom & Filter Pill in Viewfinder */}
-          <div className="absolute bottom-2 inset-x-2 flex items-center justify-between pointer-events-auto">
-            <div className="flex gap-1 bg-black/60 p-1 rounded-lg backdrop-blur">
-              {(['rgb', 'contrast', 'ai'] as const).map((m) => (
-                <button
-                  key={m}
-                  onClick={() => setFilterMode(m)}
-                  className={`text-[8px] font-mono px-1.5 py-0.5 rounded uppercase font-bold transition-colors ${
-                    filterMode === m ? 'bg-turquoise text-navy' : 'text-white/60 hover:text-white'
-                  }`}
-                >
-                  {m}
-                </button>
-              ))}
-            </div>
-
-            <button
-              onClick={() => setZoomLevel(zoomLevel === '1x' ? '2x' : '1x')}
-              className="text-[8px] font-mono bg-black/60 text-white/90 px-2 py-1 rounded-lg backdrop-blur flex items-center gap-1 font-bold"
-            >
-              <ZoomIn size={9} />
-              <span>{zoomLevel}</span>
-            </button>
-          </div>
-        </div>
-
-        {/* Real-time Analysis Card inside Phone */}
-        <div className="bg-slate-900/90 border border-white/10 rounded-2xl p-2.5 flex-1 flex flex-col justify-between">
-          <div className="space-y-1.5">
-            <div className="flex items-center justify-between">
-              <span className="text-[10px] font-bold text-white flex items-center gap-1.5">
-                {scanStep === 2 ? (
-                  <CheckCircle2 size={12} className="text-emerald-400" />
-                ) : (
-                  <RefreshCw size={11} className={`text-turquoise ${scanStep === 1 ? 'animate-spin' : ''}`} />
-                )}
-                {scanStep === 2 ? 'Ön Sınıflandırma: Hafif Pişik' : 'Doku Analizi Sürüyor'}
-              </span>
-              <span className="text-[9px] font-mono text-emerald-400 font-bold">
-                {scanStep === 2 ? 'Derece: Hafif / Yüzeysel' : 'Bekleniyor...'}
-              </span>
-            </div>
-
-            <p className="text-[9px] text-white/70 leading-relaxed">
-              {scanStep < 2
-                ? 'Kızarıklık yayılım alanı ve doku gözenekleri pediatrik algoritma tarafından inceleniyor...'
-                : 'Yanak bölgesinde hafif atopik kuruluk ve tahriş saptandı. Çinko oksit içerikli bariyer krem uygulaması ve tahriş devam ederse hekim muayenesi önerilir.'}
-            </p>
-          </div>
-
-          {/* Trigger Capture Button */}
-          <div className="pt-2 border-t border-white/10 flex items-center justify-between">
-            <span className="text-[8px] text-white/40">Teşhis amacı taşımaz</span>
-            <button
-              onClick={triggerCapture}
-              className="text-[9px] font-bold text-navy bg-turquoise hover:bg-white px-3 py-1 rounded-lg transition-colors flex items-center gap-1 shadow-sm cursor-pointer"
-            >
-              <Camera size={11} />
-              <span>Anında Tara</span>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-export default function SkinAnalysis() {
-  return (
-    <section className="py-20 md:py-28 px-4 md:px-8 bg-soft-gray relative overflow-hidden" id="cilt-analizi">
-      {/* Decorative ambient blur */}
-      <div className="absolute top-1/4 -left-20 w-96 h-96 bg-coral/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-10 -right-20 w-96 h-96 bg-turquoise/5 rounded-full blur-3xl pointer-events-none" />
+    <section className="py-20 md:py-28 px-4 md:px-8 bg-gradient-to-b from-white via-slate-50 to-white relative overflow-hidden" id="cilt-analizi">
+      {/* Background ambient blur */}
+      <div className="absolute top-1/4 -left-20 w-[500px] h-[500px] bg-sky-100/50 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-10 -right-20 w-[450px] h-[450px] bg-coral/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-6xl mx-auto relative z-10">
+        
+        {/* Section Header */}
         <SectionHeader
-          eyebrow="AI Cilt Analizi"
-          title="Fotoğraf çek. Yükle. Saniyeler içinde ön değerlendirme al."
-          subtitle="BabySensAI görüntü işleme teknolojisi, bebeğinizin cildindeki döküntü ve kızarıklıkları analiz ederek sizi bilgilendirir ve doğru desteğe yönlendirir."
+          eyebrow="0–2 Yaş AI Cilt Analizi (Derma-41 Engine)"
+          title="Ebeveyn fotoğrafı çeker; yapay zekâ 41 cilt tablosu arasından tespit eder."
+          subtitle="Anne veya baba tıbbi teşhis bilmek zorunda değildir. Bebeğinin cildindeki şüpheli döküntüyü fotoğraflar; BabySensAI piksel hassasiyetinde analiz ederek anında bilgilendirir ve hekim güvencesi sunar."
           centered
         />
 
-        <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Left: Steps + Info card */}
-          <div className="flex flex-col gap-6">
+        {/* 41 Cilt Tablosu Hızlı Seçici Butonları */}
+        <div className="mt-12 flex flex-col items-center">
+          <span className="text-xs font-mono font-bold text-sky-800 bg-sky-50 border border-sky-200 px-3.5 py-1 rounded-full mb-3 shadow-xs">
+            Örnek Ebeveyn Gözlemini Seçin:
+          </span>
+          <div className="flex flex-wrap items-center justify-center gap-2 max-w-4xl">
+            {skinCases.map((c, idx) => (
+              <button
+                key={c.id}
+                onClick={() => handleSelectCase(idx)}
+                className={`px-4 py-2 rounded-2xl text-xs font-bold transition-all cursor-pointer flex items-center gap-2 ${
+                  selectedCaseIndex === idx
+                    ? 'bg-[#0B1E3B] text-white shadow-md scale-102 ring-2 ring-sky-400/30'
+                    : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-50'
+                }`}
+              >
+                <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: c.dotColor }} />
+                <span>{c.parentObservation}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Ana İçerik Izgarası (Sol: İş Akışı & Ebeveyn Gözlemi | Sağ: Telefon Simülasyonu) */}
+        <div className="mt-12 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          
+          {/* SOL KOLON (6 COLS): 4 Adımlı Klinik İş Akışı */}
+          <div className="lg:col-span-6 flex flex-col gap-5">
+            
+            {/* Seçili Ebeveyn Gözlem Kartı */}
+            <div className="p-4 rounded-2xl bg-sky-50/80 border border-sky-200 flex flex-col gap-1.5 shadow-xs">
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-sky-800">
+                  Şu Anda Canlandırılan Ebeveyn Gözlemi:
+                </span>
+                <span className="text-[10px] font-mono text-sky-700 bg-white px-2 py-0.5 rounded-md border border-sky-100">
+                  {currentCase.region}
+                </span>
+              </div>
+              <p className="text-sm font-black text-[#0B1E3B] leading-snug">
+                &ldquo;{currentCase.parentObservation}&rdquo;
+              </p>
+            </div>
+
+            {/* 4 Klinik Adım */}
             <div className="flex flex-col gap-3">
-              {steps.map((step, i) => {
-                const Icon = step.icon;
-                return (
-                  <div key={step.label} className="flex flex-col">
-                    <div className="flex items-start gap-4">
-                      {/* Number badge */}
-                      <div className="flex flex-col items-center">
-                        <div
-                          className={`w-10 h-10 rounded-2xl ${step.circleBg} flex items-center justify-center shadow-md flex-shrink-0 text-white font-bold text-sm`}
-                        >
-                          {step.number}
-                        </div>
-                        {i < steps.length - 1 && (
-                          <div className="w-0.5 h-8 border-l-2 border-dashed border-turquoise/40 mt-1" />
-                        )}
+              {clinicalWorkflow.map((stepItem, i) => (
+                <div
+                  key={stepItem.num}
+                  className={`p-4 rounded-2xl border transition-all flex items-start gap-4 ${
+                    animStep === i
+                      ? 'bg-white border-sky-400 ring-2 ring-sky-400/20 shadow-md translate-x-1'
+                      : 'bg-white/80 border-slate-200/80 hover:bg-white'
+                  }`}
+                >
+                  <div className={`w-9 h-9 rounded-xl flex items-center justify-center font-black text-sm shrink-0 shadow-xs ${
+                    animStep === i
+                      ? 'bg-[#0B1E3B] text-white'
+                      : 'bg-slate-100 text-slate-600'
+                  }`}>
+                    {stepItem.num}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className={`text-sm font-bold ${animStep === i ? 'text-[#0B1E3B]' : 'text-slate-800'}`}>
+                      {stepItem.title}
+                    </p>
+                    <p className="text-xs text-slate-500 mt-0.5 leading-relaxed">
+                      {stepItem.desc}
+                    </p>
+                  </div>
+                  {animStep === i && (
+                    <span className="w-2.5 h-2.5 rounded-full bg-sky-500 animate-pulse shrink-0 mt-1" />
+                  )}
+                </div>
+              ))}
+            </div>
+
+            {/* Bilimsel Sorumluluk & Hekim Güvencesi Notu */}
+            <div className="flex items-start gap-3 bg-white p-4 rounded-2xl border border-slate-200 shadow-xs text-xs text-slate-600 leading-relaxed">
+              <ShieldCheck size={18} className="text-sky-600 shrink-0 mt-0.5" />
+              <div>
+                <strong className="text-[#0B1E3B] block mb-0.5">Pediatri ve Hekim Güvencesi:</strong>
+                Sistem ebeveyne kesin tanı koymaz; 41 tablo üzerinden bilgilendirir, gereksiz merhem kullanımını engeller ve kritik lezyonlarda gecikmeden çocuk doktoruna başvurulmasını sağlar.
+              </div>
+            </div>
+
+          </div>
+
+          {/* SAĞ KOLON (6 COLS): Telefon İçinde Canlı Kamera & AI Teşhis Animasyonu */}
+          <div className="lg:col-span-6 flex justify-center">
+            
+            {/* Telefon Mockup'ı */}
+            <div className="w-full max-w-[340px] sm:max-w-[360px] rounded-[44px] bg-[#0E1526] p-3.5 shadow-2xl border-4 border-slate-800 relative select-none">
+              
+              {/* Ekran İçi Gövde */}
+              <div className="w-full rounded-[34px] bg-[#070D19] overflow-hidden flex flex-col text-white relative min-h-[530px]">
+                
+                {/* 1. Üst Bar & Dinamik Ada */}
+                <div className="pt-3 px-4 pb-2 flex items-center justify-between border-b border-white/10 shrink-0">
+                  <span className="text-[10px] font-mono text-white/60">09:41</span>
+                  
+                  {/* Dynamic Island */}
+                  <div className="w-24 h-4 bg-black rounded-full flex items-center justify-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                    <span className="text-[8px] font-mono text-white/50 tracking-wider">DERMA-41</span>
+                  </div>
+
+                  <span className="text-[9px] font-bold text-sky-400 bg-sky-950/80 px-2 py-0.5 rounded-full border border-sky-500/30">
+                    CANLI HUD
+                  </span>
+                </div>
+
+                {/* 2. Telefon İçerik Alanı (Animasyonlu Kamera & Teşhis) */}
+                <div className="flex-1 p-3 flex flex-col justify-between relative overflow-hidden">
+                  
+                  {/* AŞAMA 0: Ebeveyn Kamera Vizörüyle Odaklanıyor */}
+                  {animStep === 0 && (
+                    <div className="flex-1 flex flex-col justify-between animate-fade-in">
+                      <div className="flex items-center justify-between text-[11px] text-slate-300 font-mono">
+                        <span className="flex items-center gap-1.5 text-sky-300">
+                          <Camera size={13} />
+                          Doğal Işıkta Odaklanıyor...
+                        </span>
+                        <span className="text-white/40">1x Optik</span>
                       </div>
 
-                      {/* Content Card */}
-                      <div className="premium-card bg-white rounded-2xl p-5 flex-1 shadow-sm border border-gray-100/90 hover:shadow-card-hover hover:border-turquoise/40 transition-all duration-300 flex items-start gap-4 group cursor-default">
-                        <div className="w-11 h-11 rounded-xl bg-soft-gray group-hover:bg-turquoise/15 flex items-center justify-center flex-shrink-0 transition-colors">
-                          <Icon className={`w-5 h-5 ${step.iconColor} group-hover:scale-110 transition-transform`} />
+                      {/* Kamera Vizör Alanı */}
+                      <div className="my-auto relative aspect-[4/3] rounded-2xl bg-black/60 border border-white/20 overflow-hidden flex items-center justify-center">
+                        {/* Cilt lezyonu simülasyon gradyanı */}
+                        <div className={`absolute inset-0 bg-gradient-to-tr ${currentCase.gradientBg} blur-lg`} />
+
+                        {/* Odaklama vizör parantezleri */}
+                        <div className="absolute inset-6 border border-dashed border-sky-400/80 rounded-xl flex items-center justify-center animate-pulse">
+                          <span className="text-[10px] font-mono bg-black/75 px-3 py-1 rounded-full text-sky-300 border border-white/10">
+                            Hedef: {currentCase.region}
+                          </span>
                         </div>
-                        <div>
-                          <p className="font-bold text-navy text-base group-hover:text-turquoise transition-colors">{step.label}</p>
-                          <p className="text-xs md:text-sm text-navy/60 mt-1 leading-relaxed">{step.desc}</p>
+
+                        {/* Vizör Köşeleri */}
+                        <div className="absolute top-3 left-3 w-3 h-3 border-t-2 border-l-2 border-white" />
+                        <div className="absolute top-3 right-3 w-3 h-3 border-t-2 border-r-2 border-white" />
+                        <div className="absolute bottom-3 left-3 w-3 h-3 border-b-2 border-l-2 border-white" />
+                        <div className="absolute bottom-3 right-3 w-3 h-3 border-b-2 border-r-2 border-white" />
+                      </div>
+
+                      {/* Deklanşör Düğmesi */}
+                      <div className="flex flex-col items-center gap-1 pt-2">
+                        <button
+                          onClick={() => setAnimStep(1)}
+                          className="w-14 h-14 rounded-full border-4 border-white bg-white/20 flex items-center justify-center hover:scale-105 active:scale-95 transition-all cursor-pointer shadow-lg shadow-white/10"
+                        >
+                          <div className="w-10 h-10 rounded-full bg-white" />
+                        </button>
+                        <span className="text-[9px] text-slate-400 font-mono">Fotoğraf Çekmek İçin Dokunun</span>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* AŞAMA 1: Fotoğraf Çekildi (Deklanşör Parlaması ve Görüntü Donması) */}
+                  {animStep === 1 && (
+                    <div className="flex-1 flex flex-col justify-between animate-fade-in relative">
+                      {/* Flaş patlama efekti */}
+                      <div className="absolute inset-0 bg-white/95 z-20 animate-fade-out pointer-events-none rounded-2xl" />
+
+                      <div className="flex items-center justify-between text-[11px] text-emerald-400 font-mono">
+                        <span className="flex items-center gap-1">
+                          <CheckCircle2 size={13} />
+                          Fotoğraf Yakalandı
+                        </span>
+                        <span className="text-white/50">HDR Spektral</span>
+                      </div>
+
+                      {/* Yakalanan Net Fotoğraf */}
+                      <div className="my-auto relative aspect-[4/3] rounded-2xl bg-black border-2 border-emerald-400/50 overflow-hidden flex items-center justify-center shadow-xl">
+                        <div className={`absolute inset-0 bg-gradient-to-tr ${currentCase.gradientBg}`} />
+                        <div className="relative z-10 text-center bg-black/75 px-4 py-2 rounded-xl border border-white/20">
+                          <p className="text-xs font-bold text-white">{currentCase.region}</p>
+                          <p className="text-[9px] text-emerald-300 font-mono mt-0.5">Analize Aktarılıyor...</p>
+                        </div>
+                      </div>
+
+                      <div className="text-center py-2">
+                        <span className="text-[10px] font-mono text-slate-300 bg-white/10 px-3 py-1 rounded-full">
+                          BabySensAI Nöral Ağına Aktarılıyor...
+                        </span>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* AŞAMA 2: Yapay Zekâ Lazer Taraması & 41 Tablo Eşleştirmesi */}
+                  {animStep === 2 && (
+                    <div className="flex-1 flex flex-col justify-between animate-fade-in">
+                      <div className="flex items-center justify-between text-[11px] text-sky-300 font-mono">
+                        <span className="flex items-center gap-1.5">
+                          <RotateCw size={13} className="animate-spin text-sky-400" />
+                          41 Lezyon Arasında Taranıyor...
+                        </span>
+                        <span className="text-coral font-bold font-mono">AI SCAN</span>
+                      </div>
+
+                      {/* Lazer Tarama Alanı */}
+                      <div className="my-auto relative aspect-[4/3] rounded-2xl bg-black border border-sky-400/50 overflow-hidden flex items-center justify-center shadow-xl">
+                        <div className={`absolute inset-0 bg-gradient-to-tr ${currentCase.gradientBg}`} />
+
+                        {/* Aşağı yukarı kayan lazer ışığı */}
+                        <div className="absolute inset-x-0 h-1 bg-gradient-to-r from-transparent via-sky-300 to-transparent shadow-[0_0_15px_#38BDF8] animate-laser-scan pointer-events-none" />
+
+                        {/* YZ Tarafından İşaretlenen Noktalar */}
+                        <div className="absolute top-[35%] left-[30%] flex items-center gap-1.5 z-10 animate-fade-in">
+                          <span className="w-2.5 h-2.5 rounded-full bg-coral animate-ping" />
+                          <span className="text-[8px] font-mono font-bold bg-black/80 text-white px-2 py-0.5 rounded-md border border-white/20 whitespace-nowrap shadow-sm">
+                            {currentCase.aiDetection.pattern}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Analiz Yüklenme Çubuğu */}
+                      <div className="flex flex-col gap-1.5 py-1">
+                        <div className="flex justify-between text-[10px] font-mono text-slate-300">
+                          <span>41 Pediatrik Lezyon Veritabanı Eşleşmesi</span>
+                          <span className="text-sky-400 font-bold">%92</span>
+                        </div>
+                        <div className="w-full h-1.5 bg-white/20 rounded-full overflow-hidden">
+                          <div className="h-full bg-gradient-to-r from-sky-400 to-coral rounded-full animate-pulse" style={{ width: '92%' }} />
                         </div>
                       </div>
                     </div>
-                  </div>
-                );
-              })}
-            </div>
+                  )}
 
-            {/* Info alert card */}
-            <div className="bg-white border-l-4 border-turquoise rounded-2xl p-6 shadow-sm border border-gray-100/80 relative overflow-hidden">
-              <div className="flex items-center gap-2 mb-2">
-                <Sparkles size={16} className="text-turquoise" />
-                <span className="text-xs font-bold text-navy uppercase tracking-wider">Erken Farkındalık Rehberi</span>
+                  {/* AŞAMA 3: Klinik Teşhis & Doktor Protokolü Çıktısı */}
+                  {animStep === 3 && (
+                    <div className="flex-1 flex flex-col justify-between animate-fade-in gap-2.5">
+                      
+                      {/* Üst Onay Rozeti */}
+                      <div className="bg-emerald-500/15 border border-emerald-400/40 rounded-xl p-2.5 flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <CheckCircle2 size={16} className="text-emerald-400" />
+                          <span className="text-xs font-bold text-white">Analiz Tamamlandı</span>
+                        </div>
+                        <span className="text-[10px] font-mono text-emerald-300 font-bold bg-emerald-950/80 px-2 py-0.5 rounded-full">
+                          {currentCase.aiDetection.confidence}
+                        </span>
+                      </div>
+
+                      {/* Teşhis Kartı */}
+                      <div className="bg-white/10 border border-white/15 rounded-2xl p-3 flex flex-col gap-1">
+                        <span className="text-[9px] font-mono text-sky-300 uppercase tracking-wider font-bold">
+                          {currentCase.aiDetection.catalog}
+                        </span>
+                        <h4 className="text-sm font-black text-white leading-snug">
+                          {currentCase.aiDetection.title}
+                        </h4>
+                        <p className="text-[10px] text-white/80 leading-relaxed mt-1">
+                          {currentCase.aiDetection.description}
+                        </p>
+                      </div>
+
+                      {/* Hekim Eylem Protokolü */}
+                      <div className={`rounded-2xl p-3 border flex flex-col gap-1 ${
+                        currentCase.severity === 'urgent'
+                          ? 'bg-red-950/80 border-red-500/50 text-red-100'
+                          : 'bg-gradient-to-r from-sky-950/80 to-slate-900 border-sky-400/40 text-white'
+                      }`}>
+                        <div className="flex items-center gap-1.5">
+                          <Stethoscope size={13} className={currentCase.severity === 'urgent' ? 'text-red-400' : 'text-sky-300'} />
+                          <span className="text-[10px] font-bold uppercase tracking-wider">
+                            Pediatri ve Hekim Protokolü
+                          </span>
+                        </div>
+                        <p className="text-[10px] leading-relaxed text-white/90">
+                          {currentCase.aiDetection.doctorAction}
+                        </p>
+                      </div>
+
+                      {/* Yeniden Başlat Butonu */}
+                      <button
+                        onClick={() => setAnimStep(0)}
+                        className="w-full py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-[10px] flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
+                      >
+                        <RotateCw size={11} />
+                        <span>Yeni Fotoğraf Çek / Başa Dön</span>
+                      </button>
+
+                    </div>
+                  )}
+
+                </div>
+
+                {/* Alt Home Çizgisi */}
+                <div className="pb-2 flex justify-center">
+                  <div className="w-28 h-1 bg-white/20 rounded-full" />
+                </div>
+
               </div>
-              <p className="text-xs md:text-sm text-navy/70 leading-relaxed font-medium">
-                Bu sistem klinik hekim kararının yerini almaz; aileyi ev ortamında bilinçlendirerek gereksiz endişeyi azaltmayı, olası bir cilt hassasiyetinde ise gecikmeden çocuk doktoruna başvurulmasını sağlamayı amaçlar.
-              </p>
+
             </div>
+
           </div>
 
-          {/* Right: Phone mockup with live HUD camera */}
-          <div className="flex justify-center">
-            <div className="relative animate-float-slow">
-              <div className="absolute inset-0 bg-coral/20 rounded-[40px] blur-3xl opacity-40 scale-95" />
-              <PhoneMockup size="md" dark label="Canlı Kamera AI Analizi">
-                <SkinAnalysisPhoneContent />
-              </PhoneMockup>
-            </div>
-          </div>
         </div>
+
       </div>
     </section>
   );

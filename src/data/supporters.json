@@ -3,36 +3,19 @@
     {
       "id": "ankara-belediyesi",
       "slug": "ankara-belediyesi",
-      "name": "Ankara Büyükşehir Belediyesi",
-      "shortName": "Ankara BB",
+      "name": "Samsun Büyükşehir Belediyesi",
+      "shortName": "SAMSUN",
       "type": "belediye",
-      "city": "Ankara",
+      "city": "Samsun",
       "logo": "/images/supporters/ankara-logo.svg",
       "program": "Ankara DijitalBüyükanne",
-      "description": "Ankara'da yaşayan ailelere yönelik 0–24 ay dijital destek programı.",
+      "description": "Samsun'da yaşayan ailelere yönelik 0–24 ay dijital destek programı.",
       "families": 0,
       "babies": 0,
       "startDate": "2024",
       "active": true,
       "featured": true,
       "color": "#E31E24"
-    },
-    {
-      "id": "kecioren-belediyesi",
-      "slug": "kecioren-belediyesi",
-      "name": "Keçiören Belediyesi",
-      "shortName": "Keçiören",
-      "type": "belediye",
-      "city": "Ankara",
-      "logo": "/images/supporters/kecioren-logo.svg",
-      "program": "Keçiören DijitalBüyükanne",
-      "description": "Keçiören'de yaşayan ailelere özel bebek ve aile destek programı.",
-      "families": 0,
-      "babies": 0,
-      "startDate": "2024",
-      "active": true,
-      "featured": true,
-      "color": "#0066B3"
     }
   ]
 }

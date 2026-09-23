@@ -1,9 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Check, ArrowRight, Building2, Smartphone } from "lucide-react";
+import siteContent from "@/data/site-content.json";
 
 export default function InstitutionsHero() {
-  const features = [
+  const defaultFeatures = [
     "Kuruma özel mobil uygulama yayını",
     "Kurumsal logo ve görsel kimlik uyumu",
     "App Store & Google Play mağaza yayını",
@@ -13,6 +14,8 @@ export default function InstitutionsHero() {
     "Yetkili kurum yönetim ve takip paneli",
     "Şeffaf sosyal etki analitiği & SROI raporu",
   ];
+
+  const features = siteContent.institutionsHero?.checklist || defaultFeatures;
 
   return (
     <section className="py-20 md:py-28 px-4 md:px-8 bg-gradient-to-b from-white via-[#F0F8FF] to-white text-[#0B1E3B] relative overflow-hidden">
@@ -37,23 +40,15 @@ export default function InstitutionsHero() {
           <div className="lg:col-span-7 flex flex-col items-start text-left">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sky-50 text-sky-950 text-xs font-bold tracking-wider uppercase mb-5 border border-sky-200/80 shadow-xs backdrop-blur-md">
               <Building2 size={14} className="text-sky-600" />
-              <span>Kurumlar & Belediyeler İçin</span>
+              <span>{siteContent.institutionsHero?.eyebrow || "Kurumlar & Belediyeler İçin"}</span>
             </div>
 
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#0B1E3B] leading-tight mb-4">
-              Bu, kurumunuzun kendi{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0284C7] via-[#0EA5E9] to-[#FF5A43]">
-                aile uygulaması
-              </span>{' '}
-              olabilir.
+              {siteContent.institutionsHero?.title || "Bu, kurumunuzun kendi aile uygulaması olabilir."}
             </h2>
 
-            <p className="text-lg sm:text-xl text-sky-900 font-semibold mb-4">
-              Şehrinize ve kurumunuza özel DijitalBüyükanne.
-            </p>
-
             <p className="text-slate-600 text-sm sm:text-base leading-relaxed mb-8 max-w-xl font-normal">
-              DijitalBüyükanne altyapısı belediyenizin veya kurumunuzun adı, logosu, kurumsal renkleri ve yerel hizmetleriyle tamamen özelleştirilebilir ve mobil uygulama mağazalarında kurumunuza özel resmi uygulama olarak yayınlanabilir.
+              {siteContent.institutionsHero?.subtitle || "Şehrinize ve kurumunuza özel DijitalBüyükanne. Tüm teknik altyapı bizden, yerel sosyal etki kurumunuzun markasıyla ailelere."}
             </p>
 
             {/* Özellikler Matrisi */}
@@ -79,7 +74,7 @@ export default function InstitutionsHero() {
                 href="/kurumlar"
                 className="relative overflow-hidden group inline-flex items-center gap-2.5 px-7 py-3.5 bg-gradient-to-r from-[#FF5A43] via-[#FF6D55] to-[#F0442B] hover:bg-coral-600 text-white font-bold rounded-2xl transition-all duration-300 shadow-lg shadow-coral/30 hover:shadow-coral/50 hover:-translate-y-0.5 active:scale-98 text-sm sm:text-base"
               >
-                <span className="relative z-10">Kurumumuz İçin Demo İstiyorum</span>
+                <span className="relative z-10">{siteContent.institutionsHero?.ctaText || "Kurumumuz İçin Demo İstiyorum"}</span>
                 <ArrowRight size={16} className="relative z-10 group-hover:translate-x-1 transition-transform" />
               </Link>
 

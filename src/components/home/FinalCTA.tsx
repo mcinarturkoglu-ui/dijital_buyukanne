@@ -1,7 +1,10 @@
 import Link from "next/link";
 import { ArrowRight, Heart, Sparkles, Baby, Building2 } from "lucide-react";
+import siteContent from "@/data/site-content.json";
 
 export default function FinalCTA() {
+  const content = siteContent.finalCTA || {};
+
   return (
     <section className="relative py-28 px-4 md:px-8 bg-gradient-to-br from-[#181D42] via-[#222958] to-[#1E234D] text-white overflow-hidden">
       {/* Decorative background elements */}
@@ -22,7 +25,7 @@ export default function FinalCTA() {
         {/* Eyebrow pill */}
         <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/5 text-sky-300 text-xs md:text-sm font-semibold mb-8 backdrop-blur-md border border-white/10 shadow-sm">
           <Heart size={14} className="text-coral fill-coral animate-pulse" />
-          <span>Bir bebeğin geleceğine birlikte dokunalım</span>
+          <span>{content.eyebrow || "Bir bebeğin geleceğine birlikte dokunalım"}</span>
           <Sparkles size={14} className="text-sky-400/60" />
         </div>
 
@@ -36,14 +39,12 @@ export default function FinalCTA() {
           Her şehir için
         </p>
 
-        <h2 className="text-3xl sm:text-4xl md:text-6xl font-extrabold tracking-tight mb-8 leading-tight text-white">
-          Bir bebeğe destek olmak, <br className="hidden sm:inline" />
-          bir geleceğe dokunmaktır.
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight mb-8 leading-tight text-white">
+          {content.title || "Bir bebeğe destek olmak, bir geleceğe dokunmaktır."}
         </h2>
 
         <p className="text-lg md:text-xl text-white/70 max-w-2xl mx-auto mb-12 leading-relaxed font-light">
-          Daha fazla bebeğin ve ailenin gelişim yolculuğunda birlikte yer alabiliriz.
-          Belediyeler, vakıflar ve destekçiler için teknoloji ve sosyal etki bir arada.
+          {content.subtitle || "Daha fazla bebeğin ve ailenin gelişim yolculuğunda birlikte yer alabiliriz. Belediyeler, vakıflar ve destekçiler için teknoloji ve sosyal etki bir arada."}
         </p>
 
         {/* CTA Buttons */}
@@ -53,14 +54,14 @@ export default function FinalCTA() {
             className="shimmer-btn w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-coral to-coral-600 text-white font-bold rounded-2xl transition-all duration-300 shadow-xl hover:shadow-2xl hover:shadow-coral/25 hover:-translate-y-1 flex items-center justify-center gap-2 text-base"
           >
             <Building2 size={18} />
-            <span>Kurum Olarak Destek Ol</span>
+            <span>{content.primaryButton || "Kurum Olarak Destek Ol"}</span>
             <ArrowRight size={18} />
           </Link>
           <Link
             href="/uygulama"
-            className="w-full sm:w-auto px-8 py-4 bg-white/5 border-2 border-white/40 hover:bg-white hover:text-navy active:bg-slate-100 text-white font-bold rounded-2xl transition-all duration-300 text-base shadow-sm backdrop-blur-sm hover:shadow-lg"
+            className="w-full sm:w-auto px-8 py-4 bg-white/10 hover:bg-white/15 text-white font-semibold rounded-2xl transition-all duration-300 border border-white/20 hover:border-white/40 flex items-center justify-center gap-2 text-base backdrop-blur-sm"
           >
-            DijitalBüyükanne&apos;yi Kullan
+            <span>{content.secondaryButton || "Uygulamayı Keşfet"}</span>
           </Link>
         </div>
 

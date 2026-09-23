@@ -4,7 +4,6 @@ import StoryChapterRibbon from "@/components/home/StoryChapterRibbon";
 import HeroSection from "@/components/home/HeroSection";
 import TimelineSection from "@/components/home/TimelineSection";
 import SolutionSection from "@/components/home/SolutionSection";
-import InteractiveSandbox from "@/components/home/InteractiveSandbox";
 import MotionAnalysis from "@/components/home/MotionAnalysis";
 import SkinAnalysis from "@/components/home/SkinAnalysis";
 import StoolAnalysis from "@/components/home/StoolAnalysis";
@@ -15,9 +14,9 @@ import ScientificBoard from "@/components/home/ScientificBoard";
 import CaseStudies from "@/components/home/CaseStudies";
 import InstitutionsHero from "@/components/home/InstitutionsHero";
 import SocialImpactCalculator from "@/components/home/SocialImpactCalculator";
-import MeasurableImpact from "@/components/home/MeasurableImpact";
 import SupportersPreview from "@/components/home/SupportersPreview";
 import FinalCTA from "@/components/home/FinalCTA";
+import siteContent from "@/data/site-content.json";
 
 export const metadata: Metadata = {
   title: "DijitalBüyükanne — Her bebeğin bir Dijital Büyükannesi olsun",
@@ -32,6 +31,8 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
+  const ribbons = siteContent.chapterRibbons || {};
+
   return (
     <>
       {/* Yönetici Düzeyi Akıllı Gezinme Çubuğu (Masaüstü) */}
@@ -47,10 +48,10 @@ export default function HomePage() {
 
       {/* Kurumsal Geçiş 01 -> 02 */}
       <StoryChapterRibbon
-        chapterNumber="BÖLÜM 02"
-        chapterTitle="NÖROGELİŞİMSEL DÖNGÜ"
-        headline="İlk 24 Ay: Büyümenin Kritik Kilometre Taşları"
-        description="İlk iki yılda beyin ve motor gelişiminin temelleri atılır. Yapılandırılmış simülatörümüzle her ayın nörogelişimsel sıçramalarını yakından takip edin."
+        chapterNumber={ribbons.ribbon2?.chapterNumber || "BÖLÜM 02"}
+        chapterTitle={ribbons.ribbon2?.chapterTitle || "NÖROGELİŞİMSEL DÖNGÜ"}
+        headline={ribbons.ribbon2?.headline || "İlk 24 Ay: Büyümenin Kritik Kilometre Taşları"}
+        description={ribbons.ribbon2?.description || "İlk iki yılda beyin ve motor gelişiminin temelleri atılır. Yapılandırılmış simülatörümüzle her ayın nörogelişimsel sıçramalarını yakından takip edin."}
         anchorId="ribbon-2"
         theme="light"
         accent="coral"
@@ -66,10 +67,10 @@ export default function HomePage() {
 
       {/* Kurumsal Geçiş 02 -> 03 */}
       <StoryChapterRibbon
-        chapterNumber="BÖLÜM 03"
-        chapterTitle="KLİNİK TARAMA PROTOKOLLERİ"
-        headline="Yapay Zekâ Destekli 3 Akıllı Tarama Protokolü"
-        description="Ebeveyn gözünden kaçabilecek erken motor asimetrileri, cilt hassasiyetleri ve sindirim ipuçları için algoritmik ön tarama ve hekim sevk köprüsü."
+        chapterNumber={ribbons.ribbon3?.chapterNumber || "BÖLÜM 03"}
+        chapterTitle={ribbons.ribbon3?.chapterTitle || "KLİNİK TARAMA PROTOKOLLERİ"}
+        headline={ribbons.ribbon3?.headline || "Yapay Zekâ Destekli 3 Akıllı Tarama Protokolü"}
+        description={ribbons.ribbon3?.description || "Ebeveyn gözünden kaçabilecek erken motor asimetrileri, cilt hassasiyetleri ve sindirim ipuçları için algoritmik ön tarama ve hekim sevk köprüsü."}
         anchorId="ribbon-3"
         theme="light"
         accent="sky"
@@ -81,7 +82,6 @@ export default function HomePage() {
           ───────────────────────────────────────────────────────────── */}
       <div id="bolum-3" className="scroll-mt-16">
         <SolutionSection />
-        <InteractiveSandbox />
         <MotionAnalysis />
         <SkinAnalysis />
         <StoolAnalysis />
@@ -89,10 +89,10 @@ export default function HomePage() {
 
       {/* Kurumsal Geçiş 03 -> 04 */}
       <StoryChapterRibbon
-        chapterNumber="BÖLÜM 04"
-        chapterTitle="KESİNTİSİZ DESTEK EKOSİSTEMİ"
-        headline="7/24 Dijital Rehberlik ve Hekim Güvencesi"
-        description="Günün her saatinde güvenilir ilk danışma ve yapay zekâ filtreli uzman yönlendirmesiyle ailelerin yanındayız. Klinik kararlar uzman hekimlerin sorumluluğunda yürütülür."
+        chapterNumber={ribbons.ribbon4?.chapterNumber || "BÖLÜM 04"}
+        chapterTitle={ribbons.ribbon4?.chapterTitle || "KESİNTİSİZ DESTEK EKOSİSTEMİ"}
+        headline={ribbons.ribbon4?.headline || "7/24 Dijital Rehberlik ve Hekim Güvencesi"}
+        description={ribbons.ribbon4?.description || "Günün her saatinde güvenilir ilk danışma ve yapay zekâ filtreli uzman yönlendirmesiyle ailelerin yanındayız. Klinik kararlar uzman hekimlerin sorumluluğunda yürütülür."}
         anchorId="ribbon-4"
         theme="light"
         accent="coral"
@@ -109,10 +109,10 @@ export default function HomePage() {
 
       {/* Kurumsal Geçiş 04 -> 05 */}
       <StoryChapterRibbon
-        chapterNumber="BÖLÜM 05"
-        chapterTitle="KAPSAYICI SAĞLIK & BİLİM"
-        headline="Özel Gereksinimli Çocuklar ve Bilimsel Çerçeve"
-        description="Prematüre doğum, serebral palsi riski veya gelişimsel gecikmelerde erken müdahale penceresini yakalayan klinik metodoloji ve bağımsız Bilimsel Danışma Kurulu güvencesi."
+        chapterNumber={ribbons.ribbon5?.chapterNumber || "BÖLÜM 05"}
+        chapterTitle={ribbons.ribbon5?.chapterTitle || "KAPSAYICI SAĞLIK & BİLİM"}
+        headline={ribbons.ribbon5?.headline || "Özel Gereksinimli Çocuklar ve Bilimsel Çerçeve"}
+        description={ribbons.ribbon5?.description || "Prematüre doğum, serebral palsi riski veya gelişimsel gecikmelerde erken müdahale penceresini yakalayan klinik metodoloji ve bağımsız Bilimsel Danışma Kurulu güvencesi."}
         anchorId="ribbon-5"
         theme="light"
         accent="coral"
@@ -130,10 +130,10 @@ export default function HomePage() {
 
       {/* Kurumsal Geçiş 05 -> 06 */}
       <StoryChapterRibbon
-        chapterNumber="BÖLÜM 06"
-        chapterTitle="KAMU İŞ BİRLİĞİ & SOSYAL ETKİ"
-        headline="Yerel Yönetimler İçin Şehir Ölçeğinde Aile Ekosistemi"
-        description="Büyükşehir ve ilçe belediyeleriyle entegre olarak her haneye ücretsiz ulaşan kurumsal mobil altyapı, ölçülebilir sosyal etki ve veri destekli kamu sağlığı yönetimi."
+        chapterNumber={ribbons.ribbon6?.chapterNumber || "BÖLÜM 06"}
+        chapterTitle={ribbons.ribbon6?.chapterTitle || "KAMU İŞ BİRLİĞİ & SOSYAL ETKİ"}
+        headline={ribbons.ribbon6?.headline || "Yerel Yönetimler İçin Şehir Ölçeğinde Aile Ekosistemi"}
+        description={ribbons.ribbon6?.description || "Büyükşehir ve ilçe belediyeleriyle entegre olarak her haneye ücretsiz ulaşan kurumsal mobil altyapı, ölçülebilir sosyal etki ve veri destekli kamu sağlığı yönetimi."}
         anchorId="ribbon-6"
         theme="light"
         accent="sky"
@@ -146,7 +146,6 @@ export default function HomePage() {
       <div id="bolum-6" className="scroll-mt-16">
         <InstitutionsHero />
         <SocialImpactCalculator />
-        <MeasurableImpact />
         <SupportersPreview />
         <FinalCTA />
       </div>
