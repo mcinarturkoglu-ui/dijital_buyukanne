@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import StoryProgressTracker from "@/components/home/StoryProgressTracker";
+import SystemStoryModal from "@/components/home/SystemStoryModal";
 import StoryChapterRibbon from "@/components/home/StoryChapterRibbon";
 import HeroSection from "@/components/home/HeroSection";
 import TimelineSection from "@/components/home/TimelineSection";
@@ -37,6 +38,9 @@ export default function HomePage() {
     <>
       {/* Yönetici Düzeyi Akıllı Gezinme Çubuğu (Masaüstü) */}
       <StoryProgressTracker />
+
+      {/* Anne, Baba ve Bebek Hikayeli Sinematik Açılır Sistem Animasyonu */}
+      <SystemStoryModal />
 
       {/* ─────────────────────────────────────────────────────────────
           BÖLÜM 01: EKOSİSTEM VE VİZYON
