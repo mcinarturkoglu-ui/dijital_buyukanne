@@ -15,7 +15,8 @@ import {
   Zap,
   ArrowRight,
   CheckCircle2,
-  Heart
+  Heart,
+  Gift
 } from "lucide-react";
 
 // Official Rotary Wheel SVG
@@ -65,7 +66,7 @@ export default function RotaryEcosystemModal({ isOpen, onClose }: RotaryEcosyste
   const [activeStep, setActiveStep] = useState<number>(0);
   const [isPlaying, setIsPlaying] = useState<boolean>(true);
 
-  // Auto progression every 4 seconds when playing
+  // Auto progression every 4.2 seconds when playing
   useEffect(() => {
     if (!isOpen || !isPlaying) return;
     const timer = setInterval(() => {
@@ -94,16 +95,16 @@ export default function RotaryEcosystemModal({ isOpen, onClose }: RotaryEcosyste
   const steps = [
     {
       id: 0,
-      title: "1. Rotary Kulüp Destekleri",
-      subtitle: "Hibe, Sponsorluk & Sosyal Adalet Gücü",
-      badge: "KENDİNDEN ÖNCE HİZMET",
+      title: "1. Rotary Kulüp Sponsorluğu & Sosyal Etki",
+      subtitle: "Hibe Desteği, 'Kendinden Önce Hizmet' & Toplumsal Güç",
+      badge: "ROTARY ÖNCELİĞİ • KENDİNDEN ÖNCE HİZMET",
       badgeColor: "bg-[#F7A81B]/20 text-[#B87A00] border-[#F7A81B]/50",
       accentBg: "from-[#F7A81B]/15 to-amber-500/5",
       accentBorder: "border-[#F7A81B]",
       accentText: "text-[#B87A00]",
       glowColor: "rgba(247, 168, 27, 0.4)",
-      headline: "Rotaryenlerin İyilik Hareketi Bebeklere Umut Oluyor",
-      desc: "Rotary Kulübü bütçeleri, District Grant ve Global Grant eşleştirmeli fonlarıyla yüzlerce ailenin evine yapay zekâ destekli sağlık güvencesi %100 ücretsiz ulaştırılır.",
+      headline: "Rotaryenlerin Sosyal Gücü: Her Bebeğe %100 Ücretsiz Erken Teşhis",
+      desc: "Rotary Kulübü bütçeleri, District Grant ve Global Grant eşleştirmeli fonlarıyla; dar gelirli veya hekime uzak yüzlerce aileye yapay zekâ destekli sağlık taraması %100 ücretsiz ulaştırılır. Kulübünüzün adı uygulamanın açılış ekranında yer alır, projenin her aşaması canlı denetim panelinden şeffafça izlenir.",
       icon: (
         <div className="relative w-28 h-28 flex items-center justify-center">
           <div className="absolute inset-0 rounded-full bg-[#F7A81B]/25 blur-xl animate-pulse" />
@@ -118,23 +119,24 @@ export default function RotaryEcosystemModal({ isOpen, onClose }: RotaryEcosyste
         </div>
       ),
       bullets: [
-        "Kulübünüz adına %100 ücretsiz aile lisansları",
-        "Rotary Vakfı 7 Odak Alanı: Anne ve Çocuk Sağlığı",
-        "Canlı şeffaf yönetim ve denetim paneli"
+        "Kulübünüz adına %100 ücretsiz aile lisansları ve kalıcı itibar",
+        "Rotary 7 Odak Alanı: Anne ve Çocuk Sağlığı ile Hastalıkların Önlenmesi",
+        "Kulüp yönetimi için 7/24 şeffaf canlı sosyal etki ve vaka takip paneli",
+        "Her bebeğe Rotary kulübünüzün armağanı özel tasarım ipek fular kiti"
       ]
     },
     {
       id: 1,
-      title: "2. Mobil Uygulama Sistemimiz",
-      subtitle: "BabySensAI & Prechtl GMA Kinematik Analiz",
+      title: "2. Mobil Uygulama Sistemi",
+      subtitle: "Rotary Desteğiyle Çalışan BabySensAI Altyapısı",
       badge: "BİLİMSEL YAPAY ZEKÂ",
       badgeColor: "bg-[#00A2E0]/20 text-[#007AA8] border-[#00A2E0]/50",
       accentBg: "from-[#00A2E0]/15 to-cyan-500/5",
       accentBorder: "border-[#00A2E0]",
       accentText: "text-[#007AA8]",
       glowColor: "rgba(0, 162, 224, 0.4)",
-      headline: "Hastaneye Gitmeden, Evden 2 Dakikalık Video ile Tarama",
-      desc: "Evde telefonla çekilen kısa videodan bebeğin 18 eklem noktası taranır. Avrupa Prechtl standardındaki hareket analizi ve 7/24 pediatrik yapay zekâ asistanı aileye rehberlik eder.",
+      headline: "Rotary Sayesinde: Evden 2 Dakikalık Video ile Erken Tarama",
+      desc: "Rotary'nin sponsorluğu ile çalışan sistem; evde telefonla çekilen 2 dakikalık video üzerinden bebeğin 18 eklem hareketini analiz eder. Avrupa Prechtl standardındaki erken tanı algoritması ve 7/24 pediatrik yapay zekâ asistanı aileye rehberlik eder.",
       icon: (
         <div className="relative w-28 h-28 flex items-center justify-center">
           <div className="absolute inset-0 rounded-full bg-[#00A2E0]/20 blur-xl animate-pulse" />
@@ -157,21 +159,21 @@ export default function RotaryEcosystemModal({ isOpen, onClose }: RotaryEcosyste
       bullets: [
         "Prechtl GMA video analizi ile nöromotor tarama",
         "Yapay zekâ destekli pediatrik ön değerlendirmeler",
-        "Gece 03:00'te bile kesintisiz 7/24 aile asistanı"
+        "Gece 03:00'te bile kesintisiz 7/24 uzman desteği cebinizde"
       ]
     },
     {
       id: 2,
       title: "3. Bebek & Erken Teşhis Kalkanı",
       subtitle: "0–6 Ay Geri Dönülemez Müdahale Penceresi",
-      badge: "KRİTİK PLASTİSİTE",
+      badge: "KRİTİK BEYİN PLASTİSİTESİ",
       badgeColor: "bg-[#D41367]/20 text-[#A00E4D] border-[#D41367]/50",
       accentBg: "from-[#D41367]/15 to-pink-500/5",
       accentBorder: "border-[#D41367]",
       accentText: "text-[#D41367]",
       glowColor: "rgba(212, 19, 103, 0.4)",
-      headline: "İlk 6 Ayda Teşhis: Bir İnsanın Yürümesini Sağlar",
-      desc: "Bebek beyninin gelişim hızı (plastisite) ilk 6 ayda zirvededir. Serebral palsi veya motor gerilik bu evrede yakalanıp fizik tedaviye başlandığında, kalıcı sakatlık riski nötralize edilir.",
+      headline: "Rotary Şefkatiyle: Bir İnsanın Hayat Boyu Yürümesini Sağlayın",
+      desc: "Bebek beyninin gelişim hızı (plastisite) ilk 6 ayda zirvededir. Serebral palsi veya motor gerilik bu evrede yakalanıp fizik tedaviye başlandığında, kalıcı sakatlık riski nötralize edilir ve çocuk bağımsız yürüyebilir.",
       icon: (
         <div className="relative w-28 h-28 flex items-center justify-center">
           <div className="absolute inset-0 rounded-full bg-[#D41367]/25 blur-xl animate-pulse" />
@@ -192,21 +194,21 @@ export default function RotaryEcosystemModal({ isOpen, onClose }: RotaryEcosyste
       bullets: [
         "Serebral palsi ve gelişimsel motor risklerin erken tespiti",
         "Zamanında pediatrik fizyoterapi ve hekim yönlendirmesi",
-        "Ailede panik yerine bilinçli ve sevgi dolu takip"
+        "Ömür boyu yatağa veya tekerlekli sandalyeye bağımlılığı önleme"
       ]
     },
     {
       id: 3,
       title: "4. Engelleri Aşan Aydınlık Bir Gelecek",
       subtitle: "Sosyo-Ekonomik Eşitlik & Bağımsız Yarınlar",
-      badge: "KALICI TOPLUMSAL ETKİ",
+      badge: "KALICI TOPLUMSAL DÖNÜŞÜM",
       badgeColor: "bg-[#009739]/20 text-[#006626] border-[#009739]/50",
       accentBg: "from-[#009739]/15 to-emerald-500/5",
       accentBorder: "border-[#009739]",
       accentText: "text-[#009739]",
       glowColor: "rgba(0, 151, 57, 0.4)",
       headline: "Her Bebeğe Eşit Fırsat, Bağımsız ve Aydınlık Bir Ömür",
-      desc: "İster metropolde ister Anadolu'nun bir köyünde doğsun; Rotary ve Dijital Büyükanne sayesinde en ileri yapay zekâ her bebeğe eşit ulaşır. Hedefimiz: Kendi ayakları üzerinde durabilen, tekerlekli sandalyeye mahkûm olmayan nesiller yetiştirmektir.",
+      desc: "İster metropolde ister Anadolu'nun bir köyünde doğsun; Rotary kulübünüzün desteğiyle en ileri teknoloji her bebeğe eşit ulaşır. Hedefimiz: Kendi ayakları üzerinde durabilen, tekerlekli sandalyeye mahkûm olmayan nesiller yetiştirmektir.",
       icon: (
         <div className="relative w-28 h-28 flex items-center justify-center">
           <div className="absolute inset-0 rounded-full bg-[#009739]/25 blur-xl animate-pulse" />
@@ -222,8 +224,8 @@ export default function RotaryEcosystemModal({ isOpen, onClose }: RotaryEcosyste
         </div>
       ),
       bullets: [
-        "Maddi durumu ne olursa olsun her bebeğe %100 eşit hak",
-        "Ömür boyu yatağa bağımlılığı önleyen erken teşhis gücü",
+        "Maddi durumu ne olursa olsun her bebeğe %100 eşit sağlık hakkı",
+        "Ömür boyu engelliliği önleyen erken teşhis gücü",
         "Rotary'nin 'Kendinden Önce Hizmet' mirasının en somut eseri"
       ]
     }
@@ -240,7 +242,7 @@ export default function RotaryEcosystemModal({ isOpen, onClose }: RotaryEcosyste
         onClick={(e) => e.stopPropagation()}
       >
         
-        {/* Top Header Bar */}
+        {/* Top Header Bar - Rotary Focused */}
         <div className="bg-gradient-to-r from-[#17458F] via-[#103E8A] to-[#0A2668] px-5 py-4 text-white flex items-center justify-between border-b border-amber-300/30">
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-xl bg-white/10 p-1 flex items-center justify-center text-[#F7A81B]">
@@ -249,14 +251,14 @@ export default function RotaryEcosystemModal({ isOpen, onClose }: RotaryEcosyste
             <div>
               <div className="flex items-center gap-2">
                 <span className="text-[10px] font-extrabold uppercase tracking-widest text-[#F7A81B] bg-white/10 px-2 py-0.5 rounded">
-                  ROTARY ORTAKLIK VİZYONU
+                  ROTARY VAKFI & KULÜPLERİ SOSYAL ETKİ VİZYONU
                 </span>
                 <span className="text-xs text-cyan-200 font-mono hidden sm:inline">
-                  Canlı Ekosistem Haritası
+                  Canlı Süreç Haritası
                 </span>
               </div>
               <h3 className="text-sm sm:text-base font-black text-white">
-                Bebek Sağlığı • Rotary Destekleri • Mobil Yapay Zekâ
+                Rotary Destekleri • Bebek Sağlığı • Erken Teşhis Yapay Zekâsı
               </h3>
             </div>
           </div>
@@ -350,7 +352,7 @@ export default function RotaryEcosystemModal({ isOpen, onClose }: RotaryEcosyste
             <div className="md:col-span-8 space-y-4 text-left">
               <div className="space-y-1">
                 <span className="text-[11px] font-extrabold text-[#17458F] uppercase tracking-wider">
-                  AŞAMA {activeStep + 1} / 4
+                  AŞAMA {activeStep + 1} / 4 &bull; SOSYAL ETKİ VE DESTEK
                 </span>
                 <h2 className="text-xl sm:text-2xl font-black text-slate-900 leading-tight">
                   {current.headline}
@@ -376,7 +378,7 @@ export default function RotaryEcosystemModal({ isOpen, onClose }: RotaryEcosyste
                 <div className="flex items-center gap-2">
                   <Zap size={16} className={current.accentText} />
                   <span>
-                    <strong>Rotary Etkisi:</strong> Bu adım, Rotary kulübünüzün kamuoyundaki saygınlığını ve sosyal gücünü pekiştirir.
+                    <strong>Rotary Sosyal Etkisi:</strong> Kulübünüz bir aileye girdiğinde, bir insanın ömür boyu yürüyebilmesini sağlar.
                   </span>
                 </div>
                 <button
@@ -397,9 +399,9 @@ export default function RotaryEcosystemModal({ isOpen, onClose }: RotaryEcosyste
 
         {/* Modal Footer & CTA Bar */}
         <div className="bg-slate-100 px-6 py-4 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <div className="flex items-center gap-2 text-xs text-slate-500">
+          <div className="flex items-center gap-2 text-xs text-slate-600 font-medium">
             <span className="w-2 h-2 rounded-full bg-[#009739] animate-pulse" />
-            <span>Rotary 2420, 2430 ve 2440. Bölgeler İçin Hazır Protokol Formatı</span>
+            <span>Rotary 2420, 2430 ve 2440. Bölgeler İçin Protokol Formatı</span>
           </div>
 
           <div className="flex items-center gap-2 w-full sm:w-auto">

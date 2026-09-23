@@ -27,7 +27,8 @@ import {
   Scale,
   Compass,
   Check,
-  Play
+  Play,
+  Gift
 } from "lucide-react";
 import RotaryEcosystemModal from "@/components/rotary/RotaryEcosystemModal";
 
@@ -173,38 +174,15 @@ export default function RotaryPartnershipPage() {
 
           {/* Creative Slogan Badge */}
           <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-amber-50 border border-[#F7A81B]/50 text-amber-900 text-xs sm:text-sm font-bold shadow-sm">
-            <Sparkles size={16} className="text-[#F7A81B] shrink-0" />
+            <Sparkles size={16} className="text-[#F7A81B]" />
             <span>&ldquo;Engelleri Aşan İlk Adımlar: Her Bebeğe Bağımsız ve Aydınlık Bir Gelecek&rdquo;</span>
           </div>
 
-          {/* Clean, High-Impact CTA Area */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 pt-2">
-            
-            {/* Pop-up Pencereyi Aç Butonu */}
-            <button
-              onClick={() => setIsModalOpen(true)}
-              className="w-full sm:w-auto px-7 py-3.5 rounded-2xl bg-[#17458F] hover:bg-[#103E8A] text-white font-extrabold text-sm sm:text-base shadow-lg shadow-[#17458F]/25 hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2.5 cursor-pointer group"
-            >
-              <div className="w-6 h-6 rounded-full bg-[#F7A81B] text-[#17458F] flex items-center justify-center shrink-0">
-                <Play size={12} className="fill-current ml-0.5" />
-              </div>
-              <span>Canlı Ekosistem Animasyonunu İzle (Popup)</span>
-            </button>
-
-            <a
-              href="#etki-hesaplayici"
-              className="w-full sm:w-auto px-7 py-3.5 rounded-2xl bg-white hover:bg-slate-50 text-slate-700 font-bold text-sm sm:text-base border border-slate-300 shadow-sm transition-all flex items-center justify-center gap-2 cursor-pointer"
-            >
-              <BarChart3 size={17} className="text-[#17458F]" />
-              <span>Sosyal Etki Simülatörü</span>
-            </a>
-          </div>
-
           {/* 3 Balanced Trust Badges */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 pt-4 text-left">
-            <div className="p-3.5 rounded-2xl bg-white border border-slate-200/80 shadow-sm flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-amber-100 text-[#B87A00] flex items-center justify-center shrink-0">
-                <Award size={18} />
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 pt-2 text-left">
+            <div className="p-4 rounded-2xl bg-white border border-slate-200/80 shadow-sm flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-amber-100 text-[#B87A00] flex items-center justify-center shrink-0">
+                <Award size={20} />
               </div>
               <div>
                 <p className="text-xs font-black text-[#17458F]">Yüksek Public Image</p>
@@ -212,9 +190,9 @@ export default function RotaryPartnershipPage() {
               </div>
             </div>
 
-            <div className="p-3.5 rounded-2xl bg-white border border-slate-200/80 shadow-sm flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-sky-100 text-[#0067C8] flex items-center justify-center shrink-0">
-                <Activity size={18} />
+            <div className="p-4 rounded-2xl bg-white border border-slate-200/80 shadow-sm flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-sky-100 text-[#0067C8] flex items-center justify-center shrink-0">
+                <Activity size={20} />
               </div>
               <div>
                 <p className="text-xs font-black text-[#17458F]">Hayat Kurtaran Teşhis</p>
@@ -222,9 +200,9 @@ export default function RotaryPartnershipPage() {
               </div>
             </div>
 
-            <div className="p-3.5 rounded-2xl bg-white border border-slate-200/80 shadow-sm flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-emerald-100 text-[#009739] flex items-center justify-center shrink-0">
-                <Globe2 size={18} />
+            <div className="p-4 rounded-2xl bg-white border border-slate-200/80 shadow-sm flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-emerald-100 text-[#009739] flex items-center justify-center shrink-0">
+                <Globe2 size={20} />
               </div>
               <div>
                 <p className="text-xs font-black text-[#17458F]">District & Global Grant</p>
@@ -277,53 +255,69 @@ export default function RotaryPartnershipPage() {
       </section>
 
       {/* ─────────────────────────────────────────────────────────────
-          4. ROTARY 4'LÜ ÖZDENETİM (THE 4-WAY TEST) UYUMU
+          4. ROTARY 4'LÜ ÖZDENETİM (THE 4-WAY TEST) UYUMU — BÜYÜK VE NET FONT
           ───────────────────────────────────────────────────────────── */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white border-b border-slate-200">
-        <div className="max-w-5xl mx-auto space-y-8">
+        <div className="max-w-5xl mx-auto space-y-9">
           
           <div className="text-center space-y-2">
-            <span className="text-[#17458F] font-mono text-xs font-bold tracking-widest uppercase">
+            <span className="text-[#17458F] font-mono text-sm sm:text-base font-extrabold tracking-widest uppercase">
               ETİK VE KUSURSUZ DEĞERLER
             </span>
-            <h2 className="text-2xl sm:text-3xl font-black text-slate-900">
+            <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
               Rotary&apos;nin 4&apos;lü Özdenetim İlkelerine %100 Uyum
             </h2>
-            <p className="text-slate-600 text-xs sm:text-sm max-w-xl mx-auto">
+            <p className="text-slate-600 text-sm sm:text-base max-w-2xl mx-auto font-medium">
               Düşündüğümüz, söylediğimiz ve yaptığımız her şeyde Rotary felsefesine tam sadakat:
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             
-            <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 hover:border-[#17458F] transition-all space-y-2 shadow-sm">
-              <span className="text-[#F7A81B] font-mono font-bold text-xs bg-amber-50 px-2 py-0.5 rounded">1. SORU</span>
-              <p className="text-xs font-bold text-[#17458F]">Gerçeğe uygun mu?</p>
-              <p className="text-[11px] text-slate-600 leading-relaxed">
+            <div className="p-6 rounded-3xl bg-slate-50/70 border-2 border-slate-200 hover:border-[#17458F] hover:shadow-lg transition-all space-y-3">
+              <span className="text-[#B87A00] font-mono font-black text-xs sm:text-sm bg-amber-100 px-3 py-1 rounded-lg inline-block">
+                1. SORU
+              </span>
+              <h3 className="text-base sm:text-lg font-black text-[#17458F]">
+                Gerçeğe uygun mu?
+              </h3>
+              <p className="text-sm sm:text-base text-slate-700 leading-relaxed font-medium">
                 Avrupa Pediatri ve Prechtl GMA standartlarında, bilimsel olarak kanıtlanmış kinematik algoritma.
               </p>
             </div>
 
-            <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 hover:border-[#17458F] transition-all space-y-2 shadow-sm">
-              <span className="text-[#F7A81B] font-mono font-bold text-xs bg-amber-50 px-2 py-0.5 rounded">2. SORU</span>
-              <p className="text-xs font-bold text-[#17458F]">İlgililerin tümü için adil mi?</p>
-              <p className="text-[11px] text-slate-600 leading-relaxed">
+            <div className="p-6 rounded-3xl bg-slate-50/70 border-2 border-slate-200 hover:border-[#17458F] hover:shadow-lg transition-all space-y-3">
+              <span className="text-[#B87A00] font-mono font-black text-xs sm:text-sm bg-amber-100 px-3 py-1 rounded-lg inline-block">
+                2. SORU
+              </span>
+              <h3 className="text-base sm:text-lg font-black text-[#17458F]">
+                İlgililerin tümü için adil mi?
+              </h3>
+              <p className="text-sm sm:text-base text-slate-700 leading-relaxed font-medium">
                 Sosyoekonomik durumuna bakılmaksızın her bebeğe eşit ve %100 ücretsiz erişim imkânı.
               </p>
             </div>
 
-            <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 hover:border-[#17458F] transition-all space-y-2 shadow-sm">
-              <span className="text-[#F7A81B] font-mono font-bold text-xs bg-amber-50 px-2 py-0.5 rounded">3. SORU</span>
-              <p className="text-xs font-bold text-[#17458F]">Dostluk ve iyi niyeti geliştirir mi?</p>
-              <p className="text-[11px] text-slate-600 leading-relaxed">
+            <div className="p-6 rounded-3xl bg-slate-50/70 border-2 border-slate-200 hover:border-[#17458F] hover:shadow-lg transition-all space-y-3">
+              <span className="text-[#B87A00] font-mono font-black text-xs sm:text-sm bg-amber-100 px-3 py-1 rounded-lg inline-block">
+                3. SORU
+              </span>
+              <h3 className="text-base sm:text-lg font-black text-[#17458F]">
+                Dostluk ve iyi niyeti geliştirir mi?
+              </h3>
+              <p className="text-sm sm:text-base text-slate-700 leading-relaxed font-medium">
                 Rotary kulübü ile toplum arasında ömür boyu sürecek derin bir şefkat, minnet ve güven bağı kurar.
               </p>
             </div>
 
-            <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 hover:border-[#17458F] transition-all space-y-2 shadow-sm">
-              <span className="text-[#F7A81B] font-mono font-bold text-xs bg-amber-50 px-2 py-0.5 rounded">4. SORU</span>
-              <p className="text-xs font-bold text-[#17458F]">İlgililerin tümü için yararlı mı?</p>
-              <p className="text-[11px] text-slate-600 leading-relaxed">
+            <div className="p-6 rounded-3xl bg-slate-50/70 border-2 border-slate-200 hover:border-[#17458F] hover:shadow-lg transition-all space-y-3">
+              <span className="text-[#B87A00] font-mono font-black text-xs sm:text-sm bg-amber-100 px-3 py-1 rounded-lg inline-block">
+                4. SORU
+              </span>
+              <h3 className="text-base sm:text-lg font-black text-[#17458F]">
+                İlgililerin tümü için yararlı mı?
+              </h3>
+              <p className="text-sm sm:text-base text-slate-700 leading-relaxed font-medium">
                 Bebek için sağlıklı bir gelecek, aile için huzur, sağlık sistemi için erken tanı verimliliği.
               </p>
             </div>
@@ -580,7 +574,104 @@ export default function RotaryPartnershipPage() {
       </section>
 
       {/* ─────────────────────────────────────────────────────────────
-          7. İNTERAKTİF ROTARY SOSYAL ETKİ SİMÜLATÖRÜ
+          7. ROTARY BEBEK VE ANNE HEDİYE KİTİ (ÖZEL TASARIM İPEK FULAR)
+          ───────────────────────────────────────────────────────────── */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white via-amber-50/40 to-white border-b border-slate-200">
+        <div className="max-w-6xl mx-auto space-y-10">
+          
+          <div className="text-center max-w-3xl mx-auto space-y-3">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-100 text-[#B87A00] text-xs font-black uppercase tracking-wider border border-amber-300">
+              <Gift size={15} />
+              <span>SİSTEMİ KULLANACAK BEBEKLERE KULÜP HEDİYESİ</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
+              Her Bebeğe ve Annesine Özel <br className="hidden sm:inline" />
+              <span className="text-[#17458F]">Rotary Kulüp İpek Fuları & Hoş Geldin Hediyesi</span>
+            </h2>
+            <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+              Projeniz kapsamında yapay zekâ taramasına dâhil edilen her bebeğe ve annesine, Rotary kulübünüzün sevgisini ve şefkatini simgeleyen <strong>özel tasarım %100 saf ipek bandana ve fular</strong> hediye kutusuyla doğrudan evlerine ulaştırılır.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            
+            {/* Visual: Adapted Rotary Silk Foulard Mockup */}
+            <div className="lg:col-span-7 flex justify-center">
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-[#17458F]/20 bg-white group">
+                <Image
+                  src="/images/rotary-bebek-hediyesi.jpg"
+                  alt="Rotary Bebek ve Anne İpek Fuları Hediyesi"
+                  width={750}
+                  height={500}
+                  className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute top-4 left-4 bg-[#17458F] text-white text-[11px] font-black uppercase px-3 py-1 rounded-full shadow-md flex items-center gap-1.5 border border-white/20">
+                  <RotaryWheel className="w-3.5 h-3.5 text-[#F7A81B]" />
+                  <span>Rotary Kulübü Özel Armağanı</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Content & Details */}
+            <div className="lg:col-span-5 space-y-3.5">
+              
+              <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm flex items-start gap-3.5">
+                <div className="w-10 h-10 rounded-xl bg-amber-100 text-[#B87A00] flex items-center justify-center shrink-0">
+                  <Gift size={20} />
+                </div>
+                <div>
+                  <h4 className="text-sm font-black text-[#17458F]">Lüks %100 Saf İpek Kumaş</h4>
+                  <p className="text-xs text-slate-600 mt-0.5">
+                    Bebeğin hassas cildine uygun, nefes alan, yumuşak dokulu saten ipek.
+                  </p>
+                </div>
+              </div>
+
+              <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm flex items-start gap-3.5">
+                <div className="w-10 h-10 rounded-xl bg-sky-100 text-[#0067C8] flex items-center justify-center shrink-0">
+                  <Heart size={20} />
+                </div>
+                <div>
+                  <h4 className="text-sm font-black text-[#17458F]">Bebek Bandanası & Anne Fuları</h4>
+                  <p className="text-xs text-slate-600 mt-0.5">
+                    Bebek için sevimli bir boyun bandanası, anne için zarif bir boyun fuları olarak kullanılabilir.
+                  </p>
+                </div>
+              </div>
+
+              <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm flex items-start gap-3.5">
+                <div className="w-10 h-10 rounded-xl bg-indigo-100 text-[#17458F] flex items-center justify-center shrink-0">
+                  <Award size={20} />
+                </div>
+                <div>
+                  <h4 className="text-sm font-black text-[#17458F]">Kalıcı Kulüp Amblemi</h4>
+                  <p className="text-xs text-slate-600 mt-0.5">
+                    Altın yaldızlı Rotary Çarkı ve kulüp ismiyle dokunmuş, nesiller boyu saklanacak prestijli bir hatıra.
+                  </p>
+                </div>
+              </div>
+
+              <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm flex items-start gap-3.5">
+                <div className="w-10 h-10 rounded-xl bg-emerald-100 text-[#009739] flex items-center justify-center shrink-0">
+                  <CheckCircle2 size={20} />
+                </div>
+                <div>
+                  <h4 className="text-sm font-black text-[#17458F]">Doğrudan Evlere Teslimat</h4>
+                  <p className="text-xs text-slate-600 mt-0.5">
+                    Kulüp başkanınızın iyi dilek mektubu ve aktivasyon sertifikasıyla birlikte ailelerin kapısına teslim edilir.
+                  </p>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      {/* ─────────────────────────────────────────────────────────────
+          8. İNTERAKTİF ROTARY SOSYAL ETKİ SİMÜLATÖRÜ
           ───────────────────────────────────────────────────────────── */}
       <section id="etki-hesaplayici" className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#F0F5FC] to-white border-b border-slate-200">
         <div className="max-w-5xl mx-auto space-y-9">
@@ -681,7 +772,7 @@ export default function RotaryPartnershipPage() {
       </section>
 
       {/* ─────────────────────────────────────────────────────────────
-          8. ROTARY FONLAMA VE HİBE MODELLERİ (3 PAKET)
+          9. ROTARY FONLAMA VE HİBE MODELLERİ (3 PAKET)
           ───────────────────────────────────────────────────────────── */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white border-b border-slate-200">
         <div className="max-w-6xl mx-auto space-y-10">
@@ -721,6 +812,7 @@ export default function RotaryPartnershipPage() {
                   <li className="flex items-center gap-2">✓ Pediatrik ön değerlendirme & gelişim takibi</li>
                   <li className="flex items-center gap-2">✓ 7/24 dijital aile rehberliği</li>
                   <li className="flex items-center gap-2">✓ Kulüp yönetim paneli erişimi</li>
+                  <li className="flex items-center gap-2">✓ Bebek & Anne Rotary İpek Fuları armağanı</li>
                   <li className="flex items-center gap-2">✓ Dönem sonu etki sertifikası</li>
                 </ul>
               </div>
@@ -754,6 +846,7 @@ export default function RotaryPartnershipPage() {
                 </div>
                 <ul className="space-y-2 text-xs text-slate-700">
                   <li className="flex items-center gap-2">✓ Çoklu kulüp / Bölge logolu uygulama</li>
+                  <li className="flex items-center gap-2">✓ Bebek & Anne Rotary İpek Fuları hediye kiti</li>
                   <li className="flex items-center gap-2">✓ Basın toplantısı ve medya lansmanı paketi</li>
                   <li className="flex items-center gap-2">✓ Fiziki &ldquo;Rotary Bebek Lisans Kartları&rdquo;</li>
                   <li className="flex items-center gap-2">✓ Yapay zekâ destekli pediatrik ön taramalar</li>
@@ -787,6 +880,7 @@ export default function RotaryPartnershipPage() {
                 </div>
                 <ul className="space-y-2 text-xs text-slate-700">
                   <li className="flex items-center gap-2">✓ İl / Bölge çapında kurumsal dağıtım</li>
+                  <li className="flex items-center gap-2">✓ Özel amblemli ipek fular & hediye sandığı</li>
                   <li className="flex items-center gap-2">✓ Uluslararası Rotary hibe protokolü tam uyumu</li>
                   <li className="flex items-center gap-2">✓ &ldquo;The Rotarian&rdquo; uluslararası PR</li>
                   <li className="flex items-center gap-2">✓ Üniversite ve hekim bilim kurulu doğrulaması</li>
@@ -808,7 +902,7 @@ export default function RotaryPartnershipPage() {
       </section>
 
       {/* ─────────────────────────────────────────────────────────────
-          9. SADE & ŞIK KURUMSAL İLETİŞİM ŞERİDİ
+          10. SADE & ŞIK KURUMSAL İLETİŞİM ŞERİDİ
           ───────────────────────────────────────────────────────────── */}
       <section className="py-14 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#F0F5FC] to-white border-b border-slate-200 text-center">
         <div className="max-w-3xl mx-auto space-y-4">
@@ -841,7 +935,7 @@ export default function RotaryPartnershipPage() {
       </section>
 
       {/* ─────────────────────────────────────────────────────────────
-          10. ROTARY FOOTER
+          11. ROTARY FOOTER
           ───────────────────────────────────────────────────────────── */}
       <footer className="py-8 px-4 bg-[#0A1E40] text-center text-xs text-slate-300 space-y-2.5">
         <div className="flex items-center justify-center gap-2 text-white">
