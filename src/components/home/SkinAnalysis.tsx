@@ -251,7 +251,7 @@ export default function SkinAnalysis() {
                 <span className="text-xs font-bold text-navy uppercase tracking-wider">Erken Farkındalık Rehberi</span>
               </div>
               <p className="text-xs md:text-sm text-navy/70 leading-relaxed font-medium">
-                Bu sistem klinik hekim kararının yerini almaz; aileyi ev ortamında bilinçlendirerek gereksiz endişeyi azaltmayı, olası bir enfeksiyon şüphesinde ise gecikmeden çocuk doktoruna başvurulmasını sağlamayı amaçlar.
+                Bu sistem klinik hekim kararının yerini almaz; aileyi ev ortamında bilinçlendirerek gereksiz endişeyi azaltmayı, olası bir cilt hassasiyetinde ise gecikmeden çocuk doktoruna başvurulmasını sağlamayı amaçlar.
               </p>
             </div>
           </div>

@@ -55,8 +55,8 @@ const stoolSamples: StoolSample[] = [
     severity: 'critical',
     scaleCode: 'Renk Kartı: No. 1 (Anormal - Akolik)',
     aiConfidence: '%98.7 Kritik Uyarı',
-    findings: 'Safra yolu pigmenti (sterkobilin) tespit edilemedi. Biliyer Atrezi veya neonatal kolestaz riski.',
-    guidance: 'ACİL YÖNLENDİRME: Bebeğinizi vakit kaybetmeden en geç 48 saat içinde bir Çocuk Gastroenterolojisi veya Çocuk Cerrahisi uzmanına götürünüz. Kasai operasyonu için ilk 60 gün hayatidir!',
+    findings: 'Dışkıda soluk renk tonu tespit edildi. Uluslararası onaylı pediatrik dışkı renk skalasına göre öncelikli değerlendirme gerektirir.',
+    guidance: 'ÖNCELİKLİ HEKİM BAŞVURUSU: Bebeğinizin bezindeki bu soluk renk tonunu değerlendirmesi için gecikmeden çocuk sağlığı ve hastalıkları hekiminize danışınız. Erken dönemde yapılan hekim kontrolü en güvenli yaklaşımdır.',
   },
   {
     id: 'sample-3',
@@ -208,7 +208,7 @@ export default function InteractiveSandbox() {
                 Bebek Bezi Renk & Doku Taraması
               </h3>
               <p className="text-xs sm:text-sm text-navy/70 leading-relaxed">
-                Yapay zekâ modelimiz, Dünya Sağlık Örgütü ve Sağlık Bakanlığı onaylı <strong>Dışkı Renk Kartı</strong> indekslerini piksel hassasiyetinde tarayarak safra tıkanıklığı (Biliyer Atrezi) riskini saniyeler içinde analiz eder.
+                Yapay zekâ modelimiz, Sağlık Bakanlığı onaylı <strong>Dışkı Renk Kartı</strong> indekslerini piksel hassasiyetinde tarayarak olağandışı renk farklılıklarını ve sindirim ipuçlarını saniyeler içinde analiz eder.
               </p>
 
               {/* Sample Cards */}

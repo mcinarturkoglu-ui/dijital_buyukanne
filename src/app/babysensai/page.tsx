@@ -34,7 +34,7 @@ export default function BabySensAIPage() {
     },
     {
       title: "Bebek Bezi & Dışkı Spektrofotometrisi",
-      desc: "Dışkı rengini uluslararası Pediatrik Renk Skalası (Biliyer Atrezi & CMPA) ile eşleştiren optik analiz modeli.",
+      desc: "Dışkı rengini uluslararası Pediatrik Renk Skalası (akolik renk skalası ve alerjik sindirim kartları) ile eşleştiren optik analiz modeli.",
       icon: Droplets,
     },
     {

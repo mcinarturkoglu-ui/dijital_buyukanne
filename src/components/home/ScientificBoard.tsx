@@ -26,12 +26,12 @@ const advisors = [
     border: 'border-turquoise/30',
   },
   {
-    role: 'Çocuk Gastroenteroloji Danışmanı',
+    role: 'Çocuk Sağlığı & Gastroenteroloji Danışmanı',
     title: 'Doç. Dr. S. Aksoy',
-    expertise: 'Biliyer Atrezi & Neonatal Kolestaz İndeksi',
+    expertise: 'Pediatrik Dışkı Skalası & Yenidoğan Sindirim İzlemi',
     institution: 'Ankara Üniversitesi Tıp Fakültesi / Çocuk Sağlığı',
     description:
-      'Dışkı renk kartı piksel eşleme kriterleri, yenidoğan sarılığı takibi ve erken cerrahiye (Kasai) zaman kazandıran protokoller.',
+      'Dışkı renk kartı piksel eşleme kriterleri, yenidoğan sindirim takibi ve çocuk hekimine erken başvuru protokolleri.',
     icon: Stethoscope,
     color: 'text-coral',
     bg: 'bg-coral/10',

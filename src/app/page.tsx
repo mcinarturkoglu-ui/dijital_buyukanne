@@ -69,7 +69,7 @@ export default function HomePage() {
         chapterNumber="BÖLÜM 03"
         chapterTitle="KLİNİK TARAMA PROTOKOLLERİ"
         headline="Yapay Zekâ Destekli 3 Hayati Koruma Kalkanı"
-        description="Ebeveyn gözünden kaçabilecek erken motor asimetrileri, cilt lezyonları ve biliyer atrezi şüphesi taşıyan akolik dışkı bulguları için algoritmik ön tarama ve hekim sevk köprüsü."
+        description="Ebeveyn gözünden kaçabilecek erken motor asimetrileri, cilt hassasiyetleri ve sindirim ipuçları için algoritmik ön tarama ve hekim sevk köprüsü."
         anchorId="ribbon-3"
         theme="light"
         accent="turquoise"

@@ -73,8 +73,8 @@ const stoolSamples = [
     urgency: 'ACİL HEKİM MUAYENESİ',
     consistency: 'Kuru / Tebeşirimsi',
     hydration: '%60 Düşük',
-    findings: 'Dışkıda safra boyası eksikliği (akolik dışkı). Biliyer atrezi veya karaciğer fonksiyon anomalisi şüphesi.',
-    advice: 'Vakit kaybetmeden en yakın çocuk sağlığı ve hastalıkları hekimine veya acil servise başvurunuz.',
+    findings: 'Dışkıda solukluk (akolik renk tonu). Pediatrik renk skalasına göre gecikmeden çocuk hekimi muayenesi önerilir.',
+    advice: 'Vakit kaybetmeden en yakın çocuk sağlığı ve hastalıkları hekimine başvurunuz.',
   },
 ];
 
@@ -285,7 +285,7 @@ export default function StoolAnalysis() {
         <SectionHeader
           eyebrow="AI Bebek Bezi & Dışkı Analizi"
           title="Bebek bezindeki ipuçlarını yapay zekâ ile saniyeler içinde anlayın."
-          subtitle="Bebeğinizin bezindeki dışkı rengi, dokusu ve kıvamı; sindirim sistemi, alerjiler ve karaciğer sağlığı hakkında en erken sinyalleri verir."
+          subtitle="Bebeğinizin bezindeki dışkı rengi, dokusu ve kıvamı; sindirim sistemi, beslenme uyumu ve genel gelişim hakkında en erken sinyalleri verir."
           centered
         />
 

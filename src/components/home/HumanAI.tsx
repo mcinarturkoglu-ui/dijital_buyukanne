@@ -38,8 +38,8 @@ const modules = [
     label: 'Bez & Dışkı',
     angle: 120,
     icon: Droplets,
-    aiRole: 'Dışkı rengini Biliyer Atrezi ve süt alerjisi kartıyla eşleştirir.',
-    expertRole: 'Çocuk hekimi acil safra veya alerji tetkiklerini başlatır.',
+    aiRole: 'Dışkı rengini onaylı renk skalası ve besin alerjisi kartlarıyla eşleştirir.',
+    expertRole: 'Çocuk hekimi gerektiğinde klinik beslenme ve takip planı oluşturur.',
   },
   {
     id: 'uyku',
