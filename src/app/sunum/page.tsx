@@ -76,12 +76,13 @@ const ALL_SLIDES: SlideDef[] = [
   { id: 'slide-case-studies', chapter: 'BÖLÜM 05 EK', category: 'GERÇEK HAYATTAN ETKİ HİKAYELERİ', title: 'Zeynep, Kaan ve Can Bebeğin Başarı Hikayeleri', tag: 'genel' },
   { id: 'slide-impact-calc', chapter: 'BÖLÜM 06', category: 'KANITA DAYALI SOSYAL ETKİ', title: '1.000 Bebeklik Projede Kanıta Dayalı Resmî Bilanço', tag: 'kurumsal' },
   { id: 'slide-institutions', chapter: 'BÖLÜM 06 EK', category: 'KURUMSAL SOSYAL BELEDİYECİLİK', title: 'White-Label Mobil Altyapı & 11 Maddelik Protokol', tag: 'kurumsal' },
-  { id: 'slide-supporters', chapter: 'BÖLÜM 06 EK', category: 'DESTEKÇİLERİMİZ & KAMU İŞ BİRLİĞİ', title: 'Kamu Kurumları, Belediyeler ve Rotary Ortaklıkları', tag: 'kurumsal' },
+  { id: 'slide-supporters', chapter: 'BÖLÜM 06 EK', category: 'DESTEKÇİLERİMİZ', title: 'Destekçilerimiz & Aktif Kamu Protokolleri', tag: 'kurumsal' },
   { id: 'slide-final-cta', chapter: 'KAPANIŞ', category: 'İŞ BİRLİĞİ VE İMZA ÇAĞRISI', title: 'Her Bebeğe Şefkat & 24 Saatte Hazır Protokol Teslimi', tag: 'genel' },
 ];
 
 export default function PresentationDeckPage() {
   const [content, setContent] = useState<any>(defaultContent);
+  const [supportersList, setSupportersList] = useState<any[]>(supportersData.supporters || []);
   const [viewMode, setViewMode] = useState<'all' | 'single'>('all');
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
 
@@ -99,6 +100,15 @@ export default function PresentationDeckPage() {
         }
       })
       .catch((err) => console.log('Sunum içeriği varsayılan JSON verisinden yüklendi', err));
+
+    fetch('/api/admin/supporters')
+      .then((res) => res.json())
+      .then((data) => {
+        if (data && data.supporters && Array.isArray(data.supporters)) {
+          setSupportersList(data.supporters);
+        }
+      })
+      .catch((err) => console.log('Destekçiler varsayılan JSON verisinden yüklendi', err));
   }, []);
 
   // Aktif Slaytlar Listesi (Dinamik olarak filtrelenir ve sırayla numaralandırılır)
@@ -181,6 +191,12 @@ export default function PresentationDeckPage() {
   const finalCTA = content?.finalCTA || defaultContent.finalCTA;
   const board = content?.scientificBoard || (defaultContent as any).scientificBoard;
   const caseStudies = content?.caseStudies || (defaultContent as any).caseStudies;
+
+  // Destekçiler: Web sitesindekiyle (SupportersPreview.tsx) birebir dinamik mantık
+  let displaySupporters = (supportersList || []).filter((s: any) => s.active && s.featured);
+  if (displaySupporters.length === 0) {
+    displaySupporters = (supportersList || []).filter((s: any) => s.active);
+  }
 
   return (
     <div className="min-h-screen bg-slate-900 text-slate-900 selection:bg-sky-500 selection:text-white">
@@ -1530,76 +1546,104 @@ export default function PresentationDeckPage() {
           <SlideWrapper
             id="slide-supporters"
             chapter="BÖLÜM 06 EK"
-            category="EKOSİSTEM DESTEKÇİLERİ VE İŞ BİRLİKLERİ"
+            category="DESTEKÇİLERİMİZ"
             slideIndex={getSlideIndex('slide-supporters', activeSlides)}
             totalSlides={totalActive}
             onRemove={() => toggleSlideExclusion('slide-supporters')}
             dark
-            gradientBg="bg-slate-50 text-slate-900 border border-slate-200"
+            gradientBg="bg-[#F5F8FD] text-slate-900 border border-slate-200"
           >
             <div className="flex-1 flex flex-col justify-center my-auto">
-              <div className="mb-5">
+              <div className="mb-5 text-center sm:text-left">
                 <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-sky-100 text-[#0284C7] text-xs font-mono font-bold uppercase tracking-wider mb-2">
-                  <Users size={13} />
-                  <span>GÜÇ BİRLİĞİ VE YEREL EKOSİSTEM</span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#0284C7]" />
+                  <span>DESTEKÇİLERİMİZ</span>
                 </div>
                 <h2 className="text-2xl sm:text-4xl font-black text-[#0B1E3B] tracking-tight">
-                  Bu Yolculuğu Birlikte Büyütüyoruz.
+                  Bu yolculuğu birlikte büyütüyoruz.
                 </h2>
                 <p className="text-xs sm:text-sm text-slate-600 mt-1 max-w-3xl">
-                  Programı hayata geçiren belediyelerin, sivil toplum kuruluşlarının ve akademik ortakların katkısıyla daha fazla bebeğe ve aileye ulaşıyoruz.
+                  Programı hayata geçiren kurumların katkısıyla daha fazla bebeğe ve aileye ulaşıyoruz.
                 </p>
               </div>
 
-              {/* Destekçi Kartları */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-5">
-                {[
-                  {
-                    name: 'Öncü Belediyeler',
-                    type: 'Yerel Yönetim & Sosyal Belediyecilik',
-                    desc: 'Sosyal Hizmetler Daire Başkanlıkları ile yeni doğum yapan her anneye "Hoş Geldin Bebek" paketiyle ücretsiz erişim.',
-                    badge: 'Şehir Ölçeğinde Hizmet',
-                    icon: Building2,
-                    color: '#0284C7',
-                  },
-                  {
-                    name: 'Rotary Kulüpleri',
-                    type: 'Anne ve Çocuk Sağlığı Odağı',
-                    desc: 'Bölge ve kulüp küresel / yerel bağış projeleriyle bebeklere İpek Bebek Fuları hediyesi ve klinik tarama sponsorluğu.',
-                    badge: 'The Rotary Foundation (TRF)',
-                    icon: Award,
-                    color: '#D97706',
-                  },
-                  {
-                    name: 'Üniversite & TFD Pediatri',
-                    type: 'Klinik Metodoloji & AI Laboratuvarı',
-                    desc: 'Tıp fakültesi çocuk nörolojisi uzmanları ve Türkiye Fizyoterapistler Derneği ile bilimsel protokol validasyonu.',
-                    badge: 'Bağımsız Bilimsel Kurul',
-                    icon: Stethoscope,
-                    color: '#059669',
-                  },
-                ].map((s, idx) => {
-                  const Icon = s.icon;
-                  return (
-                    <div key={idx} className="p-6 rounded-3xl bg-white border border-slate-200 shadow-sm flex flex-col justify-between">
-                      <div>
-                        <div className="w-12 h-12 rounded-2xl flex items-center justify-center text-white font-bold mb-4 shadow-sm" style={{ backgroundColor: s.color }}>
-                          <Icon size={24} />
+              {/* Web Sitesindeki Destekçi Kartlarının Birebir Canlı Eşlemesi */}
+              {displaySupporters.length > 0 ? (
+                <div className={`grid gap-5 mb-5 ${
+                  displaySupporters.length === 1
+                    ? 'grid-cols-1 max-w-md mx-auto w-full'
+                    : displaySupporters.length === 2
+                    ? 'grid-cols-1 sm:grid-cols-2 max-w-2xl mx-auto w-full'
+                    : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
+                }`}>
+                  {displaySupporters.map((s: any) => {
+                    const cardColor = s.color || '#E31E24';
+                    const initials = s.shortName || s.name.slice(0, 2).toUpperCase();
+
+                    return (
+                      <div
+                        key={s.id}
+                        className="bg-white rounded-3xl overflow-hidden flex flex-col border border-slate-200/80 shadow-md"
+                      >
+                        {/* Üst Renk Gradyanı */}
+                        <div
+                          className="h-1.5 w-full"
+                          style={{
+                            background: `linear-gradient(90deg, ${cardColor}, #0EA5E9)`,
+                          }}
+                        />
+
+                        <div className="p-6 flex flex-col flex-1">
+                          {/* Monogram Rozeti */}
+                          <div
+                            className="w-12 h-12 rounded-2xl flex items-center justify-center text-white font-black text-sm mb-4 shadow-sm"
+                            style={{ backgroundColor: cardColor }}
+                          >
+                            {initials}
+                          </div>
+
+                          {/* Kurum Adı */}
+                          <h3 className="text-[#0B1E3B] font-bold text-base leading-tight mb-1">
+                            {s.name}
+                          </h3>
+
+                          {/* Program Adı */}
+                          <p className="text-xs font-semibold mb-2 text-[#0284C7]">
+                            {s.program}
+                          </p>
+
+                          {/* Şehir & Tür */}
+                          <div className="flex items-center gap-2 text-slate-500 text-xs mb-3">
+                            <span className="flex items-center gap-1">
+                              <MapPin className="w-3.5 h-3.5" />
+                              {s.city}
+                            </span>
+                            <span>•</span>
+                            <span className="uppercase text-[10px] font-bold text-slate-600 bg-slate-100 px-2 py-0.5 rounded-full">
+                              {s.type}
+                            </span>
+                          </div>
+
+                          {/* Açıklama */}
+                          <p className="text-slate-600 text-xs leading-relaxed flex-1">
+                            {s.description || 'Aile ve bebek gelişim süreçlerini desteklemek amacıyla hayata geçirilen program.'}
+                          </p>
+
+                          {/* Alt Bilgi */}
+                          <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-[#0284C7] font-semibold">
+                            <span>Resmî Protokol Aktif</span>
+                            <span>Detayları Gör →</span>
+                          </div>
                         </div>
-                        <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-500 block mb-1">
-                          {s.type}
-                        </span>
-                        <h3 className="text-lg font-bold text-[#0B1E3B] mb-2">{s.name}</h3>
-                        <p className="text-xs text-slate-600 leading-relaxed">{s.desc}</p>
                       </div>
-                      <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] font-mono font-bold" style={{ color: s.color }}>
-                        <span>{s.badge}</span>
-                        <span>✓ Aktif Protokol</span>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
+                    );
+                  })}
+                </div>
+              ) : (
+                <div className="p-8 rounded-3xl bg-white border border-slate-200 text-center max-w-md mx-auto my-4 text-xs text-slate-500">
+                  Henüz aktif bir destekçi kurumu tanımlanmamış. Yönetim panelinden kurum ekleyebilirsiniz.
+                </div>
+              )}
 
               <div className="p-3.5 rounded-2xl bg-white border border-slate-200 text-center text-xs text-slate-600">
                 Siz de kurumunuz veya Rotary kulübünüz adına şehrinizdeki bebekleri korumak için programa dahil olabilirsiniz.
