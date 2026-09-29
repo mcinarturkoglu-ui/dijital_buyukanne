@@ -89,9 +89,33 @@ const cases = [
   },
 ];
 
-export default function CaseStudies() {
+export default function CaseStudies({ cmsData }: {
+  cmsData?: {
+    eyebrow?: string;
+    title?: string;
+    subtitle?: string;
+    cases?: Array<{
+      category: string;
+      badge: string;
+      title: string;
+      babyAge: string;
+      resultBadge: string;
+      summary: string;
+      journey: Array<{label: string; step: string}>;
+      quote: string;
+      author: string;
+      location: string;
+      emoji: string;
+    }>;
+  };
+} = {}) {
+  const finalCases = cmsData?.cases?.length ? cmsData.cases.map((c, idx) => {
+    const fallback = cases[idx % cases.length];
+    return { ...fallback, ...c };
+  }) : cases;
+
   const [activeCase, setActiveCase] = useState(0);
-  const current = cases[activeCase];
+  const current = finalCases[activeCase];
 
   return (
     <section className="py-20 md:py-28 px-4 md:px-8 bg-gradient-to-b from-slate-50 via-white to-[#F5F8FD] relative overflow-hidden" id="basari-hikayeleri">
@@ -105,20 +129,26 @@ export default function CaseStudies() {
         <div className="text-center max-w-3xl mx-auto mb-14">
           <div className="inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-sky-600 bg-sky-50 border border-sky-200 px-4 py-1.5 rounded-full mb-4">
             <Heart size={14} className="text-coral fill-coral" />
-            <span>Gerçek Hayattan Etki Hikayeleri</span>
+            <span>{cmsData?.eyebrow || 'Gerçek Hayattan Etki Hikayeleri'}</span>
           </div>
           <h2 className="text-3xl md:text-5xl font-extrabold text-navy tracking-tight leading-tight">
-            Teknoloji bilimdir. Bir bebeğin adımı ise <br className="hidden sm:inline" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0284C7] to-[#FF5A43]">hayata tutunan bir mucizedir.</span>
+            {cmsData?.title ? (
+              <span dangerouslySetInnerHTML={{ __html: cmsData.title.replace('hayata tutunan bir mucizedir.', '<span class="text-transparent bg-clip-text bg-gradient-to-r from-[#0284C7] to-[#FF5A43]">hayata tutunan bir mucizedir.</span>') }} />
+            ) : (
+              <>
+                Teknoloji bilimdir. Bir bebeğin adımı ise <br className="hidden sm:inline" />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0284C7] to-[#FF5A43]">hayata tutunan bir mucizedir.</span>
+              </>
+            )}
           </h2>
           <p className="mt-4 text-base md:text-lg text-navy/70 leading-relaxed font-normal">
-            DijitalBüyükanne ekosistemiyle erken fark edilen, zamanında desteklenen ailelerimizin ve öncü belediyelerimizin başarı yolculukları.
+            {cmsData?.subtitle || 'DijitalBüyükanne ekosistemiyle erken fark edilen, zamanında desteklenen ailelerimizin ve öncü belediyelerimizin başarı yolculukları.'}
           </p>
         </div>
 
         {/* 3 Case Selector Tabs */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5 max-w-4xl mx-auto mb-8">
-          {cases.map((c, idx) => (
+          {finalCases.map((c, idx) => (
             <button
               key={idx}
               onClick={() => setActiveCase(idx)}

@@ -99,7 +99,25 @@ const clinicalStandards = [
   },
 ];
 
-export default function ScientificBoard() {
+export default function ScientificBoard({ cmsData }: {
+  cmsData?: {
+    eyebrow?: string;
+    title?: string;
+    subtitle?: string;
+    advisors?: Array<{role: string; title: string; expertise: string; institution: string; description: string; quote: string; monogram: string}>;
+    clinicalStandards?: Array<{title: string; desc: string}>;
+  };
+} = {}) {
+  const finalAdvisors = cmsData?.advisors?.length ? cmsData.advisors.map((adv, idx) => {
+    const fallback = advisors[idx % advisors.length];
+    return { ...fallback, ...adv };
+  }) : advisors;
+
+  const finalStandards = cmsData?.clinicalStandards?.length ? cmsData.clinicalStandards.map((std, idx) => {
+    const fallback = clinicalStandards[idx % clinicalStandards.length];
+    return { ...fallback, ...std };
+  }) : clinicalStandards;
+
   return (
     <section className="py-20 md:py-28 px-4 md:px-8 bg-white relative overflow-hidden" id="bilimsel-kurul">
       {/* Ambient background blur — sky instead of turquoise */}
@@ -112,20 +130,26 @@ export default function ScientificBoard() {
         <div className="text-center max-w-3xl mx-auto mb-14">
           <div className="inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-navy bg-navy/5 border border-navy/15 px-4 py-1.5 rounded-full mb-4">
             <ShieldCheck size={14} className="text-sky-500" />
-            <span>Bilimsel Güvence & Danışma Kurulu</span>
+            <span>{cmsData?.eyebrow || 'Bilimsel Güvence & Danışma Kurulu'}</span>
           </div>
           <h2 className="text-3xl md:text-5xl font-extrabold text-navy tracking-tight leading-tight">
-            Yapay zekâyı bilim, klinik uzmanlık ve <br className="hidden sm:inline" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0284C7] to-[#FF5A43]">etik ilkelerle buluşturuyoruz.</span>
+            {cmsData?.title ? (
+              <span dangerouslySetInnerHTML={{ __html: cmsData.title.replace('etik ilkelerle buluşturuyoruz.', '<span class="text-transparent bg-clip-text bg-gradient-to-r from-[#0284C7] to-[#FF5A43]">etik ilkelerle buluşturuyoruz.</span>') }} />
+            ) : (
+              <>
+                Yapay zekâyı bilim, klinik uzmanlık ve <br className="hidden sm:inline" />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0284C7] to-[#FF5A43]">etik ilkelerle buluşturuyoruz.</span>
+              </>
+            )}
           </h2>
           <p className="mt-4 text-base md:text-lg text-navy/70 leading-relaxed font-normal">
-            DijitalBüyükanne ve BabySensAI algoritmaları, alanında öncü hekim ve akademisyenlerin danışmanlığında, uluslararası pediatrik rehberlere sadık kalınarak geliştirilir.
+            {cmsData?.subtitle || 'DijitalBüyükanne ve BabySensAI algoritmaları, alanında öncü hekim ve akademisyenlerin danışmanlığında, uluslararası pediatrik rehberlere sadık kalınarak geliştirilir.'}
           </p>
         </div>
 
         {/* 4 Advisor Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
-          {advisors.map((adv, idx) => {
+          {finalAdvisors.map((adv, idx) => {
             const Icon = adv.icon;
             return (
               <div
@@ -184,7 +208,7 @@ export default function ScientificBoard() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {clinicalStandards.map((std, idx) => {
+            {finalStandards.map((std, idx) => {
               const SIcon = std.icon;
               return (
                 <div key={idx} className="bg-white/10 rounded-2xl p-5 border border-white/15 backdrop-blur-sm hover:bg-white/15 transition-colors duration-300">

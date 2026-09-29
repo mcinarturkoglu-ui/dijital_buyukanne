@@ -104,5 +104,127 @@
     "subtitle": "İster yeni ebeveyn olun ister kurum yöneticisi; DijitalBüyükanne ailesine bugün katılın.",
     "primaryButton": "Uygulamayı İnceleyin",
     "secondaryButton": "Kurumsal Demo Alın"
+  },
+  "scientificBoard": {
+    "eyebrow": "Bilimsel Güvence & Danışma Kurulu",
+    "title": "Yapay zekâyı bilim, klinik uzmanlık ve etik ilkelerle buluşturuyoruz.",
+    "subtitle": "DijitalBüyükanne ve BabySensAI algoritmaları, alanında öncü hekim ve akademisyenlerin danışmanlığında, uluslararası pediatrik rehberlere sadık kalınarak geliştirilir.",
+    "advisors": [
+      {
+        "role": "Çocuk Nörolojisi Danışmanı",
+        "title": "Prof. Dr. N. Karakaş",
+        "expertise": "Prechtl GMs & Serebral Palsi Erken Farkındalığı",
+        "institution": "Hacettepe Tıp Fakültesi / Pediatrik Nöroloji",
+        "description": "0–6 ay spontan fidgety hareketlerinin video tabanlı analizi ve nörogelişimsel risk indekslerinin algoritmik kalibrasyonu.",
+        "quote": "Erken farkındalık, zamanında müdahale için en değerli penceredir.",
+        "monogram": "NK"
+      },
+      {
+        "role": "Çocuk Sağlığı & Gastroenteroloji Danışmanı",
+        "title": "Doç. Dr. S. Aksoy",
+        "expertise": "Pediatrik Dışkı Skalası & Yenidoğan Sindirim İzlemi",
+        "institution": "Ankara Üniversitesi Tıp Fakültesi / Çocuk Sağlığı",
+        "description": "Dışkı renk kartı piksel eşleme kriterleri, yenidoğan sindirim takibi ve çocuk hekimine erken başvuru protokolleri.",
+        "quote": "Doğru veri, doğru zamanda doğru adımı mümkün kılar.",
+        "monogram": "SA"
+      },
+      {
+        "role": "Pediatrik Fizyoterapi Danışmanı",
+        "title": "Uzm. Fzt. E. Yılmaz",
+        "expertise": "0–24 Ay Motor Postür & Aile Egzersizleri",
+        "institution": "Türkiye Fizyoterapistler Derneği Pediatri Grubu",
+        "description": "Evde uygulanabilir güvenli gelişim oyunları, boyun-gövde dengesi (tummy-time) ve desteksiz oturma kazanım aşamaları.",
+        "quote": "Her egzersiz, bebeğin geleceğine yapılan bir yatırımdır.",
+        "monogram": "EY"
+      },
+      {
+        "role": "Biyomedikal & Etik AI Danışmanı",
+        "title": "Dr. B. Öztürk",
+        "expertise": "Tıbbi Görüntü İşleme & KVKK Güvenliği",
+        "institution": "ODTÜ Biyomedikal Mühendisliği / AI Laboratuvarı",
+        "description": "Görüntülerin cihaz üzerinde anonimleştirilmesi, piksel doğrulama doğruluğu ve sorumlu yapay zekâ etik denetimi.",
+        "quote": "Güvenilir yapay zekâ, şeffaflıkla başlar.",
+        "monogram": "BÖ"
+      }
+    ],
+    "clinicalStandards": [
+      {
+        "title": "Prechtl GMs Standardı",
+        "desc": "Spontan hareket kalitesi değerlendirmesinde dünyaca kabul gören klinik metodoloji referansı."
+      },
+      {
+        "title": "DSÖ & Sağlık Bakanlığı Renk Skalası",
+        "desc": "Bebek bezi dışkı analizinde 6 seviyeli uluslararası kilsi dışkı kartı indeksleri."
+      },
+      {
+        "title": "KVKK & Anonim Sağlık Verisi",
+        "desc": "Bebek fotoğrafları ve videoları kimliksizleştirilir, en yüksek güvenlik protokolleriyle korunur."
+      },
+      {
+        "title": "Tanı Koymaz, Yönlendirir",
+        "desc": "Klinik kararı hekime bırakırken, aileleri zaman kaybetmeden doğru uzman desteğine ulaştırır."
+      }
+    ]
+  },
+  "caseStudies": {
+    "eyebrow": "Gerçek Hayattan Etki Hikayeleri",
+    "title": "Teknoloji bilimdir. Bir bebeğin adımı ise hayata tutunan bir mucizedir.",
+    "subtitle": "DijitalBüyükanne ekosistemiyle erken fark edilen, zamanında desteklenen ailelerimizin ve öncü belediyelerimizin başarı yolculukları.",
+    "cases": [
+      {
+        "category": "Erken Nöromotor Müdahale",
+        "badge": "Prematüre Gelişim",
+        "title": "32 Haftalık Zeynep Bebeğin Bağımsız Yürüyüşü",
+        "babyAge": "2. Ayda Farkındalık → 14. Ayda İlk Adımlar",
+        "resultBadge": "🎉 Bağımsız yürüyüş kazanıldı",
+        "summary": "32. haftada prematüre doğan Zeynep'in bacak itişindeki hafif asimetri BabySensAI video analiziyle 9. haftada tespit edildi.",
+        "journey": [
+          { "label": "2. Ay", "step": "Mobil uygulamadan çekilen 2 dakikalık video nöromotor asimetri sinyali verdi." },
+          { "label": "3. Ay", "step": "Sistem üzerinden pediatrik fizyoterapist ile ev egzersiz programı başlatıldı." },
+          { "label": "7. Ay", "step": "Desteksiz dik oturma ve çevreyle aktif etkileşim kazanıldı." },
+          { "label": "14. Ay", "step": "Zeynep hiçbir yardımcı cihaza gerek kalmadan ilk bağımsız adımlarını attı!" }
+        ],
+        "quote": "İyi ki zamanla geçer diyerek beklememişiz. Dijital Büyükanne sayesinde en kritik ilk 3 ayı değerlendirdik.",
+        "author": "Elif K. (Zeynep'in Annesi)",
+        "location": "Ankara",
+        "emoji": "👶🏻"
+      },
+      {
+        "category": "Bebek Bezi & Sindirim Desteği",
+        "badge": "Sindirim & Besin Uyumu",
+        "title": "İlk Aylarda Yakalanan Sindirim İpucu",
+        "babyAge": "Erken Renk Taraması → Huzurlu ve Sağlıklı Büyüme",
+        "resultBadge": "✅ Gelişim eğrisi normale döndü",
+        "summary": "Emir bebeğin bezindeki soluk renk ve sindirim hassasiyeti yapay zekâ destekli renk kartıyla erkenden fark edilerek hekime yönlendirildi.",
+        "journey": [
+          { "label": "1. Ay", "step": "Anne bez fotoğrafını yükledi; sistem pediatrik renk skalasına göre çocuk hekimi kontrolü önerdi." },
+          { "label": "Ertesi Gün", "step": "Aile hekimi ve çocuk doktoruna başvurularak doğru beslenme ve takip programı oluşturuldu." },
+          { "label": "Kısa Sürede", "step": "Sindirim huzursuzluğu ve kilo alımı takibe alınarak gelişim eğrisi ideal seyrine ulaştı." },
+          { "label": "Bugün", "step": "Emir sağlıklı, neşeli ve akranlarıyla aynı gelişim temposunda güvenle büyüyor." }
+        ],
+        "quote": "Erken farkındalık ve hekimimizle doğru zamanda buluşmak, bebeğimizin gelişiminde en büyük güvencemiz ve rehberimiz oldu.",
+        "author": "Merve T. (Emir'in Annesi)",
+        "location": "İstanbul",
+        "emoji": "🍼"
+      },
+      {
+        "category": "Örnek Belediye İş Birliği",
+        "badge": "Sosyal Belediyecilik",
+        "title": "1.200 Aileye Ulaşan Şehir Aile Ekosistemi",
+        "babyAge": "12 Ayda 1.200 Yeni Doğan Ailesi",
+        "resultBadge": "🏆 %98,4 aile memnuniyeti",
+        "summary": "İlçe belediyesi, yeni doğan ziyaret paketine DijitalBüyükanne erişim kartı ekleyerek tüm ailelere 7/24 uzman desteği sundu.",
+        "journey": [
+          { "label": "Başlangıç", "step": "1.200 aileye ücretsiz DijitalBüyükanne mobil uygulama lisansı dağıtıldı." },
+          { "label": "3. Ay", "step": "28 bebekte erken dönemde motor veya cilt gelişiminde destek ihtiyacı yakalandı." },
+          { "label": "6. Ay", "step": "Belediye sağlık ekipleri ve kadın-aile merkezi doğrudan ailelerle temas kurdu." },
+          { "label": "Sonuç", "step": "%98.4 aile memnuniyetiyle ilçenin en başarılı sosyal sorumluluk projesi seçildi." }
+        ],
+        "quote": "Belediyemizin ailelere verdiği en anlamlı hediye oldu. Şehrimizin çocuklarına bilim ve sevgiyle dokunuyoruz.",
+        "author": "Sosyal Hizmetler Dairesi Koordinatörü",
+        "location": "İlçe Belediyesi",
+        "emoji": "🏙️"
+      }
+    ]
   }
 }

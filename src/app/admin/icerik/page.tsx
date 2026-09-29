@@ -14,7 +14,9 @@ import {
   CheckCircle,
   Plus,
   Trash2,
-  Undo2
+  Undo2,
+  ShieldCheck,
+  Heart
 } from 'lucide-react';
 
 export default function IcerikAdminPage() {
@@ -97,6 +99,8 @@ export default function IcerikAdminPage() {
     { id: 'motion', label: 'Hareket Analizi', icon: Activity },
     { id: 'assistant', label: '7/24 Dijital Asistan', icon: Bot },
     { id: 'institutions', label: 'Kurumlar & Belediyeler', icon: Building2 },
+    { id: 'scientificBoard', label: 'Bilimsel Kurul', icon: ShieldCheck },
+    { id: 'caseStudies', label: 'Etki Hikayeleri', icon: Heart },
     { id: 'finalCta', label: 'Kapanış & Katılım (CTA)', icon: Megaphone },
   ];
 
@@ -593,7 +597,401 @@ export default function IcerikAdminPage() {
             </div>
           )}
 
-          {/* 7. FINAL CTA TAB */}
+          {/* 7. SCIENTIFIC BOARD TAB */}
+          {activeTab === 'scientificBoard' && (
+            <div className="bg-white rounded-3xl p-6 md:p-8 border border-slate-200 shadow-sm space-y-6">
+              <div className="border-b border-slate-100 pb-4">
+                <h3 className="font-bold text-slate-800 text-base">Bilimsel Güvence & Danışma Kurulu</h3>
+                <p className="text-xs text-slate-500">Klinik danışmanlar ve güvenlik standartları metinleri.</p>
+              </div>
+
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-xs font-bold text-slate-700 mb-1">Üst Başlık (Eyebrow)</label>
+                  <input
+                    type="text"
+                    value={content.scientificBoard?.eyebrow || ''}
+                    onChange={(e) => updateField('scientificBoard', 'eyebrow', e.target.value)}
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs text-slate-800"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold text-slate-700 mb-1">Ana Başlık</label>
+                  <input
+                    type="text"
+                    value={content.scientificBoard?.title || ''}
+                    onChange={(e) => updateField('scientificBoard', 'title', e.target.value)}
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm font-bold text-slate-800"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold text-slate-700 mb-1">Alt Açıklama</label>
+                  <textarea
+                    rows={2}
+                    value={content.scientificBoard?.subtitle || ''}
+                    onChange={(e) => updateField('scientificBoard', 'subtitle', e.target.value)}
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs text-slate-800"
+                  />
+                </div>
+
+                {/* Advisors List */}
+                <div className="pt-2 border-t border-slate-100">
+                  <div className="flex items-center justify-between mb-4">
+                    <label className="block text-xs font-bold text-slate-700">Danışmanlar</label>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const currentList = content.scientificBoard?.advisors || [];
+                        updateField('scientificBoard', 'advisors', [...currentList, { role: '', title: '', expertise: '', institution: '', description: '', quote: '', monogram: '' }]);
+                      }}
+                      className="text-xs text-sky-600 font-bold flex items-center gap-1 hover:text-sky-700"
+                    >
+                      <Plus size={14} />
+                      <span>Danışman Ekle</span>
+                    </button>
+                  </div>
+                  <div className="space-y-4">
+                    {(content.scientificBoard?.advisors || []).map((adv: any, idx: number) => (
+                      <div key={idx} className="p-4 bg-slate-50 border border-slate-200 rounded-2xl relative">
+                        <button
+                          type="button"
+                          onClick={() => {
+                            const updatedList = content.scientificBoard.advisors.filter((_: any, i: number) => i !== idx);
+                            updateField('scientificBoard', 'advisors', updatedList);
+                          }}
+                          className="absolute top-4 right-4 p-1.5 text-slate-400 hover:text-rose-600 rounded-lg bg-white shadow-sm border border-slate-100"
+                        >
+                          <Trash2 size={14} />
+                        </button>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3 pr-10">
+                          <div>
+                            <label className="block text-[10px] font-bold text-slate-500 mb-1">Rol</label>
+                            <input type="text" value={adv.role} onChange={(e) => {
+                              const updatedList = [...content.scientificBoard.advisors];
+                              updatedList[idx].role = e.target.value;
+                              updateField('scientificBoard', 'advisors', updatedList);
+                            }} className="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 text-xs bg-white" />
+                          </div>
+                          <div>
+                            <label className="block text-[10px] font-bold text-slate-500 mb-1">Unvan / İsim</label>
+                            <input type="text" value={adv.title} onChange={(e) => {
+                              const updatedList = [...content.scientificBoard.advisors];
+                              updatedList[idx].title = e.target.value;
+                              updateField('scientificBoard', 'advisors', updatedList);
+                            }} className="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 text-xs bg-white" />
+                          </div>
+                          <div>
+                            <label className="block text-[10px] font-bold text-slate-500 mb-1">Uzmanlık Alanı</label>
+                            <input type="text" value={adv.expertise} onChange={(e) => {
+                              const updatedList = [...content.scientificBoard.advisors];
+                              updatedList[idx].expertise = e.target.value;
+                              updateField('scientificBoard', 'advisors', updatedList);
+                            }} className="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 text-xs bg-white" />
+                          </div>
+                          <div>
+                            <label className="block text-[10px] font-bold text-slate-500 mb-1">Kurum</label>
+                            <input type="text" value={adv.institution} onChange={(e) => {
+                              const updatedList = [...content.scientificBoard.advisors];
+                              updatedList[idx].institution = e.target.value;
+                              updateField('scientificBoard', 'advisors', updatedList);
+                            }} className="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 text-xs bg-white" />
+                          </div>
+                          <div>
+                            <label className="block text-[10px] font-bold text-slate-500 mb-1">Monogram (Örn: NK)</label>
+                            <input type="text" value={adv.monogram} onChange={(e) => {
+                              const updatedList = [...content.scientificBoard.advisors];
+                              updatedList[idx].monogram = e.target.value;
+                              updateField('scientificBoard', 'advisors', updatedList);
+                            }} className="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 text-xs bg-white" />
+                          </div>
+                        </div>
+                        <div className="space-y-3">
+                          <div>
+                            <label className="block text-[10px] font-bold text-slate-500 mb-1">Açıklama</label>
+                            <textarea rows={2} value={adv.description} onChange={(e) => {
+                              const updatedList = [...content.scientificBoard.advisors];
+                              updatedList[idx].description = e.target.value;
+                              updateField('scientificBoard', 'advisors', updatedList);
+                            }} className="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 text-xs bg-white" />
+                          </div>
+                          <div>
+                            <label className="block text-[10px] font-bold text-slate-500 mb-1">Alıntı Söz</label>
+                            <input type="text" value={adv.quote} onChange={(e) => {
+                              const updatedList = [...content.scientificBoard.advisors];
+                              updatedList[idx].quote = e.target.value;
+                              updateField('scientificBoard', 'advisors', updatedList);
+                            }} className="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 text-xs bg-white" />
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Clinical Standards List */}
+                <div className="pt-4 border-t border-slate-100">
+                  <div className="flex items-center justify-between mb-4">
+                    <label className="block text-xs font-bold text-slate-700">Klinik Standartlar</label>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const currentList = content.scientificBoard?.clinicalStandards || [];
+                        updateField('scientificBoard', 'clinicalStandards', [...currentList, { title: '', desc: '' }]);
+                      }}
+                      className="text-xs text-sky-600 font-bold flex items-center gap-1 hover:text-sky-700"
+                    >
+                      <Plus size={14} />
+                      <span>Standart Ekle</span>
+                    </button>
+                  </div>
+                  <div className="space-y-3">
+                    {(content.scientificBoard?.clinicalStandards || []).map((std: any, idx: number) => (
+                      <div key={idx} className="p-3 bg-slate-50 border border-slate-200 rounded-xl flex gap-3 items-start">
+                        <div className="flex-1 space-y-2">
+                          <input type="text" placeholder="Başlık" value={std.title} onChange={(e) => {
+                            const updatedList = [...content.scientificBoard.clinicalStandards];
+                            updatedList[idx].title = e.target.value;
+                            updateField('scientificBoard', 'clinicalStandards', updatedList);
+                          }} className="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 text-xs font-bold bg-white" />
+                          <textarea rows={2} placeholder="Açıklama" value={std.desc} onChange={(e) => {
+                            const updatedList = [...content.scientificBoard.clinicalStandards];
+                            updatedList[idx].desc = e.target.value;
+                            updateField('scientificBoard', 'clinicalStandards', updatedList);
+                          }} className="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 text-[11px] bg-white" />
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            const updatedList = content.scientificBoard.clinicalStandards.filter((_: any, i: number) => i !== idx);
+                            updateField('scientificBoard', 'clinicalStandards', updatedList);
+                          }}
+                          className="p-1.5 mt-1 text-slate-400 hover:text-rose-600 rounded-lg bg-white shadow-sm border border-slate-100"
+                        >
+                          <Trash2 size={14} />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* 8. CASE STUDIES TAB */}
+          {activeTab === 'caseStudies' && (
+            <div className="bg-white rounded-3xl p-6 md:p-8 border border-slate-200 shadow-sm space-y-6">
+              <div className="border-b border-slate-100 pb-4">
+                <h3 className="font-bold text-slate-800 text-base">Gerçek Hayattan Etki Hikayeleri</h3>
+                <p className="text-xs text-slate-500">Başarı yolculukları ve vaka örnekleri metinleri.</p>
+              </div>
+
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-xs font-bold text-slate-700 mb-1">Üst Başlık (Eyebrow)</label>
+                  <input
+                    type="text"
+                    value={content.caseStudies?.eyebrow || ''}
+                    onChange={(e) => updateField('caseStudies', 'eyebrow', e.target.value)}
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs text-slate-800"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold text-slate-700 mb-1">Ana Başlık</label>
+                  <input
+                    type="text"
+                    value={content.caseStudies?.title || ''}
+                    onChange={(e) => updateField('caseStudies', 'title', e.target.value)}
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm font-bold text-slate-800"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold text-slate-700 mb-1">Alt Açıklama</label>
+                  <textarea
+                    rows={2}
+                    value={content.caseStudies?.subtitle || ''}
+                    onChange={(e) => updateField('caseStudies', 'subtitle', e.target.value)}
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs text-slate-800"
+                  />
+                </div>
+
+                {/* Cases List */}
+                <div className="pt-2 border-t border-slate-100">
+                  <div className="flex items-center justify-between mb-4">
+                    <label className="block text-xs font-bold text-slate-700">Etki Hikayeleri</label>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const currentList = content.caseStudies?.cases || [];
+                        updateField('caseStudies', 'cases', [...currentList, { category: '', badge: '', title: '', babyAge: '', resultBadge: '', summary: '', quote: '', author: '', location: '', emoji: '', journey: [] }]);
+                      }}
+                      className="text-xs text-sky-600 font-bold flex items-center gap-1 hover:text-sky-700"
+                    >
+                      <Plus size={14} />
+                      <span>Hikaye Ekle</span>
+                    </button>
+                  </div>
+                  <div className="space-y-6">
+                    {(content.caseStudies?.cases || []).map((caseItem: any, idx: number) => (
+                      <div key={idx} className="p-5 bg-slate-50 border border-slate-200 rounded-2xl relative">
+                        <button
+                          type="button"
+                          onClick={() => {
+                            const updatedList = content.caseStudies.cases.filter((_: any, i: number) => i !== idx);
+                            updateField('caseStudies', 'cases', updatedList);
+                          }}
+                          className="absolute top-4 right-4 p-1.5 text-slate-400 hover:text-rose-600 rounded-lg bg-white shadow-sm border border-slate-100 z-10"
+                        >
+                          <Trash2 size={14} />
+                        </button>
+                        
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-4 pr-10">
+                          <div>
+                            <label className="block text-[10px] font-bold text-slate-500 mb-1">Kategori</label>
+                            <input type="text" value={caseItem.category} onChange={(e) => {
+                              const updatedList = [...content.caseStudies.cases];
+                              updatedList[idx].category = e.target.value;
+                              updateField('caseStudies', 'cases', updatedList);
+                            }} className="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 text-xs bg-white" />
+                          </div>
+                          <div>
+                            <label className="block text-[10px] font-bold text-slate-500 mb-1">Rozet</label>
+                            <input type="text" value={caseItem.badge} onChange={(e) => {
+                              const updatedList = [...content.caseStudies.cases];
+                              updatedList[idx].badge = e.target.value;
+                              updateField('caseStudies', 'cases', updatedList);
+                            }} className="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 text-xs bg-white" />
+                          </div>
+                          <div>
+                            <label className="block text-[10px] font-bold text-slate-500 mb-1">Bebek Yaş/Süreç</label>
+                            <input type="text" value={caseItem.babyAge} onChange={(e) => {
+                              const updatedList = [...content.caseStudies.cases];
+                              updatedList[idx].babyAge = e.target.value;
+                              updateField('caseStudies', 'cases', updatedList);
+                            }} className="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 text-xs bg-white" />
+                          </div>
+                          <div className="sm:col-span-2 lg:col-span-3">
+                            <label className="block text-[10px] font-bold text-slate-500 mb-1">Hikaye Başlığı</label>
+                            <input type="text" value={caseItem.title} onChange={(e) => {
+                              const updatedList = [...content.caseStudies.cases];
+                              updatedList[idx].title = e.target.value;
+                              updateField('caseStudies', 'cases', updatedList);
+                            }} className="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 text-xs bg-white font-bold" />
+                          </div>
+                          <div>
+                            <label className="block text-[10px] font-bold text-slate-500 mb-1">Sonuç Rozeti (Örn: 🎉 ...)</label>
+                            <input type="text" value={caseItem.resultBadge} onChange={(e) => {
+                              const updatedList = [...content.caseStudies.cases];
+                              updatedList[idx].resultBadge = e.target.value;
+                              updateField('caseStudies', 'cases', updatedList);
+                            }} className="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 text-xs bg-white" />
+                          </div>
+                          <div className="sm:col-span-2 lg:col-span-3">
+                            <label className="block text-[10px] font-bold text-slate-500 mb-1">Özet Metin</label>
+                            <textarea rows={2} value={caseItem.summary} onChange={(e) => {
+                              const updatedList = [...content.caseStudies.cases];
+                              updatedList[idx].summary = e.target.value;
+                              updateField('caseStudies', 'cases', updatedList);
+                            }} className="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 text-xs bg-white" />
+                          </div>
+                        </div>
+
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
+                          <div className="sm:col-span-2">
+                            <label className="block text-[10px] font-bold text-slate-500 mb-1">Alıntı (Kutu içi söz)</label>
+                            <textarea rows={2} value={caseItem.quote} onChange={(e) => {
+                              const updatedList = [...content.caseStudies.cases];
+                              updatedList[idx].quote = e.target.value;
+                              updateField('caseStudies', 'cases', updatedList);
+                            }} className="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 text-xs bg-white" />
+                          </div>
+                          <div>
+                            <label className="block text-[10px] font-bold text-slate-500 mb-1">Yazar / Ebeveyn</label>
+                            <input type="text" value={caseItem.author} onChange={(e) => {
+                              const updatedList = [...content.caseStudies.cases];
+                              updatedList[idx].author = e.target.value;
+                              updateField('caseStudies', 'cases', updatedList);
+                            }} className="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 text-xs bg-white" />
+                          </div>
+                          <div className="grid grid-cols-2 gap-2">
+                            <div>
+                              <label className="block text-[10px] font-bold text-slate-500 mb-1">Şehir</label>
+                              <input type="text" value={caseItem.location} onChange={(e) => {
+                                const updatedList = [...content.caseStudies.cases];
+                                updatedList[idx].location = e.target.value;
+                                updateField('caseStudies', 'cases', updatedList);
+                              }} className="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 text-xs bg-white" />
+                            </div>
+                            <div>
+                              <label className="block text-[10px] font-bold text-slate-500 mb-1">Emoji</label>
+                              <input type="text" value={caseItem.emoji} onChange={(e) => {
+                                const updatedList = [...content.caseStudies.cases];
+                                updatedList[idx].emoji = e.target.value;
+                                updateField('caseStudies', 'cases', updatedList);
+                              }} className="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 text-xs bg-white text-center" />
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Journey Array */}
+                        <div className="bg-white p-4 rounded-xl border border-slate-200">
+                          <div className="flex items-center justify-between mb-3">
+                            <label className="block text-[11px] font-bold text-slate-700">Zaman Çizelgesi (Journey)</label>
+                            <button
+                              type="button"
+                              onClick={() => {
+                                const updatedList = [...content.caseStudies.cases];
+                                const j = updatedList[idx].journey || [];
+                                updatedList[idx].journey = [...j, { label: '', step: '' }];
+                                updateField('caseStudies', 'cases', updatedList);
+                              }}
+                              className="text-[10px] text-sky-600 font-bold flex items-center gap-1 hover:text-sky-700"
+                            >
+                              <Plus size={12} />
+                              <span>Adım Ekle</span>
+                            </button>
+                          </div>
+                          <div className="space-y-2">
+                            {(caseItem.journey || []).map((jItem: any, jIdx: number) => (
+                              <div key={jIdx} className="flex gap-2 items-start">
+                                <input type="text" placeholder="Zaman (örn: 2. Ay)" value={jItem.label} onChange={(e) => {
+                                  const updatedList = [...content.caseStudies.cases];
+                                  updatedList[idx].journey[jIdx].label = e.target.value;
+                                  updateField('caseStudies', 'cases', updatedList);
+                                }} className="w-1/4 px-2 py-1.5 rounded-md border border-slate-300 text-[11px] font-bold" />
+                                <input type="text" placeholder="Açıklama" value={jItem.step} onChange={(e) => {
+                                  const updatedList = [...content.caseStudies.cases];
+                                  updatedList[idx].journey[jIdx].step = e.target.value;
+                                  updateField('caseStudies', 'cases', updatedList);
+                                }} className="flex-1 px-2 py-1.5 rounded-md border border-slate-300 text-[11px]" />
+                                <button
+                                  type="button"
+                                  onClick={() => {
+                                    const updatedList = [...content.caseStudies.cases];
+                                    updatedList[idx].journey = updatedList[idx].journey.filter((_: any, i: number) => i !== jIdx);
+                                    updateField('caseStudies', 'cases', updatedList);
+                                  }}
+                                  className="p-1.5 text-slate-400 hover:text-rose-600 rounded-md border border-transparent hover:bg-rose-50"
+                                >
+                                  <Trash2 size={12} />
+                                </button>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* 9. FINAL CTA TAB */}
           {activeTab === 'finalCta' && (
             <div className="bg-white rounded-3xl p-6 md:p-8 border border-slate-200 shadow-sm space-y-6">
               <div className="border-b border-slate-100 pb-4">

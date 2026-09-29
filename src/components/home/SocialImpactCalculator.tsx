@@ -1,19 +1,20 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import {
-  Clock,
+  Baby,
   ShieldCheck,
-  Building2,
   Heart,
   ArrowRight,
-  CheckCircle2,
   Sparkles,
   Users,
-  Compass,
-  FileText,
-  Activity,
+  Moon,
+  Stethoscope,
+  TrendingUp,
   Award,
+  Zap,
+  Globe,
+  FileText,
 } from 'lucide-react';
 import DemoRequestModal from '@/components/home/DemoRequestModal';
 
@@ -21,15 +22,24 @@ interface SocialImpactCalculatorProps {
   onOpenDemoModal?: (count: number) => void;
 }
 
-type PolicyFocus = 'holistic' | 'maternal' | 'developmental';
-
 export default function SocialImpactCalculator({ onOpenDemoModal }: SocialImpactCalculatorProps) {
   const [babyCount, setBabyCount] = useState<number>(1000);
-  const [activeFocus, setActiveFocus] = useState<PolicyFocus>('holistic');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalBabyCount, setModalBabyCount] = useState(1000);
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
 
-  // Global event listener to allow other components/buttons to open this modal easily
+  // Intersection observer for scroll animation
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setIsVisible(true); },
+      { threshold: 0.15 }
+    );
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  // Global event listener for demo modal
   useEffect(() => {
     const handleOpen = (e: Event) => {
       const customEvent = e as CustomEvent<{ babyCount?: number }>;
@@ -51,420 +61,333 @@ export default function SocialImpactCalculator({ onOpenDemoModal }: SocialImpact
     onOpenDemoModal?.(count);
   };
 
-  // ─────────────────────────────────────────────────────────────────────────────
-  // BİLİMSEL VE SOSYOLOJİK VERİLERLE DESTEKLENEN ETKİ HESAPLAMALARI:
-  // (Direkt fiyat, finansal kâr ve klinik teşhis içermez; fırsat eşitliği ve kamu faydası üretir)
-  // ─────────────────────────────────────────────────────────────────────────────
-  
-  // 1. Gelişimsel İpuçları Zamanında Yakalanan Bebekler:
-  // Pediatrik nöromotor literatüre göre infant dönemde mikro hareket asimetrisi oranı ~%4.4'tür.
-  // Erken fark edildiğinde basit fizyoterapi/ebeveyn egzersizleriyle akran seviyesine ulaşır.
-  const earlyMilestonesDetected = Math.max(1, Math.round(babyCount * 0.044));
+  // ─── Etki Hesaplamaları ───
+  const earlyDetected = Math.max(1, Math.round(babyCount * 0.044));
+  const doctorBridge = Math.max(1, Math.round(babyCount * 0.038));
+  const sereneMothers = Math.max(1, Math.round(babyCount * 0.42));
+  const qualityHours = babyCount * 24;
 
-  // 2. Erken Farkındalıkla Çocuk Hekimi Köprüsü Kuran Bebekler:
-  // Onaylı bebek bezi renk skalası ve cilt bariyer bulgularıyla kulaktan dolma bilgiler yerine
-  // gecikmeden uzman çocuk hekimiyle buluşan bebek havuzu (~%3.8).
-  const criticalAlertsBridge = Math.max(1, Math.round(babyCount * 0.038));
+  // Slider pozisyon yüzdesi
+  const sliderPercent = ((babyCount - 100) / (15000 - 100)) * 100;
 
-  // 3. Gece Çaresizliği Son Bulan & Şefkat Bulan Anneler:
-  // Doğum sonrası lohusalık ve ilk yıl anksiyetesi yaşayan annelerin oranı %70+.
-  // 7/24 rehberlik ile gece yarısı panik yerine evinde sükûnete kavuşan anne sayısı (~%42).
-  const sereneMothersCount = Math.max(1, Math.round(babyCount * 0.42));
-
-  // 4. Aileye Kazandırılan Sevgi Dolu Nitelikli Zaman:
-  // Sağlık Bakanlığı infant acil başvurularının %60'ı basit beslenme/gaz/uyku endişeleridir.
-  // Hastane koridorları, trafik ve panik yerine bebekle göz teması kurulan sevgi saati (~Hane başı 24 saat).
-  const qualityTimeHours = (babyCount * 24).toLocaleString('tr-TR');
-
-  // Hızlı seçim ölçekleri
   const quickScales = [
-    { label: '500 Bebek (Pilot Mahalle)', count: 500 },
-    { label: '1.000 Bebek (İlçe Çapı)', count: 1000 },
-    { label: '2.500 Bebek (Genişletilmiş)', count: 2500 },
-    { label: '5.000 Bebek (Metropol İlçe)', count: 5000 },
-    { label: '10.000 Bebek (Büyükşehir)', count: 10000 },
+    { label: 'Pilot Mahalle', count: 500, emoji: '🏘️' },
+    { label: 'İlçe Çapı', count: 1000, emoji: '🏙️' },
+    { label: 'Genişletilmiş', count: 2500, emoji: '🌆' },
+    { label: 'Metropol İlçe', count: 5000, emoji: '🏛️' },
+    { label: 'Büyükşehir', count: 10000, emoji: '🌍' },
+  ];
+
+  // Animated counter component
+  function AnimatedCounter({ value, suffix = '' }: { value: number | string; suffix?: string }) {
+    return (
+      <span className="tabular-nums">
+        {typeof value === 'number' ? value.toLocaleString('tr-TR') : value}{suffix}
+      </span>
+    );
+  }
+
+  const impactCards = [
+    {
+      icon: Baby,
+      value: earlyDetected,
+      suffix: ' Bebek',
+      title: 'Erken Fark Edilen Gelişimsel İpucu',
+      desc: 'Ev ortamında gözden kaçabilecek motor asimetrileri, sizin desteğinizle zamanında fark edilerek her bebeğe eşit başlangıç hakkı sağlanır.',
+      footer: 'Fırsat Eşitliği',
+      gradient: 'from-turquoise/15 to-emerald-50/50',
+      border: 'border-turquoise/40',
+      iconBg: 'bg-turquoise/20',
+      iconColor: 'text-turquoise',
+      valueBg: 'text-turquoise',
+      footerBg: 'bg-turquoise/10 text-teal-800',
+    },
+    {
+      icon: Stethoscope,
+      value: doctorBridge,
+      suffix: ' Bebek',
+      title: 'Zamanında Hekim Köprüsü',
+      desc: 'Cilt ve sindirim bulgularında aileler kulaktan dolma bilgilerle vakit kaybetmeden doğrudan uzman çocuk hekimiyle buluşur.',
+      footer: 'Kritik Pencere Korunur',
+      gradient: 'from-coral/10 to-rose-50/50',
+      border: 'border-coral/40',
+      iconBg: 'bg-coral/20',
+      iconColor: 'text-coral',
+      valueBg: 'text-coral',
+      footerBg: 'bg-coral/10 text-coral',
+    },
+    {
+      icon: Moon,
+      value: sereneMothers,
+      suffix: ' Anne',
+      title: 'Gece Yalnızlığı Son Bulan Anne',
+      desc: 'Gece 03:00\'te bebeği ağlarken çaresiz kalan anneler, evlerinde güvenilir ve bilimsel rehberlik bularak derin bir nefes alır.',
+      footer: '7/24 Yanlarında',
+      gradient: 'from-blue-50 to-indigo-50/50',
+      border: 'border-blue-300/50',
+      iconBg: 'bg-blue-100',
+      iconColor: 'text-blue-600',
+      valueBg: 'text-blue-600',
+      footerBg: 'bg-blue-50 text-blue-800',
+    },
+    {
+      icon: Heart,
+      value: qualityHours.toLocaleString('tr-TR'),
+      suffix: ' Saat',
+      title: 'Bebekle Geçirilen Huzurlu Zaman',
+      desc: 'Gereksiz acil servis koşuşturmaları yerine aileler bu zamanı bebeklerine masal okuyarak, göz teması kurarak sevgiyle geçirir.',
+      footer: 'Sevgiyle Büyüme',
+      gradient: 'from-emerald-50 to-green-50/50',
+      border: 'border-emerald-300/50',
+      iconBg: 'bg-emerald-100',
+      iconColor: 'text-emerald-600',
+      valueBg: 'text-emerald-600',
+      footerBg: 'bg-emerald-50 text-emerald-800',
+    },
   ];
 
   return (
     <section
-      className="py-20 md:py-28 px-4 md:px-8 bg-gradient-to-b from-slate-50 via-white to-slate-100/70 relative overflow-hidden"
+      ref={sectionRef}
+      className="py-20 md:py-28 px-4 md:px-8 bg-gradient-to-b from-[#F8FAFD] via-white to-[#F0F5FA] relative overflow-hidden"
       id="sosyal-etki"
     >
-      {/* Background soft ambient lights */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-turquoise/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-10 right-10 w-96 h-96 bg-coral/10 rounded-full blur-3xl pointer-events-none" />
+      {/* Background elements */}
+      <div className="absolute top-20 left-1/4 w-[500px] h-[500px] bg-turquoise/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-20 right-1/4 w-[400px] h-[400px] bg-coral/5 rounded-full blur-3xl pointer-events-none" />
+      
+      {/* Subtle grid pattern */}
+      <div className="absolute inset-0 opacity-[0.02] pointer-events-none" style={{
+        backgroundImage: 'radial-gradient(circle, #0B2545 1px, transparent 1px)',
+        backgroundSize: '32px 32px'
+      }} />
 
       <div className="max-w-6xl mx-auto relative z-10">
         
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-turquoise/15 text-turquoise text-xs font-bold tracking-wider uppercase mb-4 border border-turquoise/30 backdrop-blur-md">
-            <Compass size={14} className="text-turquoise" />
-            <span>Belediye & Kurumsal Sosyal Etki Simülatörü</span>
+        {/* ─── HEADER ─── */}
+        <div className={`text-center max-w-3xl mx-auto mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-gradient-to-r from-navy/5 to-turquoise/10 text-navy text-xs font-bold tracking-wider uppercase mb-5 border border-navy/10 backdrop-blur-md">
+            <Zap size={14} className="text-turquoise" />
+            <span>Sosyal Etki Simülasyonu</span>
           </div>
 
-          <h2 className="text-3xl md:text-5xl font-extrabold text-navy tracking-tight leading-tight">
-            Şehrinizdeki Bebeklere Dokunduğunuzda{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-turquoise via-teal-500 to-navy">
-              Neler Değişir?
+          <h2 className="text-3xl md:text-[3.2rem] font-extrabold text-navy tracking-tight leading-[1.15]">
+            Bir Karar Verin,{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-turquoise via-teal-500 to-[#0284C7]">
+              Bin Hayata Dokunun.
             </span>
           </h2>
 
-          <p className="mt-4 text-base md:text-lg text-slate-600 leading-relaxed font-normal">
-            Desteklemek istediğiniz bebek sayısını belirleyin; çocukların sağlıklı gelişiminde, annelerin yalnız kalmamasında ve hane içi huzurda yaratacağınız somut toplumsal dönüşümü canlı simüle edin.
+          <p className="mt-5 text-base md:text-lg text-slate-600 leading-relaxed font-normal max-w-2xl mx-auto">
+            Kaç bebeği desteklemek istediğinizi seçin — sizin bu tek kararınızın şehrinizde yaratacağı 
+            toplumsal dönüşümü gözlerinizle görün.
           </p>
         </div>
 
-        {/* Ana Simülatör Kartı */}
-        <div className="bg-white rounded-3xl p-6 sm:p-10 shadow-2xl border border-slate-200/80 max-w-5xl mx-auto">
-          
-          {/* Kurumsal Politika / Öncelik Seçimi (3 Tabs) */}
-          <div className="mb-8">
-            <div className="flex items-center justify-between mb-3">
-              <span className="text-xs font-bold uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
-                <Activity size={14} className="text-turquoise" />
-                Belediyenizin / Kurumunuzun Sosyal Önceliği:
-              </span>
-              <span className="text-[11px] font-semibold text-slate-400 hidden sm:inline">
-                Etki modelini seçin
-              </span>
-            </div>
+        {/* ─── SLIDER CONTROL CARD ─── */}
+        <div className={`max-w-4xl mx-auto mb-12 transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-200/80 relative overflow-hidden">
+            {/* Decorative corner accent */}
+            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-turquoise/10 to-transparent rounded-bl-full pointer-events-none" />
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
-              <button
-                type="button"
-                onClick={() => setActiveFocus('holistic')}
-                className={`p-3.5 rounded-2xl text-left border transition-all flex items-center gap-3 ${
-                  activeFocus === 'holistic'
-                    ? 'bg-navy text-white border-navy shadow-md ring-2 ring-turquoise/40'
-                    : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200'
-                }`}
-              >
-                <div className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 ${
-                  activeFocus === 'holistic' ? 'bg-turquoise text-navy' : 'bg-white text-navy'
-                }`}>
-                  <Building2 size={16} />
-                </div>
-                <div>
-                  <div className="text-xs font-bold">Bütüncül Sosyal Destek</div>
-                  <div className={`text-[10px] ${activeFocus === 'holistic' ? 'text-white/70' : 'text-slate-500'}`}>
-                    Her mahalleye eşit erişim
-                  </div>
-                </div>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setActiveFocus('maternal')}
-                className={`p-3.5 rounded-2xl text-left border transition-all flex items-center gap-3 ${
-                  activeFocus === 'maternal'
-                    ? 'bg-navy text-white border-navy shadow-md ring-2 ring-blue-400/40'
-                    : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200'
-                }`}
-              >
-                <div className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 ${
-                  activeFocus === 'maternal' ? 'bg-blue-400 text-navy' : 'bg-white text-blue-600'
-                }`}>
-                  <Heart size={16} />
-                </div>
-                <div>
-                  <div className="text-xs font-bold">Anne & Lohusa Esenliği</div>
-                  <div className={`text-[10px] ${activeFocus === 'maternal' ? 'text-white/70' : 'text-slate-500'}`}>
-                    Gece yalnızlığına son
-                  </div>
-                </div>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setActiveFocus('developmental')}
-                className={`p-3.5 rounded-2xl text-left border transition-all flex items-center gap-3 ${
-                  activeFocus === 'developmental'
-                    ? 'bg-navy text-white border-navy shadow-md ring-2 ring-coral/40'
-                    : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200'
-                }`}
-              >
-                <div className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 ${
-                  activeFocus === 'developmental' ? 'bg-coral text-white' : 'bg-white text-coral'
-                }`}>
-                  <ShieldCheck size={16} />
-                </div>
-                <div>
-                  <div className="text-xs font-bold">İlk 1.000 Gün İzlemi</div>
-                  <div className={`text-[10px] ${activeFocus === 'developmental' ? 'text-white/70' : 'text-slate-500'}`}>
-                    Erken çocuk hekimi köprüsü
-                  </div>
-                </div>
-              </button>
-            </div>
-          </div>
-          
-          {/* Bebek Sayısı Belirleme ve Slider */}
-          <div className="mb-8 p-6 sm:p-7 rounded-2xl bg-gradient-to-br from-slate-50 to-teal-50/30 border border-slate-200/80">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-5">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 relative">
               <div>
-                <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
-                  Ulaşılacak Bebek & Anne Sayısı
-                </span>
-                <p className="text-xs text-slate-500 mt-0.5">
-                  Şehrinizde koruma kalkanı altına alınacak aile havuzu
+                <h3 className="text-sm font-bold text-navy flex items-center gap-2">
+                  <Globe size={16} className="text-turquoise" />
+                  Şehrinizde Kaç Bebeğe Ulaşmak İstiyorsunuz?
+                </h3>
+                <p className="text-xs text-slate-500 mt-1">
+                  Slider&apos;ı kaydırarak veya aşağıdaki ölçeklerden birini seçerek belirleyin.
                 </p>
               </div>
 
-              <div className="inline-flex items-baseline gap-2 bg-navy px-5 py-2.5 rounded-2xl shadow-lg border border-navy/40">
-                <span className="text-2xl sm:text-3xl font-black text-turquoise font-mono">
+              <div className="inline-flex items-baseline gap-2 bg-gradient-to-r from-navy via-[#0d3461] to-navy px-6 py-3 rounded-2xl shadow-lg shadow-navy/20">
+                <span className="text-3xl sm:text-4xl font-black text-turquoise font-mono tracking-tight">
                   {babyCount.toLocaleString('tr-TR')}
                 </span>
-                <span className="text-xs font-bold text-white uppercase tracking-wider">Bebek & Anne</span>
+                <span className="text-[11px] font-bold text-white/80 uppercase tracking-wider">
+                  Aile
+                </span>
               </div>
             </div>
 
-            {/* Range Slider */}
-            <input
-              type="range"
-              min={100}
-              max={15000}
-              step={100}
-              value={babyCount}
-              onChange={(e) => setBabyCount(Number(e.target.value))}
-              className="w-full h-3 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-turquoise transition-all"
-            />
-
-            {/* Hızlı Seçim Butonları */}
-            <div className="flex flex-wrap items-center justify-between gap-2 mt-5 pt-3 border-t border-slate-200/60">
-              <span className="text-[11px] font-bold text-slate-400">Hızlı Ölçek Seçimi:</span>
-              <div className="flex flex-wrap gap-2">
-                {quickScales.map((item) => (
-                  <button
-                    key={item.count}
-                    onClick={() => setBabyCount(item.count)}
-                    className={`px-3 py-1.5 rounded-xl text-xs transition-all border ${
-                      babyCount === item.count
-                        ? 'bg-turquoise text-navy border-turquoise font-bold shadow-md shadow-turquoise/20'
-                        : 'bg-white text-slate-600 hover:border-slate-300 border-slate-200 font-medium'
-                    }`}
-                  >
-                    {item.label}
-                  </button>
-                ))}
+            {/* Custom Slider */}
+            <div className="relative mb-6">
+              <div className="relative h-4 bg-slate-100 rounded-full overflow-hidden">
+                <div 
+                  className="absolute left-0 top-0 h-full bg-gradient-to-r from-turquoise to-teal-500 rounded-full transition-all duration-300"
+                  style={{ width: `${sliderPercent}%` }}
+                />
               </div>
+              <input
+                type="range"
+                min={100}
+                max={15000}
+                step={100}
+                value={babyCount}
+                onChange={(e) => setBabyCount(Number(e.target.value))}
+                className="absolute inset-0 w-full h-4 opacity-0 cursor-pointer"
+              />
+              {/* Thumb indicator */}
+              <div 
+                className="absolute top-1/2 -translate-y-1/2 w-6 h-6 bg-white border-[3px] border-turquoise rounded-full shadow-lg shadow-turquoise/30 pointer-events-none transition-all duration-300"
+                style={{ left: `calc(${sliderPercent}% - 12px)` }}
+              />
+            </div>
+
+            {/* Quick Scale Buttons */}
+            <div className="flex flex-wrap items-center gap-2">
+              {quickScales.map((item) => (
+                <button
+                  key={item.count}
+                  onClick={() => setBabyCount(item.count)}
+                  className={`px-3.5 py-2 rounded-xl text-xs transition-all border flex items-center gap-1.5 ${
+                    babyCount === item.count
+                      ? 'bg-navy text-white border-navy font-bold shadow-md shadow-navy/15'
+                      : 'bg-white text-slate-600 hover:border-slate-300 border-slate-200 font-medium hover:bg-slate-50'
+                  }`}
+                >
+                  <span>{item.emoji}</span>
+                  <span>{item.label}</span>
+                </button>
+              ))}
             </div>
           </div>
+        </div>
 
-          {/* 4 TEMEL İNSANİ VE SOSYAL ETKİ SÜTUNU */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-8">
-            
-            {/* SÜTUN 1: Gelişimsel İpuçları Zamanında Yakalanan Bebekler */}
-            <div className={`p-6 rounded-2xl bg-gradient-to-br from-turquoise/10 via-white to-white border-2 shadow-sm flex flex-col justify-between hover:shadow-md transition-all ${
-              activeFocus === 'developmental' || activeFocus === 'holistic'
-                ? 'border-turquoise/60 ring-2 ring-turquoise/20'
-                : 'border-turquoise/30'
-            }`}>
-              <div>
-                <div className="flex items-center justify-between mb-3">
-                  <div className="w-12 h-12 rounded-2xl bg-turquoise/20 text-turquoise flex items-center justify-center">
-                    <ShieldCheck size={24} />
+        {/* ─── 4 IMPACT CARDS ─── */}
+        <div className={`grid grid-cols-1 md:grid-cols-2 gap-5 max-w-5xl mx-auto mb-10 transition-all duration-1000 delay-400 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          {impactCards.map((card, idx) => {
+            const Icon = card.icon;
+            return (
+              <div
+                key={idx}
+                className={`p-6 rounded-3xl bg-gradient-to-br ${card.gradient} border ${card.border} shadow-sm hover:shadow-lg transition-all duration-300 group relative overflow-hidden`}
+              >
+                {/* Subtle background circle */}
+                <div className={`absolute -right-8 -bottom-8 w-32 h-32 ${card.iconBg} rounded-full opacity-30 group-hover:opacity-50 transition-opacity`} />
+                
+                <div className="relative">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className={`w-12 h-12 rounded-2xl ${card.iconBg} ${card.iconColor} flex items-center justify-center shadow-sm`}>
+                      <Icon size={24} />
+                    </div>
+                    <span className={`text-xs font-bold font-mono px-3 py-1 rounded-full ${card.footerBg}`}>
+                      {card.footer}
+                    </span>
                   </div>
-                  <span className="text-xs font-bold font-mono px-3 py-1 rounded-full bg-turquoise/15 text-turquoise">
-                    Fırsat Eşitliği
-                  </span>
-                </div>
 
-                <div className="text-3xl sm:text-4xl font-black text-navy font-mono mb-1">
-                  {earlyMilestonesDetected} Bebek
-                </div>
-                <h4 className="text-base font-bold text-slate-800 mb-2">
-                  Gelişimsel İpuçları Zamanında Yakalanan Bebekler
-                </h4>
-
-                <p className="text-xs text-slate-600 leading-relaxed">
-                  Her bebek eşit imkânlarla doğmayabilir, ancak zamanında fark edilme hakkı eşittir. İlk 4 ayda ev ortamında gözden kaçabilecek hareket asimetrileri algoritmik analizle erkenden fark edilir; her bebeğe <strong>desteksiz oturma, emekleme ve ilk adımlarını bağımsız atma serüveninde fırsat eşitliği</strong> sağlanır.
-                </p>
-              </div>
-
-              <div className="mt-4 pt-3 border-t border-slate-100 flex items-center gap-2 text-[11px] font-semibold text-teal-800 bg-teal-50/70 p-2.5 rounded-xl">
-                <CheckCircle2 size={14} className="text-turquoise flex-shrink-0" />
-                <span>Sosyoekonomik durum ne olursa olsun her bebeğe adil bir başlangıç.</span>
-              </div>
-            </div>
-
-            {/* SÜTUN 2: Kritik Zaman Eşiği Aşılmadan Çocuk Hekimine Sevk Edilen Bebekler */}
-            <div className={`p-6 rounded-2xl bg-gradient-to-br from-coral/10 via-white to-white border-2 shadow-sm flex flex-col justify-between hover:shadow-md transition-all ${
-              activeFocus === 'developmental' || activeFocus === 'holistic'
-                ? 'border-coral/60 ring-2 ring-coral/20'
-                : 'border-coral/30'
-            }`}>
-              <div>
-                <div className="flex items-center justify-between mb-3">
-                  <div className="w-12 h-12 rounded-2xl bg-coral/20 text-coral flex items-center justify-center">
-                    <Heart size={24} />
+                  <div className={`text-3xl sm:text-4xl font-black ${card.valueBg} font-mono mb-1.5 tracking-tight`}>
+                    <AnimatedCounter 
+                      value={typeof card.value === 'string' ? card.value : card.value} 
+                      suffix={card.suffix} 
+                    />
                   </div>
-                  <span className="text-xs font-bold font-mono px-3 py-1 rounded-full bg-coral/15 text-coral">
-                    Erken Hekim Köprüsü
-                  </span>
-                </div>
+                  
+                  <h4 className="text-base font-bold text-slate-800 mb-2">
+                    {card.title}
+                  </h4>
 
-                <div className="text-3xl sm:text-4xl font-black text-navy font-mono mb-1">
-                  {criticalAlertsBridge} Bebek
-                </div>
-                <h4 className="text-base font-bold text-slate-800 mb-2">
-                  Kritik Eşik Aşılmadan Çocuk Hekimiyle Buluşan Bebekler
-                </h4>
-
-                <p className="text-xs text-slate-600 leading-relaxed">
-                  Bebek bezindeki renk farklılıkları (onaylı dışkı renk skalası) veya cilt bariyerindeki olağandışı bulgular algoritmik ön taramadan geçer. Aileler kulaktan dolma bilgilerle veya bekleyerek zaman kaybetmeden, <strong>en kritik günlerde doğrudan uzman çocuk hekimine</strong> yönlendirilir.
-                </p>
-              </div>
-
-              <div className="mt-4 pt-3 border-t border-slate-100 flex items-center gap-2 text-[11px] font-semibold text-coral bg-coral/10 p-2.5 rounded-xl">
-                <CheckCircle2 size={14} className="text-coral flex-shrink-0" />
-                <span>Tanı koymaz; doğru zamanda hekim muayenesine güvenli sevk köprüsü kurar.</span>
-              </div>
-            </div>
-
-            {/* SÜTUN 3: Uykusuz Gecelerde Yalnız Olmadığını Hisseden Anneler */}
-            <div className={`p-6 rounded-2xl bg-gradient-to-br from-blue-50 via-white to-white border-2 shadow-sm flex flex-col justify-between hover:shadow-md transition-all ${
-              activeFocus === 'maternal' || activeFocus === 'holistic'
-                ? 'border-blue-400 ring-2 ring-blue-400/20'
-                : 'border-blue-200'
-            }`}>
-              <div>
-                <div className="flex items-center justify-between mb-3">
-                  <div className="w-12 h-12 rounded-2xl bg-blue-100 text-blue-600 flex items-center justify-center">
-                    <Users size={24} />
-                  </div>
-                  <span className="text-xs font-bold font-mono px-3 py-1 rounded-full bg-blue-100 text-blue-700">
-                    7/24 Anne Esenliği
-                  </span>
-                </div>
-
-                <div className="text-3xl sm:text-4xl font-black text-navy font-mono mb-1">
-                  {sereneMothersCount} Anne
-                </div>
-                <h4 className="text-base font-bold text-slate-800 mb-2">
-                  Uykusuz Gecelerde Yalnız Olmadığını Hisseden Anneler
-                </h4>
-
-                <p className="text-xs text-slate-600 leading-relaxed">
-                  Gece 03:00&apos;te bebeği sebepsiz ağlarken çaresizlik, lohusalık hüznü ve panik yaşayan annelere 7/24 şefkatli bir yol arkadaşı el uzatır. Anneler evhamla acil servislere koşturmak yerine, <strong>evlerinde sakinleştirici, bilimsel ve güvenilir rehberlik bularak derin bir nefes alır.</strong>
-                </p>
-              </div>
-
-              <div className="mt-4 pt-3 border-t border-slate-100 flex items-center gap-2 text-[11px] font-semibold text-blue-800 bg-blue-50 p-2.5 rounded-xl">
-                <CheckCircle2 size={14} className="text-blue-600 flex-shrink-0" />
-                <span>Anne psikolojik sağlığı korunur; yerel yönetim desteği hanede doğrudan hissedilir.</span>
-              </div>
-            </div>
-
-            {/* SÜTUN 4: Aileye Kazandırılan Sevgi Dolu Nitelikli Zaman */}
-            <div className="p-6 rounded-2xl bg-gradient-to-br from-emerald-50 via-white to-white border-2 border-emerald-200 shadow-sm flex flex-col justify-between hover:shadow-md transition-all">
-              <div>
-                <div className="flex items-center justify-between mb-3">
-                  <div className="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center">
-                    <Clock size={24} />
-                  </div>
-                  <span className="text-xs font-bold font-mono px-3 py-1 rounded-full bg-emerald-100 text-emerald-700">
-                    Nitelikli Büyüme
-                  </span>
-                </div>
-
-                <div className="text-3xl sm:text-4xl font-black text-emerald-700 font-mono mb-1">
-                  {qualityTimeHours} Saat
-                </div>
-                <h4 className="text-base font-bold text-slate-800 mb-2">
-                  Hastane Sıraları Yerine Bebekle Büyüyen Huzurlu Saatler
-                </h4>
-
-                <p className="text-xs text-slate-600 leading-relaxed">
-                  Tıbbi müdahale gerektirmeyen bebek gazı veya beslenme endişeleriyle acil servis kapılarında geçen yorucu geceler ortadan kalkar. Aileler bu kıymetli zamanı bebekleriyle <strong>göz teması kurarak, masal okuyarak ve güvenli bağ geliştirerek</strong> sevgiyle geçirir.
-                </p>
-              </div>
-
-              <div className="mt-4 pt-3 border-t border-slate-100 flex items-center gap-2 text-[11px] font-semibold text-emerald-800 bg-emerald-50 p-2.5 rounded-xl">
-                <CheckCircle2 size={14} className="text-emerald-600 flex-shrink-0" />
-                <span>En büyük zenginlik zamandır; sevgiyle büyüyen sağlıklı bir nesil yeşerir.</span>
-              </div>
-            </div>
-
-          </div>
-
-          {/* BELEDİYE & KURUMSAL DÖNÜŞÜM GÖSTERGE RADARI */}
-          <div className="mb-8 p-6 rounded-2xl bg-slate-900 text-white border border-slate-800 shadow-xl">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5 border-b border-white/10 pb-4">
-              <div className="flex items-center gap-2.5">
-                <Award size={20} className="text-turquoise" />
-                <div>
-                  <h5 className="text-sm font-bold text-white">
-                    Şehrinizde {babyCount.toLocaleString('tr-TR')} Bebeğe Bu Desteği Verdiğinizde Kurumsal Bilanço:
-                  </h5>
-                  <p className="text-[11px] text-white/60">
-                    Belediye Meclisi ve Sosyal Hizmetler Değerlendirme Raporu Çıktısı
+                  <p className="text-xs text-slate-600 leading-relaxed">
+                    {card.desc}
                   </p>
                 </div>
               </div>
-              <span className="text-xs font-mono px-3 py-1 rounded-full bg-white/10 text-turquoise font-bold self-start sm:self-center">
-                Canlı Projeksiyon
-              </span>
-            </div>
+            );
+          })}
+        </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-              <div className="p-3.5 rounded-xl bg-white/[0.05] border border-white/5">
-                <span className="block text-2xl font-black text-turquoise font-mono">%100</span>
-                <span className="text-[11px] font-medium text-white/80 mt-1 block">Fırsat Eşitliği Erişimi</span>
-                <span className="text-[10px] text-white/50">Tüm mahalleler eşit</span>
-              </div>
+        {/* ─── SOCIAL TRANSFORMATION RADAR (Dark Section) ─── */}
+        <div className={`max-w-5xl mx-auto mb-10 transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <div className="bg-gradient-to-br from-[#0B2545] via-[#0d3461] to-[#071e37] rounded-3xl p-6 sm:p-10 text-white shadow-2xl relative overflow-hidden">
+            {/* Background glow */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[300px] bg-turquoise/5 rounded-full blur-3xl pointer-events-none" />
 
-              <div className="p-3.5 rounded-xl bg-white/[0.05] border border-white/5">
-                <span className="block text-2xl font-black text-coral font-mono">{criticalAlertsBridge} Bebek</span>
-                <span className="text-[11px] font-medium text-white/80 mt-1 block">Zamanında Hekim Sevk</span>
-                <span className="text-[10px] text-white/50">Gecikmeden muayene</span>
-              </div>
-
-              <div className="p-3.5 rounded-xl bg-white/[0.05] border border-white/5">
-                <span className="block text-2xl font-black text-blue-400 font-mono">7/24</span>
-                <span className="text-[11px] font-medium text-white/80 mt-1 block">Kesintisiz Anne Yanında</span>
-                <span className="text-[10px] text-white/50">Lohusalık yalnızlığına son</span>
-              </div>
-
-              <div className="p-3.5 rounded-xl bg-white/[0.05] border border-white/5">
-                <span className="block text-2xl font-black text-emerald-400 font-mono">%94</span>
-                <span className="text-[11px] font-medium text-white/80 mt-1 block">Kurumsal Güven Skoru</span>
-                <span className="text-[10px] text-white/50">Vatandaş memnuniyeti</span>
-              </div>
-            </div>
-
-            <div className="mt-4 pt-3 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between text-[11px] text-white/60 gap-2">
-              <span className="flex items-center gap-1.5">
-                <Sparkles size={13} className="text-turquoise" />
-                Bu simülasyon pediatri kılavuzları ve sosyal belediyecilik iyi uygulama modelleri baz alınarak derlenmiştir.
-              </span>
-              <span className="text-white/40">Klinik tanı koymaz; erken farkındalık ve hekim köprüsü kurar.</span>
-            </div>
-          </div>
-
-          {/* Aksiyon Çağrısı & Kurumsal Protokol */}
-          <div className="p-6 rounded-2xl bg-gradient-to-r from-slate-50 to-teal-50/40 border border-slate-200/90 flex flex-col md:flex-row items-center justify-between gap-5">
-            <div>
-              <div className="flex items-center gap-2 mb-1.5">
-                <FileText size={16} className="text-navy" />
-                <span className="text-xs font-bold uppercase tracking-wider text-navy">
-                  Belediye Meclis Karar Taslağı & Kurumsal Protokol Dosyası
+            <div className="relative">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-8 border-b border-white/10 pb-5">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-turquoise/20 text-turquoise flex items-center justify-center">
+                    <TrendingUp size={20} />
+                  </div>
+                  <div>
+                    <h5 className="text-base font-bold text-white">
+                      Sosyal Dönüşüm Haritası
+                    </h5>
+                    <p className="text-[11px] text-white/50">
+                      {babyCount.toLocaleString('tr-TR')} ailelik programın şehrinize etkileri
+                    </p>
+                  </div>
+                </div>
+                <span className="text-xs font-mono px-4 py-1.5 rounded-full bg-turquoise/15 text-turquoise font-bold border border-turquoise/20 self-start sm:self-center flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-turquoise animate-pulse" />
+                  Canlı Projeksiyon
                 </span>
               </div>
-              <p className="text-xs sm:text-sm text-slate-600 max-w-xl leading-relaxed">
-                Şehrinizdeki aileler için bu sosyal destek modelini belediyenizin veya kurumunuzun kendi logosuyla hayata geçirmek üzere <strong>protokol dosyasını ve meclis karar taslağını</strong> hemen talep edebilirsiniz.
-              </p>
+
+              {/* Stats Grid */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                <div className="p-4 rounded-2xl bg-white/[0.06] border border-white/[0.08] text-center hover:bg-white/[0.1] transition-colors">
+                  <span className="block text-2xl sm:text-3xl font-black text-turquoise font-mono">%100</span>
+                  <span className="text-[11px] font-medium text-white/80 mt-1.5 block">Fırsat Eşitliği</span>
+                  <span className="text-[10px] text-white/40">Tüm mahalleler eşit</span>
+                </div>
+
+                <div className="p-4 rounded-2xl bg-white/[0.06] border border-white/[0.08] text-center hover:bg-white/[0.1] transition-colors">
+                  <span className="block text-2xl sm:text-3xl font-black text-coral font-mono">{doctorBridge}</span>
+                  <span className="text-[11px] font-medium text-white/80 mt-1.5 block">Erken Hekim Sevki</span>
+                  <span className="text-[10px] text-white/40">Gecikmesiz muayene</span>
+                </div>
+
+                <div className="p-4 rounded-2xl bg-white/[0.06] border border-white/[0.08] text-center hover:bg-white/[0.1] transition-colors">
+                  <span className="block text-2xl sm:text-3xl font-black text-blue-400 font-mono">7/24</span>
+                  <span className="text-[11px] font-medium text-white/80 mt-1.5 block">Kesintisiz Destek</span>
+                  <span className="text-[10px] text-white/40">Annelerin yanında</span>
+                </div>
+
+                <div className="p-4 rounded-2xl bg-white/[0.06] border border-white/[0.08] text-center hover:bg-white/[0.1] transition-colors">
+                  <span className="block text-2xl sm:text-3xl font-black text-emerald-400 font-mono">%94+</span>
+                  <span className="text-[11px] font-medium text-white/80 mt-1.5 block">Vatandaş Memnuniyeti</span>
+                  <span className="text-[10px] text-white/40">Kurumsal güven</span>
+                </div>
+              </div>
+
+              <div className="flex flex-col sm:flex-row items-center justify-between text-[11px] text-white/50 gap-2 pt-3 border-t border-white/[0.06]">
+                <span className="flex items-center gap-1.5">
+                  <Sparkles size={13} className="text-turquoise" />
+                  Pediatri kılavuzları ve sosyal belediyecilik iyi uygulama modelleri referans alınmıştır.
+                </span>
+                <span className="text-white/30">Klinik tanı koymaz; erken farkındalık köprüsü kurar.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* ─── CTA BAR ─── */}
+        <div className={`max-w-5xl mx-auto transition-all duration-1000 delay-600 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <div className="p-6 sm:p-8 rounded-3xl bg-white border border-slate-200 shadow-lg flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 rounded-2xl bg-navy/5 text-navy flex items-center justify-center shrink-0">
+                <FileText size={22} />
+              </div>
+              <div>
+                <h4 className="text-sm font-bold text-navy mb-1">
+                  Kurumsal Protokol & Meclis Karar Dosyası
+                </h4>
+                <p className="text-xs text-slate-600 max-w-lg leading-relaxed">
+                  Bu sosyal destek modelini kurumunuzun kendi logosu ve markasıyla hayata geçirmek için 
+                  <strong> protokol dosyasını ve bütçe tablosunu</strong> hemen talep edebilirsiniz.
+                </p>
+              </div>
             </div>
 
             <button
               onClick={() => handleOpenModal(babyCount)}
-              className="px-7 py-4 rounded-2xl bg-gradient-to-r from-coral to-[#e8634f] hover:bg-coral-600 text-white font-bold text-xs sm:text-sm shrink-0 flex items-center gap-2.5 shadow-xl shadow-coral/30 hover:scale-105 active:scale-98 transition-all"
+              className="px-7 py-4 rounded-2xl bg-gradient-to-r from-coral to-[#e8634f] text-white font-bold text-sm shrink-0 flex items-center gap-2.5 shadow-xl shadow-coral/25 hover:shadow-2xl hover:shadow-coral/30 hover:scale-[1.03] active:scale-[0.98] transition-all"
             >
-              <span>Meclis / Kurumsal Protokol Dosyası İsteyin</span>
+              <span>Protokol Dosyasını Talep Edin</span>
               <ArrowRight size={16} />
             </button>
           </div>
-
         </div>
 
       </div>
@@ -478,6 +401,3 @@ export default function SocialImpactCalculator({ onOpenDemoModal }: SocialImpact
     </section>
   );
 }
-
-
-
