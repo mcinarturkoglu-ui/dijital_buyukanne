@@ -423,6 +423,18 @@ export default function SystemStoryModal() {
     }
   }, []);
 
+  // Sayfadaki herhangi bir butondan açılabilmesi için global dinleyici
+  useEffect(() => {
+    const handleOpenModal = () => {
+      setProgress(0);
+      setCurrentScene(0);
+      setIsPlaying(true);
+      setIsOpen(true);
+    };
+    window.addEventListener('open-system-story-modal', handleOpenModal);
+    return () => window.removeEventListener('open-system-story-modal', handleOpenModal);
+  }, []);
+
   // Otomatik sahne geçişi (Play/Pause)
   useEffect(() => {
     if (!isOpen || !isPlaying) return;

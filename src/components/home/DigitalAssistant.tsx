@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { MessageCircle, Moon, Sparkles, Send, Bot, HeartHandshake } from 'lucide-react';
+import { MessageCircle, Moon, Sparkles, Send, Bot, HeartHandshake, Play, Pause, Volume2 } from 'lucide-react';
 import SectionHeader from '@/components/ui/SectionHeader';
 import PhoneMockup from '@/components/ui/PhoneMockup';
 import siteContent from '@/data/site-content.json';
@@ -129,6 +129,26 @@ function ChatPhoneContent({
 
 export default function DigitalAssistant() {
   const [activeTopicIndex, setActiveTopicIndex] = useState(0);
+  const [isPlayingAudio, setIsPlayingAudio] = useState(false);
+  const [audioSeconds, setAudioSeconds] = useState(0);
+
+  useEffect(() => {
+    let t: any;
+    if (isPlayingAudio) {
+      t = setInterval(() => {
+        setAudioSeconds((prev) => {
+          if (prev >= 18) {
+            setIsPlayingAudio(false);
+            return 0;
+          }
+          return prev + 1;
+        });
+      }, 1000);
+    } else {
+      setAudioSeconds(0);
+    }
+    return () => clearInterval(t);
+  }, [isPlayingAudio]);
 
   const activeTopic = topicsData[activeTopicIndex];
 
@@ -195,9 +215,49 @@ export default function DigitalAssistant() {
               </div>
 
               {/* Spoken Quote Transcript */}
-              <blockquote className="text-white/90 text-sm md:text-base italic leading-relaxed pl-4 border-l-2 border-sky-400">
+              <blockquote className="text-white/90 text-sm md:text-base italic leading-relaxed pl-4 border-l-2 border-sky-400 mb-4">
                 &ldquo;{activeTopic.transcript}&rdquo;
               </blockquote>
+
+              {/* Interactive Audio Waveform Player */}
+              <div className="pt-3 border-t border-white/10 flex items-center justify-between gap-3 bg-white/[0.04] p-3 rounded-2xl">
+                <div className="flex items-center gap-3">
+                  <button
+                    onClick={() => setIsPlayingAudio(!isPlayingAudio)}
+                    className="w-10 h-10 rounded-xl bg-gradient-to-r from-sky-400 to-sky-500 hover:from-sky-300 hover:to-sky-400 text-navy flex items-center justify-center shrink-0 shadow-md shadow-sky-400/20 transition-all cursor-pointer"
+                    title={isPlayingAudio ? 'Durdur' : 'Sesi Dinle'}
+                  >
+                    {isPlayingAudio ? <Pause size={16} /> : <Play size={16} className="ml-0.5" />}
+                  </button>
+                  <div>
+                    <span className="text-xs font-bold text-white flex items-center gap-1.5">
+                      <Volume2 size={13} className="text-sky-300" />
+                      {isPlayingAudio ? 'Büyükanne Fısıltısı Dinleniyor...' : "Büyükanne'nin Sesini Dinleyin"}
+                    </span>
+                    <span className="text-[10px] text-white/50 block">
+                      Gece 03:00 Sakinleştirme Rutini • {isPlayingAudio ? `0:${audioSeconds.toString().padStart(2, '0')}` : '0:18'}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Animated Equalizer Waveform Bars */}
+                <div className="flex items-center gap-1 h-6 shrink-0 px-2">
+                  {[12, 24, 16, 28, 14, 22, 10, 26, 18, 14].map((h, i) => (
+                    <span
+                      key={i}
+                      className={`w-1 rounded-full transition-all duration-300 ${
+                        isPlayingAudio
+                          ? 'bg-sky-400 animate-pulse'
+                          : 'bg-white/30'
+                      }`}
+                      style={{
+                        height: isPlayingAudio ? `${Math.max(6, (h * (i % 2 === 0 ? 1.2 : 0.8)))}px` : '6px',
+                        animationDelay: `${i * 0.1}s`,
+                      }}
+                    />
+                  ))}
+                </div>
+              </div>
             </div>
 
             {/* Topic Selector Pills */}

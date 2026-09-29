@@ -17,6 +17,9 @@ import InstitutionsHero from "@/components/home/InstitutionsHero";
 import SocialImpactCalculator from "@/components/home/SocialImpactCalculator";
 import SupportersPreview from "@/components/home/SupportersPreview";
 import FinalCTA from "@/components/home/FinalCTA";
+import EcosystemPulseTicker from "@/components/home/EcosystemPulseTicker";
+import StandardsMarquee from "@/components/home/StandardsMarquee";
+import ProblemSolutionCompare from "@/components/home/ProblemSolutionCompare";
 import siteContent from "@/data/site-content.json";
 
 export const metadata: Metadata = {
@@ -48,6 +51,8 @@ export default function HomePage() {
           ───────────────────────────────────────────────────────────── */}
       <div id="bolum-1" className="scroll-mt-16">
         <HeroSection />
+        <EcosystemPulseTicker />
+        <StandardsMarquee />
       </div>
 
       {/* Kurumsal Geçiş 01 -> 02 */}
@@ -68,6 +73,9 @@ export default function HomePage() {
       <div id="bolum-2" className="scroll-mt-16">
         <TimelineSection />
       </div>
+
+      {/* İnteraktif Problem & Çözüm Karşılaştırması */}
+      <ProblemSolutionCompare />
 
       {/* Kurumsal Geçiş 02 -> 03 */}
       <StoryChapterRibbon

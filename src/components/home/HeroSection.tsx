@@ -18,6 +18,8 @@ import {
   Eye,
   CheckCircle2,
   Clock,
+  TrendingUp,
+  FileText,
 } from 'lucide-react';
 
 function HeroAppScreen({
@@ -30,6 +32,19 @@ function HeroAppScreen({
   const [videoProgress, setVideoProgress] = useState(35);
   const [scanPulse, setScanPulse] = useState(false);
   const [selectedPrompt, setSelectedPrompt] = useState<number>(0);
+  const [isSimulating, setIsSimulating] = useState(false);
+  const [simStep, setSimStep] = useState(0);
+
+  const startSimulation = () => {
+    setIsSimulating(true);
+    setSimStep(1);
+    setTimeout(() => setSimStep(2), 1000);
+    setTimeout(() => setSimStep(3), 2200);
+    setTimeout(() => {
+      setIsSimulating(false);
+      setSimStep(0);
+    }, 4500);
+  };
 
   // Video scanner animation
   useEffect(() => {
@@ -213,6 +228,28 @@ function HeroAppScreen({
                 </span>
               </div>
             </div>
+
+            {/* Live Interactive Trigger Button */}
+            <button
+              onClick={startSimulation}
+              disabled={isSimulating}
+              className={`w-full py-1.5 px-3 rounded-xl text-[9px] font-black tracking-wide flex items-center justify-center gap-1.5 transition-all shadow-md cursor-pointer mt-1 ${
+                isSimulating
+                  ? 'bg-emerald-500 text-white animate-pulse'
+                  : 'bg-gradient-to-r from-sky-500 to-teal-500 hover:from-sky-600 hover:to-teal-600 text-white'
+              }`}
+            >
+              <Sparkles size={11} className={isSimulating ? 'animate-spin' : ''} />
+              <span>
+                {isSimulating
+                  ? simStep === 1
+                    ? '18 Eklem Konumlandırılıyor...'
+                    : simStep === 2
+                    ? 'Prechtl GMA Hız & Açı Hesaplanıyor...'
+                    : '✓ Sonuç: Gelişimsel Simetri Optimal'
+                  : '⚡ Canlı Taramayı Test Et (3 sn)'}
+              </span>
+            </button>
           </div>
         )}
 
@@ -409,9 +446,40 @@ export default function HeroSection() {
             </h1>
 
             {/* Description — Sade, Empatik ve Vizyoner */}
-            <p className="text-slate-600 text-base sm:text-lg leading-relaxed mb-7 max-w-xl font-normal">
+            <p className="text-slate-600 text-base sm:text-lg leading-relaxed mb-6 max-w-xl font-normal">
               Geleneksel büyükanne şefkatini modern <strong>yapay zekâ teknolojisiyle</strong> buluşturuyoruz. Bebeğinizin hareketini, cildini ve gelişimini <strong>evden takip edin</strong> — gece 03:00&apos;te bile uzman gibi yanınızdayız.
             </p>
+
+            {/* Primary & Secondary Action Buttons */}
+            <div className="flex flex-wrap items-center gap-3.5 w-full max-w-xl mb-7">
+              <button
+                onClick={() => {
+                  window.dispatchEvent(new CustomEvent('open-system-story-modal'));
+                }}
+                className="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-coral via-[#FF6D55] to-[#f0442b] hover:from-coral-600 text-white font-black text-xs sm:text-sm flex items-center gap-2.5 shadow-xl shadow-coral/30 hover:scale-105 active:scale-95 transition-all cursor-pointer group"
+              >
+                <Play size={16} className="fill-white group-hover:scale-110 transition-transform" />
+                <span>Nasıl Çalışır? Canlı Sinematik Tur</span>
+              </button>
+
+              <a
+                href="#sosyal-etki"
+                className="px-5 py-3.5 rounded-2xl bg-white hover:bg-slate-50 text-slate-800 font-bold text-xs sm:text-sm flex items-center gap-2 border border-slate-200 shadow-sm hover:border-sky-300 transition-all cursor-pointer"
+              >
+                <TrendingUp size={16} className="text-[#0284C7]" />
+                <span>Sosyal Etkiyi Simüle Et</span>
+              </a>
+
+              <Link
+                href="/sunum"
+                target="_blank"
+                className="px-4 py-3.5 rounded-2xl bg-sky-50/80 hover:bg-sky-100 text-[#0284C7] font-bold text-xs sm:text-sm flex items-center gap-2 border border-sky-200/80 transition-all cursor-pointer"
+                title="Slayt Düzeninde Kurumsal Sunum & PDF"
+              >
+                <FileText size={16} />
+                <span>Sunum (PDF)</span>
+              </Link>
+            </div>
 
             {/* 3 Somut Hizmet Kartı — Yaptığımız İşi Anında Yansıtan Alan */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full max-w-xl mb-7">

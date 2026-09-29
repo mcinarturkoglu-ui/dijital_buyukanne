@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Menu, X, ChevronRight } from "lucide-react";
+import { Menu, X, ChevronRight, FileText } from "lucide-react";
 
 const navLinks = [
   { href: "/uygulama", label: "Uygulama" },
@@ -75,7 +75,17 @@ export default function Header() {
           </nav>
 
           {/* Desktop CTA Action Button */}
-          <div className="hidden lg:flex items-center gap-3 shrink-0">
+          <div className="hidden lg:flex items-center gap-2.5 shrink-0">
+            <Link
+              href="/sunum"
+              target="_blank"
+              className="px-3.5 py-2 text-xs xl:text-sm font-bold rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 hover:text-[#0B1E3B] border border-slate-200 transition-all flex items-center gap-1.5 shadow-2xs group"
+              title="Slayt Düzeninde Kurumsal Sunum Dosyası & PDF İndir"
+            >
+              <FileText size={15} className="text-[#0284C7] group-hover:scale-110 transition-transform" />
+              <span>PDF Sunum</span>
+            </Link>
+
             <Link
               href="/kurumlar"
               className="relative overflow-hidden group px-5 py-2.5 text-xs xl:text-sm font-bold rounded-full bg-gradient-to-r from-coral to-[#e8634f] text-white shadow-md shadow-coral/25 hover:shadow-lg hover:shadow-coral/35 active:scale-98 transition-all duration-300 hover:-translate-y-0.5 inline-flex items-center gap-1.5"
@@ -141,6 +151,15 @@ export default function Header() {
 
           {/* Mobile Actions */}
           <div className="pt-4 mt-2 border-t border-slate-200 flex flex-col gap-2">
+            <Link
+              href="/sunum"
+              target="_blank"
+              onClick={() => setMobileOpen(false)}
+              className="w-full py-3 text-center text-sm font-bold rounded-xl border border-sky-200 bg-sky-50 text-[#0284C7] hover:bg-sky-100 transition-all flex items-center justify-center gap-2"
+            >
+              <FileText size={16} />
+              <span>Kurumsal Sunum Dosyası (PDF)</span>
+            </Link>
             <Link
               href="/kurumlar"
               onClick={() => setMobileOpen(false)}

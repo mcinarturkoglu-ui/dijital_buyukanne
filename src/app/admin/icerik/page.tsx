@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import AdminHeader from '@/components/admin/AdminHeader';
 import { 
   Save, 
@@ -16,7 +17,10 @@ import {
   Trash2,
   Undo2,
   ShieldCheck,
-  Heart
+  Heart,
+  FileText,
+  Download,
+  ExternalLink
 } from 'lucide-react';
 
 export default function IcerikAdminPage() {
@@ -136,6 +140,35 @@ export default function IcerikAdminPage() {
             <button onClick={() => setNotification(null)} className="opacity-60 hover:opacity-100">✕</button>
           </div>
         )}
+
+        {/* Canlı Kurumsal Sunum & PDF Çıktı Kartı */}
+        <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-[#0B1E3B] via-[#0D2A54] to-[#0B1E3B] text-white flex flex-col sm:flex-row sm:items-center justify-between gap-4 border border-white/10 shadow-lg">
+          <div className="flex items-center gap-3.5">
+            <div className="w-10 h-10 rounded-xl bg-sky-400/20 text-sky-300 flex items-center justify-center shrink-0">
+              <FileText size={20} />
+            </div>
+            <div>
+              <h4 className="text-sm font-bold text-white flex items-center gap-2">
+                <span>Canlı Kurumsal Sunum Dosyası (Slayt Düzeni & PDF)</span>
+                <span className="text-[10px] bg-sky-400/20 text-sky-300 px-2 py-0.5 rounded-full border border-sky-400/30 font-mono">
+                  Otomatik Eşzamanlı
+                </span>
+              </h4>
+              <p className="text-xs text-white/70 mt-0.5">
+                Burada güncellediğiniz tüm metinler, bilim kurulu ve başarı hikayeleri sunum slaytlarına anında yansır; kolaylıkla PDF indirebilir ve sunum yapabilirsiniz.
+              </p>
+            </div>
+          </div>
+          <Link
+            href="/sunum"
+            target="_blank"
+            className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-coral to-coral-600 hover:from-coral-600 text-white font-bold text-xs flex items-center gap-2 shrink-0 shadow-md shadow-coral/30 hover:scale-105 transition-all cursor-pointer"
+          >
+            <Download size={14} />
+            <span>Sunum Slaytlarını Aç & PDF İndir</span>
+            <ExternalLink size={12} className="opacity-70" />
+          </Link>
+        </div>
 
         {/* Tab Navigation */}
         <div className="bg-white rounded-2xl p-2 border border-slate-200 shadow-sm flex items-center gap-1.5 overflow-x-auto">
