@@ -37,6 +37,7 @@ import {
   ChevronUp
 } from "lucide-react";
 import RotaryEcosystemModal from "@/components/rotary/RotaryEcosystemModal";
+import RotaryCaseStudies from "@/components/rotary/RotaryCaseStudies";
 
 // Official Rotary Wheel SVG Component (Official 24-cog, 6-spoke precision styling)
 function RotaryWheel({ className = "w-12 h-12" }: { className?: string }) {
@@ -95,8 +96,8 @@ export default function RotaryPartnershipPage() {
     return () => clearTimeout(timer);
   }, []);
 
-  // Bilimsel literatür ve DSÖ / Prechtl GMs verilerine dayalı dinamik çıktılar
-  const motorRiskRotary = Math.max(1, Math.round(babyCount * 0.044));   // %4.4 Prechtl GMA
+  // Bilimsel literatür ve DSÖ / Nörolojik ve Kas verilerine dayalı dinamik çıktılar
+  const motorRiskRotary = Math.max(1, Math.round(babyCount * 0.044));   // %4.4 Nörolojik ve Kas Riski
   const skinDigestRotary = Math.max(1, Math.round(babyCount * 0.038));  // %3.8 DSÖ & AAP
   const anxiousMomsRotary = Math.max(1, Math.round(babyCount * 0.214)); // %21.4 Postpartum Anksiyete
   const avoidableERRotary = Math.max(1, Math.round(babyCount * 0.52));  // %52 Önlenebilir Acil Servis Başvurusu
@@ -176,7 +177,7 @@ export default function RotaryPartnershipPage() {
               Buluşuyor.
             </h1>
             <p className="text-slate-600 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto font-normal">
-              Rotary kulübünüzün desteğiyle yüzlerce bebeğe <strong>0–6 Ay Prechtl GMA Kinematik Hareket Analizi</strong> ile serebral palsi erken teşhisi, <strong>pediatrik ön taramalar</strong> ve <strong>7/24 kesintisiz uzman desteği</strong> armağan edin.
+              Rotary kulübünüzün desteğiyle yüzlerce bebeğe <strong>0–6 Ay Nörolojik ve Kas Hastalıkları Video Analizi</strong> ile serebral palsi erken teşhisi, <strong>pediatrik ön taramalar</strong> ve <strong>7/24 kesintisiz uzman desteği</strong> armağan edin.
             </p>
           </div>
 
@@ -290,7 +291,7 @@ export default function RotaryPartnershipPage() {
                 Gerçeğe uygun mu?
               </h3>
               <p className="text-sm sm:text-base text-slate-700 leading-relaxed font-medium">
-                Avrupa Pediatri ve Prechtl GMA standartlarında, bilimsel olarak kanıtlanmış kinematik algoritma.
+                Avrupa Pediatri ve nörolojik ve kas hastalıkları standartlarında, bilimsel olarak kanıtlanmış kinematik algoritma.
               </p>
             </div>
 
@@ -535,12 +536,12 @@ export default function RotaryPartnershipPage() {
                   </p>
                 </div>
 
-                {/* Prechtl GMA Module Card */}
+                {/* Nörolojik ve Kas Hastalıkları Modülü */}
                 <div className="p-3 rounded-2xl bg-[#0F2D6B] border border-cyan-400/50 space-y-2 shadow-md">
                   <div className="flex items-center justify-between text-[9px]">
                     <span className="text-cyan-300 font-bold flex items-center gap-1">
                       <Activity size={12} />
-                      Prechtl GMA Nöromotor Analiz
+                      Nörolojik ve Kas Hastalıkları Analizi
                     </span>
                     <span className="bg-cyan-500/30 text-cyan-200 px-1.5 py-0.5 rounded text-[8px] font-mono">
                       Aktif Tarama
@@ -799,7 +800,7 @@ export default function RotaryPartnershipPage() {
           {/* 4 Kanıta Dayalı Etki Kartı */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             
-            {/* Kart 1: Prechtl GMA ile Erken Yakalanan Nöromotor İpucu */}
+            {/* Kart 1: Nörolojik ve Kas Hastalıklarında Erken Yakalanan İpucu */}
             <div className="bg-gradient-to-br from-blue-50/60 to-white rounded-3xl border border-blue-200 shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col justify-between">
               <div className="p-6">
                 <div className="flex items-center justify-between mb-4">
@@ -820,11 +821,11 @@ export default function RotaryPartnershipPage() {
                 </div>
 
                 <h4 className="text-base font-black text-slate-900 mb-2 leading-snug">
-                  Prechtl GMA ile Erken Yakalanan Nöromotor İpucu
+                  Nörolojik ve Kas Hastalıklarında Erken Yakalanan İpucu
                 </h4>
 
                 <p className="text-xs text-slate-600 leading-relaxed">
-                  Projenizin ulaştığı {babyCount.toLocaleString("tr-TR")} bebeğin yaklaşık <strong>{motorRiskRotary}&apos;sinde</strong>, ev ortamında gözden kaçabilecek spontan hareket (fidgety) asimetrisi algoritmik GMA analiziyle erkenden tespit edilir.
+                  Projenizin ulaştığı {babyCount.toLocaleString("tr-TR")} bebeğin yaklaşık <strong>{motorRiskRotary}&apos;sinde</strong>, ev ortamında gözden kaçabilecek nörolojik ve kas hastalıkları erken hareket asimetrisi video analiziyle erkenden tespit edilir.
                 </p>
 
                 <div className="mt-4 p-3 rounded-xl bg-blue-100/70 border border-blue-200">
@@ -842,14 +843,14 @@ export default function RotaryPartnershipPage() {
                 >
                   <span className="flex items-center gap-1.5 font-bold">
                     <BookOpen size={13} className="text-[#17458F]" />
-                    Bilimsel Dayanak: Prechtl GMs Metodolojisi
+                    Bilimsel Dayanak: Nörolojik ve Kas Hastalıkları Metodolojisi
                   </span>
                   {openSourceRotary === 0 ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
                 </button>
                 {openSourceRotary === 0 && (
                   <div className="px-6 pb-4 text-[11px] text-slate-600 leading-relaxed bg-slate-50/60 border-t border-slate-100">
                     <p className="pt-3">
-                      <strong>Referans:</strong> Einspieler C, Prechtl HFR. <em>Prechtl&apos;s Assessment of General Movements</em>. Developmental Medicine & Child Neurology, 2005. İnfant dönemde spontan fidgety hareketlerin yokluğu, serebral palsi ve kalıcı motor hasar tahmininde %90–98 sensitiviteye sahiptir.
+                      <strong>Referans:</strong> Einspieler C, Prechtl HFR. <em>Assessment of General Movements (Nörolojik ve Kas Hareket Analizi)</em>. Developmental Medicine & Child Neurology, 2005. İnfant dönemde spontan fidgety hareketlerin yokluğu, serebral palsi ve kalıcı motor hasar tahmininde %90–98 sensitiviteye sahiptir.
                     </p>
                   </div>
                 )}
@@ -1067,7 +1068,7 @@ export default function RotaryPartnershipPage() {
                 <div className="p-4 rounded-2xl bg-white/[0.08] border border-white/10">
                   <span className="block text-3xl font-black text-amber-300 font-mono">~{motorRiskRotary}</span>
                   <span className="text-xs font-bold text-white mt-1 block">Nöromotor Risk Taraması</span>
-                  <span className="text-[10px] text-white/60">Prechtl GMs standardı</span>
+                  <span className="text-[10px] text-white/60">Nörolojik ve kas standardı</span>
                 </div>
 
                 <div className="p-4 rounded-2xl bg-white/[0.08] border border-white/10">
@@ -1107,7 +1108,12 @@ export default function RotaryPartnershipPage() {
       </section>
 
       {/* ─────────────────────────────────────────────────────────────
-          9. ROTARY FONLAMA VE HİBE MODELLERİ (3 PAKET)
+          9. ROTARY DESTEKLİ GERÇEK HAYATTAN ETKİ HİKAYELERİ (KAYAN ZEMİN & GÖRSEL VİTRİN)
+          ───────────────────────────────────────────────────────────── */}
+      <RotaryCaseStudies />
+
+      {/* ─────────────────────────────────────────────────────────────
+          10. ROTARY FONLAMA VE HİBE MODELLERİ (3 PAKET)
           ───────────────────────────────────────────────────────────── */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white border-b border-slate-200">
         <div className="max-w-6xl mx-auto space-y-10">
@@ -1143,7 +1149,7 @@ export default function RotaryPartnershipPage() {
                 </div>
                 <ul className="space-y-2 text-xs text-slate-700">
                   <li className="flex items-center gap-2">✓ Kulüp logolu mobil uygulama arayüzü</li>
-                  <li className="flex items-center gap-2">✓ 0-6 ay GMA hareket analizi taraması</li>
+                  <li className="flex items-center gap-2">✓ 0-6 ay nörolojik ve kas hastalıkları hareket analizi taraması</li>
                   <li className="flex items-center gap-2">✓ Pediatrik ön değerlendirme & gelişim takibi</li>
                   <li className="flex items-center gap-2">✓ 7/24 dijital aile rehberliği</li>
                   <li className="flex items-center gap-2">✓ Kulüp yönetim paneli erişimi</li>

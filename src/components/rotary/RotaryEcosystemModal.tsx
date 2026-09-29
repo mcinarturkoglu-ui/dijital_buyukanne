@@ -136,7 +136,7 @@ export default function RotaryEcosystemModal({ isOpen, onClose }: RotaryEcosyste
       accentText: "text-[#007AA8]",
       glowColor: "rgba(0, 162, 224, 0.4)",
       headline: "Rotary Sayesinde: Evden 2 Dakikalık Video ile Erken Tarama",
-      desc: "Rotary'nin sponsorluğu ile çalışan sistem; evde telefonla çekilen 2 dakikalık video üzerinden bebeğin 18 eklem hareketini analiz eder. Avrupa Prechtl standardındaki erken tanı algoritması ve 7/24 pediatrik yapay zekâ asistanı aileye rehberlik eder.",
+      desc: "Rotary'nin sponsorluğu ile çalışan sistem; evde telefonla çekilen 2 dakikalık video üzerinden bebeğin 18 eklem hareketini analiz eder. Nörolojik ve kas hastalıkları erken tanı algoritması ve 7/24 pediatrik yapay zekâ asistanı aileye rehberlik eder.",
       icon: (
         <div className="relative w-28 h-28 flex items-center justify-center">
           <div className="absolute inset-0 rounded-full bg-[#00A2E0]/20 blur-xl animate-pulse" />
@@ -144,7 +144,7 @@ export default function RotaryEcosystemModal({ isOpen, onClose }: RotaryEcosyste
             <div className="absolute inset-x-0 h-1 bg-gradient-to-r from-transparent via-cyan-300 to-transparent animate-shimmer-sweep" />
             <div className="flex items-center justify-between border-b border-white/20 pb-1">
               <span className="w-2 h-2 rounded-full bg-[#00A2E0] animate-ping" />
-              <span className="text-[8px] font-mono text-cyan-200">GMA AI</span>
+              <span className="text-[8px] font-mono text-cyan-200">NÖROMOTOR</span>
             </div>
             <div className="flex flex-col items-center justify-center">
               <Activity size={22} className="text-cyan-300 animate-pulse" />
@@ -157,7 +157,7 @@ export default function RotaryEcosystemModal({ isOpen, onClose }: RotaryEcosyste
         </div>
       ),
       bullets: [
-        "Prechtl GMA video analizi ile nöromotor tarama",
+        "Nörolojik ve kas hastalıkları video analizi ile erken tarama",
         "Yapay zekâ destekli pediatrik ön değerlendirmeler",
         "Gece 03:00'te bile kesintisiz 7/24 uzman desteği cebinizde"
       ]

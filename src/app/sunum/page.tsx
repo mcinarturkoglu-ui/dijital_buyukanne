@@ -67,7 +67,7 @@ const ALL_SLIDES: SlideDef[] = [
   { id: 'slide-timeline', chapter: 'BÖLÜM 02', category: 'NÖROGELİŞİMSEL DÖNGÜ', title: 'İlk 24 Ay: Büyümenin 6 Kritik Kilometre Taşı', tag: 'klinik' },
   { id: 'slide-compare', chapter: 'BÖLÜM 02 EK', category: 'KARAR VE ETKİ MATRİSİ', title: 'Geleneksel Çaresizlik vs. DijitalBüyükanne (5 Boyut)', tag: 'genel' },
   { id: 'slide-protocols-overview', chapter: 'BÖLÜM 03', category: 'KLİNİK TARAMA PROTOKOLLERİ', title: 'Yapay Zekâ Destekli 3 Akıllı Tarama Protokolü Çerçevesi', tag: 'klinik' },
-  { id: 'slide-motion', chapter: 'BÖLÜM 03 DETAY', category: '0–6 AY HAREKET ANALİZİ', title: 'Prechtl GMA & 18 Eklem Kinematik Video Taraması', tag: 'klinik' },
+  { id: 'slide-motion', chapter: 'BÖLÜM 03 DETAY', category: '0–6 AY HAREKET ANALİZİ', title: 'Nörolojik ve Kas Hastalıkları & 18 Eklem Kinematik Video Taraması', tag: 'klinik' },
   { id: 'slide-skin-stool', chapter: 'BÖLÜM 03 DETAY', category: 'CİLT & BEZ/DIŞKI ANALİZİ', title: '41 Pediatrik Cilt Tablosu & DSÖ Renk Kartı Taraması', tag: 'klinik' },
   { id: 'slide-assistant', chapter: 'BÖLÜM 04', category: 'KESİNTİSİZ DESTEK EKOSİSTEMİ', title: 'Gece 03:00 Büyükanne Şefkati & Sesli Rehberlik', tag: 'genel' },
   { id: 'slide-human-ai', chapter: 'BÖLÜM 04 EK', category: 'İNSAN + AI DENGE RADARI', title: 'Klinik Güvence: AI Ön Tarar, Hekim Karar Verir', tag: 'klinik' },
@@ -467,7 +467,7 @@ export default function PresentationDeckPage() {
                 <div className="grid grid-cols-3 gap-3 pt-2">
                   <div className="p-3 rounded-2xl bg-white/10 border border-white/15">
                     <span className="text-xs font-bold text-sky-300 block mb-0.5">0–6 Ay Hareket</span>
-                    <span className="text-[10px] text-white/70 block leading-tight">Prechtl GMA video kinematik izlemi</span>
+                    <span className="text-[10px] text-white/70 block leading-tight">Nörolojik ve kas hastalıkları video izlemi</span>
                   </div>
                   <div className="p-3 rounded-2xl bg-white/10 border border-white/15">
                     <span className="text-xs font-bold text-sky-300 block mb-0.5">Bez & Cilt Analizi</span>
@@ -496,7 +496,7 @@ export default function PresentationDeckPage() {
                   <div className="py-6 my-2 flex items-center justify-center bg-gradient-to-b from-[#081F36] to-[#040F1C] rounded-2xl border border-sky-400/20 text-center">
                     <div className="space-y-1.5">
                       <span className="text-5xl">👶</span>
-                      <p className="text-xs font-mono text-cyan-300 font-bold">Prechtl Spontan Fidgety: OPTİMAL (%98.4)</p>
+                      <p className="text-xs font-mono text-cyan-300 font-bold">Nörolojik ve Kas Taraması: OPTİMAL (%98.4)</p>
                       <p className="text-[10px] text-white/60">Omuz, Dirsek, Kalça ve Ayak Bileği Simetrisi Sağlıklı</p>
                     </div>
                   </div>
@@ -543,7 +543,7 @@ export default function PresentationDeckPage() {
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
                 {[
                   { value: '12.400+', label: 'Kayıtlı Aile & Bebek', desc: 'Sürekli takip edilen aktif hane sayısı' },
-                  { value: '48.200+', label: 'Yapay Zekâ Taraması', desc: 'Prechtl, cilt ve dışkı analizi toplamı' },
+                  { value: '48.200+', label: 'Yapay Zekâ Taraması', desc: 'Hareket, cilt ve dışkı analizi toplamı' },
                   { value: '%98,4', label: 'Ebeveyn Memnuniyeti', desc: 'Platform geri bildirim skoru' },
                   { value: '18 İlçe', label: 'Belediye & Kulüp', desc: 'Resmî kurumsal iş birliği protokolü' },
                   { value: '14.800+', label: 'Gece 03:00 Yanıtı', desc: 'Panik anında sunulan bilimsel rehberlik' },
@@ -572,7 +572,7 @@ export default function PresentationDeckPage() {
                 </span>
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2.5 text-xs">
                   <div className="p-2.5 rounded-xl bg-white/5 border border-white/10">
-                    <strong className="text-white block text-[11px]">Prechtl GMA</strong>
+                    <strong className="text-white block text-[11px]">Nöromotor & Kas</strong>
                     <span className="text-[10px] text-white/60">Spontan hareket kalitesi standardı</span>
                   </div>
                   <div className="p-2.5 rounded-xl bg-white/5 border border-white/10">
@@ -720,7 +720,7 @@ export default function PresentationDeckPage() {
                   </span>
                   <ul className="space-y-2 text-xs text-slate-800">
                     <li><strong>1. 7/24 Şefkatli Yanıt:</strong> Atak dönemine özel anında bilimsel yönlendirme ve uyku rutini.</li>
-                    <li><strong>2. Prechtl GMA:</strong> Evden videoyla 18 eklem taranarak risklerin ilk 6 ayda yakalanması.</li>
+                    <li><strong>2. Nörolojik ve Kas Taraması:</strong> Evden videoyla 18 eklem taranarak risklerin ilk 6 ayda yakalanması.</li>
                     <li><strong>3. Pediatrik Skala:</strong> Dışkı ve ciltte hekim onaylı kartlarla gecikmesiz uzman sevk köprüsü.</li>
                     <li><strong>4. %52 Önlenebilir Acil:</strong> Tıbbi aciliyet gerektirmeyen durumların evde huzurla yönetimi.</li>
                     <li><strong>5. Anne Esenliği:</strong> Günün her anında dinleyen, yargılamayan şefkatli bir dijital büyükanne.</li>
@@ -777,7 +777,7 @@ export default function PresentationDeckPage() {
                     </div>
                     <h3 className="text-base font-bold text-white mb-1.5">{motion?.title || '0–6 Ay Hareket Analizi'}</h3>
                     <p className="text-xs text-white/70 leading-relaxed mb-3">
-                      {motion?.subtitle || 'Evde çekilen kısa videolardan Prechtl GMA ile motor gelişim kalıplarını tarayan algoritmik sistem.'}
+                      {motion?.subtitle || 'Evde çekilen kısa videolardan nörolojik ve kas hastalıkları ile motor gelişim kalıplarını tarayan algoritmik sistem.'}
                     </p>
                   </div>
                   <div className="p-2.5 rounded-xl bg-white/5 border border-white/10 text-[11px] text-sky-200">
@@ -836,14 +836,14 @@ export default function PresentationDeckPage() {
         )}
 
         {/* ═════════════════════════════════════════════════════════════
-            SLAYT 6 &bull; BÖLÜM 03 DETAY: 0–6 AY PRECHTL GMA HAREKET ANALİZİ
+            SLAYT 6 &bull; BÖLÜM 03 DETAY: 0–6 AY NÖROLOJİK VE KAS HAREKET ANALİZİ
             Web Sitesi: MotionAnalysis (18 Eklem, 4 Adım, Serebral Palsi Erken Penceresi)
             ═════════════════════════════════════════════════════════════ */}
         {shouldRenderSlide('slide-motion', activeSlides, viewMode, safeCurrentIndex) && (
           <SlideWrapper
             id="slide-motion"
             chapter="BÖLÜM 03 DETAY"
-            category="0–6 AY PRECHTL GMA HAREKET ANALİZİ"
+            category="0–6 AY NÖROLOJİK VE KAS HAREKET ANALİZİ"
             slideIndex={getSlideIndex('slide-motion', activeSlides)}
             totalSlides={totalActive}
             onRemove={() => toggleSlideExclusion('slide-motion')}
@@ -853,7 +853,7 @@ export default function PresentationDeckPage() {
               <div className="mb-4">
                 <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-coral/20 text-coral text-xs font-mono font-bold uppercase tracking-wider mb-1.5">
                   <Activity size={13} />
-                  <span>PRECHTL GMA METODOLOJİSİ & VİDEO KİNEMATİK</span>
+                  <span>NÖROLOJİK VE KAS METODOLOJİSİ & VİDEO KİNEMATİK</span>
                 </div>
                 <h2 className="text-2xl sm:text-4xl font-black text-white tracking-tight">
                   18 Eklem Kinematik Taraması ve 4 Aşamalı Klinik İşleyiş
@@ -869,7 +869,7 @@ export default function PresentationDeckPage() {
                   {[
                     { step: '1', title: 'Evde 2 Dakikalık Doğal Video Kaydı', desc: 'Bebek sırtüstü rahat bir ortamdayken mobil telefonla doğal hareket videosu çekilir.' },
                     { step: '2', title: 'BabySensAI 18 Eklem Kinematik Analizi', desc: 'Milisaniyelik hız, açısal sapma, ivme ve sağ-sol ekstremite asimetrisi hesaplanır.' },
-                    { step: '3', title: 'Gelişimsel Kalite Skoru & Nöromotor İndeks', desc: 'Prechtl Fidgety spontan hareket paterni yaş normlarına göre haritalandırılır (%98.4 doğruluk).' },
+                    { step: '3', title: 'Gelişimsel Kalite Skoru & Nöromotor İndeks', desc: 'Spontan hareket kalitesi ve kas tonusu yaş normlarına göre haritalandırılır (%98.4 doğruluk).' },
                     { step: '4', title: 'Pediatrik Hekim ve Fizyoterapist Sevk Köprüsü', desc: 'Şüpheli asimetri durumunda zaman kaybetmeden uzman randevusu ve ev egzersiz planı açılır.' },
                   ].map((s, idx) => (
                     <div key={idx} className="p-3 rounded-2xl bg-white/5 border border-white/10 flex items-start gap-3">
@@ -1427,7 +1427,7 @@ export default function PresentationDeckPage() {
                   Bir Karar Verin, Bin Hayata Dokunun.
                 </h2>
                 <p className="text-xs sm:text-sm text-white/70 mt-1 max-w-3xl">
-                  Tüm projeksiyonlar Prechtl GMs, DSÖ ve T.C. Sağlık Bakanlığı pediatrik kılavuzlarına dayanmaktadır:
+                  Tüm projeksiyonlar nörolojik ve kas hastalıkları standartları, DSÖ ve T.C. Sağlık Bakanlığı pediatrik kılavuzlarına dayanmaktadır:
                 </p>
               </div>
 
@@ -1436,7 +1436,7 @@ export default function PresentationDeckPage() {
                 <div className="p-4 rounded-2xl bg-white/10 border border-white/15">
                   <span className="text-2xl sm:text-4xl font-black text-sky-300 font-mono block">44 Bebek</span>
                   <span className="text-xs font-bold text-white mt-1 block">Nöromotor Risk Taraması</span>
-                  <p className="text-[10px] text-white/60 mt-1">Prechtl GMs ile erken yakalanan motor asimetri (%4,4).</p>
+                  <p className="text-[10px] text-white/60 mt-1">Nörolojik ve kas taraması ile erken yakalanan motor asimetri (%4,4).</p>
                   <span className="text-[9px] font-mono text-sky-200 mt-2 block border-t border-white/10 pt-1">Ref: Einspieler 2005</span>
                 </div>
 

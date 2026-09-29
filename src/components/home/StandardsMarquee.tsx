@@ -14,7 +14,7 @@ import {
 const standards = [
   {
     icon: Award,
-    title: 'Prechtl GMA Standardı',
+    title: 'Nörolojik ve Kas Hastalıkları Standardı',
     desc: 'Uluslararası Spontan Hareket Metodolojisi',
     badge: 'Nöromotor Referansı',
   },

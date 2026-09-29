@@ -88,7 +88,7 @@ export default function EtkimizPage() {
     {
       title: 'Fırsat Eşitliği ve Erken Müdahale',
       subtitle: 'Her bebek için eşit başlangıç hakkı',
-      desc: 'Sosyoekonomik durum veya coğrafi mesafe ne olursa olsun; her bebeğin Prechtl GMA standartlarında nöromotor hareket analizine ve pediatrik cilt taramasına ücretsiz ulaşmasını sağlıyoruz.',
+      desc: 'Sosyoekonomik durum veya coğrafi mesafe ne olursa olsun; her bebeğin nörolojik ve kas hastalıkları standartlarında nöromotor hareket analizine ve pediatrik cilt taramasına ücretsiz ulaşmasını sağlıyoruz.',
       icon: Heart,
       accent: 'from-rose-500 to-pink-600',
       tag: 'Sosyal Adalet',

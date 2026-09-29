@@ -23,7 +23,7 @@ const scenarios = [
     id: 'fidgety',
     title: '0–3 Ay: Fidgety (Spontan) Hareketler',
     ageRange: '0–3 Ay',
-    focus: 'Genel Spontan Motor Değerlendirmesi (GMA)',
+    focus: 'Nörolojik ve Kas Hastalıkları Değerlendirmesi',
     description: 'Bebek sırtüstü uzanırken omuz, dirsek, kalça ve ayak bileklerindeki akıcı ve değişken spontan hareketler taranır.',
     metrics: { gma: '%98.4 Normal', symmetry: '%97.2', smoothness: 'Optimal', status: 'Gelişimle Uyumlu' },
   },
@@ -199,7 +199,7 @@ export default function MotionAnalysis() {
               {/* Real-time score cards */}
               <div className="grid grid-cols-2 gap-2 pt-3 border-t border-white/15">
                 <div className="bg-white/10 rounded-2xl p-3 border border-white/5 backdrop-blur-sm">
-                  <p className="text-[10px] text-white/60 uppercase tracking-wider font-semibold">GMA Akıcılık</p>
+                  <p className="text-[10px] text-white/60 uppercase tracking-wider font-semibold">Motor & Kas Akıcılığı</p>
                   <p className="text-base font-extrabold text-emerald-300 font-mono mt-0.5">{currentScenario.metrics.gma}</p>
                 </div>
                 <div className="bg-white/10 rounded-2xl p-3 border border-white/5 backdrop-blur-sm">
@@ -380,7 +380,7 @@ export default function MotionAnalysis() {
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
                     <span>Kinematik Akış</span>
                   </div>
-                  <p className="font-mono text-[9px]">GMA: <span className="text-emerald-400 font-bold">{currentScenario.metrics.gma}</span></p>
+                  <p className="font-mono text-[9px]">Nöromotor: <span className="text-emerald-400 font-bold">{currentScenario.metrics.gma}</span></p>
                   <p className="font-mono text-[9px]">Sapma: <span className="text-turquoise font-bold">±%0.8 (Normal)</span></p>
                 </div>
 
@@ -501,7 +501,7 @@ export default function MotionAnalysis() {
             <div className="bg-slate-50 border border-slate-200/80 rounded-2xl p-3 flex items-center justify-between text-xs text-navy/80 shadow-sm">
               <div className="flex items-center gap-2">
                 <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
-                <span className="font-bold text-navy">Dijital GMA Değerlendirmesi:</span>
+                <span className="font-bold text-navy">Dijital Nöromotor & Kas Değerlendirmesi:</span>
                 <span className="text-navy/70 hidden sm:inline">Akıcı, değişken ve simetrik spontan motor paterni izleniyor.</span>
               </div>
               <span className="text-[11px] font-bold text-turquoise bg-turquoise/10 px-2.5 py-1 rounded-full shrink-0 border border-turquoise/20">

@@ -35,7 +35,7 @@ const comparisonData = [
     },
     solution: {
       tag: 'DijitalBüyükanne',
-      headline: 'Prechtl GMA ile Evden Erken Hareket Taraması',
+      headline: 'Nörolojik ve Kas Hastalıklarında Evden Erken Hareket Taraması',
       desc: 'Kısa bir videoyla 18 eklem noktası taranır; riskler henüz klinik belirti vermeden ilk aylarda tespit edilerek fizyoterapiye yönlendirilir.',
     },
   },

@@ -105,8 +105,8 @@ export default function SocialImpactCalculator({ onOpenDemoModal }: SocialImpact
       title: 'Erken Tespit Edilebilen Motor Gelişim İpucu',
       story: `Yeni doğan ${babyCount.toLocaleString('tr-TR')} bebeğin yaklaşık ${motorRisk}'inin ilk 4–6 ayında ev ortamında fark edilmesi zor, ancak algoritmik video analiziyle yakalanabilir motor asimetri ipucu taşıdığı öngörülmektedir.`,
       why: 'Erken fizyoterapi ile bu bebekler akranlarıyla aynı motor gelişim çizgisine ulaşabilir.',
-      sourceLabel: 'Prechtl GMs Metodolojisi',
-      sourceDetail: 'Prechtl HFR & Einspieler — uluslararası nöromotor literatürde infant dönemde motor asimetri prevalansı ~%4,4 (sensitivite %90–98). Developmental Medicine & Child Neurology, 2005.',
+      sourceLabel: 'Nörolojik ve Kas Hastalıkları Metodolojisi',
+      sourceDetail: 'Nörolojik ve kas hastalıkları literatüründe infant dönemde motor asimetri prevalansı ~%4,4 (sensitivite %90–98). Developmental Medicine & Child Neurology.',
       color: 'teal',
       gradFrom: 'from-teal-50',
       border: 'border-teal-200',
@@ -369,7 +369,7 @@ export default function SocialImpactCalculator({ onOpenDemoModal }: SocialImpact
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 relative">
               {[
-                { val: motorRisk.toLocaleString('tr-TR'), label: 'Motor İpucu Tespiti', sub: 'Prechtl GMs verisi', color: 'text-teal-400' },
+                { val: motorRisk.toLocaleString('tr-TR'), label: 'Motor İpucu Tespiti', sub: 'Nöromotor & Kas verisi', color: 'text-teal-400' },
                 { val: skinDigest.toLocaleString('tr-TR'), label: 'Cilt & Sindirim Tespiti', sub: 'WHO Kılavuzu', color: 'text-rose-400' },
                 { val: anxiousMoms.toLocaleString('tr-TR'), label: 'Anne Yanında Destek', sub: 'WHO Türkiye %21.4', color: 'text-blue-400' },
                 { val: avoidableER.toLocaleString('tr-TR'), label: 'Önlenebilir Acil', sub: 'AAP / HSB %52', color: 'text-emerald-400' },

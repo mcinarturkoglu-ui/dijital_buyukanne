@@ -17,7 +17,7 @@ const advisors = [
   {
     role: 'Çocuk Nörolojisi Danışmanı',
     title: 'Prof. Dr. N. Karakaş',
-    expertise: 'Prechtl GMs & Serebral Palsi Erken Farkındalığı',
+    expertise: 'Nörolojik ve Kas Hastalıkları & Serebral Palsi Erken Farkındalığı',
     institution: 'Hacettepe Tıp Fakültesi / Pediatrik Nöroloji',
     description:
       '0–6 ay spontan fidgety hareketlerinin video tabanlı analizi ve nörogelişimsel risk indekslerinin algoritmik kalibrasyonu.',
@@ -79,8 +79,8 @@ const advisors = [
 const clinicalStandards = [
   {
     icon: Award,
-    title: 'Prechtl GMs Standardı',
-    desc: 'Spontan hareket kalitesi değerlendirmesinde dünyaca kabul gören klinik metodoloji referansı.',
+    title: 'Nörolojik ve Kas Hastalıkları Standardı',
+    desc: 'Spontan hareket kalitesi ve kas tonusu değerlendirmesinde klinik metodoloji referansı.',
   },
   {
     icon: BookOpen,

@@ -82,7 +82,7 @@ export default function RotaryHeroEcosystemVisual() {
     {
       id: 1,
       title: "Mobil Uygulama Sistemi",
-      subtitle: "BabySensAI & Prechtl GMA",
+      subtitle: "BabySensAI & Nöromotor Analiz",
       badge: "YAPAY ZEKÂ TARAMA ALTYAPISI",
       color: "from-cyan-400 to-teal-400",
       textColor: "text-cyan-300",
@@ -261,7 +261,7 @@ export default function RotaryHeroEcosystemVisual() {
                 
                 <div className="flex items-center justify-between border-b border-white/15 pb-1">
                   <div className="w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
-                  <span className="text-[7px] font-mono text-cyan-200">GMA AI</span>
+                  <span className="text-[7px] font-mono text-cyan-200">NÖROMOTOR</span>
                 </div>
 
                 <div className="flex flex-col items-center justify-center py-1">
@@ -283,7 +283,7 @@ export default function RotaryHeroEcosystemVisual() {
                 Mobil Uygulama Sistemi
               </h3>
               <p className="text-xs text-slate-300 leading-snug">
-                BabySensAI yapay zekâsı, Prechtl GMA kinematik video analizi ve 7/24 dijital aile asistanı.
+                BabySensAI yapay zekâsı, nörolojik ve kas hastalıkları kinematik video analizi ve 7/24 dijital aile asistanı.
               </p>
             </div>
           </div>

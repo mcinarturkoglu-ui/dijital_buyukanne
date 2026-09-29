@@ -30,7 +30,7 @@ export default function UygulamaPage() {
   const aiEngines = [
     {
       title: '0–6 Ay Video Hareket Analizi (BabySensAI)',
-      badge: 'Prechtl GMA Standardı',
+      badge: 'Nörolojik ve Kas Standardı',
       badgeColor: 'bg-rose-50 text-rose-700 border-rose-200',
       icon: Video,
       desc: 'Bebeğinizin sırtüstü uyanıkken çekilen 2-3 dakikalık doğal hareket videosu üzerinden 18 eklem kinematik analizi yapılır; spontan fidgety hareket kalitesi ve olası asimetriler taranır.',

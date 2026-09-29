@@ -18,7 +18,6 @@ import SocialImpactCalculator from "@/components/home/SocialImpactCalculator";
 import SupportersPreview from "@/components/home/SupportersPreview";
 import FinalCTA from "@/components/home/FinalCTA";
 import EcosystemPulseTicker from "@/components/home/EcosystemPulseTicker";
-import StandardsMarquee from "@/components/home/StandardsMarquee";
 import ProblemSolutionCompare from "@/components/home/ProblemSolutionCompare";
 import NationalMediaPress from "@/components/home/NationalMediaPress";
 import siteContent from "@/data/site-content.json";
@@ -53,7 +52,6 @@ export default function HomePage() {
       <div id="bolum-1" className="scroll-mt-16">
         <HeroSection />
         <EcosystemPulseTicker />
-        <StandardsMarquee />
       </div>
 
       {/* Kurumsal Geçiş 01 -> 02 */}

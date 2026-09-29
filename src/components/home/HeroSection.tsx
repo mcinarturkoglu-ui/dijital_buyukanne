@@ -167,7 +167,7 @@ function HeroAppScreen({
                 60 FPS HAREKET
               </span>
               <span className="text-sky-300 font-bold bg-sky-400/15 px-2 py-0.5 rounded-full border border-sky-400/30">
-                GMA Akış: %98.4
+                Motor Akış: %98.4
               </span>
             </div>
 
@@ -224,7 +224,7 @@ function HeroAppScreen({
                 <span className="text-white/70">Açı: 114° • Hız: 0.42 m/s</span>
                 <span className="text-emerald-400 font-bold flex items-center gap-1">
                   <CheckCircle2 size={10} className="text-emerald-400" />
-                  Prechtl Fidgety Normal
+                  Nörolojik ve Kas: Normal
                 </span>
               </div>
             </div>
@@ -245,7 +245,7 @@ function HeroAppScreen({
                   ? simStep === 1
                     ? '18 Eklem Konumlandırılıyor...'
                     : simStep === 2
-                    ? 'Prechtl GMA Hız & Açı Hesaplanıyor...'
+                    ? 'Nörolojik ve Kas Hız & Açı Hesaplanıyor...'
                     : '✓ Sonuç: Gelişimsel Simetri Optimal'
                   : '⚡ Canlı Taramayı Test Et (3 sn)'}
               </span>
@@ -469,16 +469,6 @@ export default function HeroSection() {
                 <TrendingUp size={16} className="text-[#0284C7]" />
                 <span>Sosyal Etkiyi Simüle Et</span>
               </a>
-
-              <Link
-                href="/sunum"
-                target="_blank"
-                className="px-4 py-3.5 rounded-2xl bg-sky-50/80 hover:bg-sky-100 text-[#0284C7] font-bold text-xs sm:text-sm flex items-center gap-2 border border-sky-200/80 transition-all cursor-pointer"
-                title="Slayt Düzeninde Kurumsal Sunum & PDF"
-              >
-                <FileText size={16} />
-                <span>Sunum (PDF)</span>
-              </Link>
             </div>
 
             {/* 3 Somut Hizmet Kartı — Yaptığımız İşi Anında Yansıtan Alan */}
@@ -497,7 +487,7 @@ export default function HeroSection() {
                   <span>0–6 Ay Hareket</span>
                 </div>
                 <p className="text-[11px] text-slate-500 leading-snug">
-                  Kısa videodan Prechtl GMA ile motor gelişim ve simetri takibi.
+                  Kısa videodan nörolojik ve kas hastalıkları ile motor gelişim ve simetri takibi.
                 </p>
               </div>
 
@@ -583,7 +573,7 @@ export default function HeroSection() {
                 }`}
               >
                 <span className="w-2 h-2 rounded-full bg-coral animate-ping" />
-                <span>🎥 18 Eklem GMA Takibi</span>
+                <span>🎥 18 Eklem Nöromotor Takibi</span>
               </button>
 
               {/* Yüzen Rozet 2: Hekim Köprüsü */}

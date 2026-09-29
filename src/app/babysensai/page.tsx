@@ -23,7 +23,7 @@ export const metadata: Metadata = generatePageMetadata({
 export default function BabySensAIPage() {
   const techAreas = [
     {
-      title: "Video Tabanlı Hareket Analizi (Prechtl GMA)",
+      title: "Video Tabanlı Hareket Analizi (Nörolojik ve Kas Hastalıkları)",
       desc: "0-6 ay dönemindeki bebeklerin doğal spontan hareketlerini kısa videolardan 18 eklem kinematik takibiyle değerlendiren derin öğrenme modelleri.",
       icon: Video,
     },

@@ -16,7 +16,7 @@ import {
 const liveActivities = [
   {
     city: 'Ankara',
-    text: 'Bir anne 3 aylık bebeği için Prechtl GMA hareket analizi başlattı.',
+    text: 'Bir anne 3 aylık bebeği için nörolojik ve kas hastalıkları hareket analizi başlattı.',
     time: 'Az önce',
     icon: '🎥',
   },

@@ -116,7 +116,7 @@ export default function NationalMediaPress() {
       date: '31 Ağustos 2025',
       title: 'Pediatride Yapay Zekâ Çağı: Bebek Hareketleri Milimetrik Taranıyor',
       summary:
-        'Bebeklerin spontan fidgety hareketleri Prechtl GM standardında izlenerek hekimlerin tanı sürecine objektif biyometrik veri sunuluyor.',
+        'Bebeklerin spontan fidgety hareketleri nörolojik ve kas hastalıkları standardında izlenerek hekimlerin tanı sürecine objektif biyometrik veri sunuluyor.',
       quote:
         '“Hastaneye gitmeden önce anne ve babalara bilimsel rehberlik sunan öncü yapay zekâ modeli.”',
       url: 'https://babysensai.com',

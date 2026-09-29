@@ -100,7 +100,7 @@ export default function SystemStoryModal() {
     {
       id: 'motion-gma',
       eyebrow: '02. BÖLÜM: SİSTEMİN TEMELİ: 0–6 AY HAREKET ANALİZİ',
-      title: 'Prechtl GMA ile Erken Teşhis: Geleceği Korumak',
+      title: 'Nörolojik ve Kas Hastalıklarında Erken Teşhis: Geleceği Korumak',
       description:
         'Sistemimizin temel yapıtaşı 0–6 ay video tabanlı nöromotor taramadır. Evde çekilen 2-3 dakikalık doğal hareket videosu, 18 eklem noktasını tarayan BabySensAI ile analiz edilir; serebral palsi ve gelişimsel riskler henüz klinik belirti vermeden, en kritik ilk 6 aylık erken müdahale penceresinde tespit edilir.',
       accentColor: '#0284C7', // Sky Blue
@@ -119,7 +119,7 @@ export default function SystemStoryModal() {
               <div className="flex items-center justify-between pb-2 border-b border-white/10 text-[9px]">
                 <span className="text-cyan-300 font-mono font-bold flex items-center gap-1.5">
                   <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
-                  Prechtl GMA Kinematik İzlem
+                  Nörolojik ve Kas Kinematik İzlem
                 </span>
                 <span className="bg-sky-500/20 text-sky-200 border border-sky-400/40 px-2 py-0.5 rounded text-[8px] font-mono font-bold">
                   18 Eklem Aktif

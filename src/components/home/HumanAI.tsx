@@ -19,7 +19,7 @@ import SectionHeader from '@/components/ui/SectionHeader';
 const modules = [
   {
     id: 'hareket',
-    label: 'Hareket (GMA)',
+    label: 'Nöromotor Hareket',
     angle: 0,
     icon: Activity,
     aiRole: '18 eklem noktasının simetri ve hızını saniyeler içinde hesaplar.',
