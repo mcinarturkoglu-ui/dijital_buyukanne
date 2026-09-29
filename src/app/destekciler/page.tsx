@@ -5,16 +5,40 @@ import Link from "next/link";
 import { Building2, MapPin, ArrowRight, Sparkles, ShieldCheck, Heart, Award, Users, CheckCircle2 } from "lucide-react";
 import supportersData from "@/data/supporters.json";
 
+const STORAGE_KEY = 'dijitalbuyukanne_admin_supporters';
+const DELETED_IDS_KEY = 'dijitalbuyukanne_deleted_supporter_ids';
+
 export default function DestekcilerPage() {
   const [filter, setFilter] = useState("all");
-  const [supporters, setSupporters] = useState<any[]>(supportersData.supporters);
+  const [supporters, setSupporters] = useState<any[]>(supportersData.supporters || []);
 
   useEffect(() => {
+    try {
+      const deletedIds: string[] = JSON.parse(localStorage.getItem(DELETED_IDS_KEY) || '[]');
+      const localData = localStorage.getItem(STORAGE_KEY);
+      if (localData) {
+        const parsed = JSON.parse(localData);
+        if (Array.isArray(parsed)) {
+          setSupporters(parsed.filter((s: any) => !deletedIds.includes(s.id)));
+        }
+      }
+    } catch {
+      // ignore
+    }
+
     fetch('/api/admin/supporters')
       .then((res) => res.json())
       .then((data) => {
         if (data?.supporters && data.supporters.length > 0) {
-          setSupporters(data.supporters);
+          try {
+            const deletedIds: string[] = JSON.parse(localStorage.getItem(DELETED_IDS_KEY) || '[]');
+            const filtered = data.supporters.filter((s: any) => !deletedIds.includes(s.id));
+            if (!localStorage.getItem(STORAGE_KEY)) {
+              setSupporters(filtered);
+            }
+          } catch {
+            setSupporters(data.supporters);
+          }
         }
       })
       .catch(() => {});

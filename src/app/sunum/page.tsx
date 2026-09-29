@@ -106,8 +106,29 @@ function PresentationDeckInner() {
     }
   }, [searchParams]);
 
-  // Admin CMS'ten en güncel verileri çek
+  // Admin CMS'ten ve localStorage'dan en güncel verileri çek
   useEffect(() => {
+    // 1. LocalStorage desteği
+    try {
+      const localContent = localStorage.getItem('dijitalbuyukanne_site_content');
+      if (localContent) {
+        const parsed = JSON.parse(localContent);
+        if (parsed && typeof parsed === 'object') {
+          setContent((prev: any) => ({ ...prev, ...parsed }));
+        }
+      }
+
+      const deletedIds: string[] = JSON.parse(localStorage.getItem('dijitalbuyukanne_deleted_supporter_ids') || '[]');
+      const localSupporters = localStorage.getItem('dijitalbuyukanne_admin_supporters');
+      if (localSupporters) {
+        const parsedSupp = JSON.parse(localSupporters);
+        if (Array.isArray(parsedSupp)) {
+          setSupportersList(parsedSupp.filter((s: any) => !deletedIds.includes(s.id)));
+        }
+      }
+    } catch {}
+
+    // 2. Sunucu API senkronizasyonu
     fetch('/api/admin/content')
       .then((res) => res.json())
       .then((data) => {
@@ -121,7 +142,15 @@ function PresentationDeckInner() {
       .then((res) => res.json())
       .then((data) => {
         if (data && data.supporters && Array.isArray(data.supporters)) {
-          setSupportersList(data.supporters);
+          try {
+            const deletedIds: string[] = JSON.parse(localStorage.getItem('dijitalbuyukanne_deleted_supporter_ids') || '[]');
+            const filtered = data.supporters.filter((s: any) => !deletedIds.includes(s.id));
+            if (!localStorage.getItem('dijitalbuyukanne_admin_supporters')) {
+              setSupportersList(filtered);
+            }
+          } catch {
+            setSupportersList(data.supporters);
+          }
         }
       })
       .catch((err) => console.log('Destekçiler varsayılan JSON verisinden yüklendi', err));

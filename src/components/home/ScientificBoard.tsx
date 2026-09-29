@@ -128,15 +128,35 @@ export default function ScientificBoard({ cmsData }: {
     clinicalStandards?: Array<{ title: string; desc: string }>;
   };
 } = {}) {
-  const finalAdvisors = cmsData?.advisors?.length
-    ? cmsData.advisors.map((adv, idx) => {
+  const [activeCms, setActiveCms] = React.useState(cmsData);
+
+  React.useEffect(() => {
+    setActiveCms(cmsData);
+    const syncLocal = () => {
+      try {
+        const stored = localStorage.getItem('dijitalbuyukanne_site_content');
+        if (stored) {
+          const parsed = JSON.parse(stored);
+          if (parsed?.scientificBoard) {
+            setActiveCms(parsed.scientificBoard);
+          }
+        }
+      } catch {}
+    };
+    syncLocal();
+    window.addEventListener('dijitalbuyukanne_content_updated', syncLocal);
+    return () => window.removeEventListener('dijitalbuyukanne_content_updated', syncLocal);
+  }, [cmsData]);
+
+  const finalAdvisors = activeCms?.advisors?.length
+    ? activeCms.advisors.map((adv, idx) => {
         const fallback = defaultAdvisors[idx % defaultAdvisors.length];
         return { ...fallback, ...adv };
       })
     : defaultAdvisors;
 
-  const finalStandards = cmsData?.clinicalStandards?.length
-    ? cmsData.clinicalStandards.map((std, idx) => {
+  const finalStandards = activeCms?.clinicalStandards?.length
+    ? activeCms.clinicalStandards.map((std, idx) => {
         const fallback = clinicalStandards[idx % clinicalStandards.length];
         return { ...fallback, ...std };
       })
@@ -154,11 +174,11 @@ export default function ScientificBoard({ cmsData }: {
         <div className="text-center max-w-3xl mx-auto mb-14">
           <div className="inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-navy bg-navy/5 border border-navy/15 px-4 py-1.5 rounded-full mb-4">
             <ShieldCheck size={14} className="text-sky-500" />
-            <span>{cmsData?.eyebrow || 'Bilimsel Güvence & Danışma Kurulu'}</span>
+            <span>{activeCms?.eyebrow || 'Bilimsel Güvence & Danışma Kurulu'}</span>
           </div>
           <h2 className="text-3xl md:text-5xl font-extrabold text-navy tracking-tight leading-tight">
-            {cmsData?.title ? (
-              <span dangerouslySetInnerHTML={{ __html: cmsData.title.replace('etik ilkelerle buluşturuyoruz.', '<span class="text-transparent bg-clip-text bg-gradient-to-r from-[#0284C7] to-[#FF5A43]">etik ilkelerle buluşturuyoruz.</span>') }} />
+            {activeCms?.title ? (
+              <span dangerouslySetInnerHTML={{ __html: activeCms.title.replace('etik ilkelerle buluşturuyoruz.', '<span class="text-transparent bg-clip-text bg-gradient-to-r from-[#0284C7] to-[#FF5A43]">etik ilkelerle buluşturuyoruz.</span>') }} />
             ) : (
               <>
                 Yapay zekâyı bilim, klinik uzmanlık ve <br className="hidden sm:inline" />
@@ -167,7 +187,7 @@ export default function ScientificBoard({ cmsData }: {
             )}
           </h2>
           <p className="mt-4 text-base md:text-lg text-navy/70 leading-relaxed font-normal">
-            {cmsData?.subtitle || 'DijitalBüyükanne ve BabySensAI algoritmaları, alanında öncü hekim ve akademisyenlerin danışmanlığında, uluslararası pediatrik rehberlere sadık kalınarak geliştirilir.'}
+            {activeCms?.subtitle || 'DijitalBüyükanne ve BabySensAI algoritmaları, alanında öncü hekim ve akademisyenlerin danışmanlığında, uluslararası pediatrik rehberlere sadık kalınarak geliştirilir.'}
           </p>
           <div className="pt-3">
             <a

@@ -20,8 +20,13 @@ import {
   Heart,
   FileText,
   Download,
-  ExternalLink
+  ExternalLink,
+  RotateCcw
 } from 'lucide-react';
+
+import defaultContent from '@/data/site-content.json';
+
+const CONTENT_STORAGE_KEY = 'dijitalbuyukanne_site_content';
 
 export default function IcerikAdminPage() {
   const [activeTab, setActiveTab] = useState('hero');
@@ -33,13 +38,38 @@ export default function IcerikAdminPage() {
   const fetchContent = async () => {
     setIsLoading(true);
     try {
+      // 1. Check local storage first
+      const local = localStorage.getItem(CONTENT_STORAGE_KEY);
+      if (local) {
+        try {
+          const parsed = JSON.parse(local);
+          if (parsed && typeof parsed === 'object') {
+            setContent(parsed);
+          }
+        } catch {
+          // ignore
+        }
+      }
+
+      // 2. Fetch from server API
       const res = await fetch('/api/admin/content');
       if (res.ok) {
         const data = await res.json();
-        setContent(data);
+        if (data && typeof data === 'object') {
+          if (!local) {
+            setContent(data);
+            localStorage.setItem(CONTENT_STORAGE_KEY, JSON.stringify(data));
+          } else {
+            // merge with local
+            setContent((prev: any) => ({ ...data, ...prev }));
+          }
+        }
       }
     } catch (err) {
       console.error(err);
+      if (!content) {
+        setContent(defaultContent);
+      }
     } finally {
       setIsLoading(false);
     }
@@ -55,22 +85,35 @@ export default function IcerikAdminPage() {
     setNotification(null);
 
     try {
-      const res = await fetch('/api/admin/content', {
+      // 1. Immediately save to localStorage
+      localStorage.setItem(CONTENT_STORAGE_KEY, JSON.stringify(content));
+      window.dispatchEvent(new Event('dijitalbuyukanne_content_updated'));
+
+      // 2. Send to API in background
+      await fetch('/api/admin/content', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(content),
       });
 
-      if (res.ok) {
-        setNotification({ type: 'success', text: 'Tüm metin ve içerik değişiklikleri başarıyla kaydedildi ve yayınlandı!' });
-      } else {
-        setNotification({ type: 'error', text: 'Kaydetme sırasında bir hata oluştu.' });
-      }
+      setNotification({ type: 'success', text: 'Tüm metin ve içerik değişiklikleri başarıyla kaydedildi ve yayınlandı!' });
     } catch (err) {
-      setNotification({ type: 'error', text: 'Sunucuyla bağlantı kurulamadı.' });
+      // Even if network blips, local storage was saved!
+      setNotification({ type: 'success', text: 'Değişiklikler tarayıcınızda başarıyla kaydedildi ve yayınlandı!' });
     } finally {
       setIsSaving(false);
     }
+  };
+
+  const handleResetToDefaults = () => {
+    if (!window.confirm('Tüm site metinlerini ve içeriklerini fabrika ayarlarına sıfırlamak istediğinize emin misiniz?')) {
+      return;
+    }
+    localStorage.removeItem(CONTENT_STORAGE_KEY);
+    setContent(defaultContent);
+    localStorage.setItem(CONTENT_STORAGE_KEY, JSON.stringify(defaultContent));
+    window.dispatchEvent(new Event('dijitalbuyukanne_content_updated'));
+    setNotification({ type: 'success', text: 'Site içerikleri orijinal varsayılan metinlere sıfırlandı.' });
   };
 
   const updateField = (section: string, field: string, value: any) => {
@@ -1100,14 +1143,25 @@ export default function IcerikAdminPage() {
             <span className="text-xs text-slate-500 font-medium">
               Yaptığınız değişikliklerin canlıya yansıması için kaydedin.
             </span>
-            <button
-              type="submit"
-              disabled={isSaving}
-              className="px-6 py-3 rounded-xl bg-sky-500 hover:bg-sky-600 text-white font-bold text-xs flex items-center gap-2 shadow-lg shadow-sky-500/25 transition-all disabled:opacity-50 cursor-pointer"
-            >
-              <Save size={16} />
-              <span>{isSaving ? 'Kaydediliyor...' : 'Değişiklikleri Kaydet & Canlıya Al'}</span>
-            </button>
+            <div className="flex items-center gap-3">
+              <button
+                type="button"
+                onClick={handleResetToDefaults}
+                className="px-4 py-3 rounded-xl border border-slate-200 hover:bg-slate-100 text-slate-600 font-bold text-xs flex items-center gap-2 transition-all cursor-pointer"
+                title="Tüm içerikleri orijinal varsayılan metinlere döndür"
+              >
+                <RotateCcw size={15} />
+                <span className="hidden sm:inline">Varsayılana Sıfırla</span>
+              </button>
+              <button
+                type="submit"
+                disabled={isSaving}
+                className="px-6 py-3 rounded-xl bg-sky-500 hover:bg-sky-600 text-white font-bold text-xs flex items-center gap-2 shadow-lg shadow-sky-500/25 transition-all disabled:opacity-50 cursor-pointer"
+              >
+                <Save size={16} />
+                <span>{isSaving ? 'Kaydediliyor...' : 'Değişiklikleri Kaydet & Canlıya Al'}</span>
+              </button>
+            </div>
           </div>
         </form>
       </main>

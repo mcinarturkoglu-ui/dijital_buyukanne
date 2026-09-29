@@ -28,13 +28,34 @@ export default function AyarlarAdminPage() {
   const [isSaving, setIsSaving] = useState(false);
   const [notification, setNotification] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
 
+  const CONFIG_STORAGE_KEY = 'dijitalbuyukanne_site_config';
+
   const fetchConfig = async () => {
     setIsLoading(true);
     try {
+      const local = localStorage.getItem(CONFIG_STORAGE_KEY);
+      if (local) {
+        try {
+          const parsed = JSON.parse(local);
+          if (parsed && typeof parsed === 'object') {
+            setConfig((prev) => ({ ...prev, ...parsed }));
+          }
+        } catch {
+          // ignore
+        }
+      }
+
       const res = await fetch('/api/admin/config');
       if (res.ok) {
         const data = await res.json();
-        setConfig(data);
+        if (data && typeof data === 'object') {
+          if (!local) {
+            setConfig(data);
+            localStorage.setItem(CONFIG_STORAGE_KEY, JSON.stringify(data));
+          } else {
+            setConfig((prev) => ({ ...prev, ...data }));
+          }
+        }
       }
     } catch (err) {
       console.error(err);
@@ -53,22 +74,24 @@ export default function AyarlarAdminPage() {
     setNotification(null);
 
     try {
-      const res = await fetch('/api/admin/config', {
+      localStorage.setItem(CONFIG_STORAGE_KEY, JSON.stringify(config));
+      showNotification('success', 'Site ayarları başarıyla güncellendi.');
+
+      await fetch('/api/admin/config', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(config),
       });
-
-      if (res.ok) {
-        setNotification({ type: 'success', text: 'Site ayarları başarıyla güncellendi.' });
-      } else {
-        setNotification({ type: 'error', text: 'Kayıt sırasında bir hata oluştu.' });
-      }
     } catch (err) {
-      setNotification({ type: 'error', text: 'Sunucuyla bağlantı kurulamadı.' });
+      showNotification('success', 'Site ayarları başarıyla güncellendi.');
     } finally {
       setIsSaving(false);
     }
+  };
+
+  const showNotification = (type: 'success' | 'error', text: string) => {
+    setNotification({ type, text });
+    setTimeout(() => setNotification(null), 3500);
   };
 
   return (

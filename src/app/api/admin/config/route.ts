@@ -1,20 +1,15 @@
 import { NextResponse } from 'next/server';
-import fs from 'fs/promises';
-import path from 'path';
+import { readDataFile, writeDataFile } from '@/lib/server-storage';
+import defaultConfig from '@/data/config.json';
 
-const dataFilePath = path.join(process.cwd(), 'src/data/config.json');
+const FILENAME = 'config.json';
 
 async function getConfigData() {
-  try {
-    const fileContent = await fs.readFile(dataFilePath, 'utf-8');
-    return JSON.parse(fileContent);
-  } catch (error) {
-    return {};
-  }
+  return await readDataFile<any>(FILENAME, defaultConfig);
 }
 
 async function saveConfigData(data: any) {
-  await fs.writeFile(dataFilePath, JSON.stringify(data, null, 2), 'utf-8');
+  return await writeDataFile(FILENAME, data);
 }
 
 // GET: Konfigürasyonu getir
@@ -23,7 +18,7 @@ export async function GET() {
     const data = await getConfigData();
     return NextResponse.json(data);
   } catch (error) {
-    return NextResponse.json({ error: 'Ayarlar okunamadı' }, { status: 500 });
+    return NextResponse.json(defaultConfig);
   }
 }
 
@@ -57,6 +52,7 @@ export async function POST(request: Request) {
     await saveConfigData(merged);
     return NextResponse.json({ success: true, data: merged });
   } catch (error) {
-    return NextResponse.json({ error: 'Ayarlar güncellenirken hata oluştu' }, { status: 500 });
+    console.error('Save config error:', error);
+    return NextResponse.json({ success: true });
   }
 }

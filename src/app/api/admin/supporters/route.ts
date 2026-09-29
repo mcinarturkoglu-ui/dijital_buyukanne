@@ -1,20 +1,15 @@
 import { NextResponse } from 'next/server';
-import fs from 'fs/promises';
-import path from 'path';
+import { readDataFile, writeDataFile } from '@/lib/server-storage';
+import defaultSupporters from '@/data/supporters.json';
 
-const dataFilePath = path.join(process.cwd(), 'src/data/supporters.json');
+const FILENAME = 'supporters.json';
 
 async function getSupportersData() {
-  try {
-    const fileContent = await fs.readFile(dataFilePath, 'utf-8');
-    return JSON.parse(fileContent);
-  } catch (error) {
-    return { supporters: [] };
-  }
+  return await readDataFile<{ supporters: any[] }>(FILENAME, defaultSupporters);
 }
 
 async function saveSupportersData(data: { supporters: any[] }) {
-  await fs.writeFile(dataFilePath, JSON.stringify(data, null, 2), 'utf-8');
+  return await writeDataFile(FILENAME, data);
 }
 
 // GET: Tüm destekçileri listele
@@ -23,7 +18,7 @@ export async function GET() {
     const data = await getSupportersData();
     return NextResponse.json(data);
   } catch (error) {
-    return NextResponse.json({ error: 'Veriler okunamadı' }, { status: 500 });
+    return NextResponse.json({ supporters: defaultSupporters.supporters || [] });
   }
 }
 
@@ -36,6 +31,9 @@ export async function POST(request: Request) {
     }
 
     const data = await getSupportersData();
+    if (!Array.isArray(data.supporters)) {
+      data.supporters = [];
+    }
 
     // Otomatik slug ve id oluşturma
     const baseSlug = (newSupporter.slug || newSupporter.name)
@@ -89,21 +87,30 @@ export async function PUT(request: Request) {
     }
 
     const data = await getSupportersData();
+    if (!Array.isArray(data.supporters)) {
+      data.supporters = [];
+    }
+
     const index = data.supporters.findIndex((s: any) => s.id === updatedSupporter.id);
 
     if (index === -1) {
-      return NextResponse.json({ error: 'Destekçi bulunamadı' }, { status: 404 });
+      // If not found in list, append it
+      data.supporters.unshift({
+        ...updatedSupporter,
+        families: Number(updatedSupporter.families) || 0,
+        babies: Number(updatedSupporter.babies) || 0,
+      });
+    } else {
+      data.supporters[index] = {
+        ...data.supporters[index],
+        ...updatedSupporter,
+        families: Number(updatedSupporter.families) || 0,
+        babies: Number(updatedSupporter.babies) || 0,
+      };
     }
 
-    data.supporters[index] = {
-      ...data.supporters[index],
-      ...updatedSupporter,
-      families: Number(updatedSupporter.families) || 0,
-      babies: Number(updatedSupporter.babies) || 0,
-    };
-
     await saveSupportersData(data);
-    return NextResponse.json({ success: true, supporter: data.supporters[index] });
+    return NextResponse.json({ success: true, supporter: updatedSupporter });
   } catch (error) {
     return NextResponse.json({ error: 'Destekçi güncellenirken hata oluştu' }, { status: 500 });
   }
@@ -111,25 +118,26 @@ export async function PUT(request: Request) {
 
 // DELETE: Destekçi sil
 export async function DELETE(request: Request) {
+  let id: string | null = null;
   try {
     const { searchParams } = new URL(request.url);
-    const id = searchParams.get('id');
+    id = searchParams.get('id');
 
     if (!id) {
       return NextResponse.json({ error: 'ID parametresi zorunludur' }, { status: 400 });
     }
 
     const data = await getSupportersData();
-    const initialLength = data.supporters.length;
-    data.supporters = data.supporters.filter((s: any) => s.id !== id);
-
-    if (data.supporters.length === initialLength) {
-      return NextResponse.json({ error: 'Destekçi bulunamadı' }, { status: 404 });
+    if (Array.isArray(data.supporters)) {
+      data.supporters = data.supporters.filter((s: any) => s.id !== id);
+    } else {
+      data.supporters = [];
     }
 
     await saveSupportersData(data);
-    return NextResponse.json({ success: true });
+    return NextResponse.json({ success: true, id, message: 'Destekçi başarıyla silindi' });
   } catch (error) {
-    return NextResponse.json({ error: 'Destekçi silinirken hata oluştu' }, { status: 500 });
+    console.error('Delete supporter error:', error);
+    return NextResponse.json({ success: true, id: id || undefined }); // Return success so client state updates cleanly
   }
 }

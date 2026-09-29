@@ -164,7 +164,27 @@ export default function CaseStudies({ cmsData }: {
     cases?: any[];
   };
 } = {}) {
-  const finalCases = cmsData?.cases?.length ? cmsData.cases.map((c, idx) => {
+  const [activeCms, setActiveCms] = useState(cmsData);
+
+  useEffect(() => {
+    setActiveCms(cmsData);
+    const syncLocal = () => {
+      try {
+        const stored = localStorage.getItem('dijitalbuyukanne_site_content');
+        if (stored) {
+          const parsed = JSON.parse(stored);
+          if (parsed?.caseStudies) {
+            setActiveCms(parsed.caseStudies);
+          }
+        }
+      } catch {}
+    };
+    syncLocal();
+    window.addEventListener('dijitalbuyukanne_content_updated', syncLocal);
+    return () => window.removeEventListener('dijitalbuyukanne_content_updated', syncLocal);
+  }, [cmsData]);
+
+  const finalCases = activeCms?.cases?.length ? activeCms.cases.map((c, idx) => {
     const fallback = cases[idx % cases.length];
     return { ...fallback, ...c };
   }) : cases;
@@ -239,18 +259,24 @@ export default function CaseStudies({ cmsData }: {
         <div className="text-center max-w-3xl mx-auto mb-10">
           <div className="inline-flex items-center gap-2 text-xs font-mono font-bold tracking-widest uppercase text-sky-700 bg-sky-50 border border-sky-200 px-4 py-1.5 rounded-full mb-4 shadow-xs">
             <Heart size={14} className="text-coral fill-coral" />
-            <span>{cmsData?.eyebrow || 'GERÇEK HAYATTAN ETKİ HİKAYELERİ'}</span>
+            <span>{activeCms?.eyebrow || 'GERÇEK HAYATTAN ETKİ HİKAYELERİ'}</span>
           </div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#0B1E3B] tracking-tight leading-tight">
-            Teknoloji bilimdir. Bir bebeğin adımı ise <br className="hidden sm:inline" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0284C7] to-coral">
-              hayata tutunan bir mucizedir.
-            </span>
+            {activeCms?.title ? (
+              <span dangerouslySetInnerHTML={{ __html: activeCms.title }} />
+            ) : (
+              <>
+                Teknoloji bilimdir. Bir bebeğin adımı ise <br className="hidden sm:inline" />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0284C7] to-coral">
+                  hayata tutunan bir mucizedir.
+                </span>
+              </>
+            )}
           </h2>
 
           <p className="mt-4 text-sm sm:text-base text-slate-600 leading-relaxed font-normal max-w-2xl mx-auto">
-            {cmsData?.subtitle || 'DijitalBüyükanne ekosistemiyle erken fark edilen, zamanında desteklenen ailelerimizin ve öncü belediyelerimizin başarı yolculukları.'}
+            {activeCms?.subtitle || 'DijitalBüyükanne ekosistemiyle erken fark edilen, zamanında desteklenen ailelerimizin ve öncü belediyelerimizin başarı yolculukları.'}
           </p>
 
           <div className="mt-4 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-slate-200 text-[11px] font-semibold text-slate-600 shadow-2xs">
