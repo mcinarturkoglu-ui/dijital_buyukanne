@@ -1416,22 +1416,28 @@ function PresentationDeckInner() {
                 </p>
               </div>
 
-              {/* Danışman Hekimler */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 mb-4">
+              {/* Danışman Hekimler ve Kurucular */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 mb-4">
                 {(board?.advisors || []).map((adv: any, i: number) => (
                   <div key={i} className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col justify-between">
                     <div>
-                      <div className="flex items-center gap-2 mb-1.5">
-                        <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#0B1E3B] to-[#0284C7] text-white font-black text-xs flex items-center justify-center shrink-0">
-                          {adv.monogram || 'DK'}
-                        </div>
-                        <div>
-                          <span className="text-[9px] font-bold text-[#0284C7] uppercase tracking-wider block">{adv.role}</span>
-                          <h4 className="text-xs font-bold text-[#0B1E3B]">{adv.title}</h4>
+                      <div className="flex items-center gap-2.5 mb-2">
+                        {adv.image ? (
+                          <div className="relative w-10 h-10 rounded-xl overflow-hidden shrink-0 border border-slate-200 shadow-2xs">
+                            <Image src={adv.image} alt={adv.title} fill className="object-cover" />
+                          </div>
+                        ) : (
+                          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#0B1E3B] to-[#0284C7] text-white font-black text-xs flex items-center justify-center shrink-0">
+                            {adv.monogram || 'DK'}
+                          </div>
+                        )}
+                        <div className="min-w-0">
+                          <span className="text-[9px] font-bold text-[#0284C7] uppercase tracking-wider block truncate">{adv.role}</span>
+                          <h4 className="text-xs font-bold text-[#0B1E3B] truncate">{adv.title}</h4>
                         </div>
                       </div>
-                      <p className="text-[10px] text-slate-500 font-medium mb-1">{adv.institution}</p>
-                      <p className="text-[10px] text-slate-600 leading-snug">{adv.description}</p>
+                      <p className="text-[10px] text-slate-500 font-medium mb-1 truncate">{adv.institution}</p>
+                      <p className="text-[10px] text-slate-600 leading-snug line-clamp-3">{adv.description}</p>
                     </div>
                     <div className="mt-2 pt-2 border-t border-slate-200 text-[9px] italic text-[#0284C7]">
                       &ldquo;{adv.quote}&rdquo;

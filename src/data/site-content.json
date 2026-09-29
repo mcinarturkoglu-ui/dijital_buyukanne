@@ -111,40 +111,34 @@
     "subtitle": "DijitalBüyükanne ve BabySensAI algoritmaları, alanında öncü hekim ve akademisyenlerin danışmanlığında, uluslararası pediatrik rehberlere sadık kalınarak geliştirilir.",
     "advisors": [
       {
-        "role": "Çocuk Nörolojisi Danışmanı",
-        "title": "Prof. Dr. N. Karakaş",
-        "expertise": "Nörolojik ve Kas Hastalıkları & Serebral Palsi Erken Farkındalığı",
-        "institution": "Hacettepe Tıp Fakültesi / Pediatrik Nöroloji",
-        "description": "0–6 ay spontan fidgety hareketlerinin video tabanlı analizi ve nörogelişimsel risk indekslerinin algoritmik kalibrasyonu.",
-        "quote": "Erken farkındalık, zamanında müdahale için en değerli penceredir.",
-        "monogram": "NK"
+        "role": "Adapha Kurucu / Biyomedikal Sistemler",
+        "title": "Öğr. Gör. Dr. Sema Gül",
+        "expertise": "Yapay Zekâ Destekli Erken Tanı & Biyomedikal Sağlık Sistemleri",
+        "institution": "Ondokuz Mayıs Üniversitesi (OMÜ) Samsun Teknopark / Adapha",
+        "description": "Yenidoğan ve bebek sağlığında yapay zekâ tabanlı erken tarama modelleri, klinik doğruluk algoritmaları ve biyomedikal veri analitiği mimarisinin geliştirilmesi ve yönetimi.",
+        "quote": "Erken teşhis teknolojileriyle her bebeğin sağlıklı bir geleceğe adım atmasını mümkün kılıyoruz.",
+        "monogram": "SG",
+        "image": "/images/team/sema-gul.jpg"
       },
       {
-        "role": "Çocuk Sağlığı & Gastroenteroloji Danışmanı",
-        "title": "Doç. Dr. S. Aksoy",
-        "expertise": "Pediatrik Dışkı Skalası & Yenidoğan Sindirim İzlemi",
-        "institution": "Ankara Üniversitesi Tıp Fakültesi / Çocuk Sağlığı",
-        "description": "Dışkı renk kartı piksel eşleme kriterleri, yenidoğan sindirim takibi ve çocuk hekimine erken başvuru protokolleri.",
-        "quote": "Doğru veri, doğru zamanda doğru adımı mümkün kılar.",
-        "monogram": "SA"
+        "role": "Adapha Ortağı / Teknik Sorumlu (CTO)",
+        "title": "Doç. Dr. Muammer Türkoğlu",
+        "expertise": "Derin Öğrenme & 18-Eklem Kinematik Video Analizi",
+        "institution": "Ondokuz Mayıs Üniversitesi / OMÜ Samsun Teknopark",
+        "description": "0–6 ay spontan hareket analizi, 18-eklem iskelet kinematik haritalaması, derin öğrenme algoritmaları ve yüksek doğruluklu nörogelişimsel AI modellerinin kalibrasyonu.",
+        "quote": "Bilimsel veriyi ileri yapay zekâ modelleriyle işleyerek insan hayatına doğrudan dokunuyoruz.",
+        "monogram": "MT",
+        "image": "/images/team/muammer-turkoglu.jpg"
       },
       {
-        "role": "Pediatrik Fizyoterapi Danışmanı",
-        "title": "Uzm. Fzt. E. Yılmaz",
-        "expertise": "0–24 Ay Motor Postür & Aile Egzersizleri",
-        "institution": "Türkiye Fizyoterapistler Derneği Pediatri Grubu",
-        "description": "Evde uygulanabilir güvenli gelişim oyunları, boyun-gövde dengesi (tummy-time) ve desteksiz oturma kazanım aşamaları.",
-        "quote": "Her egzersiz, bebeğin geleceğine yapılan bir yatırımdır.",
-        "monogram": "EY"
-      },
-      {
-        "role": "Biyomedikal & Etik AI Danışmanı",
-        "title": "Dr. B. Öztürk",
-        "expertise": "Tıbbi Görüntü İşleme & KVKK Güvenliği",
-        "institution": "ODTÜ Biyomedikal Mühendisliği / AI Laboratuvarı",
-        "description": "Görüntülerin cihaz üzerinde anonimleştirilmesi, piksel doğrulama doğruluğu ve sorumlu yapay zekâ etik denetimi.",
-        "quote": "Güvenilir yapay zekâ, şeffaflıkla başlar.",
-        "monogram": "BÖ"
+        "role": "Klinik Danışman & Neonatoloji Uzmanı",
+        "title": "Prof. Dr. Canan Seren",
+        "expertise": "Neonatoloji, Yenidoğan Nörogelişimsel İzlemi & Pediatri",
+        "institution": "OMÜ Tıp Fakültesi Pediatri Anabilim Dalı Neonatoloji Bilim Dalı",
+        "description": "Yenidoğan gelişim döngüsü, erken nöromotor asimetri riskleri, klinik yönlendirme kriterleri ve algoritmaların uluslararası tıp kılavuzlarına tam uyum denetimi.",
+        "quote": "Klinik uzmanlık ve doğru zamanlama, bir bebeğin gelişimindeki en kritik güçtür.",
+        "monogram": "CS",
+        "image": "/images/team/canan-seren.jpg"
       }
     ],
     "clinicalStandards": [

@@ -1054,9 +1054,9 @@ export default function RotarySlideDeck({
                 <div className="w-8 h-8 rounded-xl bg-[#17458F] text-white flex items-center justify-center font-bold text-xs font-mono">
                   03
                 </div>
-                <h4 className="font-bold text-sm text-[#17458F]">Hacettepe & Ankara Tıp Referansı</h4>
+                <h4 className="font-bold text-sm text-[#17458F]">OMÜ Tıp Fakültesi & Teknopark</h4>
                 <p className="text-xs text-slate-600 leading-snug">
-                  Pediatrik nöroloji, çocuk gastroenterolojisi ve fizyoterapi hocalarının danışmanlığında kalibre edilen protokoller.
+                  OMÜ Tıp Neonatoloji Bilim Dalı, Çocuk Sağlığı ve Teknopark yapay zekâ akademisyenlerimizin danışmanlığında geliştirilen protokoller.
                 </p>
               </div>
 
@@ -1072,8 +1072,8 @@ export default function RotarySlideDeck({
             </div>
 
             <div className="p-4 rounded-2xl bg-slate-100 border border-slate-200 flex items-center justify-between text-xs text-slate-700">
-              <span className="font-bold text-[#17458F]">Klinik İtibar Unsuru:</span>
-              <span>Rotary Kulübü, kamuoyunda tıp camiasının da desteklediği en güvenilir sosyal projelerden birine imza atar.</span>
+              <span className="font-bold text-[#17458F]">Akademik Kadro & Kurucu Ekip:</span>
+              <span>Öğr. Gör. Dr. Sema Gül (Kurucu), Doç. Dr. Muammer Türkoğlu (Teknik Sorumlu), Prof. Dr. Canan Seren (Klinik Danışman) &bull; adapha.com</span>
             </div>
           </div>
         </RotarySlideShell>

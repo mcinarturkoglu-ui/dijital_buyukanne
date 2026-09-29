@@ -135,7 +135,7 @@ export default function HomePage() {
           ───────────────────────────────────────────────────────────── */}
       <div id="bolum-5" className="scroll-mt-16">
         <InclusiveAccess />
-        <ScientificBoard />
+        <ScientificBoard cmsData={siteContent.scientificBoard} />
         <CaseStudies />
         <NationalMediaPress />
       </div>

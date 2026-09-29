@@ -732,12 +732,20 @@ export default function IcerikAdminPage() {
                             }} className="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 text-xs bg-white" />
                           </div>
                           <div>
-                            <label className="block text-[10px] font-bold text-slate-500 mb-1">Monogram (Örn: NK)</label>
-                            <input type="text" value={adv.monogram} onChange={(e) => {
+                            <label className="block text-[10px] font-bold text-slate-500 mb-1">Monogram (Örn: SG)</label>
+                            <input type="text" value={adv.monogram || ''} onChange={(e) => {
                               const updatedList = [...content.scientificBoard.advisors];
                               updatedList[idx].monogram = e.target.value;
                               updateField('scientificBoard', 'advisors', updatedList);
                             }} className="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 text-xs bg-white" />
+                          </div>
+                          <div>
+                            <label className="block text-[10px] font-bold text-slate-500 mb-1">Fotoğraf URL / Dosya Yolu</label>
+                            <input type="text" value={adv.image || ''} placeholder="/images/team/sema-gul.jpg" onChange={(e) => {
+                              const updatedList = [...content.scientificBoard.advisors];
+                              updatedList[idx].image = e.target.value;
+                              updateField('scientificBoard', 'advisors', updatedList);
+                            }} className="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 text-xs bg-white font-mono text-[11px]" />
                           </div>
                         </div>
                         <div className="space-y-3">
