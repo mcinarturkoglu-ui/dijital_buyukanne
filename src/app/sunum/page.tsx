@@ -1,8 +1,10 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
+import RotarySlideDeck, { ROTARY_SLIDES, RotaryWheel } from '@/components/rotary/RotarySlideDeck';
 import {
   Printer,
   ChevronLeft,
@@ -80,7 +82,11 @@ const ALL_SLIDES: SlideDef[] = [
   { id: 'slide-final-cta', chapter: 'KAPANIŞ', category: 'İŞ BİRLİĞİ VE İMZA ÇAĞRISI', title: 'Her Bebeğe Şefkat & 24 Saatte Hazır Protokol Teslimi', tag: 'genel' },
 ];
 
-export default function PresentationDeckPage() {
+function PresentationDeckInner() {
+  const searchParams = useSearchParams();
+  const initialDeck = searchParams.get('deck') === 'rotary' ? 'rotary' : 'general';
+  const [deckMode, setDeckMode] = useState<'general' | 'rotary'>(initialDeck);
+
   const [content, setContent] = useState<any>(defaultContent);
   const [supportersList, setSupportersList] = useState<any[]>(supportersData.supporters || []);
   const [viewMode, setViewMode] = useState<'all' | 'single'>('all');
@@ -89,6 +95,16 @@ export default function PresentationDeckPage() {
   // Slayt Seçim & Çıkarma Durumu (Kullanıcı hangi slaytları çıkarırsa burada tutulur)
   const [excludedSlideIds, setExcludedSlideIds] = useState<string[]>([]);
   const [showManager, setShowManager] = useState(false);
+
+  // URL'deki deck parametresi değişirse deckMode'u senkronize et
+  useEffect(() => {
+    const q = searchParams.get('deck');
+    if (q === 'rotary') {
+      setDeckMode('rotary');
+      setExcludedSlideIds([]);
+      setCurrentSlideIndex(0);
+    }
+  }, [searchParams]);
 
   // Admin CMS'ten en güncel verileri çek
   useEffect(() => {
@@ -112,8 +128,15 @@ export default function PresentationDeckPage() {
   }, []);
 
   // Aktif Slaytlar Listesi (Dinamik olarak filtrelenir ve sırayla numaralandırılır)
-  const activeSlides = ALL_SLIDES.filter((s) => !excludedSlideIds.includes(s.id));
+  const currentSlidesList = deckMode === 'rotary' ? ROTARY_SLIDES : ALL_SLIDES;
+  const activeSlides = currentSlidesList.filter((s) => !excludedSlideIds.includes(s.id));
   const totalActive = activeSlides.length;
+
+  const switchDeck = (mode: 'general' | 'rotary') => {
+    setDeckMode(mode);
+    setExcludedSlideIds([]);
+    setCurrentSlideIndex(0);
+  };
 
   const toggleSlideExclusion = (id: string) => {
     setExcludedSlideIds((prev) => {
@@ -121,55 +144,71 @@ export default function PresentationDeckPage() {
         return prev.filter((item) => item !== id);
       } else {
         // En az 1 slayt kalması için koruma
-        if (prev.length >= ALL_SLIDES.length - 1) return prev;
+        if (prev.length >= currentSlidesList.length - 1) return prev;
         return [...prev, id];
       }
     });
   };
 
-  // Hazır Şablon Filtreleri
-  const applyPreset = (preset: 'all' | 'kurumsal' | 'klinik' | 'ozet') => {
+  // Hazır Şablon Filtreleri (Genel ve Rotary Özel)
+  const applyPreset = (preset: 'all' | 'kurumsal' | 'klinik' | 'ozet' | 'kulup' | 'bolge') => {
     if (preset === 'all') {
       setExcludedSlideIds([]);
-    } else if (preset === 'kurumsal') {
-      const kurumsalAllowed = [
-        'slide-hero',
-        'slide-pulse',
-        'slide-compare',
-        'slide-protocols-overview',
-        'slide-assistant',
-        'slide-impact-calc',
-        'slide-institutions',
-        'slide-supporters',
-        'slide-final-cta',
-      ];
-      setExcludedSlideIds(ALL_SLIDES.filter((s) => !kurumsalAllowed.includes(s.id)).map((s) => s.id));
-    } else if (preset === 'klinik') {
-      const klinikAllowed = [
-        'slide-hero',
-        'slide-timeline',
-        'slide-compare',
-        'slide-protocols-overview',
-        'slide-motion',
-        'slide-skin-stool',
-        'slide-human-ai',
-        'slide-inclusive',
-        'slide-scientific-board',
-        'slide-case-studies',
-        'slide-final-cta',
-      ];
-      setExcludedSlideIds(ALL_SLIDES.filter((s) => !klinikAllowed.includes(s.id)).map((s) => s.id));
-    } else if (preset === 'ozet') {
-      const ozetAllowed = [
-        'slide-hero',
-        'slide-pulse',
-        'slide-compare',
-        'slide-protocols-overview',
-        'slide-impact-calc',
-        'slide-institutions',
-        'slide-final-cta',
-      ];
-      setExcludedSlideIds(ALL_SLIDES.filter((s) => !ozetAllowed.includes(s.id)).map((s) => s.id));
+      return;
+    }
+
+    if (deckMode === 'rotary') {
+      if (preset === 'kulup') {
+        const allowed = ['rotary-hero', 'rotary-polio', 'rotary-4way', 'rotary-workflow', 'rotary-gift-kit', 'rotary-case-studies', 'rotary-packages', 'rotary-cta'];
+        setExcludedSlideIds(ROTARY_SLIDES.filter((s) => !allowed.includes(s.id)).map((s) => s.id));
+      } else if (preset === 'bolge') {
+        const allowed = ['rotary-hero', 'rotary-polio', 'rotary-4way', 'rotary-workflow', 'rotary-motion', 'rotary-case-studies', 'rotary-simulator', 'rotary-packages', 'rotary-cta'];
+        setExcludedSlideIds(ROTARY_SLIDES.filter((s) => !allowed.includes(s.id)).map((s) => s.id));
+      } else if (preset === 'klinik') {
+        const allowed = ['rotary-hero', 'rotary-4way', 'rotary-motion', 'rotary-skin-stool', 'rotary-assistant', 'rotary-case-studies', 'rotary-governance', 'rotary-cta'];
+        setExcludedSlideIds(ROTARY_SLIDES.filter((s) => !allowed.includes(s.id)).map((s) => s.id));
+      }
+    } else {
+      if (preset === 'kurumsal') {
+        const kurumsalAllowed = [
+          'slide-hero',
+          'slide-pulse',
+          'slide-compare',
+          'slide-protocols-overview',
+          'slide-assistant',
+          'slide-impact-calc',
+          'slide-institutions',
+          'slide-supporters',
+          'slide-final-cta',
+        ];
+        setExcludedSlideIds(ALL_SLIDES.filter((s) => !kurumsalAllowed.includes(s.id)).map((s) => s.id));
+      } else if (preset === 'klinik') {
+        const klinikAllowed = [
+          'slide-hero',
+          'slide-timeline',
+          'slide-compare',
+          'slide-protocols-overview',
+          'slide-motion',
+          'slide-skin-stool',
+          'slide-human-ai',
+          'slide-inclusive',
+          'slide-scientific-board',
+          'slide-case-studies',
+          'slide-final-cta',
+        ];
+        setExcludedSlideIds(ALL_SLIDES.filter((s) => !klinikAllowed.includes(s.id)).map((s) => s.id));
+      } else if (preset === 'ozet') {
+        const ozetAllowed = [
+          'slide-hero',
+          'slide-pulse',
+          'slide-compare',
+          'slide-protocols-overview',
+          'slide-impact-calc',
+          'slide-institutions',
+          'slide-final-cta',
+        ];
+        setExcludedSlideIds(ALL_SLIDES.filter((s) => !ozetAllowed.includes(s.id)).map((s) => s.id));
+      }
     }
   };
 
@@ -210,47 +249,78 @@ export default function PresentationDeckPage() {
           {/* Sol Kısım: Logo ve Başlık */}
           <div className="flex items-center gap-3">
             <Link
-              href="/"
+              href={deckMode === 'rotary' ? "/rotary" : "/"}
               className="w-9 h-9 rounded-xl bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors text-white"
-              title="Ana Sayfaya Dön"
+              title={deckMode === 'rotary' ? "Rotary Sayfasına Dön" : "Ana Sayfaya Dön"}
             >
               <ArrowLeft size={18} />
             </Link>
             <div className="flex items-center gap-2.5">
               <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center p-1">
-                <Image
-                  src="/images/mascot.png"
-                  alt="Maskot"
-                  width={28}
-                  height={28}
-                  className="w-full h-full object-contain"
-                />
+                {deckMode === 'rotary' ? (
+                  <RotaryWheel className="w-5 h-5 text-[#F7A81B]" />
+                ) : (
+                  <Image
+                    src="/images/mascot.png"
+                    alt="Maskot"
+                    width={28}
+                    height={28}
+                    className="w-full h-full object-contain"
+                  />
+                )}
               </div>
               <div>
-                <span className="font-extrabold text-sm text-white block leading-none">
-                  DijitalBüyükanne Kurumsal Sunum & İhale / Protokol Dosyası
+                <span className="font-extrabold text-xs sm:text-sm text-white block leading-none">
+                  {deckMode === 'rotary'
+                    ? 'Rotary & DijitalBüyükanne Resmî Sunum Dosyası'
+                    : 'DijitalBüyükanne Kurumsal Sunum & İhale / Protokol Dosyası'}
                 </span>
-                <span className="text-[11px] text-sky-300 font-mono">
-                  Ana Sayfa Birebir Akışı &bull; {totalActive} / {ALL_SLIDES.length} Slayt Seçili
+                <span className="text-[10px] sm:text-[11px] text-sky-300 font-mono">
+                  {deckMode === 'rotary' ? 'Rotary Anne ve Çocuk Sağlığı Projesi' : 'Ana Sayfa Birebir Akışı'} &bull; {totalActive} / {currentSlidesList.length} Slayt Seçili
                 </span>
               </div>
             </div>
           </div>
 
-          {/* Orta Kısım: Slayt Seçim & Özelleştirme Butonu */}
+          {/* Orta Kısım: Sunum Türü Seçici (Genel vs Rotary) + Slayt Seçim Butonu */}
           <div className="flex items-center gap-2">
+            {/* Deck Toggle Switch */}
+            <div className="flex items-center p-1 rounded-xl bg-white/10 border border-white/15">
+              <button
+                onClick={() => switchDeck('general')}
+                className={`px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                  deckMode === 'general'
+                    ? 'bg-sky-500 text-white shadow-sm'
+                    : 'text-white/70 hover:text-white'
+                }`}
+              >
+                Genel (16)
+              </button>
+              <button
+                onClick={() => switchDeck('rotary')}
+                className={`px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+                  deckMode === 'rotary'
+                    ? 'bg-[#F7A81B] text-[#17458F] shadow-sm font-black'
+                    : 'text-white/70 hover:text-white'
+                }`}
+              >
+                <RotaryWheel className="w-3.5 h-3.5 text-[#F7A81B]" />
+                <span>Rotary Özel (13)</span>
+              </button>
+            </div>
+
             <button
               onClick={() => setShowManager(!showManager)}
-              className={`px-3.5 py-1.5 rounded-xl text-xs font-bold flex items-center gap-2 border transition-all cursor-pointer ${
+              className={`px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-2 border transition-all cursor-pointer ${
                 showManager || excludedSlideIds.length > 0
                   ? 'bg-amber-500/20 text-amber-300 border-amber-400/40 shadow-sm'
                   : 'bg-white/10 hover:bg-white/20 text-white border-white/15'
               }`}
             >
               <SlidersHorizontal size={14} className={excludedSlideIds.length > 0 ? 'text-amber-400' : ''} />
-              <span>Slaytları Özelleştir / Sil</span>
+              <span className="hidden md:inline">Slaytları Özelleştir</span>
               <span className="px-1.5 py-0.5 rounded-md bg-white/20 font-mono text-[10px]">
-                {totalActive}/{ALL_SLIDES.length}
+                {totalActive}/{currentSlidesList.length}
               </span>
             </button>
 
@@ -346,26 +416,51 @@ export default function PresentationDeckPage() {
                   onClick={() => applyPreset('all')}
                   className="px-2.5 py-1 rounded-lg bg-white/10 hover:bg-white/20 text-white text-xs font-medium cursor-pointer transition-colors"
                 >
-                  Tümü (16)
+                  Tümü ({currentSlidesList.length})
                 </button>
-                <button
-                  onClick={() => applyPreset('kurumsal')}
-                  className="px-2.5 py-1 rounded-lg bg-sky-500/20 hover:bg-sky-500/30 text-sky-300 text-xs font-medium border border-sky-500/30 cursor-pointer transition-colors"
-                >
-                  Kurumsal & Belediye (9)
-                </button>
-                <button
-                  onClick={() => applyPreset('klinik')}
-                  className="px-2.5 py-1 rounded-lg bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 text-xs font-medium border border-emerald-500/30 cursor-pointer transition-colors"
-                >
-                  Tıbbi & Klinik (11)
-                </button>
-                <button
-                  onClick={() => applyPreset('ozet')}
-                  className="px-2.5 py-1 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 text-xs font-medium border border-amber-500/30 cursor-pointer transition-colors"
-                >
-                  Yönetici Özeti (7)
-                </button>
+                {deckMode === 'rotary' ? (
+                  <>
+                    <button
+                      onClick={() => applyPreset('kulup')}
+                      className="px-2.5 py-1 rounded-lg bg-[#F7A81B]/20 hover:bg-[#F7A81B]/30 text-[#F7A81B] text-xs font-medium border border-[#F7A81B]/30 cursor-pointer transition-colors"
+                    >
+                      Kulüp Projesi (8)
+                    </button>
+                    <button
+                      onClick={() => applyPreset('bolge')}
+                      className="px-2.5 py-1 rounded-lg bg-sky-500/20 hover:bg-sky-500/30 text-sky-300 text-xs font-medium border border-sky-500/30 cursor-pointer transition-colors"
+                    >
+                      Bölge & Hibe (9)
+                    </button>
+                    <button
+                      onClick={() => applyPreset('klinik')}
+                      className="px-2.5 py-1 rounded-lg bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 text-xs font-medium border border-emerald-500/30 cursor-pointer transition-colors"
+                    >
+                      Klinik & Etik (8)
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <button
+                      onClick={() => applyPreset('kurumsal')}
+                      className="px-2.5 py-1 rounded-lg bg-sky-500/20 hover:bg-sky-500/30 text-sky-300 text-xs font-medium border border-sky-500/30 cursor-pointer transition-colors"
+                    >
+                      Kurumsal & Belediye (9)
+                    </button>
+                    <button
+                      onClick={() => applyPreset('klinik')}
+                      className="px-2.5 py-1 rounded-lg bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 text-xs font-medium border border-emerald-500/30 cursor-pointer transition-colors"
+                    >
+                      Tıbbi & Klinik (11)
+                    </button>
+                    <button
+                      onClick={() => applyPreset('ozet')}
+                      className="px-2.5 py-1 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 text-xs font-medium border border-amber-500/30 cursor-pointer transition-colors"
+                    >
+                      Yönetici Özeti (7)
+                    </button>
+                  </>
+                )}
                 <button
                   onClick={() => setShowManager(false)}
                   className="p-1 rounded-lg bg-white/10 hover:bg-white/20 text-white cursor-pointer ml-2"
@@ -376,9 +471,9 @@ export default function PresentationDeckPage() {
               </div>
             </div>
 
-            {/* 16 Slaytın Seçim Grid'i */}
+            {/* Slaytların Seçim Grid'i */}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5 pt-3">
-              {ALL_SLIDES.map((slide, idx) => {
+              {currentSlidesList.map((slide, idx) => {
                 const isExcluded = excludedSlideIds.includes(slide.id);
                 return (
                   <div
@@ -426,10 +521,21 @@ export default function PresentationDeckPage() {
       </header>
 
       {/* ─────────────────────────────────────────────────────────────
-          2. SLAYTLAR: WEB SİTESİNİN BİREBİR TAMAMI (16 MODÜLER SLAYT)
+          2. SLAYTLAR: WEB SİTESİNİN BİREBİR TAMAMI (16 MODÜLER SLAYT YA DA 13 ROTARY SLAYTI)
           ───────────────────────────────────────────────────────────── */}
       <main className="p-4 sm:p-8 max-w-[1360px] mx-auto space-y-8 print:p-0 print:m-0 print:space-y-0">
-
+        {deckMode === 'rotary' ? (
+          <RotarySlideDeck
+            activeSlides={activeSlides}
+            viewMode={viewMode}
+            safeCurrentIndex={safeCurrentIndex}
+            totalActive={totalActive}
+            toggleSlideExclusion={toggleSlideExclusion}
+            getSlideIndex={getSlideIndex}
+            shouldRenderSlide={shouldRenderSlide}
+          />
+        ) : (
+          <>
         {/* ═════════════════════════════════════════════════════════════
             SLAYT 1 &bull; BÖLÜM 01: EKOSİSTEM VE VİZYON
             Web Sitesi: HeroSection + Phone Mockup
@@ -1713,6 +1819,8 @@ export default function PresentationDeckPage() {
             </div>
           </SlideWrapper>
         )}
+          </>
+        )}
 
       </main>
 
@@ -1770,6 +1878,20 @@ export default function PresentationDeckPage() {
         }
       `}</style>
     </div>
+  );
+}
+
+export default function PresentationDeckPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen bg-slate-900 text-white flex items-center justify-center font-mono">
+          Sunum Yükleniyor...
+        </div>
+      }
+    >
+      <PresentationDeckInner />
+    </Suspense>
   );
 }
 

@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import {
   Quote,
@@ -9,6 +10,9 @@ import {
   Award,
   ArrowRight,
   TrendingUp,
+  ChevronLeft,
+  ChevronRight,
+  MousePointer,
 } from 'lucide-react';
 
 const cases = [
@@ -165,6 +169,65 @@ export default function CaseStudies({ cmsData }: {
     return { ...fallback, ...c };
   }) : cases;
 
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeftPos, setScrollLeftPos] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+
+  // Continuous ambient auto-scroll with requestAnimationFrame
+  useEffect(() => {
+    const container = scrollRef.current;
+    if (!container) return;
+    let animationId: number;
+    const scrollSpeed = 0.7;
+
+    const autoLoop = () => {
+      if (!isHovered && !isDragging) {
+        if (container.scrollLeft >= container.scrollWidth / 2) {
+          container.scrollLeft = 0;
+        } else {
+          container.scrollLeft += scrollSpeed;
+        }
+      }
+      animationId = requestAnimationFrame(autoLoop);
+    };
+
+    animationId = requestAnimationFrame(autoLoop);
+    return () => cancelAnimationFrame(animationId);
+  }, [isHovered, isDragging]);
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    const container = scrollRef.current;
+    if (!container) return;
+    setIsDragging(true);
+    setStartX(e.pageX - container.offsetLeft);
+    setScrollLeftPos(container.scrollLeft);
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const container = scrollRef.current;
+    if (!container) return;
+    const x = e.pageX - container.offsetLeft;
+    const walk = (x - startX) * 1.5;
+    container.scrollLeft = scrollLeftPos - walk;
+  };
+
+  const handleMouseUp = () => setIsDragging(false);
+  const handleMouseLeave = () => {
+    setIsDragging(false);
+    setIsHovered(false);
+  };
+
+  const scrollPrev = () => {
+    scrollRef.current?.scrollBy({ left: -360, behavior: 'smooth' });
+  };
+  const scrollNext = () => {
+    scrollRef.current?.scrollBy({ left: 360, behavior: 'smooth' });
+  };
+
   return (
     <section className="py-20 md:py-28 bg-gradient-to-b from-slate-50 via-white to-[#F5F8FD] relative overflow-hidden" id="basari-hikayeleri">
       {/* Ambient background glows */}
@@ -191,23 +254,52 @@ export default function CaseStudies({ cmsData }: {
           </p>
 
           <div className="mt-4 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-slate-200 text-[11px] font-semibold text-slate-600 shadow-2xs">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span>Kartların üzerine gelerek başarı hikayelerini durdurup inceleyebilirsiniz</span>
+            <MousePointer size={12} className="text-[#0284C7]" />
+            <span>Fareyle tutup sürükleyebilir veya oklara basarak ileri-geri gidebilirsiniz</span>
           </div>
         </div>
       </div>
 
       {/* ─────────────────────────────────────────────────────────────
-          KAYAN ZEMİN (FLOWING CAROUSEL TRACK) - GÖRSELLİ VE ZENGİN
+          KAYAN ZEMİN (FLOWING & DRAGGABLE TRACK) - GÖRSELLİ VE ZENGİN
           ───────────────────────────────────────────────────────────── */}
-      <div className="relative w-full overflow-hidden py-6 group select-none">
+      <div className="relative w-full max-w-[1440px] mx-auto px-4 py-6 group select-none">
         
-        {/* Soft edge gradient masks */}
-        <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-r from-slate-50 to-transparent z-20 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-l from-[#F5F8FD] to-transparent z-20 pointer-events-none" />
+        {/* Left Arrow */}
+        <button
+          onClick={scrollPrev}
+          aria-label="Geri Kaydır"
+          className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-white/95 text-slate-800 shadow-xl border border-slate-200 flex items-center justify-center hover:bg-[#0B1E3B] hover:text-white hover:scale-110 active:scale-95 transition-all cursor-pointer opacity-80 hover:opacity-100"
+          title="Geri Kaydır"
+        >
+          <ChevronLeft size={20} />
+        </button>
 
-        {/* Marquee Track: Duplicated array for seamless endless looping */}
-        <div className="flex w-max items-stretch gap-6 animate-cases-marquee">
+        {/* Right Arrow */}
+        <button
+          onClick={scrollNext}
+          aria-label="İleri Kaydır"
+          className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-white/95 text-slate-800 shadow-xl border border-slate-200 flex items-center justify-center hover:bg-[#0B1E3B] hover:text-white hover:scale-110 active:scale-95 transition-all cursor-pointer opacity-80 hover:opacity-100"
+          title="İleri Kaydır"
+        >
+          <ChevronRight size={20} />
+        </button>
+
+        {/* Soft edge gradient masks */}
+        <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-24 bg-gradient-to-r from-slate-50 via-slate-50/70 to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-24 bg-gradient-to-l from-[#F5F8FD] via-[#F5F8FD]/70 to-transparent z-10 pointer-events-none" />
+
+        {/* Draggable Viewport */}
+        <div
+          ref={scrollRef}
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
+          onMouseLeave={handleMouseLeave}
+          onMouseEnter={() => setIsHovered(true)}
+          className="flex gap-6 overflow-x-auto no-scrollbar py-2 px-2 select-none cursor-grab active:cursor-grabbing"
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        >
           {[...finalCases, ...finalCases].map((item, idx) => (
             <div
               key={idx}

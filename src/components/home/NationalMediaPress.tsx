@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import {
   ExternalLink,
@@ -14,9 +15,70 @@ import {
   Radio,
   FileCheck2,
   GraduationCap,
+  ChevronLeft,
+  ChevronRight,
+  MousePointer,
 } from 'lucide-react';
 
 export default function NationalMediaPress() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeftPos, setScrollLeftPos] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+
+  // Continuous ambient auto-scroll with requestAnimationFrame
+  useEffect(() => {
+    const container = scrollRef.current;
+    if (!container) return;
+    let animationId: number;
+    const scrollSpeed = 0.7;
+
+    const autoLoop = () => {
+      if (!isHovered && !isDragging) {
+        if (container.scrollLeft >= container.scrollWidth / 2) {
+          container.scrollLeft = 0;
+        } else {
+          container.scrollLeft += scrollSpeed;
+        }
+      }
+      animationId = requestAnimationFrame(autoLoop);
+    };
+
+    animationId = requestAnimationFrame(autoLoop);
+    return () => cancelAnimationFrame(animationId);
+  }, [isHovered, isDragging]);
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    const container = scrollRef.current;
+    if (!container) return;
+    setIsDragging(true);
+    setStartX(e.pageX - container.offsetLeft);
+    setScrollLeftPos(container.scrollLeft);
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const container = scrollRef.current;
+    if (!container) return;
+    const x = e.pageX - container.offsetLeft;
+    const walk = (x - startX) * 1.5;
+    container.scrollLeft = scrollLeftPos - walk;
+  };
+
+  const handleMouseUp = () => setIsDragging(false);
+  const handleMouseLeave = () => {
+    setIsDragging(false);
+    setIsHovered(false);
+  };
+
+  const scrollPrev = () => {
+    scrollRef.current?.scrollBy({ left: -360, behavior: 'smooth' });
+  };
+  const scrollNext = () => {
+    scrollRef.current?.scrollBy({ left: 360, behavior: 'smooth' });
+  };
   const pressItems = [
     {
       publisher: 'Anadolu Ajansı (AA)',
@@ -160,23 +222,52 @@ export default function NationalMediaPress() {
             Türkiye&apos;nin önde gelen ulusal televizyon kanalları, resmi haber ajansları ve sağlık medyası; Samsun Teknopark&apos;ta geliştirdiğimiz yapay zekâ tabanlı bebek erken tanı teknolojimizi haberleştirdi.
           </p>
           <div className="mt-4 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 border border-slate-200/80 text-[11px] font-semibold text-slate-600">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span>Kartların üzerine gelerek akışı durdurabilir ve haberleri inceleyebilirsiniz</span>
+            <MousePointer size={12} className="text-[#0284C7]" />
+            <span>Fareyle tutup sürükleyebilir veya oklara basarak ileri-geri gidebilirsiniz</span>
           </div>
         </div>
       </div>
 
       {/* ─────────────────────────────────────────────────────────────
-          AKAN ZEMİN (FLOWING MARQUEE TRACK) - 8 ADET KAPSAMLI HABER KARTI
+          AKAN ZEMİN (FLOWING & DRAGGABLE TRACK) - 8 ADET KAPSAMLI HABER KARTI
           ───────────────────────────────────────────────────────────── */}
-      <div className="relative w-full overflow-hidden py-4 group select-none">
+      <div className="relative w-full max-w-[1440px] mx-auto px-4 py-4 group select-none">
         
-        {/* Kenar Yumuşatma Gölgeleri (Sol & Sağ Fade) */}
-        <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-r from-[#F5F8FD] to-transparent z-20 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-l from-[#F5F8FD] to-transparent z-20 pointer-events-none" />
+        {/* Left Arrow */}
+        <button
+          onClick={scrollPrev}
+          aria-label="Geri Kaydır"
+          className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-white/95 text-slate-800 shadow-xl border border-slate-200 flex items-center justify-center hover:bg-[#0B1E3B] hover:text-white hover:scale-110 active:scale-95 transition-all cursor-pointer opacity-80 hover:opacity-100"
+          title="Geri Kaydır"
+        >
+          <ChevronLeft size={20} />
+        </button>
 
-        {/* Marquee Şeridi (İki Kez Çoğaltılarak Kesintisiz Sonsuz Akış) */}
-        <div className="flex w-max items-stretch gap-6 animate-press-marquee">
+        {/* Right Arrow */}
+        <button
+          onClick={scrollNext}
+          aria-label="İleri Kaydır"
+          className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-white/95 text-slate-800 shadow-xl border border-slate-200 flex items-center justify-center hover:bg-[#0B1E3B] hover:text-white hover:scale-110 active:scale-95 transition-all cursor-pointer opacity-80 hover:opacity-100"
+          title="İleri Kaydır"
+        >
+          <ChevronRight size={20} />
+        </button>
+
+        {/* Kenar Yumuşatma Gölgeleri (Sol & Sağ Fade) */}
+        <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-24 bg-gradient-to-r from-[#F5F8FD] via-[#F5F8FD]/70 to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-24 bg-gradient-to-l from-[#F5F8FD] via-[#F5F8FD]/70 to-transparent z-10 pointer-events-none" />
+
+        {/* Draggable Viewport */}
+        <div
+          ref={scrollRef}
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
+          onMouseLeave={handleMouseLeave}
+          onMouseEnter={() => setIsHovered(true)}
+          className="flex gap-6 overflow-x-auto no-scrollbar py-2 px-2 select-none cursor-grab active:cursor-grabbing"
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        >
           {[...pressItems, ...pressItems].map((item, idx) => {
             const Icon = item.icon;
             return (
