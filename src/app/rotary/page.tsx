@@ -38,6 +38,7 @@ import {
 } from "lucide-react";
 import RotaryEcosystemModal from "@/components/rotary/RotaryEcosystemModal";
 import RotaryCaseStudies from "@/components/rotary/RotaryCaseStudies";
+import RotarySystemShowcase from "@/components/rotary/RotarySystemShowcase";
 
 // Official Rotary Wheel SVG Component (Official 24-cog, 6-spoke precision styling)
 function RotaryWheel({ className = "w-12 h-12" }: { className?: string }) {
@@ -337,7 +338,12 @@ export default function RotaryPartnershipPage() {
       </section>
 
       {/* ─────────────────────────────────────────────────────────────
-          5. ROTARY GÖRÜNÜRLÜK & PUBLIC IMAGE VİTRİNİ
+          5. PROJEMİZ VE SİSTEM MİMARİSİ (4 ADIM & KAYAN TEKNOLOJİ VİTRİNİ)
+          ───────────────────────────────────────────────────────────── */}
+      <RotarySystemShowcase />
+
+      {/* ─────────────────────────────────────────────────────────────
+          6. ROTARY GÖRÜNÜRLÜK & PUBLIC IMAGE VİTRİNİ
           ───────────────────────────────────────────────────────────── */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#F0F5FC] to-white border-b border-slate-200">
         <div className="max-w-6xl mx-auto space-y-10">
