@@ -44,9 +44,15 @@ const standards = [
   },
   {
     icon: Building2,
-    title: 'Sosyal Belediyecilik Modeli',
-    desc: 'Her Haneye Eşit Erişim Sağlayan Kurumsal Yapı',
-    badge: 'Kamu Yararı',
+    title: 'OMÜ Samsun Teknopark & Tıp Fakültesi',
+    desc: 'Adapha Yapay Zeka Ar-Ge ve Klinik Danışmanlık Üssü',
+    badge: 'Akademik Ar-Ge',
+  },
+  {
+    icon: Globe2,
+    title: 'Anadolu Ajansı & CNN Türk Onayı',
+    desc: 'Bebeklerde Erken Tanı Teknolojisi Ulusal Basın Vitrini',
+    badge: 'Ulusal Medya',
   },
   {
     icon: ShieldCheck,

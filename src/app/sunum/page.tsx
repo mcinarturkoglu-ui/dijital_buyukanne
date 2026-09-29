@@ -1684,23 +1684,31 @@ export default function PresentationDeckPage() {
               </p>
 
               {/* İletişim & Protokol Kartları */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-2xl mx-auto w-full text-left mb-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 max-w-4xl mx-auto w-full text-left mb-6">
                 <div className="p-4 rounded-2xl bg-white/5 border border-white/10">
                   <span className="text-[10px] text-sky-300 font-mono font-bold block mb-1">E-POSTA</span>
-                  <span className="text-xs font-bold text-white">kurumsal@dijitalbuyukanne.com</span>
+                  <a href="mailto:info@adapha.com" className="text-xs font-bold text-white block hover:text-sky-300">info@adapha.com</a>
+                  <a href="mailto:info@babysensai.com" className="text-[11px] text-white/60 block hover:text-sky-300">info@babysensai.com</a>
                 </div>
                 <div className="p-4 rounded-2xl bg-white/5 border border-white/10">
-                  <span className="text-[10px] text-sky-300 font-mono font-bold block mb-1">RESMÎ WEB</span>
-                  <span className="text-xs font-bold text-white">dijitalbuyukanne.com</span>
+                  <span className="text-[10px] text-sky-300 font-mono font-bold block mb-1">TELEFON</span>
+                  <a href="tel:05428461232" className="text-xs font-bold text-white block hover:text-sky-300 font-mono">0542 846 12 32</a>
+                  <span className="text-[10px] text-white/50 block">Pzt - Cum: 09:00 - 18:00</span>
                 </div>
                 <div className="p-4 rounded-2xl bg-white/5 border border-white/10">
-                  <span className="text-[10px] text-sky-300 font-mono font-bold block mb-1">PROTOKOL SÜRESİ</span>
-                  <span className="text-xs font-bold text-white">24 Saat İçinde Teslim</span>
+                  <span className="text-[10px] text-sky-300 font-mono font-bold block mb-1">AR-GE ÜSSÜ</span>
+                  <span className="text-[11px] font-bold text-white leading-tight block">OMÜ Samsun Teknopark</span>
+                  <span className="text-[10px] text-white/50 block leading-tight">Atakum / Samsun</span>
+                </div>
+                <div className="p-4 rounded-2xl bg-white/5 border border-white/10">
+                  <span className="text-[10px] text-coral font-mono font-bold block mb-1">RESMÎ PROTOKOL</span>
+                  <span className="text-xs font-bold text-white block">24 Saatte Teslim</span>
+                  <span className="text-[10px] text-white/60 block font-mono">adapha.com &bull; babysensai.com</span>
                 </div>
               </div>
 
-              <div className="text-[11px] text-white/50 border-t border-white/10 pt-3">
-                DijitalBüyükanne ve BabySensAI teknolojileri tüm hakları saklı olarak tescilli kurumsal bir sağlık ekosistemidir.
+              <div className="text-[11px] text-white/60 border-t border-white/10 pt-3">
+                DijitalBüyükanne ve BabySensAI; <strong>Adapha Yapay Zeka</strong> tarafından Ondokuz Mayıs Üniversitesi (OMÜ) Kurupelit Kampüsü Samsun Teknopark bünyesinde geliştirilen tescilli kurumsal sağlık ekosistemidir.
               </div>
             </div>
           </SlideWrapper>

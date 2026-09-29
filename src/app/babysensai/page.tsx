@@ -23,28 +23,33 @@ export const metadata: Metadata = generatePageMetadata({
 export default function BabySensAIPage() {
   const techAreas = [
     {
-      title: "Video Tabanlı Hareket Analizi",
-      desc: "0-6 ay dönemindeki bebeklerin doğal spontan hareketlerini kısa videolardan değerlendiren derin öğrenme modelleri.",
+      title: "Video Tabanlı Hareket Analizi (Prechtl GMA)",
+      desc: "0-6 ay dönemindeki bebeklerin doğal spontan hareketlerini kısa videolardan 18 eklem kinematik takibiyle değerlendiren derin öğrenme modelleri.",
       icon: Video,
     },
     {
-      title: "Görüntü İşleme & Cilt Analizi",
-      desc: "Fotoğraflar üzerinden ciltteki yaygın lezyon ve kızarıklıklar için bilgilendirici ön sınıflandırma.",
+      title: "RYPHA Teknolojisi (Hibrit CP Taraması)",
+      desc: "Yenidoğanlarda Serebral Palsi erken belirtileri için 13 nokta video analizi ve 3 eksenli ivmeölçerli giyilebilir akıllı bileklik entegrasyonu.",
+      icon: Activity,
+    },
+    {
+      title: "Görüntü İşleme & Derma-41 Cilt Analizi",
+      desc: "41 farklı yaygın pediatrik cilt durumunu (egzama, pişik, konak, isilik) fotoğrafla saniyeler içinde tarayan hibrit yapay zekâ modeli.",
       icon: Scan,
     },
     {
       title: "Bebek Bezi & Dışkı Spektrofotometrisi",
-      desc: "Dışkı rengini uluslararası Pediatrik Renk Skalası (akolik renk skalası ve alerjik sindirim kartları) ile eşleştiren optik analiz modeli.",
+      desc: "DSÖ (WHO) 6 seviyeli dışkı renk kartı ve Bristol skalasıyla piksel düzeyinde eşleşen sarılık ve sindirim ön tarama modeli.",
       icon: Droplets,
     },
     {
       title: "Dijital Gelişim Takip Modeli",
-      desc: "Bebeklerin kronolojik yaşına göre motor ve bilişsel gelişim basamaklarını eş zamanlı izleyen algoritmalar.",
+      desc: "Bebeklerin kronolojik yaşına ve doğum haftasına göre motor ve bilişsel gelişim basamaklarını eş zamanlı izleyen algoritmalar.",
       icon: Activity,
     },
     {
-      title: "Bilimsel & Klinik Temel",
-      desc: "Pediatri, çocuk nörolojisi ve fizyoterapi literatürüne uygun olarak tasarlanmış değerlendirme prensipleri.",
+      title: "Akademik & Klinik Temel (OMÜ)",
+      desc: "Ondokuz Mayıs Üniversitesi Tıp Fakültesi, Samsun Teknopark ve çocuk sağlığı literatürüne dayalı etik klinik ilkeler.",
       icon: GraduationCap,
     },
   ];
@@ -166,6 +171,80 @@ export default function BabySensAIPage() {
                 </div>
               );
             })}
+          </div>
+
+          {/* Ulusal Basında BabySensAI & Adapha */}
+          <div className="mt-16 bg-white border border-gray-100 rounded-3xl p-8 md:p-10 shadow-sm">
+            <div className="text-center max-w-xl mx-auto mb-8">
+              <span className="text-xs uppercase font-bold tracking-wider text-coral">Ulusal Medya ve Basın</span>
+              <h3 className="text-2xl font-bold text-navy mt-1">Medyada BabySensAI</h3>
+              <p className="text-gray-600 text-xs mt-1">
+                Yapay zekâ destekli erken nörogelişimsel tarama projemiz ulusal televizyon ve yazılı basında geniş yer buldu.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <a
+                href="https://www.aa.com.tr/tr/bilim-teknoloji/yapay-zeka-destekli-uygulamayla-norogelisimsel-bozukluklarin-erken-tanisi-saglaniyor/3672361"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-5 rounded-2xl bg-slate-50 hover:bg-sky-50/50 border border-slate-200/80 transition-all group flex flex-col justify-between"
+              >
+                <div>
+                  <span className="text-[10px] font-mono font-bold text-sky-700 bg-sky-100 px-2.5 py-0.5 rounded-full uppercase tracking-wider block w-fit mb-2">
+                    Anadolu Ajansı (AA)
+                  </span>
+                  <h4 className="text-xs font-bold text-navy group-hover:text-[#0284C7] transition-colors leading-snug mb-1">
+                    Yapay zeka destekli uygulamayla nörogelişimsel bozuklukların erken tanısı sağlanıyor
+                  </h4>
+                  <p className="text-[11px] text-gray-500 leading-relaxed">
+                    Samsun Teknopark&apos;ta geliştirilen BabySensAI projesi ve klinik erken teşhis pencereleri.
+                  </p>
+                </div>
+                <span className="text-[10px] font-bold text-[#0284C7] flex items-center gap-1 mt-3">
+                  Haberi Oku <ExternalLink size={11} />
+                </span>
+              </a>
+
+              <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200/80 flex flex-col justify-between">
+                <div>
+                  <span className="text-[10px] font-mono font-bold text-rose-700 bg-rose-100 px-2.5 py-0.5 rounded-full uppercase tracking-wider block w-fit mb-2">
+                    CNN Türk TV
+                  </span>
+                  <h4 className="text-xs font-bold text-navy leading-snug mb-1">
+                    BabySensAI Projesi CNN Türk Ana Haber Bülteninde
+                  </h4>
+                  <p className="text-[11px] text-gray-500 leading-relaxed">
+                    Bebek hareketlerinin evden video ile taranması ve serebral palsi erken farkındalığı televizyon ekranlarında tanıtıldı.
+                  </p>
+                </div>
+                <span className="text-[10px] font-bold text-rose-600 flex items-center gap-1 mt-3">
+                  📺 TV Yayını &bull; Ulusal Basın
+                </span>
+              </div>
+
+              <a
+                href="https://www.haberturk.com/samsun-haberleri/38954805-yapay-zeka-destekli-uygulamayla-norogelisimsel-bozukluklarin-erken-tanisi-saglaniyor"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-5 rounded-2xl bg-slate-50 hover:bg-sky-50/50 border border-slate-200/80 transition-all group flex flex-col justify-between"
+              >
+                <div>
+                  <span className="text-[10px] font-mono font-bold text-amber-800 bg-amber-100 px-2.5 py-0.5 rounded-full uppercase tracking-wider block w-fit mb-2">
+                    Habertürk & Haberler.com
+                  </span>
+                  <h4 className="text-xs font-bold text-navy group-hover:text-[#0284C7] transition-colors leading-snug mb-1">
+                    Yapay zeka destekli uygulamayla erken tanı
+                  </h4>
+                  <p className="text-[11px] text-gray-500 leading-relaxed">
+                    OMÜ Tıp Fakültesi ve Adapha iş birliğiyle hayata geçirilen pediatrik tanı teknolojisi.
+                  </p>
+                </div>
+                <span className="text-[10px] font-bold text-[#0284C7] flex items-center gap-1 mt-3">
+                  Haberi Oku <ExternalLink size={11} />
+                </span>
+              </a>
+            </div>
           </div>
 
           {/* Ethical Disclaimer */}

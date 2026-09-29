@@ -102,11 +102,16 @@ export default function DemoRequestModal({
               <span className="font-bold text-navy">{formData.babyCount} bebeklik</span> pilot protokol taslağı ve 
               15 dakikalık online demo takvimi en geç 24 saat içinde e-posta adresinize gönderilecektir.
             </p>
-            <div className="p-4 bg-soft-gray rounded-2xl text-xs text-navy/60 max-w-sm mx-auto mb-6">
-              Acil sorularınız veya doğrudan randevu için:{' '}
-              <a href="mailto:kurumsal@dijitalbuyukanne.com" className="font-bold text-turquoise underline">
-                kurumsal@dijitalbuyukanne.com
-              </a>
+            <div className="p-4 bg-soft-gray rounded-2xl text-xs text-navy/60 max-w-sm mx-auto mb-6 space-y-1">
+              <div>
+                Acil sorularınız veya doğrudan randevu için:{' '}
+                <a href="mailto:info@adapha.com" className="font-bold text-turquoise underline">
+                  info@adapha.com
+                </a>
+              </div>
+              <div className="font-mono text-[11px] text-navy/80">
+                📞 Telefon: <a href="tel:05428461232" className="text-[#0284C7] font-bold hover:underline">0542 846 12 32</a>
+              </div>
             </div>
             <button
               onClick={handleReset}

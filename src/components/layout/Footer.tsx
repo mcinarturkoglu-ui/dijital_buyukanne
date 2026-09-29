@@ -27,13 +27,34 @@ export default function Footer() {
                 className="h-9 w-auto object-contain group-hover:scale-102 transition-transform duration-300"
               />
             </Link>
-            <p className="text-white/60 text-sm leading-relaxed max-w-sm">
-              DijitalBüyükanne; aileleri, uzmanları, teknolojiyi ve sosyal
-              destek sağlayan kurumları aynı dijital ekosistemde buluşturur.
+            <p className="text-white/70 text-sm leading-relaxed max-w-sm mb-4">
+              DijitalBüyükanne; 0–24 ay bebek gelişiminde aileleri, uzman hekimleri ve yerel yönetimleri buluşturan yapay zekâ destekli sosyal etki ekosistemidir.
             </p>
 
+            {/* Teknoloji Sahibi & Ar-Ge Künyesi */}
+            <div className="p-3.5 rounded-2xl bg-white/5 border border-white/10 max-w-sm space-y-2 text-xs text-white/80 backdrop-blur-sm mb-5">
+              <div className="flex items-center justify-between">
+                <span className="font-bold text-turquoise flex items-center gap-1.5 font-mono text-[11px]">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                  Adapha Yapay Zeka &bull; BabySensAI
+                </span>
+                <span className="text-[10px] text-white/50 font-mono">Ar-Ge Üssü</span>
+              </div>
+              <p className="text-[11px] text-white/60 leading-snug">
+                Ondokuz Mayıs Üniversitesi Kurupelit Kampüsü, Samsun Teknopark, 55139 Atakum / Samsun
+              </p>
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-1 pt-1.5 border-t border-white/10 text-[11px]">
+                <a href="tel:05428461232" className="text-sky-300 hover:text-white transition-colors font-mono">
+                  📞 0542 846 12 32
+                </a>
+                <a href="mailto:info@adapha.com" className="text-sky-300 hover:text-white transition-colors font-mono">
+                  ✉️ info@adapha.com
+                </a>
+              </div>
+            </div>
+
             {/* App Store Buttons */}
-            <div className="flex flex-col sm:flex-row gap-3 mt-6">
+            <div className="flex flex-col sm:flex-row gap-3">
               <a
                 href="#"
                 className="flex items-center gap-2.5 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-turquoise/30 rounded-xl px-4 py-2.5 transition-all duration-300 backdrop-blur-sm group"
@@ -67,22 +88,36 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold text-white mb-4 flex items-center gap-2">
               <span className="w-1 h-4 rounded-full bg-turquoise" />
-              Platform
+              Platform & Ar-Ge
             </h4>
             <ul className="space-y-2.5">
               {[
-                { href: "/#dijitalbuyukanne", label: "DijitalBüyükanne" },
-                { href: "/uygulama", label: "Mobil Uygulama" },
-                { href: "/babysensai", label: "BabySensAI" },
+                { href: "/#dijitalbuyukanne", label: "DijitalBüyükanne", external: false },
+                { href: "/uygulama", label: "Mobil Uygulama", external: false },
+                { href: "/babysensai", label: "BabySensAI", external: false },
+                { href: "https://babysensai.com", label: "BabySensAI.com", external: true },
+                { href: "https://www.adapha.com/tr", label: "Adapha Yapay Zeka", external: true },
               ].map((link) => (
                 <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-white/50 hover:text-turquoise text-sm transition-all duration-200 hover:translate-x-1 inline-flex items-center gap-1 group"
-                  >
-                    <span>{link.label}</span>
-                    <ArrowUpRight size={12} className="opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </Link>
+                  {link.external ? (
+                    <a
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-white/60 hover:text-turquoise text-sm transition-all duration-200 hover:translate-x-1 inline-flex items-center gap-1 group font-medium"
+                    >
+                      <span>{link.label}</span>
+                      <ArrowUpRight size={12} className="opacity-70 group-hover:opacity-100 transition-opacity" />
+                    </a>
+                  ) : (
+                    <Link
+                      href={link.href}
+                      className="text-white/50 hover:text-turquoise text-sm transition-all duration-200 hover:translate-x-1 inline-flex items-center gap-1 group"
+                    >
+                      <span>{link.label}</span>
+                      <ArrowUpRight size={12} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>

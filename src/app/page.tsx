@@ -20,6 +20,7 @@ import FinalCTA from "@/components/home/FinalCTA";
 import EcosystemPulseTicker from "@/components/home/EcosystemPulseTicker";
 import StandardsMarquee from "@/components/home/StandardsMarquee";
 import ProblemSolutionCompare from "@/components/home/ProblemSolutionCompare";
+import NationalMediaPress from "@/components/home/NationalMediaPress";
 import siteContent from "@/data/site-content.json";
 
 export const metadata: Metadata = {
@@ -138,6 +139,7 @@ export default function HomePage() {
         <InclusiveAccess />
         <ScientificBoard />
         <CaseStudies />
+        <NationalMediaPress />
       </div>
 
       {/* Kurumsal Geçiş 05 -> 06 */}
