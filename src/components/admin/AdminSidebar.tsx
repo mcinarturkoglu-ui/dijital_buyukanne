@@ -11,7 +11,8 @@ import {
   LogOut, 
   HeartHandshake,
   ShieldCheck,
-  FileText
+  FileText,
+  UploadCloud
 } from 'lucide-react';
 
 interface SidebarProps {
@@ -32,6 +33,12 @@ export default function AdminSidebar({ onLogout }: SidebarProps) {
       label: 'İçerik & Metin Yönetimi',
       href: '/admin/icerik',
       icon: FileText,
+      exact: false,
+    },
+    {
+      label: 'PDF Sunum Dosyaları',
+      href: '/admin/sunum',
+      icon: UploadCloud,
       exact: false,
     },
     {

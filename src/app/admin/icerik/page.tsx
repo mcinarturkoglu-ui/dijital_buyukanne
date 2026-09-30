@@ -21,7 +21,8 @@ import {
   FileText,
   Download,
   ExternalLink,
-  RotateCcw
+  RotateCcw,
+  UploadCloud
 } from 'lucide-react';
 
 import defaultContent from '@/data/site-content.json';
@@ -202,15 +203,24 @@ export default function IcerikAdminPage() {
               </p>
             </div>
           </div>
-          <Link
-            href="/sunum"
-            target="_blank"
-            className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-coral to-coral-600 hover:from-coral-600 text-white font-bold text-xs flex items-center gap-2 shrink-0 shadow-md shadow-coral/30 hover:scale-105 transition-all cursor-pointer"
-          >
-            <Download size={14} />
-            <span>Sunum Slaytlarını Aç & PDF İndir</span>
-            <ExternalLink size={12} className="opacity-70" />
-          </Link>
+          <div className="flex items-center gap-2.5 shrink-0">
+            <Link
+              href="/admin/sunum"
+              className="px-4 py-2.5 rounded-xl bg-sky-500 hover:bg-sky-600 text-white font-bold text-xs flex items-center gap-2 shadow-md shadow-sky-500/30 hover:scale-105 transition-all cursor-pointer"
+            >
+              <UploadCloud size={14} />
+              <span>Hazır PDF Yükle & Yönet</span>
+            </Link>
+            <Link
+              href="/sunum"
+              target="_blank"
+              className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-coral to-coral-600 hover:from-coral-600 text-white font-bold text-xs flex items-center gap-2 shadow-md shadow-coral/30 hover:scale-105 transition-all cursor-pointer"
+            >
+              <Download size={14} />
+              <span>Sunumu Aç & PDF İndir</span>
+              <ExternalLink size={12} className="opacity-70" />
+            </Link>
+          </div>
         </div>
 
         {/* Tab Navigation */}

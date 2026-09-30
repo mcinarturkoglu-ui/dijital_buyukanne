@@ -104,12 +104,12 @@ export function RotaryWheel({ className = "w-6 h-6" }: { className?: string }) {
 // ─────────────────────────────────────────────────────────────────────────────
 interface RotarySlideDeckProps {
   activeSlides: SlideDef[];
-  viewMode: 'all' | 'single';
+  viewMode: 'ready-pdf' | 'all' | 'single';
   safeCurrentIndex: number;
   totalActive: number;
   toggleSlideExclusion: (id: string) => void;
   getSlideIndex: (id: string, slides: SlideDef[]) => number;
-  shouldRenderSlide: (id: string, slides: SlideDef[], viewMode: 'all' | 'single', currentIndex: number) => boolean;
+  shouldRenderSlide: (id: string, slides: SlideDef[], viewMode: any, currentIndex: number) => boolean;
 }
 
 export default function RotarySlideDeck({

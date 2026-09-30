@@ -48,6 +48,8 @@ import {
   Volume2,
   AlertCircle,
   Share2,
+  UploadCloud,
+  Maximize2
 } from 'lucide-react';
 import defaultContent from '@/data/site-content.json';
 import supportersData from '@/data/supporters.json';
@@ -89,7 +91,8 @@ function PresentationDeckInner() {
 
   const [content, setContent] = useState<any>(defaultContent);
   const [supportersList, setSupportersList] = useState<any[]>(supportersData.supporters || []);
-  const [viewMode, setViewMode] = useState<'all' | 'single'>('all');
+  const initialMode = (searchParams.get('mode') as any) || 'ready-pdf';
+  const [viewMode, setViewMode] = useState<'ready-pdf' | 'all' | 'single'>(initialMode);
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
 
   // Slayt Seçim & Çıkarma Durumu (Kullanıcı hangi slaytları çıkarırsa burada tutulur)
@@ -365,9 +368,20 @@ function PresentationDeckInner() {
             )}
           </div>
 
-          {/* Sağ Kısım: Mod Seçimi & Yazdır / PDF İndir */}
+          {/* Sağ Kısım: Mod Seçimi & Hazır PDF İndir / Yazdır */}
           <div className="flex items-center gap-2.5">
             <div className="flex items-center gap-1 bg-white/5 p-1 rounded-xl border border-white/10 text-xs">
+              <button
+                onClick={() => setViewMode('ready-pdf')}
+                className={`px-3 py-1.5 rounded-lg font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+                  viewMode === 'ready-pdf'
+                    ? 'bg-sky-500 text-white shadow-sm'
+                    : 'text-white/70 hover:text-white'
+                }`}
+              >
+                <FileText size={13} />
+                <span>Hazır PDF</span>
+              </button>
               <button
                 onClick={() => setViewMode('all')}
                 className={`px-3 py-1.5 rounded-lg font-bold transition-all cursor-pointer ${
@@ -376,7 +390,7 @@ function PresentationDeckInner() {
                     : 'text-white/70 hover:text-white'
                 }`}
               >
-                Tümü (PDF)
+                Modüler Slaytlar
               </button>
               <button
                 onClick={() => setViewMode('single')}
@@ -412,13 +426,26 @@ function PresentationDeckInner() {
               </div>
             )}
 
-            <button
-              onClick={handlePrint}
+            {/* Hazır PDF İndir Butonu (Tek tıkla doğrudan PDF dosyası iner) */}
+            <a
+              href={`/api/presentation/file?type=${deckMode}&download=true`}
               className="px-4 py-2 rounded-xl bg-gradient-to-r from-coral to-[#e8634f] hover:from-coral-600 text-white text-xs font-black flex items-center gap-2 shadow-lg shadow-coral/30 cursor-pointer hover:scale-105 active:scale-95 transition-all"
+              download={deckMode === 'rotary' ? 'rotary-dijital-buyukanne-sunum.pdf' : 'dijital-buyukanne-sunum.pdf'}
+              title="Hazır PDF dosyasını bilgisayarınıza veya telefonunuza indirin"
             >
-              <Printer size={15} />
-              <span>PDF İndir / Yazdır</span>
-            </button>
+              <Download size={15} />
+              <span>Hazır PDF İndir</span>
+            </a>
+
+            {/* Yönetim Paneli PDF Yükle Butonu */}
+            <Link
+              href="/admin/sunum"
+              className="hidden xl:flex items-center gap-1.5 px-3 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white/90 text-xs font-bold transition-colors border border-white/10"
+              title="Yönetim Panelinden Yeni Hazır PDF Yükle"
+            >
+              <UploadCloud size={14} className="text-sky-300" />
+              <span>PDF Yükle</span>
+            </Link>
           </div>
         </div>
 
@@ -553,7 +580,63 @@ function PresentationDeckInner() {
           2. SLAYTLAR: WEB SİTESİNİN BİREBİR TAMAMI (16 MODÜLER SLAYT YA DA 13 ROTARY SLAYTI)
           ───────────────────────────────────────────────────────────── */}
       <main className="p-4 sm:p-8 max-w-[1360px] mx-auto space-y-8 print:p-0 print:m-0 print:space-y-0">
-        {deckMode === 'rotary' ? (
+        {viewMode === 'ready-pdf' ? (
+          <div className="space-y-5 animate-fade-in no-print">
+            {/* Üst Bilgi ve Eylem Kartı */}
+            <div className="bg-gradient-to-r from-[#0B1E3B] via-[#0E2A54] to-[#0B1E3B] border border-white/10 rounded-3xl p-5 sm:p-6 text-white shadow-2xl flex flex-col md:flex-row md:items-center justify-between gap-5">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-2xl bg-sky-500/20 text-sky-400 border border-sky-400/30 flex items-center justify-center shrink-0 shadow-inner">
+                  <FileText size={24} />
+                </div>
+                <div className="space-y-1">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <h2 className="text-base sm:text-lg font-black text-white">
+                      {deckMode === 'rotary'
+                        ? 'Rotary & DijitalBüyükanne Anne ve Çocuk Sağlığı Projesi Resmî Sunumu'
+                        : 'DijitalBüyükanne Kurumsal Tanıtım ve Protokol Sunumu'}
+                    </h2>
+                    <span className="text-[10px] bg-emerald-500/20 text-emerald-300 px-2.5 py-0.5 rounded-full border border-emerald-500/40 font-bold font-mono">
+                      Hazır PDF Yayında
+                    </span>
+                  </div>
+                  <p className="text-xs text-white/70">
+                    Aşağıdaki hazır PDF sunum dosyasını sayfalar halinde inceleyebilir, tam ekran yapabilir veya doğrudan indirebilirsiniz.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex flex-wrap items-center gap-2.5 shrink-0">
+                <a
+                  href={`/api/presentation/file?type=${deckMode}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-bold flex items-center gap-2 transition-all border border-white/15"
+                >
+                  <Maximize2 size={14} />
+                  <span>Tam Ekranda Aç</span>
+                </a>
+
+                <a
+                  href={`/api/presentation/file?type=${deckMode}&download=true`}
+                  className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-coral to-[#e8634f] hover:from-coral-600 text-white text-xs font-black flex items-center gap-2 shadow-lg shadow-coral/30 hover:scale-105 active:scale-95 transition-all"
+                  download={deckMode === 'rotary' ? 'rotary-dijital-buyukanne-sunum.pdf' : 'dijital-buyukanne-sunum.pdf'}
+                >
+                  <Download size={15} />
+                  <span>Hazır PDF Dosyasını İndir</span>
+                </a>
+              </div>
+            </div>
+
+            {/* Gömülü PDF Görüntüleyici Çerçevesi */}
+            <div className="w-full h-[78vh] min-h-[620px] rounded-3xl overflow-hidden border border-white/10 bg-slate-950 shadow-2xl relative">
+              <iframe
+                src={`/api/presentation/file?type=${deckMode}#toolbar=1&navpanes=0&scrollbar=1`}
+                className="w-full h-full border-0"
+                title="Hazır PDF Sunumu"
+              />
+            </div>
+          </div>
+        ) : deckMode === 'rotary' ? (
           <RotarySlideDeck
             activeSlides={activeSlides}
             viewMode={viewMode}
