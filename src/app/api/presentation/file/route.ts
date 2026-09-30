@@ -57,7 +57,9 @@ export async function GET(request: Request) {
         'Content-Type': 'application/pdf',
         'Content-Disposition': `${disposition}; filename="${encodeURIComponent(servedFilename)}"`,
         'Content-Length': fileBuffer.length.toString(),
-        'Cache-Control': 'public, max-age=60, s-maxage=60',
+        'Cache-Control': 'no-cache, no-store, must-revalidate',
+        'Pragma': 'no-cache',
+        'Expires': '0',
       },
     });
   } catch (error) {
