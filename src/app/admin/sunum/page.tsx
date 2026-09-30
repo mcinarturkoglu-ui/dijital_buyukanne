@@ -215,7 +215,7 @@ export default function AdminSunumPage() {
     <>
       <AdminHeader
         title="PDF Sunum Dosyaları Yönetimi"
-        subtitle="Sitedeki hazır PDF sunum dosyalarını yükleyin, kontrol edin ve canlı önizleyin."
+        subtitle="Yalnızca admin tarafından PDF sunumu yüklenebilir. Sitedeki ziyaretçiler ve misafirler sunumu sadece inceleyebilir, indirme seçenekleri kapalıdır."
         onRefresh={loadData}
         isRefreshing={isLoading}
       />

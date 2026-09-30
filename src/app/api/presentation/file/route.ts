@@ -49,13 +49,14 @@ export async function GET(request: Request) {
       return NextResponse.json({ error: 'Sunum PDF dosyası bulunamadı.' }, { status: 404 });
     }
 
-    const disposition = isDownload ? 'attachment' : 'inline';
+    // Public visitors can only view the presentation inline (no download attachment)
+    const disposition = 'inline';
 
     return new Response(new Uint8Array(fileBuffer), {
       status: 200,
       headers: {
         'Content-Type': 'application/pdf',
-        'Content-Disposition': `${disposition}; filename="${encodeURIComponent(servedFilename)}"`,
+        'Content-Disposition': `inline; filename="${encodeURIComponent(servedFilename)}"`,
         'Content-Length': fileBuffer.length.toString(),
         'Cache-Control': 'no-cache, no-store, must-revalidate',
         'Pragma': 'no-cache',

@@ -537,7 +537,7 @@ export default function EtkimizPage() {
               className="px-8 py-4 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold rounded-2xl transition-all inline-flex items-center gap-2"
             >
               <FileText size={16} className="text-sky-300" />
-              <span>Kurumsal PDF Sunumu İndir</span>
+              <span>Kurumsal Sunumu İncele</span>
             </Link>
           </div>
         </div>

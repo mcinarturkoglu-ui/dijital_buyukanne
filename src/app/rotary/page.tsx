@@ -229,7 +229,7 @@ export default function RotaryPartnershipPage() {
               className="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-[#17458F] to-[#0D2A54] hover:from-[#123670] hover:to-[#091D3B] text-white font-black text-xs sm:text-sm flex items-center justify-center gap-2.5 transition-all shadow-lg shadow-[#17458F]/25 hover:-translate-y-0.5 group cursor-pointer"
             >
               <FileText size={18} className="text-[#F7A81B] group-hover:scale-110 transition-transform" />
-              <span>Rotary Sunum Dosyasını Aç / İndir (13 Slayt PDF)</span>
+              <span>Rotary Resmî Sunumunu İncele</span>
             </Link>
 
             <button
@@ -1289,7 +1289,7 @@ export default function RotaryPartnershipPage() {
               className="px-6 py-3 rounded-xl bg-[#F7A81B] hover:bg-amber-400 text-[#17458F] font-black text-xs sm:text-sm shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer hover:scale-102"
             >
               <FileText size={16} />
-              <span>Rotary Sunum Dosyasını Aç (13 Slayt PDF)</span>
+              <span>Rotary Resmî Sunumunu İncele</span>
             </Link>
             <a
               href="mailto:kurumsal@dijitalbuyukanne.com?subject=Rotary%20Kul%C3%BCp%20Ortakl%C4%B1k%20Talebi"

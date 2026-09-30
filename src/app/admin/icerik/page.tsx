@@ -19,10 +19,10 @@ import {
   ShieldCheck,
   Heart,
   FileText,
-  Download,
   ExternalLink,
   RotateCcw,
-  UploadCloud
+  UploadCloud,
+  Eye
 } from 'lucide-react';
 
 import defaultContent from '@/data/site-content.json';
@@ -216,8 +216,8 @@ export default function IcerikAdminPage() {
               target="_blank"
               className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-coral to-coral-600 hover:from-coral-600 text-white font-bold text-xs flex items-center gap-2 shadow-md shadow-coral/30 hover:scale-105 transition-all cursor-pointer"
             >
-              <Download size={14} />
-              <span>Sunumu Aç & PDF İndir</span>
+              <Eye size={14} />
+              <span>Sunumu İncele</span>
               <ExternalLink size={12} className="opacity-70" />
             </Link>
           </div>

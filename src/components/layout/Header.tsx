@@ -154,10 +154,10 @@ export default function Header() {
                     ? "bg-[#17458F] text-[#F7A81B] border border-[#F7A81B]/50 hover:bg-[#123670]"
                     : "bg-slate-100 hover:bg-slate-200 text-slate-700 hover:text-[#0B1E3B] border border-slate-200"
                 }`}
-                title={isRotary ? "Rotary Özel Sunum Dosyası (13 Slayt) & PDF İndir" : "Slayt Düzeninde Kurumsal Sunum Dosyası & PDF İndir"}
+                title={isRotary ? "Rotary Resmî Sunum Dosyasını İncele" : "Kurumsal Sunum Dosyasını İncele"}
               >
                 <FileText size={15} className={isRotary ? "text-[#F7A81B]" : "text-[#0284C7] group-hover:scale-110 transition-transform"} />
-                <span>{isRotary ? "Rotary PDF Sunum" : "PDF Sunum"}</span>
+                <span>{isRotary ? "Rotary Sunum" : "Kurumsal Sunum"}</span>
               </Link>
 
               {/* Kurumsal Demo Butonu */}
@@ -314,7 +314,7 @@ export default function Header() {
               }`}
             >
               <FileText size={15} />
-              <span>{isRotary ? "Rotary Sunum Dosyası (PDF Slayt)" : "Kurumsal Sunum Dosyası (PDF)"}</span>
+              <span>{isRotary ? "Rotary Resmî Sunumu" : "Kurumsal Sunum Dosyası"}</span>
             </Link>
             <Link
               href="/kurumlar"
