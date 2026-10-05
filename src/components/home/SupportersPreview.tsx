@@ -13,7 +13,6 @@ export default function SupportersPreview() {
   const [supporters, setSupporters] = useState<any[]>(defaultSupportersData.supporters || []);
 
   useEffect(() => {
-    // 1. Check localStorage first
     try {
       const deletedIds: string[] = JSON.parse(localStorage.getItem(DELETED_IDS_KEY) || '[]');
       const localData = localStorage.getItem(STORAGE_KEY);
@@ -26,24 +25,6 @@ export default function SupportersPreview() {
     } catch {
       // ignore
     }
-
-    // 2. Fetch from server API
-    fetch('/api/admin/supporters')
-      .then((res) => res.json())
-      .then((data) => {
-        if (data?.supporters && Array.isArray(data.supporters)) {
-          try {
-            const deletedIds: string[] = JSON.parse(localStorage.getItem(DELETED_IDS_KEY) || '[]');
-            const filtered = data.supporters.filter((s: any) => !deletedIds.includes(s.id));
-            if (!localStorage.getItem(STORAGE_KEY)) {
-              setSupporters(filtered);
-            }
-          } catch {
-            setSupporters(data.supporters);
-          }
-        }
-      })
-      .catch(() => {});
   }, []);
 
   // Aktif ve öne çıkan destekçiler (eğer öne çıkan yoksa aktif olan ilk 3)

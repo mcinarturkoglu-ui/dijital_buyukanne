@@ -8,23 +8,14 @@ import {
   ArrowLeft,
   Maximize2,
   Minimize2,
-  FileText,
-  Layers
+  FileText
 } from 'lucide-react';
 import { RotaryWheel } from '@/components/rotary/RotarySlideDeck';
-import { getPdfFromStorage, StoredPdf } from '@/lib/pdf-storage';
 
 function PresentationDeckInner() {
   const searchParams = useSearchParams();
   const initialDeck = searchParams.get('deck') === 'rotary' ? 'rotary' : 'general';
   const [deckMode, setDeckMode] = useState<'general' | 'rotary'>(initialDeck);
-  
-  // Stored PDF from client IndexedDB
-  const [storedPdf, setStoredPdf] = useState<StoredPdf | null>(null);
-  const [pdfUrl, setPdfUrl] = useState<string>(`/api/presentation/file?type=${initialDeck}`);
-  const [fileName, setFileName] = useState(
-    initialDeck === 'rotary' ? 'rotary-dijital-buyukanne-sunum.pdf' : 'dijital-buyukanne-sunum.pdf'
-  );
 
   const viewerContainerRef = useRef<HTMLDivElement>(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -38,49 +29,6 @@ function PresentationDeckInner() {
       setDeckMode('general');
     }
   }, [searchParams]);
-
-  // Load PDF (IndexedDB first, fallback to Server API)
-  useEffect(() => {
-    let activeObjectUrl: string | null = null;
-
-    const loadPresentation = async () => {
-      try {
-        // 1. Check client IndexedDB
-        const local = await getPdfFromStorage(deckMode);
-        if (local && local.blob) {
-          activeObjectUrl = URL.createObjectURL(local.blob);
-          setPdfUrl(activeObjectUrl);
-          setStoredPdf(local);
-          setFileName(local.filename);
-          return;
-        }
-
-        // 2. Fallback to server API
-        const defaultName = deckMode === 'rotary' ? 'rotary-dijital-buyukanne-sunum.pdf' : 'dijital-buyukanne-sunum.pdf';
-        setFileName(defaultName);
-        setPdfUrl(`/api/presentation/file?type=${deckMode}&t=${Date.now()}`);
-
-        // Fetch meta
-        const res = await fetch('/api/admin/presentation');
-        if (res.ok) {
-          const meta = await res.json();
-          if (meta && meta[deckMode]?.filename) {
-            setFileName(meta[deckMode].filename);
-          }
-        }
-      } catch (err) {
-        console.error('Error loading presentation:', err);
-      }
-    };
-
-    loadPresentation();
-
-    return () => {
-      if (activeObjectUrl) {
-        URL.revokeObjectURL(activeObjectUrl);
-      }
-    };
-  }, [deckMode]);
 
   // Fullscreen toggle
   const toggleFullscreen = () => {
@@ -102,6 +50,8 @@ function PresentationDeckInner() {
   }, []);
 
   const isRotary = deckMode === 'rotary';
+  const fileName = isRotary ? 'rotary-dijital-buyukanne-sunum.pdf' : 'dijital-buyukanne-sunum.pdf';
+  const pdfUrl = `/docs/${fileName}`;
 
   return (
     <div className="min-h-screen bg-slate-900 text-white flex flex-col">

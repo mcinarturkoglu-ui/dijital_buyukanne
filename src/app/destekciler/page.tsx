@@ -25,23 +25,6 @@ export default function DestekcilerPage() {
     } catch {
       // ignore
     }
-
-    fetch('/api/admin/supporters')
-      .then((res) => res.json())
-      .then((data) => {
-        if (data?.supporters && data.supporters.length > 0) {
-          try {
-            const deletedIds: string[] = JSON.parse(localStorage.getItem(DELETED_IDS_KEY) || '[]');
-            const filtered = data.supporters.filter((s: any) => !deletedIds.includes(s.id));
-            if (!localStorage.getItem(STORAGE_KEY)) {
-              setSupporters(filtered);
-            }
-          } catch {
-            setSupporters(data.supporters);
-          }
-        }
-      })
-      .catch(() => {});
   }, []);
 
   const categories = [
