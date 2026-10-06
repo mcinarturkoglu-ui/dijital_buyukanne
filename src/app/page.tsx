@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import StoryProgressTracker from "@/components/home/StoryProgressTracker";
 import SystemStoryModal from "@/components/home/SystemStoryModal";
 import StoryChapterRibbon from "@/components/home/StoryChapterRibbon";
+import StorySection from "@/components/home/StorySection";
 import HeroSection from "@/components/home/HeroSection";
 import TimelineSection from "@/components/home/TimelineSection";
 import SolutionSection from "@/components/home/SolutionSection";
@@ -49,10 +50,10 @@ export default function HomePage() {
           BÖLÜM 01: EKOSİSTEM VE VİZYON
           0-24 Ay Bebek ve Aile Destek Platformu Ana Giriş
           ───────────────────────────────────────────────────────────── */}
-      <div id="bolum-1" className="scroll-mt-16">
+      <StorySection id="bolum-1" className="scroll-mt-16" chapterBadge="BÖLÜM 01" storyStep="Ekosistem & Vizyon">
         <HeroSection />
         <EcosystemPulseTicker />
-      </div>
+      </StorySection>
 
       {/* Kurumsal Geçiş 01 -> 02 */}
       <StoryChapterRibbon
@@ -69,12 +70,14 @@ export default function HomePage() {
           BÖLÜM 02: 0–24 AY BİLİMSEL GELİŞİM TAKİBİ
           İnteraktif kilometre taşları ve ay bazlı gelişim simülatörü
           ───────────────────────────────────────────────────────────── */}
-      <div id="bolum-2" className="scroll-mt-16">
+      <StorySection id="bolum-2" className="scroll-mt-16" chapterBadge="BÖLÜM 02" storyStep="Gelişim Simülatörü">
         <TimelineSection />
-      </div>
+      </StorySection>
 
       {/* İnteraktif Problem & Çözüm Karşılaştırması */}
-      <ProblemSolutionCompare />
+      <StorySection chapterBadge="BÖLÜM 02" storyStep="Neden DijitalBüyükanne?">
+        <ProblemSolutionCompare />
+      </StorySection>
 
       {/* Kurumsal Geçiş 02 -> 03 */}
       <StoryChapterRibbon
@@ -92,10 +95,21 @@ export default function HomePage() {
           Hareket, Cilt ve Dışkı/Bez Analizi Canlı Deneyim Odası
           ───────────────────────────────────────────────────────────── */}
       <div id="bolum-3" className="scroll-mt-16">
-        <SolutionSection />
-        <MotionAnalysis />
-        <SkinAnalysis />
-        <StoolAnalysis />
+        <StorySection chapterBadge="BÖLÜM 03" storyStep="1. Bütünsel Ön Tarama">
+          <SolutionSection />
+        </StorySection>
+
+        <StorySection chapterBadge="BÖLÜM 03" storyStep="2. AI Hareket Analizi">
+          <MotionAnalysis />
+        </StorySection>
+
+        <StorySection chapterBadge="BÖLÜM 03" storyStep="3. AI Cilt Analizi (Derma-41)">
+          <SkinAnalysis />
+        </StorySection>
+
+        <StorySection chapterBadge="BÖLÜM 03" storyStep="4. AI Bez & Dışkı Analizi">
+          <StoolAnalysis />
+        </StorySection>
       </div>
 
       {/* Kurumsal Geçiş 03 -> 04 */}
@@ -114,8 +128,13 @@ export default function HomePage() {
           7/24 Dijital Asistan & İnsan-AI Denge Radarı
           ───────────────────────────────────────────────────────────── */}
       <div id="bolum-4" className="scroll-mt-16">
-        <DigitalAssistant />
-        <HumanAI />
+        <StorySection chapterBadge="BÖLÜM 04" storyStep="7/24 Dijital Asistan">
+          <DigitalAssistant />
+        </StorySection>
+
+        <StorySection chapterBadge="BÖLÜM 04" storyStep="İnsan + AI Dengesi">
+          <HumanAI />
+        </StorySection>
       </div>
 
       {/* Kurumsal Geçiş 04 -> 05 */}
@@ -134,10 +153,21 @@ export default function HomePage() {
           Erken Müdahale, Bilim Kurulu & Gerçek Hayat Başarı Hikayeleri
           ───────────────────────────────────────────────────────────── */}
       <div id="bolum-5" className="scroll-mt-16">
-        <InclusiveAccess />
-        <ScientificBoard cmsData={siteContent.scientificBoard} />
-        <CaseStudies cmsData={siteContent.caseStudies} />
-        <NationalMediaPress />
+        <StorySection chapterBadge="BÖLÜM 05" storyStep="Kapsayıcı Sağlık & Erken Müdahale">
+          <InclusiveAccess />
+        </StorySection>
+
+        <StorySection chapterBadge="BÖLÜM 05" storyStep="Bilimsel Danışma Kurulu">
+          <ScientificBoard cmsData={siteContent.scientificBoard} />
+        </StorySection>
+
+        <StorySection chapterBadge="BÖLÜM 05" storyStep="Etki Hikayeleri">
+          <CaseStudies cmsData={siteContent.caseStudies} />
+        </StorySection>
+
+        <StorySection chapterBadge="BÖLÜM 05" storyStep="Ulusal Medya & Basın">
+          <NationalMediaPress />
+        </StorySection>
       </div>
 
       {/* Kurumsal Geçiş 05 -> 06 */}
@@ -156,10 +186,21 @@ export default function HomePage() {
           Kurumsal Çözümler, Sosyal Etki & Bütçe Hesaplayıcı, Büyük Çağrı
           ───────────────────────────────────────────────────────────── */}
       <div id="bolum-6" className="scroll-mt-16">
-        <InstitutionsHero />
-        <SocialImpactCalculator />
-        <SupportersPreview />
-        <FinalCTA />
+        <StorySection chapterBadge="BÖLÜM 06" storyStep="Kurumlar & Belediyeler">
+          <InstitutionsHero />
+        </StorySection>
+
+        <StorySection chapterBadge="BÖLÜM 06" storyStep="Sosyal Etki Simülasyonu">
+          <SocialImpactCalculator />
+        </StorySection>
+
+        <StorySection chapterBadge="BÖLÜM 06" storyStep="Destekçi Kuruluşlar">
+          <SupportersPreview />
+        </StorySection>
+
+        <StorySection chapterBadge="BÖLÜM 06" storyStep="Büyük Katılım Çağrısı">
+          <FinalCTA />
+        </StorySection>
       </div>
     </>
   );
