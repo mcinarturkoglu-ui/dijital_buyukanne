@@ -164,61 +164,6 @@
     "eyebrow": "Gerçek Hayattan Etki Hikayeleri",
     "title": "Teknoloji bilimdir. Bir bebeğin adımı ise hayata tutunan bir mucizedir.",
     "subtitle": "DijitalBüyükanne ekosistemiyle erken fark edilen, zamanında desteklenen ailelerimizin ve öncü belediyelerimizin başarı yolculukları.",
-    "cases": [
-      {
-        "category": "Erken Nöromotor Müdahale",
-        "badge": "Prematüre Gelişim",
-        "title": "32 Haftalık Zeynep Bebeğin Bağımsız Yürüyüşü",
-        "babyAge": "2. Ayda Farkındalık → 14. Ayda İlk Adımlar",
-        "resultBadge": "🎉 Bağımsız yürüyüş kazanıldı",
-        "summary": "32. haftada prematüre doğan Zeynep'in bacak itişindeki hafif asimetri BabySensAI video analiziyle 9. haftada tespit edildi.",
-        "journey": [
-          { "label": "2. Ay", "step": "Mobil uygulamadan çekilen 2 dakikalık video nöromotor asimetri sinyali verdi." },
-          { "label": "3. Ay", "step": "Sistem üzerinden pediatrik fizyoterapist ile ev egzersiz programı başlatıldı." },
-          { "label": "7. Ay", "step": "Desteksiz dik oturma ve çevreyle aktif etkileşim kazanıldı." },
-          { "label": "14. Ay", "step": "Zeynep hiçbir yardımcı cihaza gerek kalmadan ilk bağımsız adımlarını attı!" }
-        ],
-        "quote": "İyi ki zamanla geçer diyerek beklememişiz. Dijital Büyükanne sayesinde en kritik ilk 3 ayı değerlendirdik.",
-        "author": "Elif K. (Zeynep'in Annesi)",
-        "location": "Ankara",
-        "emoji": "👶🏻"
-      },
-      {
-        "category": "Bebek Bezi & Sindirim Desteği",
-        "badge": "Sindirim & Besin Uyumu",
-        "title": "İlk Aylarda Yakalanan Sindirim İpucu",
-        "babyAge": "Erken Renk Taraması → Huzurlu ve Sağlıklı Büyüme",
-        "resultBadge": "✅ Gelişim eğrisi normale döndü",
-        "summary": "Emir bebeğin bezindeki soluk renk ve sindirim hassasiyeti yapay zekâ destekli renk kartıyla erkenden fark edilerek hekime yönlendirildi.",
-        "journey": [
-          { "label": "1. Ay", "step": "Anne bez fotoğrafını yükledi; sistem pediatrik renk skalasına göre çocuk hekimi kontrolü önerdi." },
-          { "label": "Ertesi Gün", "step": "Aile hekimi ve çocuk doktoruna başvurularak doğru beslenme ve takip programı oluşturuldu." },
-          { "label": "Kısa Sürede", "step": "Sindirim huzursuzluğu ve kilo alımı takibe alınarak gelişim eğrisi ideal seyrine ulaştı." },
-          { "label": "Bugün", "step": "Emir sağlıklı, neşeli ve akranlarıyla aynı gelişim temposunda güvenle büyüyor." }
-        ],
-        "quote": "Erken farkındalık ve hekimimizle doğru zamanda buluşmak, bebeğimizin gelişiminde en büyük güvencemiz ve rehberimiz oldu.",
-        "author": "Merve T. (Emir'in Annesi)",
-        "location": "İstanbul",
-        "emoji": "🍼"
-      },
-      {
-        "category": "Örnek Belediye İş Birliği",
-        "badge": "Sosyal Belediyecilik",
-        "title": "1.200 Aileye Ulaşan Şehir Aile Ekosistemi",
-        "babyAge": "12 Ayda 1.200 Yeni Doğan Ailesi",
-        "resultBadge": "🏆 %98,4 aile memnuniyeti",
-        "summary": "İlçe belediyesi, yeni doğan ziyaret paketine DijitalBüyükanne erişim kartı ekleyerek tüm ailelere 7/24 uzman desteği sundu.",
-        "journey": [
-          { "label": "Başlangıç", "step": "1.200 aileye ücretsiz DijitalBüyükanne mobil uygulama lisansı dağıtıldı." },
-          { "label": "3. Ay", "step": "28 bebekte erken dönemde motor veya cilt gelişiminde destek ihtiyacı yakalandı." },
-          { "label": "6. Ay", "step": "Belediye sağlık ekipleri ve kadın-aile merkezi doğrudan ailelerle temas kurdu." },
-          { "label": "Sonuç", "step": "%98.4 aile memnuniyetiyle ilçenin en başarılı sosyal sorumluluk projesi seçildi." }
-        ],
-        "quote": "Belediyemizin ailelere verdiği en anlamlı hediye oldu. Şehrimizin çocuklarına bilim ve sevgiyle dokunuyoruz.",
-        "author": "Sosyal Hizmetler Dairesi Koordinatörü",
-        "location": "İlçe Belediyesi",
-        "emoji": "🏙️"
-      }
-    ]
+    "cases": []
   }
 }
