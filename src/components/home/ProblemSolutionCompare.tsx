@@ -84,39 +84,39 @@ export default function ProblemSolutionCompare() {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <section className="py-20 px-4 md:px-8 bg-gradient-to-b from-[#F5F8FC] via-white to-[#F0F5FA] border-y border-slate-200/80 relative overflow-hidden" id="karsilastirma">
+    <section className="py-8 md:py-12 px-4 md:px-8 bg-gradient-to-b from-[#F5F8FC] via-white to-[#F0F5FA] border-y border-slate-200/80 relative overflow-hidden min-h-[calc(100vh-4rem)] flex flex-col justify-center" id="karsilastirma">
       {/* Soft ambient backgrounds */}
       <div className="absolute top-1/4 left-10 w-96 h-96 bg-rose-100/30 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-10 right-10 w-96 h-96 bg-sky-100/40 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="max-w-6xl mx-auto relative z-10">
+      <div className="max-w-6xl mx-auto relative z-10 w-full">
         
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-navy/5 text-navy text-xs font-mono font-bold tracking-widest uppercase mb-4 border border-navy/10">
-            <Scale size={14} className="text-[#0284C7]" />
+        {/* Compact Header */}
+        <div className="text-center max-w-3xl mx-auto mb-6">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-navy/5 text-navy text-xs font-mono font-bold tracking-widest uppercase mb-2 border border-navy/10">
+            <Scale size={13} className="text-[#0284C7]" />
             <span>NEDEN DİJİTALBÜYÜKANNE?</span>
           </div>
-          <h2 className="text-3xl md:text-5xl font-black text-[#0B1E3B] tracking-tight leading-tight">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#0B1E3B] tracking-tight leading-tight">
             Geleneksel Çaresizlik vs.{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0284C7] to-[#FF5A43]">
               DijitalBüyükanne Güvencesi
             </span>
           </h2>
-          <p className="mt-4 text-base md:text-lg text-slate-600 leading-relaxed font-normal">
+          <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed font-normal max-w-2xl mx-auto">
             Bir aile eve geldiğinde karşılaştığı belirsizlikleri, yapay zekâ ve klinik uzmanlıkla huzura dönüştürüyoruz.
           </p>
         </div>
 
         {/* Dimension Selector Buttons */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-10 max-w-4xl mx-auto">
+        <div className="flex flex-wrap items-center justify-center gap-2 mb-6 max-w-4xl mx-auto">
           {comparisonData.map((item, idx) => (
             <button
               key={idx}
               onClick={() => setActiveTab(idx)}
-              className={`px-4 py-2.5 rounded-2xl text-xs font-bold transition-all cursor-pointer border ${
+              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer border ${
                 activeTab === idx
-                  ? 'bg-[#0B1E3B] text-white border-[#0B1E3B] shadow-lg shadow-navy/20 scale-105'
+                  ? 'bg-[#0B1E3B] text-white border-[#0B1E3B] shadow-md shadow-navy/20 scale-102'
                   : 'bg-white text-slate-700 hover:bg-slate-50 border-slate-200'
               }`}
             >
@@ -126,7 +126,7 @@ export default function ProblemSolutionCompare() {
         </div>
 
         {/* Active Comparison Side-by-Side Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-5xl mx-auto">
           
           {/* Sol: Geleneksel Yol (Kırmızı/Gül Tonu) */}
           <div className="p-7 sm:p-9 rounded-3xl bg-gradient-to-br from-rose-50/70 via-white to-rose-50/30 border-2 border-rose-200 shadow-sm flex flex-col justify-between relative overflow-hidden">

@@ -276,44 +276,51 @@ export default function StoolAnalysis() {
   const [activeSample, setActiveSample] = useState(stoolSamples[0]);
 
   return (
-    <section className="py-20 md:py-28 px-4 md:px-8 bg-white relative overflow-hidden" id="bez-analizi">
+    <section className="py-8 md:py-12 px-4 md:px-8 bg-white relative overflow-hidden min-h-[calc(100vh-4rem)] flex flex-col justify-center" id="bez-analizi">
       {/* Decorative ambient background */}
       <div className="absolute top-1/3 -left-20 w-96 h-96 bg-turquoise/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-10 -right-20 w-96 h-96 bg-coral/5 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="max-w-6xl mx-auto relative z-10">
-        <SectionHeader
-          eyebrow="AI Bebek Bezi & Dışkı Analizi"
-          title="Bebek bezindeki ipuçlarını yapay zekâ ile saniyeler içinde anlayın."
-          subtitle="Bebeğinizin bezindeki dışkı rengi, dokusu ve kıvamı; sindirim sistemi, beslenme uyumu ve genel gelişim hakkında en erken sinyalleri verir."
-          centered
-        />
+      <div className="max-w-6xl mx-auto relative z-10 w-full">
+        {/* Compact Header */}
+        <div className="text-center max-w-3xl mx-auto mb-5">
+          <div className="inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-turquoise bg-turquoise/5 border border-turquoise/15 px-3.5 py-1 rounded-full mb-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-turquoise animate-pulse" />
+            <span>AI Bebek Bezi & Dışkı Analizi</span>
+          </div>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold leading-tight text-navy">
+            Bebek bezindeki ipuçlarını yapay zekâ ile saniyeler içinde anlayın.
+          </h2>
+          <p className="mt-2 text-xs sm:text-sm text-navy/60 leading-relaxed max-w-2xl mx-auto">
+            Bebeğinizin bezindeki dışkı rengi, dokusu ve kıvamı; sindirim sistemi, beslenme uyumu ve genel gelişim hakkında en erken sinyalleri verir.
+          </p>
+        </div>
 
         {/* 4 Stool Color Categories Preview Bar */}
-        <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-3.5">
+        <div className="mb-6 grid grid-cols-2 md:grid-cols-4 gap-2.5">
           {stoolSamples.map((sample) => (
             <button
               key={sample.id}
               onClick={() => setActiveSample(sample)}
-              className={`premium-card p-4 rounded-2xl border text-left transition-all duration-300 relative overflow-hidden group cursor-pointer ${
+              className={`premium-card p-3 rounded-2xl border text-left transition-all duration-300 relative overflow-hidden group cursor-pointer ${
                 activeSample.id === sample.id
                   ? 'border-turquoise bg-turquoise/5 shadow-md shadow-turquoise/15 scale-102 ring-2 ring-turquoise/30'
                   : 'border-gray-200/90 hover:border-turquoise/40 hover:bg-slate-50'
               }`}
             >
-              <div className="flex items-center justify-between mb-2">
+              <div className="flex items-center justify-between mb-1.5">
                 <span
-                  className="w-4 h-4 rounded-full border border-black/10 shadow-sm shrink-0"
+                  className="w-3.5 h-3.5 rounded-full border border-black/10 shadow-sm shrink-0"
                   style={{ backgroundColor: sample.colorHex }}
                 />
-                <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${sample.badgeColor}`}>
+                <span className={`text-[9px] font-bold px-2 py-0.5 rounded-full border ${sample.badgeColor}`}>
                   {sample.category}
                 </span>
               </div>
-              <h4 className="font-bold text-navy text-xs md:text-sm group-hover:text-turquoise transition-colors">
+              <h4 className="font-bold text-navy text-xs group-hover:text-turquoise transition-colors truncate">
                 {sample.title}
               </h4>
-              <p className="text-[11px] text-navy/60 mt-1 line-clamp-1">
+              <p className="text-[10px] text-navy/60 mt-0.5 truncate">
                 {sample.urgency}
               </p>
             </button>

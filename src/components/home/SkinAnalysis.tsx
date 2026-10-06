@@ -180,24 +180,30 @@ export default function SkinAnalysis() {
   };
 
   return (
-    <section className="py-20 md:py-28 px-4 md:px-8 bg-gradient-to-b from-white via-slate-50 to-white relative overflow-hidden" id="cilt-analizi">
+    <section className="py-8 md:py-12 px-4 md:px-8 bg-gradient-to-b from-white via-slate-50 to-white relative overflow-hidden min-h-[calc(100vh-4rem)] flex flex-col justify-center" id="cilt-analizi">
       {/* Background ambient blur */}
       <div className="absolute top-1/4 -left-20 w-[500px] h-[500px] bg-sky-100/50 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-10 -right-20 w-[450px] h-[450px] bg-coral/10 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="max-w-6xl mx-auto relative z-10">
+      <div className="max-w-6xl mx-auto relative z-10 w-full">
         
-        {/* Section Header */}
-        <SectionHeader
-          eyebrow="0–2 Yaş AI Cilt Analizi (Derma-41 Engine)"
-          title="Ebeveyn fotoğrafı çeker; yapay zekâ 41 cilt tablosu arasından tespit eder."
-          subtitle="Anne veya baba tıbbi teşhis bilmek zorunda değildir. Bebeğinin cildindeki şüpheli döküntüyü fotoğraflar; BabySensAI piksel hassasiyetinde analiz ederek anında bilgilendirir ve hekim güvencesi sunar."
-          centered
-        />
+        {/* Compact Section Header */}
+        <div className="text-center max-w-3xl mx-auto mb-5">
+          <div className="inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-sky-700 bg-sky-50 border border-sky-200 px-3.5 py-1 rounded-full mb-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-sky-500 animate-pulse" />
+            <span>0–2 Yaş AI Cilt Analizi (Derma-41 Engine)</span>
+          </div>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold leading-tight text-navy">
+            Ebeveyn fotoğrafı çeker; yapay zekâ 41 cilt tablosu arasından tespit eder.
+          </h2>
+          <p className="mt-2 text-xs sm:text-sm text-navy/60 leading-relaxed max-w-2xl mx-auto">
+            Anne veya baba tıbbi teşhis bilmek zorunda değildir. Bebeğinin cildindeki şüpheli döküntüyü fotoğraflar; piksel hassasiyetinde analiz ve hekim güvencesi sunar.
+          </p>
+        </div>
 
         {/* 41 Cilt Tablosu Hızlı Seçici Butonları */}
-        <div className="mt-12 flex flex-col items-center">
-          <span className="text-xs font-mono font-bold text-sky-800 bg-sky-50 border border-sky-200 px-3.5 py-1 rounded-full mb-3 shadow-xs">
+        <div className="flex flex-col items-center mb-6">
+          <span className="text-[11px] font-mono font-bold text-sky-800 bg-sky-50 border border-sky-200 px-3 py-0.5 rounded-full mb-2 shadow-2xs">
             Örnek Ebeveyn Gözlemini Seçin:
           </span>
           <div className="flex flex-wrap items-center justify-center gap-2 max-w-4xl">
@@ -205,13 +211,13 @@ export default function SkinAnalysis() {
               <button
                 key={c.id}
                 onClick={() => handleSelectCase(idx)}
-                className={`px-4 py-2 rounded-2xl text-xs font-bold transition-all cursor-pointer flex items-center gap-2 ${
+                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-2 ${
                   selectedCaseIndex === idx
                     ? 'bg-[#0B1E3B] text-white shadow-md scale-102 ring-2 ring-sky-400/30'
                     : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-50'
                 }`}
               >
-                <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: c.dotColor }} />
+                <span className="w-2 h-2 rounded-full" style={{ backgroundColor: c.dotColor }} />
                 <span>{c.parentObservation}</span>
               </button>
             ))}
@@ -219,13 +225,13 @@ export default function SkinAnalysis() {
         </div>
 
         {/* Ana İçerik Izgarası (Sol: İş Akışı & Ebeveyn Gözlemi | Sağ: Telefon Simülasyonu) */}
-        <div className="mt-12 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           
           {/* SOL KOLON (6 COLS): 4 Adımlı Klinik İş Akışı */}
-          <div className="lg:col-span-6 flex flex-col gap-5">
+          <div className="lg:col-span-6 flex flex-col gap-3">
             
             {/* Seçili Ebeveyn Gözlem Kartı */}
-            <div className="p-4 rounded-2xl bg-sky-50/80 border border-sky-200 flex flex-col gap-1.5 shadow-xs">
+            <div className="p-3.5 rounded-2xl bg-sky-50/80 border border-sky-200 flex flex-col gap-1 shadow-2xs">
               <div className="flex items-center justify-between">
                 <span className="text-[10px] font-bold uppercase tracking-wider text-sky-800">
                   Şu Anda Canlandırılan Ebeveyn Gözlemi:
@@ -234,19 +240,19 @@ export default function SkinAnalysis() {
                   {currentCase.region}
                 </span>
               </div>
-              <p className="text-sm font-black text-[#0B1E3B] leading-snug">
+              <p className="text-xs sm:text-sm font-black text-[#0B1E3B] leading-snug">
                 &ldquo;{currentCase.parentObservation}&rdquo;
               </p>
             </div>
 
             {/* 4 Klinik Adım */}
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-2">
               {clinicalWorkflow.map((stepItem, i) => (
                 <div
                   key={stepItem.num}
-                  className={`p-4 rounded-2xl border transition-all flex items-start gap-4 ${
+                  className={`p-3 rounded-2xl border transition-all flex items-start gap-3 ${
                     animStep === i
-                      ? 'bg-white border-sky-400 ring-2 ring-sky-400/20 shadow-md translate-x-1'
+                      ? 'bg-white border-sky-400 ring-2 ring-sky-400/20 shadow-xs translate-x-1'
                       : 'bg-white/80 border-slate-200/80 hover:bg-white'
                   }`}
                 >

@@ -154,7 +154,7 @@ export default function DigitalAssistant() {
 
   return (
     <section
-      className="py-20 md:py-28 px-4 md:px-8 text-white relative overflow-hidden"
+      className="py-8 md:py-12 px-4 md:px-8 text-white relative overflow-hidden min-h-[calc(100vh-4rem)] flex flex-col justify-center"
       style={{
         background: 'linear-gradient(180deg, #121634 0%, #1A2048 50%, #15193B 100%)',
       }}
@@ -173,75 +173,79 @@ export default function DigitalAssistant() {
         />
       </div>
 
-      <div className="max-w-6xl mx-auto relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      <div className="max-w-6xl mx-auto relative z-10 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           
           {/* Left: Text & Guidance Experience (7 Cols) */}
-          <div className="lg:col-span-7 flex flex-col gap-6">
-            <SectionHeader
-              eyebrow={siteContent.digitalAssistant?.eyebrow || "7/24 Dijital Aile Asistanı"}
-              title={siteContent.digitalAssistant?.title || "Anne ve babaların soruları mesai saatlerini beklemez."}
-              light
-            />
+          <div className="lg:col-span-7 flex flex-col gap-4">
+            <div>
+              <div className="inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase px-3.5 py-1 rounded-full border text-turquoise bg-turquoise/10 border-turquoise/20 mb-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-turquoise animate-pulse" />
+                <span>{siteContent.digitalAssistant?.eyebrow || "7/24 Dijital Aile Asistanı"}</span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold leading-tight text-white">
+                {siteContent.digitalAssistant?.title || "Anne ve babaların soruları mesai saatlerini beklemez."}
+              </h2>
+            </div>
 
             {/* Big bold night tagline */}
-            <div className="flex items-center gap-4 bg-white/5 p-4 rounded-3xl border border-white/10 backdrop-blur-sm">
-              <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-indigo-500/30 to-purple-500/20 border border-indigo-400/40 flex items-center justify-center shrink-0 shadow-lg shadow-indigo-500/10 animate-float-slow">
-                <Moon className="w-7 h-7 text-indigo-300" />
+            <div className="flex items-center gap-3.5 bg-white/5 p-3 rounded-2xl border border-white/10 backdrop-blur-sm">
+              <div className="w-11 h-11 rounded-xl bg-gradient-to-tr from-indigo-500/30 to-purple-500/20 border border-indigo-400/40 flex items-center justify-center shrink-0 shadow-md shadow-indigo-500/10">
+                <Moon className="w-5 h-5 text-indigo-300" />
               </div>
               <div>
-                <p className="text-2xl sm:text-4xl font-extrabold text-white leading-tight tracking-tight">
+                <p className="text-xl sm:text-2xl font-extrabold text-white leading-tight tracking-tight">
                   {siteContent.digitalAssistant?.nightTagline || "Gece 03.00'te bile yanınızda."}
                 </p>
-                <p className="text-white/70 text-xs sm:text-sm mt-1">
+                <p className="text-white/70 text-xs mt-0.5">
                   {siteContent.digitalAssistant?.subtitle || "Yapay zekâ hızı ve anneanne şefkatiyle bilimsel rehberlik."}
                 </p>
               </div>
             </div>
 
             {/* Guidance / Wisdom Quote Card */}
-            <div className="glass-card-dark rounded-3xl p-6 shadow-2xl relative overflow-hidden border border-white/15">
-              <div className="flex items-center justify-between mb-4">
+            <div className="glass-card-dark rounded-2xl p-4 shadow-xl relative overflow-hidden border border-white/15">
+              <div className="flex items-center justify-between mb-2.5">
                 <div className="flex items-center gap-2">
-                  <span className="w-2.5 h-2.5 rounded-full bg-sky-400" />
+                  <span className="w-2 h-2 rounded-full bg-sky-400" />
                   <span className="text-xs font-bold text-sky-300 uppercase tracking-wider flex items-center gap-1.5">
-                    <Sparkles size={14} className="text-sky-300" />
+                    <Sparkles size={13} className="text-sky-300" />
                     {siteContent.digitalAssistant?.wisdomBadge || "Büyükanne Tavsiyesi"}
                   </span>
                 </div>
-                <span className="text-[10px] text-white/50 font-mono px-2.5 py-1 rounded-full bg-white/5 border border-white/10">
+                <span className="text-[10px] text-white/50 font-mono px-2 py-0.5 rounded-full bg-white/5 border border-white/10">
                   {siteContent.digitalAssistant?.wisdomNote || "Şefkatli & Bilimsel"}
                 </span>
               </div>
 
               {/* Spoken Quote Transcript */}
-              <blockquote className="text-white/90 text-sm md:text-base italic leading-relaxed pl-4 border-l-2 border-sky-400 mb-4">
+              <blockquote className="text-white/90 text-xs sm:text-sm italic leading-relaxed pl-3 border-l-2 border-sky-400 mb-3">
                 &ldquo;{activeTopic.transcript}&rdquo;
               </blockquote>
 
               {/* Interactive Audio Waveform Player */}
-              <div className="pt-3 border-t border-white/10 flex items-center justify-between gap-3 bg-white/[0.04] p-3 rounded-2xl">
-                <div className="flex items-center gap-3">
+              <div className="pt-2.5 border-t border-white/10 flex items-center justify-between gap-3 bg-white/[0.04] p-2.5 rounded-xl">
+                <div className="flex items-center gap-2.5">
                   <button
                     onClick={() => setIsPlayingAudio(!isPlayingAudio)}
-                    className="w-10 h-10 rounded-xl bg-gradient-to-r from-sky-400 to-sky-500 hover:from-sky-300 hover:to-sky-400 text-navy flex items-center justify-center shrink-0 shadow-md shadow-sky-400/20 transition-all cursor-pointer"
+                    className="w-9 h-9 rounded-xl bg-gradient-to-r from-sky-400 to-sky-500 hover:from-sky-300 hover:to-sky-400 text-navy flex items-center justify-center shrink-0 shadow-md shadow-sky-400/20 transition-all cursor-pointer"
                     title={isPlayingAudio ? 'Durdur' : 'Sesi Dinle'}
                   >
-                    {isPlayingAudio ? <Pause size={16} /> : <Play size={16} className="ml-0.5" />}
+                    {isPlayingAudio ? <Pause size={14} /> : <Play size={14} className="ml-0.5" />}
                   </button>
                   <div>
                     <span className="text-xs font-bold text-white flex items-center gap-1.5">
-                      <Volume2 size={13} className="text-sky-300" />
+                      <Volume2 size={12} className="text-sky-300" />
                       {isPlayingAudio ? 'Büyükanne Fısıltısı Dinleniyor...' : "Büyükanne'nin Sesini Dinleyin"}
                     </span>
-                    <span className="text-[10px] text-white/50 block">
+                    <span className="text-[9px] text-white/50 block">
                       Gece 03:00 Sakinleştirme Rutini • {isPlayingAudio ? `0:${audioSeconds.toString().padStart(2, '0')}` : '0:18'}
                     </span>
                   </div>
                 </div>
 
                 {/* Animated Equalizer Waveform Bars */}
-                <div className="flex items-center gap-1 h-6 shrink-0 px-2">
+                <div className="flex items-center gap-1 h-5 shrink-0 px-2">
                   {[12, 24, 16, 28, 14, 22, 10, 26, 18, 14].map((h, i) => (
                     <span
                       key={i}
@@ -251,7 +255,7 @@ export default function DigitalAssistant() {
                           : 'bg-white/30'
                       }`}
                       style={{
-                        height: isPlayingAudio ? `${Math.max(6, (h * (i % 2 === 0 ? 1.2 : 0.8)))}px` : '6px',
+                        height: isPlayingAudio ? `${Math.max(5, (h * (i % 2 === 0 ? 1.1 : 0.7)))}px` : '5px',
                         animationDelay: `${i * 0.1}s`,
                       }}
                     />
@@ -261,16 +265,16 @@ export default function DigitalAssistant() {
             </div>
 
             {/* Topic Selector Pills */}
-            <div className="flex flex-col gap-2.5">
-              <p className="text-xs text-white/60 font-bold uppercase tracking-wider">Konu Başlığını Seçin</p>
-              <div className="flex flex-wrap gap-2.5">
+            <div className="flex flex-col gap-2">
+              <p className="text-[11px] text-white/60 font-bold uppercase tracking-wider">Konu Başlığını Seçin</p>
+              <div className="flex flex-wrap gap-2">
                 {topicsData.map((item, idx) => (
                   <button
                     key={item.topic}
                     onClick={() => setActiveTopicIndex(idx)}
-                    className={`px-4 py-2.5 rounded-2xl text-xs font-bold transition-all duration-300 cursor-pointer ${
+                    className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all duration-300 cursor-pointer ${
                       activeTopicIndex === idx
-                        ? 'bg-sky-400 text-navy shadow-lg shadow-sky-400/20 scale-105 ring-2 ring-sky-300/40'
+                        ? 'bg-sky-400 text-navy shadow-md scale-102 ring-2 ring-sky-300/40'
                         : 'border border-sky-400/40 bg-sky-400/10 text-sky-300 hover:bg-sky-400/20'
                     }`}
                   >
@@ -283,9 +287,9 @@ export default function DigitalAssistant() {
 
           {/* Right: Phone Mockup (5 Cols) */}
           <div className="lg:col-span-5 flex justify-center">
-            <div className="relative animate-float-slow">
-              <div className="absolute inset-0 bg-sky-400/20 rounded-[40px] blur-3xl opacity-40 scale-95" />
-              <PhoneMockup size="md" dark label="7/24 Canlı Aile Asistanı">
+            <div className="relative">
+              <div className="absolute inset-0 bg-sky-400/20 rounded-[40px] blur-2xl opacity-40 scale-95" />
+              <PhoneMockup size="sm" dark label="7/24 Canlı Aile Asistanı">
                 <ChatPhoneContent
                   activeTopicData={activeTopic}
                 />

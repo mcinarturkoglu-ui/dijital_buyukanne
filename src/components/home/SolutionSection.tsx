@@ -165,30 +165,37 @@ export default function SolutionSection() {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <section id="dijitalbuyukanne" className="py-20 md:py-28 px-4 md:px-8 bg-[#F7FAFA]">
-      <div className="max-w-6xl mx-auto">
+    <section id="dijitalbuyukanne" className="py-8 md:py-12 px-4 md:px-8 bg-[#F7FAFA] min-h-[calc(100vh-4rem)] flex flex-col justify-center">
+      <div className="max-w-6xl mx-auto w-full">
 
-        <SectionHeader
-          eyebrow="Çözüm & Güvenlik"
-          title="Ailenin yanında dijital bir yol arkadaşı ve uzman hekim güvencesi."
-          subtitle="Yapay zekâ 7/24 ön tarama ve takip sağlar; kritik durumlarda uzman hekimlerimiz ve danışmanlarımız kontrolü devralır."
-          centered
-        />
+        {/* Header - Compact & Balanced */}
+        <div className="text-center max-w-3xl mx-auto mb-6">
+          <div className="inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase px-3.5 py-1 rounded-full border text-turquoise bg-turquoise/5 border-turquoise/15 mb-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-turquoise animate-pulse" />
+            <span>Çözüm & Güvenlik</span>
+          </div>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold leading-tight text-navy">
+            Ailenin yanında dijital bir yol arkadaşı ve uzman hekim güvencesi.
+          </h2>
+          <p className="mt-2 text-xs sm:text-sm text-navy/60 leading-relaxed max-w-2xl mx-auto">
+            Yapay zekâ 7/24 ön tarama ve takip sağlar; kritik durumlarda uzman hekimlerimiz ve danışmanlarımız kontrolü devralır.
+          </p>
+        </div>
 
-        <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
 
-          {/* LEFT — Phone Mockup */}
-          <div className="flex flex-col items-center gap-4">
+          {/* LEFT — Phone Mockup (5 Cols) */}
+          <div className="lg:col-span-5 flex flex-col items-center gap-3">
             {/* Tab switcher */}
-            <div className="flex gap-1 bg-white rounded-2xl p-1 shadow-sm border border-gray-100">
+            <div className="flex gap-1 bg-white rounded-2xl p-1 shadow-xs border border-gray-100">
               {appTabs.map((tab, i) => (
                 <button
                   key={i}
                   onClick={() => setActiveTab(i)}
-                  className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all duration-200 ${
+                  className={`px-3 py-1 rounded-xl text-xs font-semibold transition-all duration-200 cursor-pointer ${
                     activeTab === i
-                      ? 'bg-[#14BBB7] text-white shadow-sm'
-                      : 'text-[#082A46]/50 hover:text-[#082A46]'
+                      ? 'bg-[#14BBB7] text-white shadow-xs'
+                      : 'text-[#082A46]/60 hover:text-[#082A46]'
                   }`}
                 >
                   {tab}
@@ -198,15 +205,15 @@ export default function SolutionSection() {
 
             <div className="relative">
               <div
-                className="absolute inset-0 rounded-[40px] blur-3xl opacity-20 scale-90"
+                className="absolute inset-0 rounded-[40px] blur-2xl opacity-20 scale-90"
                 style={{ background: 'radial-gradient(circle, #14BBB7 0%, transparent 70%)' }}
               />
-              <PhoneMockup size="md" label="Örnek görünüm">
+              <PhoneMockup size="sm" label="Canlı Uygulama Önizlemesi">
                 <div className="flex flex-col h-full bg-[#F7FAFA] rounded-[28px] overflow-hidden">
                   {/* App Header */}
-                  <div className="bg-[#082A46] px-4 pt-5 pb-3 flex items-center gap-2">
-                    <div className="w-6 h-6 rounded-full bg-[#14BBB7] flex items-center justify-center">
-                      <Baby size={12} className="text-white" />
+                  <div className="bg-[#082A46] px-3.5 pt-4 pb-2.5 flex items-center gap-2">
+                    <div className="w-5 h-5 rounded-full bg-[#14BBB7] flex items-center justify-center">
+                      <Baby size={11} className="text-white" />
                     </div>
                     <span className="text-white font-bold text-xs">DijitalBüyükanne</span>
                   </div>
@@ -217,7 +224,7 @@ export default function SolutionSection() {
                       <button
                         key={i}
                         onClick={() => setActiveTab(i)}
-                        className={`flex-1 pb-1.5 text-[8px] font-semibold transition-colors ${
+                        className={`flex-1 pb-1 text-[8px] font-semibold transition-colors ${
                           activeTab === i
                             ? 'text-[#14BBB7] border-b-2 border-[#14BBB7]'
                             : 'text-[#082A46]/40'
@@ -229,7 +236,7 @@ export default function SolutionSection() {
                   </div>
 
                   {/* Screen content */}
-                  <div className="flex-1 overflow-hidden pt-3">
+                  <div className="flex-1 overflow-hidden pt-2.5">
                     <AppMockupScreen activeTab={activeTab} />
                   </div>
                 </div>
@@ -237,45 +244,44 @@ export default function SolutionSection() {
             </div>
           </div>
 
-          {/* RIGHT — Feature Cards */}
-          <div className="flex flex-col gap-4">
+          {/* RIGHT — Feature Cards (7 Cols) */}
+          <div className="lg:col-span-7 flex flex-col gap-2.5">
             {features.map((feature, i) => (
               <div
                 key={i}
-                className="premium-card border border-gray-100/80 hover:border-turquoise/30 p-6 flex gap-5 items-start group cursor-default relative"
+                className="premium-card border border-gray-100/90 hover:border-turquoise/30 p-3 sm:p-3.5 rounded-2xl bg-white shadow-2xs flex gap-3.5 items-center group cursor-default relative transition-all"
               >
                 {/* Left accent gradient bar */}
-                <div className="absolute left-0 top-4 bottom-4 w-0.5 bg-turquoise/15 group-hover:bg-gradient-to-b group-hover:from-turquoise group-hover:to-teal-400 group-hover:w-1 rounded-full transition-all duration-500" />
+                <div className="absolute left-0 top-3 bottom-3 w-0.5 bg-turquoise/15 group-hover:bg-gradient-to-b group-hover:from-turquoise group-hover:to-teal-400 group-hover:w-1 rounded-full transition-all duration-300" />
 
                 {/* Number badge + icon */}
-                <div className="shrink-0 flex flex-col items-center gap-2 pl-2">
-                  <span className="text-xs font-black text-turquoise/30 group-hover:text-turquoise tracking-wider transition-colors duration-300">{feature.number}</span>
-                  <div className="w-12 h-12 rounded-2xl bg-turquoise/10 text-turquoise flex items-center justify-center group-hover:bg-turquoise group-hover:text-white group-hover:scale-110 group-hover:shadow-md group-hover:shadow-turquoise/25 transition-all duration-500">
+                <div className="shrink-0 flex items-center gap-2 pl-2">
+                  <span className="text-[11px] font-black text-turquoise/40 group-hover:text-turquoise tracking-wider transition-colors duration-300">{feature.number}</span>
+                  <div className="w-9 h-9 rounded-xl bg-turquoise/10 text-turquoise flex items-center justify-center group-hover:bg-turquoise group-hover:text-white group-hover:scale-105 group-hover:shadow-xs group-hover:shadow-turquoise/25 transition-all duration-300">
                     {feature.icon}
                   </div>
                 </div>
 
                 {/* Text */}
-                <div className="flex-1">
-                  <h3 className="font-bold text-navy text-base mb-1.5 group-hover:text-turquoise transition-colors duration-300">{feature.title}</h3>
-                  <p className="text-navy/55 text-sm leading-relaxed">{feature.description}</p>
+                <div className="flex-1 min-w-0">
+                  <h3 className="font-bold text-navy text-xs sm:text-sm group-hover:text-turquoise transition-colors duration-300 leading-snug">{feature.title}</h3>
+                  <p className="text-navy/60 text-[11px] sm:text-xs leading-relaxed line-clamp-2 mt-0.5">{feature.description}</p>
                 </div>
               </div>
             ))}
+
+            {/* Compact Slogan Footer Bar */}
+            <div className="pt-1.5 flex items-center justify-between px-4 py-2 rounded-2xl bg-gradient-to-r from-[#082A46] via-[#0e3b61] to-[#082A46] text-white shadow-xs">
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-turquoise animate-pulse" />
+                <span className="font-extrabold text-xs sm:text-sm tracking-tight">
+                  Tek uygulama. <span className="text-turquoise">Beş güçlü hizmet.</span>
+                </span>
+              </div>
+              <span className="text-[10px] text-white/60 font-mono hidden sm:inline">0–24 Ay Ekosistem</span>
+            </div>
           </div>
 
-        </div>
-
-        {/* Slogan Footer */}
-        <div className="mt-20 text-center">
-          <div className="shimmer-btn inline-flex items-center gap-3 bg-gradient-to-r from-[#082A46] via-[#0e3b61] to-[#082A46] rounded-3xl px-8 py-5 shadow-lg">
-            <span className="w-2.5 h-2.5 rounded-full bg-turquoise animate-pulse" />
-            <p className="text-white font-extrabold text-xl md:text-2xl tracking-tight">
-              Tek uygulama.{' '}
-              <span className="text-turquoise">Beş güçlü hizmet.</span>
-            </p>
-            <span className="w-2.5 h-2.5 rounded-full bg-coral animate-pulse" style={{ animationDelay: '0.5s' }} />
-          </div>
         </div>
       </div>
     </section>

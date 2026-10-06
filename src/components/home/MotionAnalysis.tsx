@@ -142,21 +142,28 @@ export default function MotionAnalysis() {
   const rFootY = isTummy ? 180 : 195 + Math.sin(t * 1.5) * 12;
 
   return (
-    <section className="py-20 md:py-28 px-4 md:px-8 bg-white relative overflow-hidden" id="hareket-analizi">
+    <section className="py-8 md:py-12 px-4 md:px-8 bg-white relative overflow-hidden min-h-[calc(100vh-4rem)] flex flex-col justify-center" id="hareket-analizi">
       {/* Decorative ambient blur */}
       <div className="absolute top-1/3 -right-20 w-96 h-96 bg-turquoise/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-10 -left-20 w-80 h-80 bg-coral/5 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="max-w-6xl mx-auto relative z-10">
-        <SectionHeader
-          eyebrow="AI Hareket Analizi Stüdyosu"
-          title="Bir video, bebeğinizin gelişiminde binlerce veri noktası sunar."
-          subtitle="BabySensAI derin öğrenme algoritmaları, 0–6 ay bebeğinizin spontan hareketlerini analiz ederek erken gelişimsel farkındalık sağlar."
-          centered
-        />
+      <div className="max-w-6xl mx-auto relative z-10 w-full">
+        {/* Compact Header */}
+        <div className="text-center max-w-3xl mx-auto mb-5">
+          <div className="inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-turquoise bg-turquoise/5 border border-turquoise/15 px-3.5 py-1 rounded-full mb-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-turquoise animate-pulse" />
+            <span>AI Hareket Analizi Stüdyosu</span>
+          </div>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold leading-tight text-navy">
+            Bir video, bebeğinizin gelişiminde binlerce veri noktası sunar.
+          </h2>
+          <p className="mt-2 text-xs sm:text-sm text-navy/60 leading-relaxed max-w-2xl mx-auto">
+            BabySensAI derin öğrenme algoritmaları, 0–6 ay bebeğinizin spontan hareketlerini analiz ederek erken gelişimsel farkındalık sağlar.
+          </p>
+        </div>
 
         {/* Scenario Selector Tabs */}
-        <div className="mt-12 flex flex-wrap items-center justify-center gap-2 md:gap-3">
+        <div className="flex flex-wrap items-center justify-center gap-2 mb-6">
           {scenarios.map((sc, idx) => (
             <button
               key={sc.id}
@@ -164,9 +171,9 @@ export default function MotionAnalysis() {
                 setActiveScenarioIndex(idx);
                 setProgress(15);
               }}
-              className={`px-4 py-2.5 rounded-2xl text-xs md:text-sm font-bold transition-all duration-300 flex items-center gap-2 cursor-pointer ${
+              className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all duration-300 flex items-center gap-2 cursor-pointer ${
                 activeScenarioIndex === idx
-                  ? 'bg-gradient-to-r from-navy to-[#0f3454] text-white shadow-lg shadow-navy/20 scale-105 border-2 border-turquoise'
+                  ? 'bg-gradient-to-r from-navy to-[#0f3454] text-white shadow-md scale-102 border-2 border-turquoise'
                   : 'bg-soft-gray text-navy/70 hover:bg-turquoise/10 hover:text-navy border border-gray-200 hover:border-turquoise/30'
               }`}
             >
@@ -177,34 +184,34 @@ export default function MotionAnalysis() {
         </div>
 
         {/* Main Workspace Grid */}
-        <div className="mt-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
           
           {/* LEFT 5 COLS: Dynamic Stepper & Active Scenario Info */}
-          <div className="lg:col-span-5 flex flex-col gap-4">
+          <div className="lg:col-span-5 flex flex-col gap-3">
             
             {/* Active Scenario Card */}
-            <div className="bg-gradient-to-br from-[#082A46] via-[#093254] to-[#0e3b61] text-white p-6 rounded-3xl shadow-xl border border-white/10 relative overflow-hidden">
+            <div className="bg-gradient-to-br from-[#082A46] via-[#093254] to-[#0e3b61] text-white p-4 sm:p-5 rounded-2xl shadow-lg border border-white/10 relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-turquoise/15 rounded-full blur-2xl pointer-events-none" />
               
-              <div className="flex items-center justify-between gap-2 mb-3">
-                <span className="bg-turquoise/20 text-turquoise text-[11px] font-mono font-bold px-3 py-1 rounded-full border border-turquoise/30">
+              <div className="flex items-center justify-between gap-2 mb-2">
+                <span className="bg-turquoise/20 text-turquoise text-[10px] font-mono font-bold px-2.5 py-0.5 rounded-full border border-turquoise/30">
                   {currentScenario.focus}
                 </span>
-                <span className="text-white/60 text-xs font-semibold">{currentScenario.ageRange}</span>
+                <span className="text-white/60 text-[11px] font-semibold">{currentScenario.ageRange}</span>
               </div>
 
-              <h4 className="text-lg font-bold text-white mb-2">{currentScenario.title}</h4>
-              <p className="text-xs text-white/80 leading-relaxed mb-4">{currentScenario.description}</p>
+              <h4 className="text-base font-bold text-white mb-1">{currentScenario.title}</h4>
+              <p className="text-[11px] text-white/80 leading-relaxed mb-3">{currentScenario.description}</p>
 
               {/* Real-time score cards */}
-              <div className="grid grid-cols-2 gap-2 pt-3 border-t border-white/15">
-                <div className="bg-white/10 rounded-2xl p-3 border border-white/5 backdrop-blur-sm">
-                  <p className="text-[10px] text-white/60 uppercase tracking-wider font-semibold">Motor & Kas Akıcılığı</p>
-                  <p className="text-base font-extrabold text-emerald-300 font-mono mt-0.5">{currentScenario.metrics.gma}</p>
+              <div className="grid grid-cols-2 gap-2 pt-2.5 border-t border-white/15">
+                <div className="bg-white/10 rounded-xl p-2.5 border border-white/5 backdrop-blur-sm">
+                  <p className="text-[9px] text-white/60 uppercase tracking-wider font-semibold">Motor & Kas Akıcılığı</p>
+                  <p className="text-sm font-extrabold text-emerald-300 font-mono mt-0.5">{currentScenario.metrics.gma}</p>
                 </div>
-                <div className="bg-white/10 rounded-2xl p-3 border border-white/5 backdrop-blur-sm">
-                  <p className="text-[10px] text-white/60 uppercase tracking-wider font-semibold">Bilateral Simetri</p>
-                  <p className="text-base font-extrabold text-turquoise font-mono mt-0.5">{currentScenario.metrics.symmetry}</p>
+                <div className="bg-white/10 rounded-xl p-2.5 border border-white/5 backdrop-blur-sm">
+                  <p className="text-[9px] text-white/60 uppercase tracking-wider font-semibold">Bilateral Simetri</p>
+                  <p className="text-sm font-extrabold text-turquoise font-mono mt-0.5">{currentScenario.metrics.symmetry}</p>
                 </div>
               </div>
             </div>

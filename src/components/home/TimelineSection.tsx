@@ -435,40 +435,39 @@ export default function TimelineSection() {
   const progressPercent = Math.round((completedCount / activeMilestone.checklist.length) * 100);
 
   return (
-    <section className="py-20 md:py-28 px-4 md:px-8 bg-gradient-to-b from-white via-soft-gray/40 to-white relative overflow-hidden" id="gelisim">
+    <section className="py-8 md:py-12 px-4 md:px-8 bg-gradient-to-b from-white via-soft-gray/40 to-white relative overflow-hidden min-h-[calc(100vh-4rem)] flex flex-col justify-center" id="gelisim">
       {/* Background radial glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-turquoise/5 blur-3xl pointer-events-none" />
 
-      <div className="max-w-6xl mx-auto relative z-10">
+      <div className="max-w-6xl mx-auto relative z-10 w-full">
         
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-10">
-          <div className="inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-turquoise bg-turquoise/10 border border-turquoise/25 px-4 py-1.5 rounded-full mb-4">
-            <Sparkles size={14} className="text-turquoise animate-spin" style={{ animationDuration: '6s' }} />
+        {/* Compact Header */}
+        <div className="text-center max-w-3xl mx-auto mb-5">
+          <div className="inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-turquoise bg-turquoise/10 border border-turquoise/25 px-3.5 py-1 rounded-full mb-2">
+            <Sparkles size={13} className="text-turquoise animate-spin" style={{ animationDuration: '6s' }} />
             <span>0–24 Ay Canlı Bebek Gelişim Simülatörü</span>
           </div>
-          <h2 className="text-3xl md:text-5xl font-extrabold text-navy tracking-tight leading-tight">
-            Her bebeğin büyüme yolculuğu <br className="hidden sm:inline" />
-            <span className="text-turquoise">canlı bir mucizedir.</span>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-navy tracking-tight leading-tight">
+            Her bebeğin büyüme yolculuğu <span className="text-turquoise">canlı bir mucizedir.</span>
           </h2>
-          <p className="mt-4 text-base md:text-lg text-navy/70 leading-relaxed font-normal">
+          <p className="mt-1.5 text-xs sm:text-sm text-navy/70 leading-relaxed font-normal max-w-2xl mx-auto">
             Aşağıdaki ay butonlarına tıklayarak bebeğinizin animasyonlu gelişim hareketlerini ve o dönemin kilometre taşlarını canlı simüle edin.
           </p>
         </div>
 
         {/* Interactive Age Selector Bar */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-4 justify-start md:justify-center no-scrollbar">
+        <div className="flex items-center gap-2 overflow-x-auto pb-3 justify-start md:justify-center no-scrollbar mb-4">
           {milestones.map((m, idx) => (
             <button
               key={m.age}
               onClick={() => setActiveIndex(idx)}
-              className={`px-4 sm:px-5 py-3 rounded-2xl text-xs sm:text-sm font-bold transition-all duration-300 flex items-center gap-2 shrink-0 border ${
+              className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all duration-300 flex items-center gap-1.5 shrink-0 border cursor-pointer ${
                 activeIndex === idx
-                  ? 'bg-navy text-white shadow-xl shadow-navy/20 border-turquoise scale-105'
-                  : 'bg-white text-navy/70 hover:bg-turquoise/10 hover:text-navy border-gray-200 shadow-sm'
+                  ? 'bg-navy text-white shadow-md shadow-navy/20 border-turquoise scale-102'
+                  : 'bg-white text-navy/70 hover:bg-turquoise/10 hover:text-navy border-gray-200 shadow-2xs'
               }`}
             >
-              <span className="text-base">{m.emoji}</span>
+              <span className="text-sm">{m.emoji}</span>
               <span>{m.age}</span>
               {activeIndex === idx && (
                 <span className="w-1.5 h-1.5 rounded-full bg-turquoise animate-ping ml-0.5" />

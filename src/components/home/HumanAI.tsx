@@ -71,37 +71,44 @@ export default function HumanAI() {
   const [activeModule, setActiveModule] = useState(modules[0]);
 
   return (
-    <section className="py-20 md:py-28 px-4 md:px-8 bg-gradient-to-b from-white via-soft-gray/30 to-white relative overflow-hidden" id="insan-ve-ai">
+    <section className="py-8 md:py-12 px-4 md:px-8 bg-gradient-to-b from-white via-soft-gray/30 to-white relative overflow-hidden min-h-[calc(100vh-4rem)] flex flex-col justify-center" id="insan-ve-ai">
       {/* Background ambient lighting */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-sky-50/60 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="max-w-6xl mx-auto relative z-10">
-        <SectionHeader
-          eyebrow="İnsan + Yapay Zekâ Dengesi"
-          title="Yapay zekâ 7/24 destekler. Uzman hekim güvenin merkezindedir."
-          subtitle="Teknoloji bilgiye ve takibe erişimi demokratikleştirirken, klinik karar ve şefkat her zaman hekim ve uzmanlarımızın rehberliğinde kalır."
-          centered
-        />
+      <div className="max-w-6xl mx-auto relative z-10 w-full">
+        {/* Compact Header */}
+        <div className="text-center max-w-3xl mx-auto mb-6">
+          <div className="inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-turquoise bg-turquoise/5 border border-turquoise/15 px-3.5 py-1 rounded-full mb-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-turquoise animate-pulse" />
+            <span>İnsan + Yapay Zekâ Dengesi</span>
+          </div>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold leading-tight text-navy">
+            Yapay zekâ 7/24 destekler. Uzman hekim güvenin merkezindedir.
+          </h2>
+          <p className="mt-2 text-xs sm:text-sm text-navy/60 leading-relaxed max-w-2xl mx-auto">
+            Teknoloji bilgiye ve takibe erişimi demokratikleştirirken, klinik karar ve şefkat her zaman hekim ve uzmanlarımızın rehberliğinde kalır.
+          </p>
+        </div>
 
         {/* Interactive Neural Radar Area */}
-        <div className="mt-16 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           
           {/* LEFT 6 COLS: The High-Tech Radial Neural Radar */}
           <div className="lg:col-span-6 flex justify-center">
-            <div className="relative w-80 h-80 sm:w-96 sm:h-96 flex items-center justify-center select-none">
+            <div className="relative w-72 h-72 sm:w-80 sm:h-80 flex items-center justify-center select-none">
               
               {/* Outer Pulsing Rings */}
               <div className="absolute inset-0 rounded-full border border-sky-200/60 animate-spin" style={{ animationDuration: '40s' }} />
-              <div className="absolute inset-6 rounded-full border border-dashed border-sky-300/50 animate-spin" style={{ animationDuration: '25s', animationDirection: 'reverse' }} />
-              <div className="absolute inset-16 rounded-full bg-gradient-to-tr from-sky-100/50 via-transparent to-coral/10 animate-pulse-glow" />
+              <div className="absolute inset-5 rounded-full border border-dashed border-sky-300/50 animate-spin" style={{ animationDuration: '25s', animationDirection: 'reverse' }} />
+              <div className="absolute inset-12 rounded-full bg-gradient-to-tr from-sky-100/50 via-transparent to-coral/10 animate-pulse-glow" />
 
               {/* Central Doctor / Expert Node */}
-              <div className="relative w-28 h-28 rounded-full bg-gradient-to-br from-[#0B2545] via-[#0d3461] to-[#0B2545] flex flex-col items-center justify-center p-3 text-center shadow-2xl border-4 border-white z-20 group hover:scale-105 transition-transform duration-300">
-                <div className="w-8 h-8 rounded-full bg-sky-400/20 flex items-center justify-center mb-1 text-sky-300">
-                  <Stethoscope size={16} />
+              <div className="relative w-24 h-24 rounded-full bg-gradient-to-br from-[#0B2545] via-[#0d3461] to-[#0B2545] flex flex-col items-center justify-center p-2.5 text-center shadow-xl border-4 border-white z-20 group hover:scale-105 transition-transform duration-300">
+                <div className="w-7 h-7 rounded-full bg-sky-400/20 flex items-center justify-center mb-0.5 text-sky-300">
+                  <Stethoscope size={14} />
                 </div>
-                <span className="text-white font-extrabold text-[11px] leading-tight">UZMAN</span>
-                <span className="text-sky-300 font-bold text-[9px] uppercase tracking-wider">DESTEĞİ</span>
+                <span className="text-white font-extrabold text-[10px] leading-tight">UZMAN</span>
+                <span className="text-sky-300 font-bold text-[8px] uppercase tracking-wider">DESTEĞİ</span>
                 <span className="absolute -bottom-1 w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
               </div>
 
