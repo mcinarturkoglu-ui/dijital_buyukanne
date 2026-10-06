@@ -177,73 +177,59 @@ export default function SocialImpactCalculator({ onOpenDemoModal }: SocialImpact
   return (
     <section
       ref={sectionRef}
-      className="py-12 md:py-16 px-4 md:px-8 bg-gradient-to-b from-[#F5F9FF] via-white to-[#EFF5FB] relative overflow-hidden"
+      className="py-8 md:py-12 px-4 md:px-8 bg-gradient-to-b from-[#F5F9FF] via-white to-[#EFF5FB] relative overflow-hidden min-h-[calc(100vh-4rem)] flex flex-col justify-center"
       id="sosyal-etki"
     >
       {/* Soft background blobs */}
       <div className="absolute top-0 left-1/4 w-[600px] h-[400px] bg-teal-100/20 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-rose-100/20 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="max-w-6xl mx-auto relative z-10">
+      <div className="max-w-6xl mx-auto relative z-10 w-full">
 
-        {/* ── HEADER ── */}
-        <div className={`text-center max-w-3xl mx-auto mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-navy/5 text-navy text-xs font-bold tracking-wider uppercase mb-5 border border-navy/10">
-            <TrendingUp size={14} className="text-turquoise" />
+        {/* ── COMPACT HEADER ── */}
+        <div className={`text-center max-w-3xl mx-auto mb-4 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-navy/5 text-navy text-xs font-bold tracking-wider uppercase mb-1.5 border border-navy/10">
+            <TrendingUp size={13} className="text-turquoise" />
             <span>Kanıta Dayalı Sosyal Etki Simülasyonu</span>
           </div>
 
-          <h2 className="text-3xl md:text-[3rem] font-extrabold text-navy tracking-tight leading-[1.15]">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-navy tracking-tight leading-tight">
             Şehrinizde{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-turquoise to-[#0284C7]">
               kaç bebeğe dokunacaksınız?
             </span>
           </h2>
 
-          <p className="mt-5 text-base md:text-lg text-slate-600 leading-relaxed font-normal max-w-2xl mx-auto">
-            Sayıyı belirleyin — bilimsel verilere dayalı toplumsal dönüşümü görün.
-            Her rakamın kaynağını açıklayabiliriz.
+          <p className="mt-1 text-xs sm:text-sm text-slate-600 leading-relaxed font-normal max-w-2xl mx-auto">
+            Sayıyı belirleyin — bilimsel verilere dayalı toplumsal dönüşümü canlı görün.
           </p>
         </div>
 
-        {/* ── SLIDER CARD ── */}
-        <div className={`max-w-4xl mx-auto mb-14 transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-200/80 relative overflow-hidden">
+        {/* ── SLIDER CARD (COMPACT) ── */}
+        <div className={`max-w-4xl mx-auto mb-5 transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+          <div className="bg-white rounded-2xl p-4 sm:p-5 shadow-lg border border-slate-200/80 relative overflow-hidden">
             {/* Decorative corner */}
-            <div className="absolute -top-8 -right-8 w-40 h-40 bg-gradient-to-bl from-turquoise/10 to-transparent rounded-full pointer-events-none" />
-            <div className="absolute -bottom-8 -left-8 w-32 h-32 bg-gradient-to-tr from-coral/5 to-transparent rounded-full pointer-events-none" />
+            <div className="absolute -top-8 -right-8 w-32 h-32 bg-gradient-to-bl from-turquoise/10 to-transparent rounded-full pointer-events-none" />
+            <div className="absolute -bottom-8 -left-8 w-24 h-24 bg-gradient-to-tr from-coral/5 to-transparent rounded-full pointer-events-none" />
 
-            {/* Visual — family illustration strip */}
-            <div className="flex items-center justify-center gap-3 mb-6 py-3 px-4 rounded-2xl bg-gradient-to-r from-teal-50 via-blue-50 to-rose-50 border border-slate-100">
-              <span className="text-3xl">👨‍👩‍👶</span>
-              <div className="h-0.5 flex-1 bg-gradient-to-r from-teal-200 via-blue-200 to-rose-200 rounded" />
-              <span className="text-2xl">👶</span>
-              <div className="h-0.5 w-8 bg-slate-200 rounded" />
-              <span className="text-2xl">🍼</span>
-              <div className="h-0.5 w-8 bg-slate-200 rounded" />
-              <span className="text-2xl">🌱</span>
-              <div className="h-0.5 flex-1 bg-gradient-to-r from-rose-200 via-emerald-200 to-teal-200 rounded" />
-              <span className="text-3xl">🏘️</span>
-            </div>
-
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-5">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
               <div>
-                <h3 className="text-sm font-bold text-navy">Desteklemek istediğiniz bebek sayısı</h3>
-                <p className="text-xs text-slate-500 mt-1">
-                  Slider&apos;ı kaydırın veya aşağıdan hızlı ölçek seçin
+                <h3 className="text-xs sm:text-sm font-bold text-navy">Desteklemek istediğiniz bebek sayısı</h3>
+                <p className="text-[11px] text-slate-500">
+                  Slider&apos;ı kaydırın veya hızlı ölçek seçin
                 </p>
               </div>
-              <div className="inline-flex items-baseline gap-2 bg-gradient-to-r from-navy via-[#0d3461] to-navy px-6 py-3 rounded-2xl shadow-lg shadow-navy/20">
-                <span className="text-3xl sm:text-4xl font-black text-turquoise font-mono tracking-tight">
+              <div className="inline-flex items-baseline gap-2 bg-gradient-to-r from-navy via-[#0d3461] to-navy px-4 py-2 rounded-xl shadow-md shadow-navy/20">
+                <span className="text-2xl sm:text-3xl font-black text-turquoise font-mono tracking-tight">
                   {babyCount.toLocaleString('tr-TR')}
                 </span>
-                <span className="text-[11px] font-bold text-white/80 uppercase tracking-wider">Bebek & Aile</span>
+                <span className="text-[10px] font-bold text-white/80 uppercase tracking-wider">Bebek & Aile</span>
               </div>
             </div>
 
             {/* Slider */}
-            <div className="relative mb-5">
-              <div className="relative h-4 bg-slate-100 rounded-full overflow-hidden">
+            <div className="relative mb-3.5">
+              <div className="relative h-3 bg-slate-100 rounded-full overflow-hidden">
                 <div
                   className="absolute left-0 top-0 h-full bg-gradient-to-r from-turquoise to-[#0284C7] rounded-full transition-all duration-300"
                   style={{ width: `${sliderPct}%` }}
@@ -252,96 +238,96 @@ export default function SocialImpactCalculator({ onOpenDemoModal }: SocialImpact
               <input
                 type="range" min={100} max={15000} step={100} value={babyCount}
                 onChange={(e) => setBabyCount(Number(e.target.value))}
-                className="absolute inset-0 w-full h-4 opacity-0 cursor-pointer"
+                className="absolute inset-0 w-full h-3 opacity-0 cursor-pointer"
               />
               <div
-                className="absolute top-1/2 -translate-y-1/2 w-6 h-6 bg-white border-[3px] border-turquoise rounded-full shadow-md shadow-turquoise/30 pointer-events-none transition-all duration-300"
-                style={{ left: `calc(${sliderPct}% - 12px)` }}
+                className="absolute top-1/2 -translate-y-1/2 w-5 h-5 bg-white border-[3px] border-turquoise rounded-full shadow-md shadow-turquoise/30 pointer-events-none transition-all duration-300"
+                style={{ left: `calc(${sliderPct}% - 10px)` }}
               />
             </div>
 
             {/* Scale Buttons */}
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-1.5 justify-center sm:justify-start">
               {quickScales.map((s) => (
                 <button
                   key={s.count}
                   onClick={() => setBabyCount(s.count)}
-                  className={`px-3.5 py-2 rounded-xl text-xs transition-all border flex flex-col items-center leading-tight ${
+                  className={`px-3 py-1.5 rounded-xl text-xs transition-all border flex items-center gap-1.5 cursor-pointer leading-tight ${
                     babyCount === s.count
-                      ? 'bg-navy text-white border-navy font-bold shadow-md'
+                      ? 'bg-navy text-white border-navy font-bold shadow-xs scale-102'
                       : 'bg-white text-slate-600 hover:border-slate-300 border-slate-200 hover:bg-slate-50'
                   }`}
                 >
-                  <span className="text-base leading-none mb-0.5">{s.emoji}</span>
-                  <span className="font-bold">{s.label}</span>
-                  <span className={`text-[10px] ${babyCount === s.count ? 'text-white/70' : 'text-slate-400'}`}>{s.sub}</span>
+                  <span className="text-sm leading-none">{s.emoji}</span>
+                  <span className="font-bold text-[11px]">{s.label}</span>
+                  <span className={`text-[10px] ${babyCount === s.count ? 'text-white/70' : 'text-slate-400'}`}>({s.sub})</span>
                 </button>
               ))}
             </div>
           </div>
         </div>
 
-        {/* ── 4 IMPACT CARDS ── */}
-        <div className={`grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto mb-12 transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+        {/* ── 4 IMPACT CARDS (COMPACT & RESPONSIVE) ── */}
+        <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 max-w-5xl mx-auto mb-4 transition-all duration-700 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
           {cards.map((card, idx) => {
             const Icon = card.icon;
             const isOpen = openSource === idx;
             return (
               <div
                 key={idx}
-                className={`bg-gradient-to-br ${card.gradFrom} to-white rounded-3xl border ${card.border} shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden`}
+                className={`bg-gradient-to-br ${card.gradFrom} to-white rounded-2xl border ${card.border} shadow-2xs hover:shadow-md transition-all duration-300 overflow-hidden flex flex-col justify-between`}
               >
                 {/* Card header */}
-                <div className="p-6">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center gap-3">
-                      <div className="text-3xl leading-none">{card.emoji}</div>
-                      <div className={`w-10 h-10 rounded-xl ${card.iconBg} ${card.iconColor} flex items-center justify-center`}>
-                        <Icon size={20} />
+                <div className="p-3.5 sm:p-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-2">
+                      <div className="text-xl leading-none">{card.emoji}</div>
+                      <div className={`w-7 h-7 rounded-lg ${card.iconBg} ${card.iconColor} flex items-center justify-center`}>
+                        <Icon size={14} />
                       </div>
                     </div>
-                    <span className={`text-[11px] font-bold px-2.5 py-1 rounded-full ${card.badgeBg}`}>
+                    <span className={`text-[9px] font-bold px-2 py-0.5 rounded-full ${card.badgeBg}`}>
                       {card.badge}
                     </span>
                   </div>
 
                   {/* Big number */}
-                  <div className={`text-4xl sm:text-5xl font-black ${card.valueColor} font-mono mb-1 tracking-tight`}>
+                  <div className={`text-2xl sm:text-3xl font-black ${card.valueColor} font-mono mb-1 tracking-tight`}>
                     {typeof card.value === 'number' ? card.value.toLocaleString('tr-TR') : card.value}
-                    <span className="text-xl font-bold ml-2 opacity-70">{card.unit}</span>
+                    <span className="text-xs font-bold ml-1.5 opacity-70">{card.unit}</span>
                   </div>
 
-                  <h4 className="text-sm font-bold text-slate-800 mb-3 leading-snug">
+                  <h4 className="text-xs font-bold text-slate-800 mb-1 leading-snug line-clamp-2">
                     {card.title}
                   </h4>
 
-                  <p className="text-xs text-slate-600 leading-relaxed">
+                  <p className="text-[11px] text-slate-600 leading-relaxed line-clamp-2">
                     {card.story}
                   </p>
 
                   {/* Why it matters */}
-                  <div className={`mt-4 p-3 rounded-xl ${card.iconBg} border ${card.border}`}>
-                    <p className={`text-xs font-semibold ${card.iconColor} leading-snug`}>
+                  <div className={`mt-2 p-2 rounded-lg ${card.iconBg} border ${card.border}`}>
+                    <p className={`text-[10px] font-semibold ${card.iconColor} leading-tight line-clamp-2`}>
                       💡 {card.why}
                     </p>
                   </div>
                 </div>
 
                 {/* Source accordion */}
-                <div className="border-t border-slate-100/80">
+                <div className="border-t border-slate-100/80 bg-slate-50/30">
                   <button
                     onClick={() => setOpenSource(isOpen ? null : idx)}
-                    className="w-full flex items-center justify-between px-6 py-3 text-xs text-slate-500 hover:text-slate-700 hover:bg-slate-50/50 transition-colors"
+                    className="w-full flex items-center justify-between px-3 py-1.5 text-[10px] text-slate-500 hover:text-slate-700 hover:bg-slate-50 transition-colors"
                   >
-                    <span className="flex items-center gap-1.5 font-semibold">
-                      <BookOpen size={13} />
-                      Kaynak: {card.sourceLabel}
+                    <span className="flex items-center gap-1 font-semibold truncate">
+                      <BookOpen size={11} />
+                      <span>{card.sourceLabel}</span>
                     </span>
-                    {isOpen ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+                    {isOpen ? <ChevronUp size={12} /> : <ChevronDown size={12} />}
                   </button>
                   {isOpen && (
-                    <div className="px-6 pb-4 text-[11px] text-slate-500 leading-relaxed bg-slate-50/40 border-t border-slate-100">
-                      <p className="pt-3">{card.sourceDetail}</p>
+                    <div className="px-3 pb-2 text-[10px] text-slate-500 leading-relaxed bg-white border-t border-slate-100">
+                      <p className="pt-1.5">{card.sourceDetail}</p>
                     </div>
                   )}
                 </div>
@@ -350,73 +336,58 @@ export default function SocialImpactCalculator({ onOpenDemoModal }: SocialImpact
           })}
         </div>
 
-        {/* ── DARK SUMMARY PANEL ── */}
-        <div className={`max-w-5xl mx-auto mb-10 transition-all duration-1000 delay-400 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <div className="bg-gradient-to-br from-[#0B2545] via-[#0d3461] to-[#071e37] rounded-3xl p-6 sm:p-10 text-white shadow-2xl relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-turquoise/5 rounded-full blur-3xl pointer-events-none" />
-
-            {/* Visual summary strip */}
-            <div className="text-center mb-8">
-              <p className="text-[11px] text-white/50 uppercase tracking-widest font-bold mb-2">
-                {babyCount.toLocaleString('tr-TR')} aile için programın özeti
-              </p>
-              <div className="flex justify-center items-center gap-2 flex-wrap">
-                {['👶', '👶', '🤱', '🏥', '❤️', '🌱', '🏙️'].map((em, i) => (
-                  <span key={i} className="text-2xl">{em}</span>
-                ))}
-              </div>
-            </div>
-
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 relative">
+        {/* ── DARK SUMMARY PANEL (COMPACT) ── */}
+        <div className={`max-w-5xl mx-auto mb-4 transition-all duration-700 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+          <div className="bg-gradient-to-br from-[#0B2545] via-[#0d3461] to-[#071e37] rounded-2xl p-4 sm:p-5 text-white shadow-lg relative overflow-hidden">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 relative">
               {[
-                { val: motorRisk.toLocaleString('tr-TR'), label: 'Motor İpucu Tespiti', sub: 'Nöromotor & Kas verisi', color: 'text-teal-400' },
+                { val: motorRisk.toLocaleString('tr-TR'), label: 'Motor İpucu Tespiti', sub: 'Nöromotor & Kas', color: 'text-teal-400' },
                 { val: skinDigest.toLocaleString('tr-TR'), label: 'Cilt & Sindirim Tespiti', sub: 'WHO Kılavuzu', color: 'text-rose-400' },
                 { val: anxiousMoms.toLocaleString('tr-TR'), label: 'Anne Yanında Destek', sub: 'WHO Türkiye %21.4', color: 'text-blue-400' },
                 { val: avoidableER.toLocaleString('tr-TR'), label: 'Önlenebilir Acil', sub: 'AAP / HSB %52', color: 'text-emerald-400' },
               ].map((item, i) => (
-                <div key={i} className="p-4 rounded-2xl bg-white/[0.06] border border-white/[0.07] text-center">
-                  <span className={`block text-2xl sm:text-3xl font-black ${item.color} font-mono`}>
+                <div key={i} className="p-2.5 rounded-xl bg-white/[0.06] border border-white/[0.07] text-center">
+                  <span className={`block text-xl sm:text-2xl font-black ${item.color} font-mono`}>
                     {item.val}
                   </span>
-                  <span className="text-[11px] font-medium text-white/80 mt-1.5 block leading-snug">{item.label}</span>
-                  <span className="text-[10px] text-white/40">{item.sub}</span>
+                  <span className="text-[10px] font-medium text-white/80 mt-0.5 block leading-tight truncate">{item.label}</span>
+                  <span className="text-[9px] text-white/40">{item.sub}</span>
                 </div>
               ))}
             </div>
 
-            <div className="flex flex-col sm:flex-row items-center justify-between text-[11px] text-white/50 gap-2 pt-4 border-t border-white/[0.06]">
+            <div className="flex flex-col sm:flex-row items-center justify-between text-[10px] text-white/50 gap-1 pt-3 mt-3 border-t border-white/[0.06]">
               <span className="flex items-center gap-1.5">
-                <Sparkles size={13} className="text-turquoise" />
-                Tüm hesaplamalar uluslararası pediatri kılavuzları ve WHO verileri baz alınarak yapılmıştır.
+                <Sparkles size={11} className="text-turquoise" />
+                Uluslararası pediatri kılavuzları ve WHO verileriyle modellenmiştir.
               </span>
-              <span className="text-white/30">Tanı koymaz; erken farkındalık ve hekim köprüsü kurar.</span>
+              <span className="text-white/40">Tanı koymaz; erken farkındalık ve hekim köprüsü kurar.</span>
             </div>
           </div>
         </div>
 
-        {/* ── CTA ── */}
-        <div className={`max-w-5xl mx-auto transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <div className="p-6 sm:p-8 rounded-3xl bg-white border border-slate-200 shadow-lg flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="flex items-start gap-4">
-              <div className="w-12 h-12 rounded-2xl bg-navy/5 text-navy flex items-center justify-center shrink-0">
-                <FileText size={22} />
+        {/* ── CTA (COMPACT INLINE) ── */}
+        <div className={`max-w-5xl mx-auto transition-all duration-700 delay-400 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+          <div className="p-3.5 sm:p-4 rounded-2xl bg-white border border-slate-200 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div className="flex items-center gap-3">
+              <div className="w-9 h-9 rounded-xl bg-navy/5 text-navy flex items-center justify-center shrink-0">
+                <FileText size={18} />
               </div>
               <div>
-                <h4 className="text-sm font-bold text-navy mb-1">
+                <h4 className="text-xs sm:text-sm font-bold text-navy">
                   Kurumsal Protokol & Meclis Karar Dosyası
                 </h4>
-                <p className="text-xs text-slate-600 max-w-lg leading-relaxed">
-                  Bu sosyal destek modelini kurumunuzun logosuyla hayata geçirmek için{' '}
-                  <strong>protokol dosyasını, bilimsel kaynakları ve bütçe tablosunu</strong> talep edebilirsiniz.
+                <p className="text-[11px] text-slate-500">
+                  Protokol dosyasını, bilimsel kaynakları ve bütçe tablosunu talep edin.
                 </p>
               </div>
             </div>
             <button
               onClick={() => handleOpenModal(babyCount)}
-              className="px-7 py-4 rounded-2xl bg-gradient-to-r from-coral to-[#e8634f] text-white font-bold text-sm shrink-0 flex items-center gap-2.5 shadow-xl shadow-coral/25 hover:shadow-2xl hover:shadow-coral/30 hover:scale-[1.03] active:scale-[0.98] transition-all"
+              className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-gradient-to-r from-coral to-[#e8634f] text-white font-bold text-xs shrink-0 flex items-center justify-center gap-2 shadow-md shadow-coral/20 hover:shadow-lg hover:scale-102 transition-all cursor-pointer"
             >
               <span>Protokol Dosyasını Talep Edin</span>
-              <ArrowRight size={16} />
+              <ArrowRight size={14} />
             </button>
           </div>
         </div>

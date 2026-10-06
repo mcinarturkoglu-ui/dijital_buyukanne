@@ -470,94 +470,92 @@ export default function InclusiveAccess() {
   const stageData = isSupported ? currentStage.supported : currentStage.unsupported;
 
   return (
-    <section className="py-12 md:py-16 px-4 md:px-8 bg-gradient-to-b from-[#F5F8FD] via-white to-[#F5F8FD] text-[#13193E] relative overflow-hidden" id="kapsayici-erisim">
+    <section className="py-8 md:py-12 px-4 md:px-8 bg-gradient-to-b from-[#F5F8FD] via-white to-[#F5F8FD] text-[#13193E] relative overflow-hidden min-h-[calc(100vh-4rem)] flex flex-col justify-center" id="kapsayici-erisim">
       {/* Background radial glows */}
       <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-indigo-200/30 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-10 left-0 w-[500px] h-[500px] bg-coral/10 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="max-w-6xl mx-auto relative z-10">
+      <div className="max-w-6xl mx-auto relative z-10 w-full">
         
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-10">
-          <div className="inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-indigo-900 bg-indigo-50 border border-indigo-200 px-4 py-1.5 rounded-full mb-4 shadow-xs">
-            <HeartHandshake size={14} className="text-indigo-600" />
+        {/* Compact Section Header */}
+        <div className="text-center max-w-3xl mx-auto mb-4">
+          <div className="inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-indigo-900 bg-indigo-50 border border-indigo-200 px-3.5 py-1 rounded-full mb-1.5 shadow-2xs">
+            <HeartHandshake size={13} className="text-indigo-600" />
             <span>Kapsayıcı Sağlık & Erken Müdahale Modeli</span>
           </div>
-          <h2 className="text-3xl md:text-5xl font-extrabold text-[#13193E] tracking-tight leading-tight">
-            Gelişimsel risk taşıyan her bebek, <br className="hidden sm:inline" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-700 via-purple-600 to-coral">zamanında destekle özgürce yürüyebilir.</span>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#13193E] tracking-tight leading-tight">
+            Gelişimsel risk taşıyan her bebek, <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-700 via-purple-600 to-coral">zamanında destekle özgürce yürüyebilir.</span>
           </h2>
-          <p className="mt-4 text-base md:text-lg text-slate-600 leading-relaxed font-normal">
-            Serebral palsi riski, prematüre doğum veya motor gecikmelerde ilk 24 ayın nöroplastisitesi eşsizdir. 
-            Aşağıdaki canlı simülasyonla erken müdahalenin bir çocuğun hayatını nasıl dönüştürdüğünü adım adım keşfedin.
+          <p className="mt-1.5 text-xs sm:text-sm text-slate-600 leading-relaxed font-normal max-w-2xl mx-auto">
+            İlk 24 ayın nöroplastisitesi eşsizdir. Canlı simülasyonla erken müdahalenin bir çocuğun hayatını nasıl dönüştürdüğünü adımlarla inceleyin.
           </p>
         </div>
 
         {/* Dual Mode Switcher Bar */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 max-w-2xl mx-auto mb-8 bg-slate-100/90 p-1.5 rounded-2xl border border-indigo-100 shadow-xs">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-2 max-w-xl mx-auto mb-4 bg-slate-100/90 p-1 rounded-2xl border border-indigo-100 shadow-2xs">
           <button
             onClick={() => setMode('supported')}
-            className={`w-full sm:w-1/2 py-3 px-4 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all ${
+            className={`w-full sm:w-1/2 py-2 px-3 rounded-xl text-xs font-bold flex items-center justify-center gap-2 transition-all cursor-pointer ${
               mode === 'supported'
-                ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-md shadow-indigo-500/25 scale-[1.02]'
+                ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-sm shadow-indigo-500/25 scale-[1.01]'
                 : 'text-slate-600 hover:text-slate-900 hover:bg-white/60'
             }`}
           >
-            <ShieldCheck size={16} />
+            <ShieldCheck size={14} />
             <span>Dijital Büyükanne Erken Müdahalesi</span>
-            <span className="text-[10px] bg-white/20 px-1.5 py-0.5 rounded font-mono font-bold">Önerilen</span>
+            <span className="text-[9px] bg-white/20 px-1.5 py-0.5 rounded font-mono font-bold">Önerilen</span>
           </button>
 
           <button
             onClick={() => setMode('unsupported')}
-            className={`w-full sm:w-1/2 py-3 px-4 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all ${
+            className={`w-full sm:w-1/2 py-2 px-3 rounded-xl text-xs font-bold flex items-center justify-center gap-2 transition-all cursor-pointer ${
               mode === 'unsupported'
-                ? 'bg-slate-700 text-white shadow-md border border-slate-600 scale-[1.02]'
+                ? 'bg-slate-700 text-white shadow-sm border border-slate-600 scale-[1.01]'
                 : 'text-slate-600 hover:text-slate-900 hover:bg-white/60'
             }`}
           >
-            <AlertCircle size={16} className="text-amber-500" />
+            <AlertCircle size={14} className="text-amber-500" />
             <span>Geleneksel / Desteksiz Süreç</span>
-            <span className="text-[10px] bg-slate-200 px-1.5 py-0.5 rounded font-mono">Gecikmeli</span>
+            <span className="text-[9px] bg-slate-200 text-slate-700 px-1.5 py-0.5 rounded font-mono">Gecikmeli</span>
           </button>
         </div>
 
         {/* 4-Stage Stepper Buttons */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 max-w-4xl mx-auto mb-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 max-w-4xl mx-auto mb-4">
           {journeyStages.map((stage, idx) => (
             <button
               key={stage.age}
               onClick={() => setActiveStage(idx)}
-              className={`p-3.5 rounded-2xl text-left transition-all border ${
+              className={`p-2.5 rounded-xl text-left transition-all border cursor-pointer ${
                 activeStage === idx
                   ? isSupported
-                    ? 'bg-white border-indigo-500 shadow-md ring-2 ring-indigo-400/20'
-                    : 'bg-white border-slate-500 shadow-md ring-2 ring-slate-400/20'
-                  : 'bg-white/70 border-indigo-100 hover:bg-white opacity-80 hover:opacity-100 shadow-xs'
+                    ? 'bg-white border-indigo-500 shadow-sm ring-2 ring-indigo-400/20'
+                    : 'bg-white border-slate-500 shadow-sm ring-2 ring-slate-400/20'
+                  : 'bg-white/70 border-indigo-100 hover:bg-white opacity-85 hover:opacity-100 shadow-2xs'
               }`}
             >
-              <div className="flex items-center justify-between mb-1">
-                <span className="text-xs font-mono font-bold text-indigo-700">{stage.age}</span>
-                {activeStage === idx && <span className="w-2 h-2 rounded-full bg-indigo-600 animate-ping" />}
+              <div className="flex items-center justify-between mb-0.5">
+                <span className="text-[11px] font-mono font-bold text-indigo-700">{stage.age}</span>
+                {activeStage === idx && <span className="w-1.5 h-1.5 rounded-full bg-indigo-600 animate-ping" />}
               </div>
-              <p className="text-xs sm:text-sm font-bold text-slate-800 truncate">{stage.title}</p>
+              <p className="text-xs font-bold text-slate-800 truncate">{stage.title}</p>
             </button>
           ))}
         </div>
 
         {/* Main Simulation Theater Card */}
         <div
-          className={`rounded-3xl p-6 sm:p-9 border transition-all duration-500 shadow-xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-center ${
+          className={`rounded-3xl p-4 sm:p-6 border transition-all duration-300 shadow-lg grid grid-cols-1 lg:grid-cols-12 gap-6 items-center ${
             isSupported
-              ? 'bg-white border-indigo-100 shadow-indigo-100/50'
+              ? 'bg-white border-indigo-100 shadow-indigo-100/40'
               : 'bg-slate-50 border-slate-200 shadow-slate-100'
           }`}
         >
           {/* Left Column: Stage Story & Evidence (7 Cols) */}
-          <div className="lg:col-span-7 flex flex-col gap-4">
-            <div className="flex flex-wrap items-center gap-2">
+          <div className="lg:col-span-7 flex flex-col gap-2.5">
+            <div className="flex flex-wrap items-center gap-1.5">
               <span
-                className={`text-xs font-bold px-3 py-1 rounded-full border ${
+                className={`text-[10px] font-bold px-2.5 py-0.5 rounded-full border ${
                   isSupported
                     ? 'bg-indigo-50 text-indigo-800 border-indigo-200'
                     : 'bg-slate-200 text-slate-700 border-slate-300'
@@ -565,11 +563,11 @@ export default function InclusiveAccess() {
               >
                 {currentStage.badge}
               </span>
-              <span className="text-xs font-mono text-slate-600 bg-slate-100 px-2.5 py-1 rounded-full border border-slate-200">
+              <span className="text-[10px] font-mono text-slate-600 bg-slate-100 px-2 py-0.5 rounded-full border border-slate-200">
                 {currentStage.age}
               </span>
               <span
-                className={`text-xs font-semibold px-2.5 py-1 rounded-full ml-auto ${
+                className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ml-auto ${
                   isSupported ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-amber-50 text-amber-800 border border-amber-200'
                 }`}
               >
@@ -577,95 +575,97 @@ export default function InclusiveAccess() {
               </span>
             </div>
 
-            <h3 className="text-2xl sm:text-3xl font-extrabold text-[#13193E] leading-snug">
+            <h3 className="text-lg sm:text-xl font-extrabold text-[#13193E] leading-snug">
               {currentStage.title}
             </h3>
 
-            <p className="text-sm text-slate-600 leading-relaxed font-normal">
+            <p className="text-xs text-slate-600 leading-relaxed font-normal">
               {currentStage.subtitle}
             </p>
 
             {/* Dynamic Evidence Bullet Points */}
             <div
-              className={`p-4 rounded-2xl border flex flex-col gap-2.5 ${
+              className={`p-3 rounded-xl border flex flex-col gap-1.5 ${
                 isSupported
                   ? 'bg-indigo-50/60 border-indigo-100'
                   : 'bg-slate-100 border-slate-200'
               }`}
             >
-              <p className="text-xs font-bold uppercase tracking-wider text-slate-800">
+              <p className="text-[10px] font-bold uppercase tracking-wider text-slate-800">
                 {stageData.heading}
               </p>
               {stageData.points.map((pt, i) => (
-                <div key={i} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 font-normal">
+                <div key={i} className="flex items-start gap-2 text-xs text-slate-700 font-normal">
                   {isSupported ? (
-                    <CheckCircle2 size={16} className="text-indigo-600 shrink-0 mt-0.5" />
+                    <CheckCircle2 size={14} className="text-indigo-600 shrink-0 mt-0.5" />
                   ) : (
-                    <AlertCircle size={16} className="text-amber-500 shrink-0 mt-0.5" />
+                    <AlertCircle size={14} className="text-amber-500 shrink-0 mt-0.5" />
                   )}
-                  <span>{pt}</span>
+                  <span className="leading-tight">{pt}</span>
                 </div>
               ))}
             </div>
 
             {/* Impact Metric Bar */}
-            <div className="flex items-center gap-4 pt-2">
+            <div className="flex items-center gap-3 pt-1">
               <div
-                className={`px-4 py-2.5 rounded-2xl border flex items-center gap-3 ${
+                className={`px-3 py-1.5 rounded-xl border flex items-center gap-2.5 ${
                   isSupported ? 'bg-indigo-50 border-indigo-200' : 'bg-slate-100 border-slate-200'
                 }`}
               >
-                <div className="text-2xl font-black text-indigo-700">{stageData.statValue}</div>
-                <div className="text-[11px] text-slate-600 font-medium leading-tight max-w-[180px]">
+                <div className="text-lg font-black text-indigo-700">{stageData.statValue}</div>
+                <div className="text-[10px] text-slate-600 font-medium leading-tight max-w-[170px]">
                   {stageData.statLabel}
                 </div>
               </div>
 
               {/* Play / Next Controls */}
-              <div className="ml-auto flex items-center gap-2">
+              <div className="ml-auto flex items-center gap-1.5">
                 <button
                   onClick={() => setIsPlaying(!isPlaying)}
-                  className={`p-2.5 rounded-xl border transition-all text-xs font-bold flex items-center gap-1.5 ${
+                  className={`p-2 rounded-xl border transition-all text-xs font-bold flex items-center gap-1.5 cursor-pointer ${
                     isPlaying
                       ? 'bg-indigo-600 text-white border-indigo-600'
-                      : 'bg-white text-slate-700 hover:bg-slate-50 border-slate-200 shadow-xs'
+                      : 'bg-white text-slate-700 hover:bg-slate-50 border-slate-200 shadow-2xs'
                   }`}
                   title={isPlaying ? 'Durdur' : 'Otomatik Oynat'}
                 >
-                  {isPlaying ? <Pause size={14} /> : <Play size={14} />}
-                  <span className="hidden sm:inline">{isPlaying ? 'Durdur' : 'Otomatik Simülasyon'}</span>
+                  {isPlaying ? <Pause size={13} /> : <Play size={13} />}
+                  <span className="hidden sm:inline text-xs">{isPlaying ? 'Durdur' : 'Otomatik Simülasyon'}</span>
                 </button>
 
                 <button
                   onClick={() => setActiveStage((prev) => (prev + 1) % journeyStages.length)}
-                  className="p-2.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white transition-all"
+                  className="p-2 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-700 transition-all cursor-pointer"
                   title="Sonraki Aşama"
                 >
-                  <ArrowRight size={14} />
+                  <ArrowRight size={13} />
                 </button>
               </div>
             </div>
           </div>
 
           {/* Right Column: Dynamic SVG Canvas (5 Cols) */}
-          <div className="lg:col-span-5 flex flex-col items-center justify-center p-4 bg-black/20 rounded-3xl border border-white/10 relative">
-            <div className="flex items-center justify-between w-full mb-2 px-2 text-[10px] font-mono">
+          <div className="lg:col-span-5 flex flex-col items-center justify-center p-3 bg-slate-900/90 rounded-2xl border border-slate-800 relative">
+            <div className="flex items-center justify-between w-full mb-1.5 px-2 text-[10px] font-mono">
               <span className="text-turquoise font-bold flex items-center gap-1.5">
-                <span className={`w-2 h-2 rounded-full ${isSupported ? 'bg-emerald-400 animate-ping' : 'bg-amber-400'}`} />
-                {isSupported ? 'ERKEN MÜDAHALE SİMÜLATÖRÜ' : 'GELENEKSEL İZLEM SİMÜLATÖRÜ'}
+                <span className={`w-1.5 h-1.5 rounded-full ${isSupported ? 'bg-emerald-400 animate-ping' : 'bg-amber-400'}`} />
+                <span className="text-[9px]">{isSupported ? 'ERKEN MÜDAHALE SİMÜLATÖRÜ' : 'GELENEKSEL İZLEM SİMÜLATÖRÜ'}</span>
               </span>
-              <span className="text-white/40">{currentStage.age}</span>
+              <span className="text-white/50 text-[10px]">{currentStage.age}</span>
             </div>
 
             {/* Child SVG Character */}
-            <ChildGrowthVisual stageIndex={activeStage} isSupported={isSupported} />
+            <div className="scale-90 transform-origin-center">
+              <ChildGrowthVisual stageIndex={activeStage} isSupported={isSupported} />
+            </div>
 
             {/* Bottom Caption Pill */}
-            <div className="mt-3 text-center bg-white/10 backdrop-blur-md px-3.5 py-1.5 rounded-xl border border-white/15">
-              <p className="text-xs font-bold text-white">
+            <div className="mt-1.5 text-center bg-white/10 backdrop-blur-md px-3 py-1 rounded-xl border border-white/15">
+              <p className="text-[11px] font-bold text-white">
                 {isSupported ? 'Sağlıklı & Güvenli Motor İlerleme' : 'Desteklenmeyen Gelişimsel Kısıt'}
               </p>
-              <p className="text-[10px] text-turquoise">BabySensAI Nörogelişim İzlemi</p>
+              <p className="text-[9px] text-turquoise">BabySensAI Nörogelişim İzlemi</p>
             </div>
           </div>
         </div>
