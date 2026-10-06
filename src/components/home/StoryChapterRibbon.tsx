@@ -51,7 +51,7 @@ export default function StoryChapterRibbon({
   return (
     <div
       id={anchorId}
-      className={`relative py-14 md:py-20 px-4 select-none overflow-hidden transition-colors border-y ${
+      className={`relative py-8 md:py-12 px-4 select-none overflow-hidden transition-colors border-y ${
         isDark
           ? 'bg-gradient-to-b from-[#0B2545] via-[#10345E] to-[#0B2545] text-white border-white/10'
           : 'bg-gradient-to-b from-[#F0F8FF] via-white to-[#F0F8FF] text-[#0B1E3B] border-sky-100/70'

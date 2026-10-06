@@ -177,7 +177,7 @@ export default function SocialImpactCalculator({ onOpenDemoModal }: SocialImpact
   return (
     <section
       ref={sectionRef}
-      className="py-20 md:py-28 px-4 md:px-8 bg-gradient-to-b from-[#F5F9FF] via-white to-[#EFF5FB] relative overflow-hidden"
+      className="py-12 md:py-16 px-4 md:px-8 bg-gradient-to-b from-[#F5F9FF] via-white to-[#EFF5FB] relative overflow-hidden"
       id="sosyal-etki"
     >
       {/* Soft background blobs */}

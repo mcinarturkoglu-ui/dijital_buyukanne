@@ -470,7 +470,7 @@ export default function InclusiveAccess() {
   const stageData = isSupported ? currentStage.supported : currentStage.unsupported;
 
   return (
-    <section className="py-20 md:py-28 px-4 md:px-8 bg-gradient-to-b from-[#F5F8FD] via-white to-[#F5F8FD] text-[#13193E] relative overflow-hidden" id="kapsayici-erisim">
+    <section className="py-12 md:py-16 px-4 md:px-8 bg-gradient-to-b from-[#F5F8FD] via-white to-[#F5F8FD] text-[#13193E] relative overflow-hidden" id="kapsayici-erisim">
       {/* Background radial glows */}
       <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-indigo-200/30 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-10 left-0 w-[500px] h-[500px] bg-coral/10 rounded-full blur-3xl pointer-events-none" />

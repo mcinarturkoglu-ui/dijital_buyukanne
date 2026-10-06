@@ -203,7 +203,7 @@ export default function NationalMediaPress() {
   ];
 
   return (
-    <section className="py-20 md:py-28 bg-gradient-to-b from-[#F5F8FD] via-white to-[#F5F8FD] relative overflow-hidden" id="medya">
+    <section className="py-12 md:py-16 bg-gradient-to-b from-[#F5F8FD] via-white to-[#F5F8FD] relative overflow-hidden" id="medya">
       {/* Background Glows */}
       <div className="absolute top-0 right-1/4 w-96 h-96 bg-sky-200/30 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-1/4 w-80 h-80 bg-rose-100/30 rounded-full blur-3xl pointer-events-none" />

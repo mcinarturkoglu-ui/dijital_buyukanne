@@ -18,7 +18,7 @@ export default function InstitutionsHero() {
   const features = siteContent.institutionsHero?.checklist || defaultFeatures;
 
   return (
-    <section className="py-20 md:py-28 px-4 md:px-8 bg-gradient-to-b from-white via-[#F0F8FF] to-white text-[#0B1E3B] relative overflow-hidden">
+    <section className="py-12 md:py-16 px-4 md:px-8 bg-gradient-to-b from-white via-[#F0F8FF] to-white text-[#0B1E3B] relative overflow-hidden">
       {/* Background glow & accents */}
       <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-sky-200/40 rounded-full blur-3xl pointer-events-none animate-pulse-glow" />
       <div
