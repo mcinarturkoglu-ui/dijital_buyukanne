@@ -406,3 +406,22 @@ body {
   padding: 12px 16px;
   box-shadow: 0 -8px 30px rgba(8,42,70,0.08);
 }
+
+/* ===== FULLPAGE PRESENTATION DECK CLAMPING ===== */
+.fullpage-slide {
+  height: 100% !important;
+  max-height: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.fullpage-slide section {
+  padding-top: 0.25rem !important;
+  padding-bottom: 0.25rem !important;
+  min-height: auto !important;
+}
+
+.fullpage-slide .section-padding {
+  padding-top: 0.25rem !important;
+  padding-bottom: 0.25rem !important;
+}
+

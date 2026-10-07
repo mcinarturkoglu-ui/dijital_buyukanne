@@ -180,32 +180,29 @@ export default function SkinAnalysis() {
   };
 
   return (
-    <section className="py-8 md:py-12 px-4 md:px-8 bg-gradient-to-b from-white via-slate-50 to-white relative overflow-hidden min-h-[calc(100vh-4rem)] flex flex-col justify-center" id="cilt-analizi">
+    <section className="py-2 px-2 sm:px-4 bg-transparent relative overflow-hidden w-full flex flex-col justify-center my-auto" id="cilt-analizi">
       {/* Background ambient blur */}
       <div className="absolute top-1/4 -left-20 w-[500px] h-[500px] bg-sky-100/50 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-10 -right-20 w-[450px] h-[450px] bg-coral/10 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="max-w-6xl mx-auto relative z-10 w-full">
+      <div className="max-w-7xl 2xl:max-w-[1360px] mx-auto relative z-10 w-full">
         
-        {/* Compact Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-5">
-          <div className="inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-sky-700 bg-sky-50 border border-sky-200 px-3.5 py-1 rounded-full mb-2">
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto mb-2.5">
+          <div className="inline-flex items-center gap-1.5 text-[11px] font-bold tracking-wider uppercase text-sky-700 bg-sky-50 border border-sky-200 px-3.5 py-1 rounded-full mb-1.5 shadow-2xs">
             <span className="w-1.5 h-1.5 rounded-full bg-sky-500 animate-pulse" />
             <span>0–2 Yaş AI Cilt Analizi (Derma-41 Engine)</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold leading-tight text-navy">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black leading-tight text-navy">
             Ebeveyn fotoğrafı çeker; yapay zekâ 41 cilt tablosu arasından tespit eder.
           </h2>
-          <p className="mt-2 text-xs sm:text-sm text-navy/60 leading-relaxed max-w-2xl mx-auto">
-            Anne veya baba tıbbi teşhis bilmek zorunda değildir. Bebeğinin cildindeki şüpheli döküntüyü fotoğraflar; piksel hassasiyetinde analiz ve hekim güvencesi sunar.
+          <p className="mt-1 text-xs sm:text-sm text-navy/70 leading-relaxed max-w-2xl mx-auto">
+            Piksel hassasiyetinde analiz ve hekim güvencesi ile evden anında ön değerlendirme.
           </p>
         </div>
 
         {/* 41 Cilt Tablosu Hızlı Seçici Butonları */}
-        <div className="flex flex-col items-center mb-6">
-          <span className="text-[11px] font-mono font-bold text-sky-800 bg-sky-50 border border-sky-200 px-3 py-0.5 rounded-full mb-2 shadow-2xs">
-            Örnek Ebeveyn Gözlemini Seçin:
-          </span>
+        <div className="flex flex-col items-center mb-3">
           <div className="flex flex-wrap items-center justify-center gap-2 max-w-4xl">
             {skinCases.map((c, idx) => (
               <button
@@ -213,7 +210,7 @@ export default function SkinAnalysis() {
                 onClick={() => handleSelectCase(idx)}
                 className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-2 ${
                   selectedCaseIndex === idx
-                    ? 'bg-[#0B1E3B] text-white shadow-md scale-102 ring-2 ring-sky-400/30'
+                    ? 'bg-[#0B1E3B] text-white shadow-md ring-1 ring-sky-400 scale-102'
                     : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-50'
                 }`}
               >
@@ -225,24 +222,19 @@ export default function SkinAnalysis() {
         </div>
 
         {/* Ana İçerik Izgarası (Sol: İş Akışı & Ebeveyn Gözlemi | Sağ: Telefon Simülasyonu) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
           
           {/* SOL KOLON (6 COLS): 4 Adımlı Klinik İş Akışı */}
-          <div className="lg:col-span-6 flex flex-col gap-3">
+          <div className="lg:col-span-6 flex flex-col gap-2.5">
             
             {/* Seçili Ebeveyn Gözlem Kartı */}
-            <div className="p-3.5 rounded-2xl bg-sky-50/80 border border-sky-200 flex flex-col gap-1 shadow-2xs">
-              <div className="flex items-center justify-between">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-sky-800">
-                  Şu Anda Canlandırılan Ebeveyn Gözlemi:
-                </span>
-                <span className="text-[10px] font-mono text-sky-700 bg-white px-2 py-0.5 rounded-md border border-sky-100">
-                  {currentCase.region}
-                </span>
-              </div>
-              <p className="text-xs sm:text-sm font-black text-[#0B1E3B] leading-snug">
+            <div className="p-3 px-4 rounded-2xl bg-sky-50/80 border border-sky-200 flex items-center justify-between shadow-2xs">
+              <span className="text-xs sm:text-sm font-black text-[#0B1E3B] truncate">
                 &ldquo;{currentCase.parentObservation}&rdquo;
-              </p>
+              </span>
+              <span className="text-[11px] font-mono font-bold text-sky-700 bg-white px-2.5 py-0.5 rounded-lg border border-sky-100 shrink-0 ml-2">
+                {currentCase.region}
+              </span>
             </div>
 
             {/* 4 Klinik Adım */}
@@ -250,13 +242,13 @@ export default function SkinAnalysis() {
               {clinicalWorkflow.map((stepItem, i) => (
                 <div
                   key={stepItem.num}
-                  className={`p-3 rounded-2xl border transition-all flex items-start gap-3 ${
+                  className={`p-2.5 px-3 rounded-xl border transition-all flex items-start gap-3 ${
                     animStep === i
-                      ? 'bg-white border-sky-400 ring-2 ring-sky-400/20 shadow-xs translate-x-1'
+                      ? 'bg-white border-sky-400 ring-2 ring-sky-400/20 shadow-xs'
                       : 'bg-white/80 border-slate-200/80 hover:bg-white'
                   }`}
                 >
-                  <div className={`w-9 h-9 rounded-xl flex items-center justify-center font-black text-sm shrink-0 shadow-xs ${
+                  <div className={`w-7 h-7 rounded-lg flex items-center justify-center font-black text-xs shrink-0 ${
                     animStep === i
                       ? 'bg-[#0B1E3B] text-white'
                       : 'bg-slate-100 text-slate-600'
@@ -264,10 +256,10 @@ export default function SkinAnalysis() {
                     {stepItem.num}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className={`text-sm font-bold ${animStep === i ? 'text-[#0B1E3B]' : 'text-slate-800'}`}>
+                    <p className={`text-xs sm:text-sm font-bold leading-tight ${animStep === i ? 'text-[#0B1E3B]' : 'text-slate-800'}`}>
                       {stepItem.title}
                     </p>
-                    <p className="text-xs text-slate-500 mt-0.5 leading-relaxed">
+                    <p className="text-[11px] text-slate-500 mt-0.5 leading-snug line-clamp-1">
                       {stepItem.desc}
                     </p>
                   </div>
@@ -279,12 +271,9 @@ export default function SkinAnalysis() {
             </div>
 
             {/* Bilimsel Sorumluluk & Hekim Güvencesi Notu */}
-            <div className="flex items-start gap-3 bg-white p-4 rounded-2xl border border-slate-200 shadow-xs text-xs text-slate-600 leading-relaxed">
-              <ShieldCheck size={18} className="text-sky-600 shrink-0 mt-0.5" />
-              <div>
-                <strong className="text-[#0B1E3B] block mb-0.5">Pediatri ve Hekim Güvencesi:</strong>
-                Sistem ebeveyne kesin tanı koymaz; 41 tablo üzerinden bilgilendirir, gereksiz merhem kullanımını engeller ve kritik lezyonlarda gecikmeden çocuk doktoruna başvurulmasını sağlar.
-              </div>
+            <div className="flex items-center gap-2 bg-white/90 p-2.5 rounded-xl border border-slate-200 shadow-2xs text-[11px] text-slate-600 leading-snug">
+              <ShieldCheck size={16} className="text-sky-600 shrink-0" />
+              <span className="truncate">Tıbbi teşhis koymaz; 41 tablo üzerinden hekim protokolüyle yönlendirir.</span>
             </div>
 
           </div>
@@ -293,13 +282,13 @@ export default function SkinAnalysis() {
           <div className="lg:col-span-6 flex justify-center">
             
             {/* Telefon Mockup'ı */}
-            <div className="w-full max-w-[340px] sm:max-w-[360px] rounded-[44px] bg-[#0E1526] p-3.5 shadow-2xl border-4 border-slate-800 relative select-none">
+            <div className="w-full max-w-[325px] sm:max-w-[340px] rounded-[40px] bg-[#0E1526] p-3 shadow-2xl border-2 border-slate-800 relative select-none">
               
               {/* Ekran İçi Gövde */}
-              <div className="w-full rounded-[34px] bg-[#070D19] overflow-hidden flex flex-col text-white relative min-h-[530px]">
+              <div className="w-full rounded-[30px] bg-[#070D19] overflow-hidden flex flex-col text-white relative h-[435px] sm:h-[450px]">
                 
                 {/* 1. Üst Bar & Dinamik Ada */}
-                <div className="pt-3 px-4 pb-2 flex items-center justify-between border-b border-white/10 shrink-0">
+                <div className="pt-2 px-3 pb-1.5 flex items-center justify-between border-b border-white/10 shrink-0">
                   <span className="text-[10px] font-mono text-white/60">09:41</span>
                   
                   {/* Dynamic Island */}
@@ -435,9 +424,9 @@ export default function SkinAnalysis() {
                     <div className="flex-1 flex flex-col justify-between animate-fade-in gap-2.5">
                       
                       {/* Üst Onay Rozeti */}
-                      <div className="bg-emerald-500/15 border border-emerald-400/40 rounded-xl p-2.5 flex items-center justify-between">
+                      <div className="bg-emerald-500/15 border border-emerald-400/40 rounded-xl p-2 px-3 flex items-center justify-between">
                         <div className="flex items-center gap-2">
-                          <CheckCircle2 size={16} className="text-emerald-400" />
+                          <CheckCircle2 size={15} className="text-emerald-400" />
                           <span className="text-xs font-bold text-white">Analiz Tamamlandı</span>
                         </div>
                         <span className="text-[10px] font-mono text-emerald-300 font-bold bg-emerald-950/80 px-2 py-0.5 rounded-full">
@@ -446,20 +435,20 @@ export default function SkinAnalysis() {
                       </div>
 
                       {/* Teşhis Kartı */}
-                      <div className="bg-white/10 border border-white/15 rounded-2xl p-3 flex flex-col gap-1">
+                      <div className="bg-white/10 border border-white/15 rounded-xl p-3 flex flex-col gap-1">
                         <span className="text-[9px] font-mono text-sky-300 uppercase tracking-wider font-bold">
                           {currentCase.aiDetection.catalog}
                         </span>
                         <h4 className="text-sm font-black text-white leading-snug">
                           {currentCase.aiDetection.title}
                         </h4>
-                        <p className="text-[10px] text-white/80 leading-relaxed mt-1">
+                        <p className="text-xs text-white/80 leading-relaxed mt-0.5">
                           {currentCase.aiDetection.description}
                         </p>
                       </div>
 
                       {/* Hekim Eylem Protokolü */}
-                      <div className={`rounded-2xl p-3 border flex flex-col gap-1 ${
+                      <div className={`rounded-xl p-3 border flex flex-col gap-1 ${
                         currentCase.severity === 'urgent'
                           ? 'bg-red-950/80 border-red-500/50 text-red-100'
                           : 'bg-gradient-to-r from-sky-950/80 to-slate-900 border-sky-400/40 text-white'
@@ -470,7 +459,7 @@ export default function SkinAnalysis() {
                             Pediatri ve Hekim Protokolü
                           </span>
                         </div>
-                        <p className="text-[10px] leading-relaxed text-white/90">
+                        <p className="text-xs leading-relaxed text-white/90">
                           {currentCase.aiDetection.doctorAction}
                         </p>
                       </div>
@@ -478,9 +467,9 @@ export default function SkinAnalysis() {
                       {/* Yeniden Başlat Butonu */}
                       <button
                         onClick={() => setAnimStep(0)}
-                        className="w-full py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-[10px] flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
+                        className="w-full py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs flex items-center justify-center gap-2 transition-colors cursor-pointer"
                       >
-                        <RotateCw size={11} />
+                        <RotateCw size={12} />
                         <span>Yeni Fotoğraf Çek / Başa Dön</span>
                       </button>
 

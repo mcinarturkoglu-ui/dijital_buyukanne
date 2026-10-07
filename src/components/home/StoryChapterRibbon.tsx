@@ -51,21 +51,26 @@ export default function StoryChapterRibbon({
   return (
     <div
       id={anchorId}
-      className={`relative py-8 md:py-12 px-4 select-none overflow-hidden transition-colors border-y ${
+      className={`relative py-10 md:py-14 px-4 select-none overflow-hidden transition-colors border-y ${
         isDark
           ? 'bg-gradient-to-b from-[#0B2545] via-[#10345E] to-[#0B2545] text-white border-white/10'
           : 'bg-gradient-to-b from-[#F0F8FF] via-white to-[#F0F8FF] text-[#0B1E3B] border-sky-100/70'
       }`}
     >
-      {/* Central architectural connector line */}
+      {/* Central architectural connector line running top to bottom */}
       <div
-        className={`absolute top-0 left-1/2 -translate-x-1/2 w-[1px] h-full bg-gradient-to-b from-transparent ${accentStyles.line} to-transparent opacity-50 pointer-events-none`}
+        className={`absolute top-0 left-1/2 -translate-x-1/2 w-0.5 h-full bg-gradient-to-b from-sky-400 via-sky-500 to-sky-400 opacity-60 pointer-events-none`}
       />
 
       <div className="max-w-4xl mx-auto relative z-10 flex flex-col items-center text-center">
+        {/* Top Connecting Node */}
+        <div className="mb-4 flex items-center justify-center">
+          <div className="w-3 h-3 rounded-full bg-white border-2 border-sky-500 shadow-[0_0_10px_rgba(2,132,199,0.5)]" />
+        </div>
+
         {/* Institutional Section Eyebrow Badge */}
         <div
-          className={`inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border text-[11px] font-semibold tracking-wider uppercase backdrop-blur-md mb-4 shadow-sm ${accentStyles.badgeBg}`}
+          className={`inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border text-[11px] font-semibold tracking-wider uppercase backdrop-blur-md mb-3 shadow-xs ${accentStyles.badgeBg}`}
         >
           <span className={`w-1.5 h-1.5 rounded-full ${accentStyles.dot} animate-pulse`} />
           <span className="font-mono font-bold">{chapterNumber}</span>
@@ -84,18 +89,18 @@ export default function StoryChapterRibbon({
 
         {/* Contextual Description */}
         <p
-          className={`mt-3.5 text-xs sm:text-sm md:text-base leading-relaxed max-w-2xl font-normal ${
+          className={`mt-3 text-xs sm:text-sm md:text-base leading-relaxed max-w-2xl font-normal ${
             isDark ? 'text-slate-300/80' : 'text-slate-600'
           }`}
         >
           {description}
         </p>
 
-        {/* Subtle geometric precision indicator */}
-        <div className="mt-7 flex items-center gap-2 opacity-50">
-          <div className={`w-8 h-[1px] bg-gradient-to-r from-transparent ${accentStyles.line}`} />
-          <div className={`w-1.5 h-1.5 rounded-full ${accentStyles.dot}`} />
-          <div className={`w-8 h-[1px] bg-gradient-to-l from-transparent ${accentStyles.line}`} />
+        {/* Bottom Connecting Flow Cue */}
+        <div className="mt-6 flex flex-col items-center gap-1.5">
+          <span className="text-[10px] font-mono font-bold tracking-widest text-sky-600 uppercase bg-white/80 px-2.5 py-0.5 rounded-full border border-sky-200 shadow-2xs">
+            BÖLÜME GİRİŞ YAPILIYOR ▼
+          </span>
         </div>
       </div>
     </div>

@@ -110,6 +110,8 @@ const institutionalPartners = [
   },
 ];
 
+type BoardView = 'advisors' | 'standards';
+
 export default function ScientificBoard({ cmsData }: {
   cmsData?: {
     eyebrow?: string;
@@ -151,114 +153,126 @@ export default function ScientificBoard({ cmsData }: {
       })
     : clinicalStandards;
 
+  const [activeView, setActiveView] = React.useState<BoardView>('advisors');
+
   return (
-    <section className="py-12 md:py-16 px-4 md:px-8 bg-white relative overflow-hidden" id="bilimsel-kurul">
+    <section className="py-2 px-2 sm:px-4 bg-transparent relative overflow-hidden w-full flex flex-col justify-center my-auto" id="bilimsel-kurul">
       {/* Ambient background blur */}
       <div className="absolute top-0 right-1/4 w-96 h-96 bg-sky-100/40 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-coral/5 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="max-w-6xl mx-auto relative z-10">
+      <div className="max-w-7xl 2xl:max-w-[1360px] mx-auto relative z-10 w-full">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-10">
-          <div className="inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-navy bg-navy/5 border border-navy/15 px-3.5 py-1 rounded-full mb-3">
+        <div className="text-center max-w-3xl mx-auto mb-4">
+          <div className="inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-navy bg-navy/5 border border-navy/15 px-3.5 py-1 rounded-full mb-1.5 shadow-2xs">
             <ShieldCheck size={14} className="text-sky-500" />
             <span>{activeCms?.eyebrow || 'Bilimsel Güvence & Danışma Kurulu'}</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-navy tracking-tight leading-tight">
-            {activeCms?.title ? (
-              <span dangerouslySetInnerHTML={{ __html: activeCms.title.replace('etik ilkelerle buluşturuyoruz.', '<span class="text-transparent bg-clip-text bg-gradient-to-r from-[#0284C7] to-[#FF5A43]">etik ilkelerle buluşturuyoruz.</span>') }} />
-            ) : (
-              <>
-                Yapay zekâyı bilim, klinik uzmanlık ve <br className="hidden sm:inline" />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0284C7] to-[#FF5A43]">etik ilkelerle buluşturuyoruz.</span>
-              </>
-            )}
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-navy tracking-tight leading-tight">
+            Yapay zekâyı bilim, klinik uzmanlık ve{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0284C7] to-[#FF5A43]">
+              etik ilkelerle buluşturuyoruz.
+            </span>
           </h2>
-          <p className="mt-3 text-xs sm:text-sm md:text-base text-navy/70 leading-relaxed font-normal">
-            {activeCms?.subtitle || 'DijitalBüyükanne ve BabySensAI algoritmaları, alanında öncü hekim ve akademisyenlerin danışmanlığında, uluslararası pediatrik rehberlere sadık kalınarak geliştirilir.'}
+          <p className="mt-1 text-xs sm:text-sm text-navy/70 leading-relaxed font-normal max-w-2xl mx-auto">
+            {activeCms?.subtitle || 'DijitalBüyükanne ve BabySensAI algoritmaları, alanında öncü hekim ve akademisyenlerin danışmanlığında geliştirilir.'}
           </p>
-          <div className="pt-2.5">
-            <a
-              href="https://www.adapha.com/tr/hakkimizda"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0284C7] hover:text-[#0369a1] bg-sky-50 hover:bg-sky-100/80 px-3 py-1 rounded-full border border-sky-200 transition-all shadow-2xs"
+
+          {/* Sub-view Switcher Tabs */}
+          <div className="mt-3.5 flex items-center justify-center gap-2.5">
+            <button
+              onClick={() => setActiveView('advisors')}
+              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                activeView === 'advisors'
+                  ? 'bg-[#0B1E3B] text-white shadow-md'
+                  : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'
+              }`}
             >
-              <span>Adapha Yapay Zeka Ar-Ge Kadrosu & Akademik Künye</span>
-              <ExternalLink size={12} />
-            </a>
+              👨‍⚕️ Danışma Kurulu Üyeleri
+            </button>
+            <button
+              onClick={() => setActiveView('standards')}
+              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                activeView === 'standards'
+                  ? 'bg-sky-600 text-white shadow-md'
+                  : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'
+              }`}
+            >
+              🏛️ Klinik Standartlar & Üniversite Ortaklığı
+            </button>
           </div>
         </div>
 
         {/* 3 Advisor Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
+        {activeView === 'advisors' && (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-2">
           {finalAdvisors.map((adv, idx) => {
             const Icon = adv.icon || Brain;
             return (
               <div
                 key={idx}
-                className={`bg-white rounded-3xl p-6 sm:p-7 border ${adv.border || 'border-slate-200'} shadow-lg shadow-slate-100/70 hover:shadow-xl hover:border-sky-300/50 transition-all duration-300 flex flex-col justify-between group relative`}
+                className={`bg-white rounded-3xl p-5 sm:p-6 border ${adv.border || 'border-slate-200'} shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group relative`}
               >
                 <div>
-                  <div className="flex items-start gap-3.5 mb-4">
+                  <div className="flex items-start gap-3 mb-3">
                     {/* Profil Fotoğrafı veya Monogram Avatar */}
                     {adv.image ? (
-                      <div className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-2xl overflow-hidden shadow-md shrink-0 border-2 border-white ring-2 ring-sky-100 group-hover:scale-105 transition-transform duration-300 bg-slate-100">
+                      <div className="relative w-12 h-12 rounded-xl overflow-hidden shadow-xs shrink-0 border-2 border-white ring-1 ring-sky-100 group-hover:scale-105 transition-transform duration-300 bg-slate-100">
                         <Image
                           src={adv.image}
                           alt={adv.title}
                           fill
-                          sizes="64px"
+                          sizes="48px"
                           className="object-cover"
                         />
                       </div>
                     ) : (
-                      <div className={`w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br ${adv.monoBg || 'from-sky-500 to-sky-600'} flex items-center justify-center shrink-0 text-white font-black text-base shadow-md group-hover:scale-105 transition-transform`}>
+                      <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${adv.monoBg || 'from-sky-500 to-sky-600'} flex items-center justify-center shrink-0 text-white font-black text-sm shadow-xs group-hover:scale-105 transition-transform`}>
                         {adv.monogram || 'DK'}
                       </div>
                     )}
 
                     <div className="flex-1 min-w-0">
-                      <span className={`text-[10px] sm:text-[11px] font-bold uppercase tracking-wider block truncate ${adv.color || 'text-sky-600'}`}>
+                      <span className={`text-[10px] font-bold uppercase tracking-wider block truncate ${adv.color || 'text-sky-600'}`}>
                         {adv.role}
                       </span>
-                      <h3 className="text-base sm:text-lg font-black text-navy leading-snug mt-0.5 truncate">
+                      <h3 className="text-sm sm:text-base font-black text-navy leading-snug mt-0.5 truncate">
                         {adv.title}
                       </h3>
-                      <p className="text-[11px] text-slate-500 font-medium truncate mt-0.5">
+                      <p className="text-[10px] text-slate-500 font-medium truncate mt-0.5">
                         {adv.institution.split('/')[0]}
                       </p>
                     </div>
 
                     {/* Icon badge */}
-                    <div className={`w-9 h-9 rounded-xl ${adv.bg || 'bg-sky-50'} ${adv.color || 'text-sky-600'} flex items-center justify-center shrink-0`}>
-                      <Icon size={18} />
+                    <div className={`w-8 h-8 rounded-lg ${adv.bg || 'bg-sky-50'} ${adv.color || 'text-sky-600'} flex items-center justify-center shrink-0`}>
+                      <Icon size={16} />
                     </div>
                   </div>
 
-                  <div className="p-2.5 rounded-xl bg-slate-50 border border-slate-100 text-xs font-semibold text-navy/80 mb-3 leading-snug">
+                  <div className="p-2 rounded-lg bg-slate-50 border border-slate-100 text-[11px] font-semibold text-navy/80 mb-2 leading-snug">
                     {adv.expertise}
                   </div>
 
-                  <p className="text-xs text-navy/70 leading-relaxed">
+                  <p className="text-[11px] text-navy/70 leading-relaxed line-clamp-2">
                     {adv.description}
                   </p>
                 </div>
 
                 {/* Quote & Footer */}
-                <div className="mt-4 pt-3 border-t border-slate-100 space-y-2.5">
-                  <div className="flex items-start gap-2">
-                    <Quote size={13} className={`${adv.color || 'text-sky-600'} shrink-0 mt-0.5`} />
-                    <p className={`text-[11px] italic font-medium ${adv.color || 'text-sky-600'} leading-snug`}>
+                <div className="mt-3 pt-2 border-t border-slate-100 space-y-1.5">
+                  <div className="flex items-start gap-1.5">
+                    <Quote size={11} className={`${adv.color || 'text-sky-600'} shrink-0 mt-0.5`} />
+                    <p className={`text-[10px] italic font-medium ${adv.color || 'text-sky-600'} leading-tight line-clamp-1`}>
                       &ldquo;{adv.quote}&rdquo;
                     </p>
                   </div>
 
                   <div className="flex items-center justify-between text-[10px] text-navy/50 font-medium pt-1 border-t border-slate-50">
-                    <span className="truncate max-w-[200px]">{adv.institution}</span>
+                    <span className="truncate max-w-[180px]">{adv.institution}</span>
                     <span className="flex items-center gap-1 text-emerald-600 font-bold shrink-0">
-                      <CheckCircle2 size={12} />
+                      <CheckCircle2 size={11} />
                       Doğrulanmış
                     </span>
                   </div>
@@ -267,81 +281,78 @@ export default function ScientificBoard({ cmsData }: {
             );
           })}
         </div>
+      )}
 
-        {/* 🏢 Kurumsal İş Birlikleri & Ar-Ge Ortakları Vitrini */}
-        <div className="mb-10 p-5 sm:p-6 rounded-3xl bg-slate-50/80 border border-slate-200/90 shadow-sm">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-4">
-            <div>
-              <span className="text-[10px] font-mono font-bold text-sky-700 uppercase tracking-widest block">
-                AKADEMİK VE RESMÎ İŞ BİRLİKLERİ
-              </span>
-              <h3 className="text-base sm:text-lg font-black text-navy mt-0.5">
-                Türkiye&apos;nin Öncü Sağlık Kuruluşları ve Üniversite Ortaklığı
-              </h3>
-            </div>
-            <a
-              href="https://www.adapha.com/tr/hakkimizda"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-xs font-bold text-slate-600 hover:text-navy flex items-center gap-1.5 self-start md:self-auto shrink-0"
-            >
-              <span>Tüm Ortaklar ve Protokoller</span>
-              <ExternalLink size={12} />
-            </a>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5">
-            {institutionalPartners.map((item, pIdx) => (
-              <div
-                key={pIdx}
-                className="p-3.5 rounded-2xl bg-white border border-slate-200 shadow-2xs flex items-center gap-3 hover:border-sky-300 hover:shadow-sm transition-all"
-              >
-                <div className="relative w-11 h-11 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center shrink-0 p-1">
-                  <Image
-                    src={item.logo}
-                    alt={item.name}
-                    width={36}
-                    height={36}
-                    className="object-contain max-h-8 w-auto"
-                  />
-                </div>
-                <div className="min-w-0">
-                  <span className="text-[10px] font-bold text-sky-600 uppercase tracking-wide block truncate">
-                    {item.category}
-                  </span>
-                  <h4 className="text-xs font-black text-navy leading-tight line-clamp-2 mt-0.5">
-                    {item.name}
-                  </h4>
-                </div>
+        {/* 🏢 Kurumsal İş Birlikleri & Klinik Standartlar */}
+        {activeView === 'standards' && (
+          <div className="flex flex-col gap-4">
+            <div className="p-4 rounded-2xl bg-white border border-slate-200/90 shadow-xs">
+              <div className="flex items-center justify-between mb-3">
+                <span className="text-[10px] font-mono font-bold text-sky-700 uppercase tracking-widest block">
+                  AKADEMİK VE RESMÎ İŞ BİRLİKLERİ
+                </span>
+                <a
+                  href="https://www.adapha.com/tr/hakkimizda"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs font-bold text-slate-600 hover:text-navy flex items-center gap-1.5"
+                >
+                  <span>Tüm Ortaklar ve Protokoller</span>
+                  <ExternalLink size={12} />
+                </a>
               </div>
-            ))}
-          </div>
-        </div>
 
-        {/* Clinical Standards — sky gradient strip */}
-        <div className="bg-gradient-to-r from-[#0B2545] via-[#0d3461] to-[#0B2545] rounded-3xl p-5 sm:p-7 text-white shadow-xl">
-          <div className="text-center max-w-2xl mx-auto mb-6">
-            <h3 className="text-lg sm:text-xl font-black text-white">Klinik Standartlarımız ve Güven İlkelerimiz</h3>
-            <p className="text-xs text-white/70 mt-0.5">
-              Sağlık teknolojilerinde taviz vermediğimiz bilimsel ve etik temellerimiz.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {finalStandards.map((std, idx) => {
-              const SIcon = std.icon || Award;
-              return (
-                <div key={idx} className="bg-white/10 rounded-2xl p-4 border border-white/15 backdrop-blur-sm hover:bg-white/15 transition-colors duration-300">
-                  <div className="w-8 h-8 rounded-xl bg-sky-400/20 text-sky-300 flex items-center justify-center mb-2.5">
-                    <SIcon size={18} />
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                {institutionalPartners.map((item, pIdx) => (
+                  <div
+                    key={pIdx}
+                    className="p-2.5 rounded-xl bg-slate-50 border border-slate-200/80 flex items-center gap-2.5 hover:border-sky-300 transition-all"
+                  >
+                    <div className="relative w-9 h-9 rounded-lg bg-white border border-slate-100 flex items-center justify-center shrink-0 p-1">
+                      <Image
+                        src={item.logo}
+                        alt={item.name}
+                        width={30}
+                        height={30}
+                        className="object-contain max-h-7 w-auto"
+                      />
+                    </div>
+                    <div className="min-w-0">
+                      <span className="text-[9px] font-bold text-sky-600 uppercase tracking-wide block truncate">
+                        {item.category}
+                      </span>
+                      <h4 className="text-xs font-bold text-navy truncate">
+                        {item.name}
+                      </h4>
+                    </div>
                   </div>
-                  <h4 className="text-xs sm:text-sm font-bold text-white mb-1">{std.title}</h4>
-                  <p className="text-[11px] text-white/70 leading-relaxed">{std.desc}</p>
-                </div>
-              );
-            })}
+                ))}
+              </div>
+            </div>
+
+            {/* Clinical Standards */}
+            <div className="bg-gradient-to-r from-[#0B2545] via-[#0d3461] to-[#0B2545] rounded-2xl p-4 text-white shadow-md">
+              <div className="text-center max-w-xl mx-auto mb-3">
+                <h3 className="text-sm font-black text-white">Klinik Standartlarımız ve Güven İlkelerimiz</h3>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5">
+                {finalStandards.map((std, idx) => {
+                  const SIcon = std.icon || Award;
+                  return (
+                    <div key={idx} className="bg-white/10 rounded-xl p-3 border border-white/15">
+                      <div className="w-6 h-6 rounded-lg bg-sky-400/20 text-sky-300 flex items-center justify-center mb-1.5">
+                        <SIcon size={14} />
+                      </div>
+                      <h4 className="text-xs font-bold text-white mb-0.5">{std.title}</h4>
+                      <p className="text-[10px] text-white/70 leading-snug line-clamp-2">{std.desc}</p>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
           </div>
-        </div>
+        )}
 
       </div>
     </section>

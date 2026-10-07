@@ -4,7 +4,7 @@ import clsx from "clsx";
 interface PhoneMockupProps {
   children: ReactNode;
   className?: string;
-  size?: "sm" | "md" | "lg";
+  size?: "sm" | "md" | "lg" | "xl" | "hero";
   label?: string;
   dark?: boolean;
 }
@@ -17,9 +17,11 @@ export function PhoneMockup({
   dark = false,
 }: PhoneMockupProps) {
   const sizes = {
-    sm: "w-44 h-[340px]",
-    md: "w-56 h-[450px]",
-    lg: "w-60 sm:w-64 h-[490px] sm:h-[510px]",
+    sm: "w-52 sm:w-56 h-[410px] sm:h-[430px]",
+    md: "w-64 sm:w-[270px] h-[450px] sm:h-[470px]",
+    lg: "w-72 sm:w-80 h-[495px] sm:h-[515px]",
+    xl: "w-80 sm:w-[325px] lg:w-[340px] h-[520px] sm:h-[540px] lg:h-[555px]",
+    hero: "w-[290px] sm:w-[325px] lg:w-[350px] xl:w-[370px] h-[485px] sm:h-[515px] lg:h-[535px] xl:h-[555px]",
   };
 
   return (

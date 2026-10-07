@@ -1,8 +1,14 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { Instagram, Twitter, Linkedin, Youtube, Baby, ArrowUpRight, Heart } from "lucide-react";
 
 export default function Footer() {
+  const pathname = usePathname();
+  if (pathname === "/" || pathname === "/sunum") return null;
+
   return (
     <footer className="relative bg-gradient-to-b from-[#1E234D] via-[#161A3A] to-[#0E1128] text-white overflow-hidden">
       {/* Top gradient mesh decorative element */}

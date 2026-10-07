@@ -133,7 +133,7 @@ function AnimatedBabyAvatar({ stageIndex }: { stageIndex: number }) {
   const bounce = Math.abs(Math.sin(rad * 3)) * 8;
 
   return (
-    <div className="relative w-full aspect-square max-w-[240px] sm:max-w-[260px] mx-auto flex items-center justify-center select-none">
+    <div className="relative w-full aspect-square max-w-[280px] sm:max-w-[310px] mx-auto flex items-center justify-center select-none">
       {/* Ambient glowing radial aura */}
       <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-turquoise/20 via-coral/15 to-transparent blur-2xl animate-pulse-glow" />
 
@@ -435,36 +435,36 @@ export default function TimelineSection() {
   const progressPercent = Math.round((completedCount / activeMilestone.checklist.length) * 100);
 
   return (
-    <section className="py-8 md:py-12 px-4 md:px-8 bg-gradient-to-b from-white via-soft-gray/40 to-white relative overflow-hidden min-h-[calc(100vh-4rem)] flex flex-col justify-center" id="gelisim">
+    <section className="py-2 px-2 sm:px-4 bg-transparent relative overflow-hidden w-full flex flex-col justify-center my-auto" id="gelisim">
       {/* Background radial glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-turquoise/5 blur-3xl pointer-events-none" />
 
-      <div className="max-w-6xl mx-auto relative z-10 w-full">
+      <div className="max-w-7xl 2xl:max-w-[1360px] mx-auto relative z-10 w-full">
         
-        {/* Compact Header */}
-        <div className="text-center max-w-3xl mx-auto mb-5">
-          <div className="inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-turquoise bg-turquoise/10 border border-turquoise/25 px-3.5 py-1 rounded-full mb-2">
-            <Sparkles size={13} className="text-turquoise animate-spin" style={{ animationDuration: '6s' }} />
+        {/* Header */}
+        <div className="text-center max-w-3xl mx-auto mb-2.5">
+          <div className="inline-flex items-center gap-1.5 text-[11px] font-bold tracking-wider uppercase text-turquoise bg-turquoise/10 border border-turquoise/25 px-3.5 py-1 rounded-full mb-1.5 shadow-2xs">
+            <Sparkles size={12} className="text-turquoise animate-spin" style={{ animationDuration: '6s' }} />
             <span>0–24 Ay Canlı Bebek Gelişim Simülatörü</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-navy tracking-tight leading-tight">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-navy tracking-tight leading-tight">
             Her bebeğin büyüme yolculuğu <span className="text-turquoise">canlı bir mucizedir.</span>
           </h2>
-          <p className="mt-1.5 text-xs sm:text-sm text-navy/70 leading-relaxed font-normal max-w-2xl mx-auto">
-            Aşağıdaki ay butonlarına tıklayarak bebeğinizin animasyonlu gelişim hareketlerini ve o dönemin kilometre taşlarını canlı simüle edin.
+          <p className="mt-1 text-xs sm:text-sm text-navy/70 leading-relaxed max-w-2xl mx-auto">
+            Aşağıdaki ay butonlarına tıklayarak animasyonlu gelişim hareketlerini ve kilometre taşlarını inceleyin.
           </p>
         </div>
 
         {/* Interactive Age Selector Bar */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-3 justify-start md:justify-center no-scrollbar mb-4">
+        <div className="flex items-center gap-2 overflow-x-auto pb-2 justify-start md:justify-center no-scrollbar mb-3">
           {milestones.map((m, idx) => (
             <button
               key={m.age}
               onClick={() => setActiveIndex(idx)}
-              className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all duration-300 flex items-center gap-1.5 shrink-0 border cursor-pointer ${
+              className={`px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-bold transition-all duration-300 flex items-center gap-1.5 shrink-0 border cursor-pointer ${
                 activeIndex === idx
-                  ? 'bg-navy text-white shadow-md shadow-navy/20 border-turquoise scale-102'
-                  : 'bg-white text-navy/70 hover:bg-turquoise/10 hover:text-navy border-gray-200 shadow-2xs'
+                  ? 'bg-navy text-white shadow-md border-turquoise scale-102 ring-1 ring-turquoise/40'
+                  : 'bg-white text-navy/70 hover:bg-turquoise/10 hover:text-navy border-gray-200'
               }`}
             >
               <span className="text-sm">{m.emoji}</span>
@@ -477,67 +477,69 @@ export default function TimelineSection() {
         </div>
 
         {/* Milestone Display Card with 3 Columns: Info, Animated Baby Avatar, Checklist */}
-        <div className="mt-6 bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-gray-100 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative overflow-hidden">
+        <div className="mt-1 bg-white rounded-3xl p-5 sm:p-7 lg:p-8 shadow-xl border border-gray-100/90 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch relative min-h-[380px] lg:min-h-[410px]">
           
           {/* Ambient Card Corner Accent */}
           <div className="absolute top-0 right-0 w-64 h-64 bg-turquoise/10 rounded-full blur-3xl pointer-events-none" />
 
-          {/* COL 1: Milestone Text Info (5 cols) */}
-          <div className="lg:col-span-4 flex flex-col gap-3">
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="bg-coral/15 text-coral text-xs font-bold px-3 py-1 rounded-full border border-coral/30">
-                {activeMilestone.badge}
-              </span>
-              <span className="text-xs font-mono font-bold text-navy/60 bg-slate-100 px-2.5 py-1 rounded-full">
-                {activeMilestone.age}
-              </span>
+          {/* COL 1: Milestone Text Info (4 cols) */}
+          <div className="lg:col-span-4 flex flex-col justify-between gap-3">
+            <div>
+              <div className="flex flex-wrap items-center gap-2 mb-2">
+                <span className="bg-coral/15 text-coral text-xs font-bold px-2.5 py-0.5 rounded-full border border-coral/30">
+                  {activeMilestone.badge}
+                </span>
+                <span className="text-xs font-mono font-bold text-navy/60 bg-slate-100 px-2.5 py-0.5 rounded-full">
+                  {activeMilestone.age}
+                </span>
+              </div>
+
+              <h3 className="text-lg sm:text-xl lg:text-2xl font-black text-navy leading-snug mb-1.5">
+                {activeMilestone.title}
+              </h3>
+
+              <p className="text-sm sm:text-base text-turquoise font-bold leading-snug mb-2">
+                {activeMilestone.highlight}
+              </p>
+
+              <p className="text-xs sm:text-sm text-navy/80 leading-relaxed">
+                {activeMilestone.description}
+              </p>
             </div>
 
-            <h3 className="text-xl sm:text-2xl font-extrabold text-navy leading-tight">
-              {activeMilestone.title}
-            </h3>
-
-            <p className="text-sm text-turquoise font-semibold leading-relaxed">
-              {activeMilestone.highlight}
-            </p>
-
-            <p className="text-xs sm:text-sm text-navy/70 leading-relaxed">
-              {activeMilestone.description}
-            </p>
-
             {/* Stimulus Parent Tip Box */}
-            <div className="bg-soft-gray/80 rounded-2xl p-3.5 border border-gray-200/80 flex items-start gap-2.5 mt-2">
-              <div className="w-7 h-7 rounded-lg bg-turquoise/20 text-turquoise flex items-center justify-center shrink-0 mt-0.5 font-bold text-xs">
+            <div className="bg-soft-gray/80 rounded-2xl p-3 border border-gray-200/80 flex items-start gap-3 mt-1 shadow-2xs">
+              <div className="w-7 h-7 rounded-lg bg-turquoise/20 text-turquoise flex items-center justify-center shrink-0 mt-0.5 font-bold text-sm">
                 💡
               </div>
               <div>
-                <p className="text-[10px] font-bold text-navy uppercase tracking-wider">Gelişim Önerisi</p>
-                <p className="text-[11px] text-navy/75 mt-0.5 leading-relaxed">{activeMilestone.stimulusTip}</p>
+                <p className="text-[11px] font-bold text-navy uppercase tracking-wider">Gelişim Önerisi</p>
+                <p className="text-xs text-navy/80 leading-relaxed mt-0.5">{activeMilestone.stimulusTip}</p>
               </div>
             </div>
           </div>
 
           {/* COL 2: ANIMATED BABY THEATER (4 cols) */}
-          <div className="lg:col-span-4 flex flex-col items-center justify-center bg-gradient-to-b from-slate-50 to-turquoise/5 rounded-3xl p-4 border border-turquoise/20 relative shadow-inner">
-            <div className="flex items-center justify-between w-full mb-1 px-2">
-              <span className="text-[10px] font-mono font-bold text-turquoise uppercase tracking-wider flex items-center gap-1">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+          <div className="lg:col-span-4 flex flex-col items-center justify-center bg-gradient-to-b from-slate-50 to-turquoise/5 rounded-3xl p-5 border border-turquoise/20 relative shadow-inner">
+            <div className="flex items-center justify-between w-full mb-1.5 px-2">
+              <span className="text-[11px] font-mono font-bold text-turquoise uppercase tracking-wider flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
                 CANLI MOTOR SİMÜLASYONU
               </span>
-              <span className="text-[10px] font-bold text-navy/40">{activeMilestone.age}</span>
+              <span className="text-xs font-bold text-navy/50">{activeMilestone.age}</span>
             </div>
 
             {/* The Animated SVG Baby */}
             <AnimatedBabyAvatar stageIndex={activeIndex} />
 
-            <div className="mt-2 text-center bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-xl border border-turquoise/20 shadow-xs">
-              <p className="text-[11px] font-bold text-navy">{activeMilestone.motionName}</p>
-              <p className="text-[9px] text-turquoise font-semibold">BabySensAI Hareket Paterni</p>
+            <div className="mt-2 text-center bg-white/95 backdrop-blur-sm px-4 py-2 rounded-2xl border border-turquoise/20 shadow-xs">
+              <p className="text-xs sm:text-sm font-bold text-navy">{activeMilestone.motionName}</p>
+              <p className="text-[10px] text-turquoise font-bold uppercase tracking-wider">BabySensAI Hareket Paterni</p>
             </div>
           </div>
 
           {/* COL 3: Interactive Checklist & Score (4 cols) */}
-          <div className="lg:col-span-4 bg-gradient-to-br from-[#082A46] to-[#0c395e] text-white p-5 rounded-3xl shadow-lg border border-white/10 flex flex-col justify-between">
+          <div className="lg:col-span-4 bg-gradient-to-br from-[#082A46] to-[#0c395e] text-white p-5 sm:p-6 rounded-3xl shadow-lg border border-white/10 flex flex-col justify-between">
             <div>
               <div className="flex items-center justify-between mb-3 pb-2.5 border-b border-white/15">
                 <span className="text-xs font-bold uppercase tracking-wider text-turquoise flex items-center gap-1.5">
@@ -562,10 +564,10 @@ export default function TimelineSection() {
                     <button
                       key={i}
                       onClick={() => toggleChecklist(checkKey)}
-                      className={`w-full p-2.5 rounded-xl text-left text-[11px] font-medium transition-all duration-200 flex items-center justify-between gap-2 border ${
+                      className={`w-full p-2.5 rounded-xl text-left text-xs font-semibold transition-all duration-200 flex items-center justify-between gap-2 border ${
                         isChecked
                           ? 'bg-turquoise/20 border-turquoise text-white shadow-sm'
-                          : 'bg-white/5 border-white/10 text-white/70 hover:bg-white/10'
+                          : 'bg-white/5 border-white/10 text-white/80 hover:bg-white/10'
                       }`}
                     >
                       <span className="leading-tight">{item}</span>

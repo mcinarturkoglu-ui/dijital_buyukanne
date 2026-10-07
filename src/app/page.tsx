@@ -1,26 +1,21 @@
 import type { Metadata } from "next";
-import StoryProgressTracker from "@/components/home/StoryProgressTracker";
+import FullpageDeckContainer from "@/components/home/FullpageDeckContainer";
+import FullpageSlide from "@/components/home/FullpageSlide";
 import SystemStoryModal from "@/components/home/SystemStoryModal";
-import StoryChapterRibbon from "@/components/home/StoryChapterRibbon";
-import StorySection from "@/components/home/StorySection";
 import HeroSection from "@/components/home/HeroSection";
+import EcosystemPulseTicker from "@/components/home/EcosystemPulseTicker";
 import TimelineSection from "@/components/home/TimelineSection";
-import SolutionSection from "@/components/home/SolutionSection";
+import ProblemSolutionCompare from "@/components/home/ProblemSolutionCompare";
 import MotionAnalysis from "@/components/home/MotionAnalysis";
 import SkinAnalysis from "@/components/home/SkinAnalysis";
 import StoolAnalysis from "@/components/home/StoolAnalysis";
 import DigitalAssistant from "@/components/home/DigitalAssistant";
 import HumanAI from "@/components/home/HumanAI";
 import InclusiveAccess from "@/components/home/InclusiveAccess";
+import InclusiveTargetAudiences from "@/components/home/InclusiveTargetAudiences";
 import ScientificBoard from "@/components/home/ScientificBoard";
-import CaseStudies from "@/components/home/CaseStudies";
-import InstitutionsHero from "@/components/home/InstitutionsHero";
 import SocialImpactCalculator from "@/components/home/SocialImpactCalculator";
-import SupportersPreview from "@/components/home/SupportersPreview";
 import FinalCTA from "@/components/home/FinalCTA";
-import EcosystemPulseTicker from "@/components/home/EcosystemPulseTicker";
-import ProblemSolutionCompare from "@/components/home/ProblemSolutionCompare";
-import NationalMediaPress from "@/components/home/NationalMediaPress";
 import siteContent from "@/data/site-content.json";
 
 export const metadata: Metadata = {
@@ -36,172 +31,107 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
-  const ribbons = siteContent.chapterRibbons || {};
-
   return (
     <>
-      {/* Yönetici Düzeyi Akıllı Gezinme Çubuğu (Masaüstü) */}
-      <StoryProgressTracker />
-
       {/* Anne, Baba ve Bebek Hikayeli Sinematik Açılır Sistem Animasyonu */}
       <SystemStoryModal />
 
-      {/* ─────────────────────────────────────────────────────────────
-          BÖLÜM 01: EKOSİSTEM VE VİZYON
-          0-24 Ay Bebek ve Aile Destek Platformu Ana Giriş
-          ───────────────────────────────────────────────────────────── */}
-      <StorySection id="bolum-1" className="scroll-mt-16" chapterBadge="BÖLÜM 01" storyStep="Ekosistem & Vizyon">
-        <HeroSection />
-        <EcosystemPulseTicker />
-      </StorySection>
+      {/* 13 Odaklı, Tek Konulu ve Ekrana %100 Sığan Donanım Hızlandırmalı Sunum Taşıyıcısı */}
+      <FullpageDeckContainer>
+        {/* 01: Ekosistem & Bütünsel Vizyon */}
+        <FullpageSlide id="bolum-1" badge="01 / 13" category="GİRİŞ VE VİZYON" theme="light">
+          <div className="w-full h-full flex flex-col justify-between items-center my-auto py-2 sm:py-3">
+            <div className="w-full flex-1 flex flex-col justify-center">
+              <HeroSection />
+            </div>
+            <EcosystemPulseTicker />
+          </div>
+        </FullpageSlide>
 
-      {/* Kurumsal Geçiş 01 -> 02 */}
-      <StoryChapterRibbon
-        chapterNumber={ribbons.ribbon2?.chapterNumber || "BÖLÜM 02"}
-        chapterTitle={ribbons.ribbon2?.chapterTitle || "NÖROGELİŞİMSEL DÖNGÜ"}
-        headline={ribbons.ribbon2?.headline || "İlk 24 Ay: Büyümenin Kritik Kilometre Taşları"}
-        description={ribbons.ribbon2?.description || "İlk iki yılda beyin ve motor gelişiminin temelleri atılır. Yapılandırılmış simülatörümüzle her ayın nörogelişimsel sıçramalarını yakından takip edin."}
-        anchorId="ribbon-2"
-        theme="light"
-        accent="coral"
-      />
+        {/* 02: 0–24 Ay Bilimsel Gelişim Simülatörü */}
+        <FullpageSlide id="bolum-2" badge="02 / 13" category="NÖROGELİŞİMSEL DÖNGÜ" theme="slate">
+          <div className="w-full h-full flex items-center justify-center my-auto">
+            <TimelineSection />
+          </div>
+        </FullpageSlide>
 
-      {/* ─────────────────────────────────────────────────────────────
-          BÖLÜM 02: 0–24 AY BİLİMSEL GELİŞİM TAKİBİ
-          İnteraktif kilometre taşları ve ay bazlı gelişim simülatörü
-          ───────────────────────────────────────────────────────────── */}
-      <StorySection id="bolum-2" className="scroll-mt-16" chapterBadge="BÖLÜM 02" storyStep="Gelişim Simülatörü">
-        <TimelineSection />
-      </StorySection>
+        {/* 03: Geleneksel vs. DijitalBüyükanne Dönüşümü */}
+        <FullpageSlide id="bolum-3" badge="03 / 13" category="KLİNİK VE DİJİTAL DÖNÜŞÜM" theme="white">
+          <div className="w-full h-full flex items-center justify-center my-auto">
+            <ProblemSolutionCompare />
+          </div>
+        </FullpageSlide>
 
-      {/* İnteraktif Problem & Çözüm Karşılaştırması */}
-      <StorySection chapterBadge="BÖLÜM 02" storyStep="Neden DijitalBüyükanne?">
-        <ProblemSolutionCompare />
-      </StorySection>
+        {/* 04: AI Hareket Analizi (Prechtl GMs) */}
+        <FullpageSlide id="bolum-4" badge="04 / 13" category="TARAMA PROTOKOLÜ 1: HAREKET" theme="slate">
+          <div className="w-full h-full flex items-center justify-center my-auto">
+            <MotionAnalysis />
+          </div>
+        </FullpageSlide>
 
-      {/* Kurumsal Geçiş 02 -> 03 */}
-      <StoryChapterRibbon
-        chapterNumber={ribbons.ribbon3?.chapterNumber || "BÖLÜM 03"}
-        chapterTitle={ribbons.ribbon3?.chapterTitle || "KLİNİK TARAMA PROTOKOLLERİ"}
-        headline={ribbons.ribbon3?.headline || "Yapay Zekâ Destekli 3 Akıllı Tarama Protokolü"}
-        description={ribbons.ribbon3?.description || "Ebeveyn gözünden kaçabilecek erken motor asimetrileri, cilt hassasiyetleri ve sindirim ipuçları için algoritmik ön tarama ve hekim sevk köprüsü."}
-        anchorId="ribbon-3"
-        theme="light"
-        accent="sky"
-      />
+        {/* 05: AI Cilt Analizi (Derma-41) */}
+        <FullpageSlide id="bolum-5" badge="05 / 13" category="TARAMA PROTOKOLÜ 2: CİLT" theme="white">
+          <div className="w-full h-full flex items-center justify-center my-auto">
+            <SkinAnalysis />
+          </div>
+        </FullpageSlide>
 
-      {/* ─────────────────────────────────────────────────────────────
-          BÖLÜM 03: YAPAY ZEKÂ TARAMA PROTOKOLLERİ
-          Hareket, Cilt ve Dışkı/Bez Analizi Canlı Deneyim Odası
-          ───────────────────────────────────────────────────────────── */}
-      <div id="bolum-3" className="scroll-mt-16">
-        <StorySection chapterBadge="BÖLÜM 03" storyStep="1. Bütünsel Ön Tarama">
-          <SolutionSection />
-        </StorySection>
+        {/* 06: AI Bez & Dışkı Analizi (DSÖ Onaylı Skala) */}
+        <FullpageSlide id="bolum-6" badge="06 / 13" category="TARAMA PROTOKOLÜ 3: DIŞKI & BEZ" theme="slate">
+          <div className="w-full h-full flex items-center justify-center my-auto">
+            <StoolAnalysis />
+          </div>
+        </FullpageSlide>
 
-        <StorySection chapterBadge="BÖLÜM 03" storyStep="2. AI Hareket Analizi">
-          <MotionAnalysis />
-        </StorySection>
+        {/* 07: 7/24 Dijital Aile Asistanı */}
+        <FullpageSlide id="bolum-7" badge="07 / 13" category="KESİNTİSİZ EBEVEYN REHBERLİĞİ" theme="dark">
+          <div className="w-full h-full flex items-center justify-center my-auto">
+            <DigitalAssistant />
+          </div>
+        </FullpageSlide>
 
-        <StorySection chapterBadge="BÖLÜM 03" storyStep="3. AI Cilt Analizi (Derma-41)">
-          <SkinAnalysis />
-        </StorySection>
+        {/* 08: İnsan + AI Denge Radarı & Klinik Güvenlik */}
+        <FullpageSlide id="bolum-8" badge="08 / 13" category="KLİNİK ETİK & HEKİM ÜSTÜNLÜĞÜ" theme="white">
+          <div className="w-full h-full flex items-center justify-center my-auto">
+            <HumanAI />
+          </div>
+        </FullpageSlide>
 
-        <StorySection chapterBadge="BÖLÜM 03" storyStep="4. AI Bez & Dışkı Analizi">
-          <StoolAnalysis />
-        </StorySection>
-      </div>
+        {/* 09: Kapsayıcı Erken Müdahale Simülatörü */}
+        <FullpageSlide id="bolum-9" badge="09 / 13" category="ERKEN MÜDAHALE SİMÜLATÖRÜ" theme="slate">
+          <div className="w-full h-full flex items-center justify-center my-auto">
+            <InclusiveAccess />
+          </div>
+        </FullpageSlide>
 
-      {/* Kurumsal Geçiş 03 -> 04 */}
-      <StoryChapterRibbon
-        chapterNumber={ribbons.ribbon4?.chapterNumber || "BÖLÜM 04"}
-        chapterTitle={ribbons.ribbon4?.chapterTitle || "KESİNTİSİZ DESTEK EKOSİSTEMİ"}
-        headline={ribbons.ribbon4?.headline || "7/24 Dijital Rehberlik ve Hekim Güvencesi"}
-        description={ribbons.ribbon4?.description || "Günün her saatinde güvenilir ilk danışma ve yapay zekâ filtreli uzman yönlendirmesiyle ailelerin yanındayız. Klinik kararlar uzman hekimlerin sorumluluğunda yürütülür."}
-        anchorId="ribbon-4"
-        theme="light"
-        accent="coral"
-      />
+        {/* 10: Kapsayıcı Hizmet Alanlarımız (Hedef Gruplar) */}
+        <FullpageSlide id="bolum-10" badge="10 / 13" category="FIRSAT EŞİTLİĞİ & HEDEF GRUPLAR" theme="white">
+          <div className="w-full h-full flex items-center justify-center my-auto">
+            <InclusiveTargetAudiences />
+          </div>
+        </FullpageSlide>
 
-      {/* ─────────────────────────────────────────────────────────────
-          BÖLÜM 04: 7/24 DİJİTAL ASİSTAN & HEKİM GÜVENCESİ
-          7/24 Dijital Asistan & İnsan-AI Denge Radarı
-          ───────────────────────────────────────────────────────────── */}
-      <div id="bolum-4" className="scroll-mt-16">
-        <StorySection chapterBadge="BÖLÜM 04" storyStep="7/24 Dijital Asistan">
-          <DigitalAssistant />
-        </StorySection>
+        {/* 11: Bilimsel Güvence & Danışma Kurulu */}
+        <FullpageSlide id="bolum-11" badge="11 / 13" category="AKADEMİK VE TIBBİ GÜVENCE" theme="light">
+          <div className="w-full h-full flex items-center justify-center my-auto">
+            <ScientificBoard cmsData={siteContent.scientificBoard} />
+          </div>
+        </FullpageSlide>
 
-        <StorySection chapterBadge="BÖLÜM 04" storyStep="İnsan + AI Dengesi">
-          <HumanAI />
-        </StorySection>
-      </div>
+        {/* 12: Sosyal Etki & Kamu Tasarruf Simülasyonu */}
+        <FullpageSlide id="bolum-12" badge="12 / 13" category="KAMU & SOSYAL BELEDİYECİLİK" theme="white">
+          <div className="w-full h-full flex items-center justify-center my-auto">
+            <SocialImpactCalculator />
+          </div>
+        </FullpageSlide>
 
-      {/* Kurumsal Geçiş 04 -> 05 */}
-      <StoryChapterRibbon
-        chapterNumber={ribbons.ribbon5?.chapterNumber || "BÖLÜM 05"}
-        chapterTitle={ribbons.ribbon5?.chapterTitle || "KAPSAYICI SAĞLIK & BİLİM"}
-        headline={ribbons.ribbon5?.headline || "Özel Gereksinimli Çocuklar ve Bilimsel Çerçeve"}
-        description={ribbons.ribbon5?.description || "Prematüre doğum, serebral palsi riski veya gelişimsel gecikmelerde erken müdahale penceresini yakalayan klinik metodoloji ve bağımsız Bilimsel Danışma Kurulu güvencesi."}
-        anchorId="ribbon-5"
-        theme="light"
-        accent="coral"
-      />
-
-      {/* ─────────────────────────────────────────────────────────────
-          BÖLÜM 05: KAPSAYICI SAĞLIK & BİLİMSEL OMURGA
-          Erken Müdahale, Bilim Kurulu & Gerçek Hayat Başarı Hikayeleri
-          ───────────────────────────────────────────────────────────── */}
-      <div id="bolum-5" className="scroll-mt-16">
-        <StorySection chapterBadge="BÖLÜM 05" storyStep="Kapsayıcı Sağlık & Erken Müdahale">
-          <InclusiveAccess />
-        </StorySection>
-
-        <StorySection chapterBadge="BÖLÜM 05" storyStep="Bilimsel Danışma Kurulu">
-          <ScientificBoard cmsData={siteContent.scientificBoard} />
-        </StorySection>
-
-        <StorySection chapterBadge="BÖLÜM 05" storyStep="Etki Hikayeleri">
-          <CaseStudies cmsData={siteContent.caseStudies} />
-        </StorySection>
-
-        <StorySection chapterBadge="BÖLÜM 05" storyStep="Ulusal Medya & Basın">
-          <NationalMediaPress />
-        </StorySection>
-      </div>
-
-      {/* Kurumsal Geçiş 05 -> 06 */}
-      <StoryChapterRibbon
-        chapterNumber={ribbons.ribbon6?.chapterNumber || "BÖLÜM 06"}
-        chapterTitle={ribbons.ribbon6?.chapterTitle || "KAMU İŞ BİRLİĞİ & SOSYAL ETKİ"}
-        headline={ribbons.ribbon6?.headline || "Yerel Yönetimler İçin Şehir Ölçeğinde Aile Ekosistemi"}
-        description={ribbons.ribbon6?.description || "Büyükşehir ve ilçe belediyeleriyle entegre olarak her haneye ücretsiz ulaşan kurumsal mobil altyapı, ölçülebilir sosyal etki ve veri destekli kamu sağlığı yönetimi."}
-        anchorId="ribbon-6"
-        theme="light"
-        accent="sky"
-      />
-
-      {/* ─────────────────────────────────────────────────────────────
-          BÖLÜM 06: KURUMSAL MODEL & SOSYAL ETKİ
-          Kurumsal Çözümler, Sosyal Etki & Bütçe Hesaplayıcı, Büyük Çağrı
-          ───────────────────────────────────────────────────────────── */}
-      <div id="bolum-6" className="scroll-mt-16">
-        <StorySection chapterBadge="BÖLÜM 06" storyStep="Kurumlar & Belediyeler">
-          <InstitutionsHero />
-        </StorySection>
-
-        <StorySection chapterBadge="BÖLÜM 06" storyStep="Sosyal Etki Simülasyonu">
-          <SocialImpactCalculator />
-        </StorySection>
-
-        <StorySection chapterBadge="BÖLÜM 06" storyStep="Destekçi Kuruluşlar">
-          <SupportersPreview />
-        </StorySection>
-
-        <StorySection chapterBadge="BÖLÜM 06" storyStep="Büyük Katılım Çağrısı">
-          <FinalCTA />
-        </StorySection>
-      </div>
+        {/* 13: Büyük Katılım & Geleceğe Adım (Final CTA) */}
+        <FullpageSlide id="bolum-13" badge="13 / 13" category="BÜYÜK KATILIM ÇAĞRISI" theme="dark">
+          <div className="w-full h-full flex items-center justify-center my-auto">
+            <FinalCTA />
+          </div>
+        </FullpageSlide>
+      </FullpageDeckContainer>
     </>
   );
 }

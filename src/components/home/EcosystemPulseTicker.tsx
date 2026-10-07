@@ -71,8 +71,8 @@ export default function EcosystemPulseTicker() {
   const currentActivity = liveActivities[activityIdx];
 
   return (
-    <div className="max-w-6xl mx-auto px-4 md:px-8 mt-6 mb-12">
-      <div className="bg-white/95 rounded-3xl p-4 sm:p-5 border border-sky-100 shadow-xl shadow-sky-500/5 backdrop-blur-xl flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+    <div className="w-full max-w-7xl 2xl:max-w-[1360px] mx-auto mt-2 lg:mt-3 shrink-0">
+      <div className="bg-white/95 rounded-2xl sm:rounded-3xl p-3 sm:p-4 border border-sky-100 shadow-xl shadow-sky-500/5 backdrop-blur-xl flex flex-col lg:flex-row lg:items-center justify-between gap-3 sm:gap-4">
         
         {/* Sol Taraf: Canlı Nabız Göstergesi & Canlı Akış Bildirimi */}
         <div className="flex items-center gap-3.5 min-w-0">
@@ -103,7 +103,7 @@ export default function EcosystemPulseTicker() {
         </div>
 
         {/* Sağ Taraf: 4 Canlı Metrik Sayacı */}
-        <div className="flex items-center gap-3 sm:gap-6 shrink-0 border-t lg:border-t-0 lg:border-l border-slate-100 pt-3 lg:pt-0 lg:pl-6 overflow-x-auto">
+        <div className="flex items-center gap-4 sm:gap-7 shrink-0 border-t lg:border-t-0 lg:border-l border-slate-100 pt-2 lg:pt-0 lg:pl-6 overflow-x-auto">
           
           <div className="text-left shrink-0">
             <div className="text-base sm:text-lg font-black text-[#0B1E3B] font-mono leading-none">
@@ -114,7 +114,7 @@ export default function EcosystemPulseTicker() {
             </span>
           </div>
 
-          <div className="w-px h-8 bg-slate-200 shrink-0" />
+          <div className="w-px h-7 bg-slate-200 shrink-0" />
 
           <div className="text-left shrink-0">
             <div className="text-base sm:text-lg font-black text-[#0284C7] font-mono leading-none">
@@ -125,7 +125,7 @@ export default function EcosystemPulseTicker() {
             </span>
           </div>
 
-          <div className="w-px h-8 bg-slate-200 shrink-0" />
+          <div className="w-px h-7 bg-slate-200 shrink-0" />
 
           <div className="text-left shrink-0">
             <div className="text-base sm:text-lg font-black text-[#FF5A43] font-mono leading-none">
@@ -136,7 +136,7 @@ export default function EcosystemPulseTicker() {
             </span>
           </div>
 
-          <div className="w-px h-8 bg-slate-200 shrink-0 hidden sm:block" />
+          <div className="w-px h-7 bg-slate-200 shrink-0 hidden sm:block" />
 
           <div className="text-left shrink-0 hidden sm:block">
             <div className="text-base sm:text-lg font-black text-emerald-600 font-mono leading-none">

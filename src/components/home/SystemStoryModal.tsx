@@ -490,13 +490,13 @@ export default function SystemStoryModal() {
           setIsPlaying(true);
           setIsOpen(true);
         }}
-        className="fixed bottom-6 right-6 z-40 bg-gradient-to-r from-coral via-[#FF6D55] to-[#f0442b] hover:from-coral-600 text-white font-bold text-xs sm:text-sm px-4 py-3 rounded-full shadow-2xl shadow-coral/40 flex items-center gap-2.5 transition-all duration-300 hover:scale-105 active:scale-95 group border border-white/20 cursor-pointer"
+        className="fixed bottom-3 right-10 z-20 bg-gradient-to-r from-coral to-[#f0442b] hover:from-coral-600 text-white font-bold text-xs px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5 transition-all duration-300 hover:scale-105 active:scale-95 group border border-white/20 cursor-pointer hidden sm:flex"
         title="Sistemin Nasıl Çalıştığını İzleyin"
       >
-        <span className="w-2.5 h-2.5 rounded-full bg-white animate-ping" />
-        <span className="flex items-center gap-1.5">
+        <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
+        <span className="flex items-center gap-1">
           <span>🎬</span>
-          <span className="font-extrabold tracking-tight">Sistemi Keşfet (30 Sn)</span>
+          <span className="font-extrabold tracking-tight text-[11px]">Sistemi Keşfet (30 Sn)</span>
         </span>
       </button>
 

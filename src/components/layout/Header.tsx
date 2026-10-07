@@ -41,14 +41,6 @@ export default function Header() {
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
               Ar-Ge: OMÜ Kurupelit Kampüsü Samsun Teknopark
             </span>
-            <span className="text-white/20">|</span>
-            <Link
-              href="/#medya"
-              className="text-white/70 hover:text-white flex items-center gap-1 transition-colors hover:underline"
-            >
-              <Newspaper size={11} className="text-coral" />
-              <span>Anadolu Ajansı & CNN Türk Vitrini</span>
-            </Link>
           </div>
 
           {/* Sağ Taraf: babysensai.com ve adapha.com/tr Doğrudan Bağlantıları */}

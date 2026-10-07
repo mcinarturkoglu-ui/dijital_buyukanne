@@ -177,113 +177,97 @@ export default function SocialImpactCalculator({ onOpenDemoModal }: SocialImpact
   return (
     <section
       ref={sectionRef}
-      className="py-8 md:py-12 px-4 md:px-8 bg-gradient-to-b from-[#F5F9FF] via-white to-[#EFF5FB] relative overflow-hidden min-h-[calc(100vh-4rem)] flex flex-col justify-center"
+      className="py-2 px-2 sm:px-4 bg-transparent relative overflow-hidden w-full flex flex-col justify-center my-auto"
       id="sosyal-etki"
     >
       {/* Soft background blobs */}
       <div className="absolute top-0 left-1/4 w-[600px] h-[400px] bg-teal-100/20 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-rose-100/20 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="max-w-6xl mx-auto relative z-10 w-full">
+      <div className="max-w-7xl 2xl:max-w-[1360px] mx-auto relative z-10 w-full">
 
-        {/* ── COMPACT HEADER ── */}
-        <div className={`text-center max-w-3xl mx-auto mb-4 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-navy/5 text-navy text-xs font-bold tracking-wider uppercase mb-1.5 border border-navy/10">
-            <TrendingUp size={13} className="text-turquoise" />
-            <span>Kanıta Dayalı Sosyal Etki Simülasyonu</span>
+        {/* ── HEADER ── */}
+        <div className={`text-center max-w-3xl mx-auto mb-3.5 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-navy/5 text-navy text-xs font-mono font-bold tracking-widest uppercase mb-1.5 border border-navy/10 shadow-2xs">
+            <TrendingUp size={13} className="text-[#0284C7]" />
+            <span>KANITA DAYALI SOSYAL ETKİ SİMÜLASYONU</span>
           </div>
 
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-navy tracking-tight leading-tight">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#0B1E3B] tracking-tight leading-tight">
             Şehrinizde{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-turquoise to-[#0284C7]">
-              kaç bebeğe dokunacaksınız?
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0284C7] to-[#FF5A43]">
+              Kaç Bebeğe Dokunacaksınız?
             </span>
           </h2>
 
-          <p className="mt-1 text-xs sm:text-sm text-slate-600 leading-relaxed font-normal max-w-2xl mx-auto">
-            Sayıyı belirleyin — bilimsel verilere dayalı toplumsal dönüşümü canlı görün.
+          <p className="mt-1 text-xs sm:text-sm text-slate-600 leading-relaxed max-w-2xl mx-auto">
+            Bebek ve aile sayısını belirleyin; uluslararası pediatri kılavuzları ve AI algoritmalarıyla oluşacak toplumsal dönüşümü canlı izleyin.
           </p>
         </div>
 
-        {/* ── SLIDER CARD (COMPACT) ── */}
-        <div className={`max-w-4xl mx-auto mb-5 transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-          <div className="bg-white rounded-2xl p-4 sm:p-5 shadow-lg border border-slate-200/80 relative overflow-hidden">
-            {/* Decorative corner */}
-            <div className="absolute -top-8 -right-8 w-32 h-32 bg-gradient-to-bl from-turquoise/10 to-transparent rounded-full pointer-events-none" />
-            <div className="absolute -bottom-8 -left-8 w-24 h-24 bg-gradient-to-tr from-coral/5 to-transparent rounded-full pointer-events-none" />
-
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
-              <div>
-                <h3 className="text-xs sm:text-sm font-bold text-navy">Desteklemek istediğiniz bebek sayısı</h3>
-                <p className="text-[11px] text-slate-500">
-                  Slider&apos;ı kaydırın veya hızlı ölçek seçin
-                </p>
-              </div>
-              <div className="inline-flex items-baseline gap-2 bg-gradient-to-r from-navy via-[#0d3461] to-navy px-4 py-2 rounded-xl shadow-md shadow-navy/20">
-                <span className="text-2xl sm:text-3xl font-black text-turquoise font-mono tracking-tight">
-                  {babyCount.toLocaleString('tr-TR')}
-                </span>
-                <span className="text-[10px] font-bold text-white/80 uppercase tracking-wider">Bebek & Aile</span>
-              </div>
-            </div>
-
-            {/* Slider */}
-            <div className="relative mb-3.5">
-              <div className="relative h-3 bg-slate-100 rounded-full overflow-hidden">
-                <div
-                  className="absolute left-0 top-0 h-full bg-gradient-to-r from-turquoise to-[#0284C7] rounded-full transition-all duration-300"
-                  style={{ width: `${sliderPct}%` }}
-                />
-              </div>
-              <input
-                type="range" min={100} max={15000} step={100} value={babyCount}
-                onChange={(e) => setBabyCount(Number(e.target.value))}
-                className="absolute inset-0 w-full h-3 opacity-0 cursor-pointer"
-              />
-              <div
-                className="absolute top-1/2 -translate-y-1/2 w-5 h-5 bg-white border-[3px] border-turquoise rounded-full shadow-md shadow-turquoise/30 pointer-events-none transition-all duration-300"
-                style={{ left: `calc(${sliderPct}% - 10px)` }}
-              />
-            </div>
-
-            {/* Scale Buttons */}
-            <div className="flex flex-wrap gap-1.5 justify-center sm:justify-start">
+        {/* ── SLIDER & CONTROLS ROW ── */}
+        <div className={`max-w-6xl 2xl:max-w-[1280px] mx-auto mb-3.5 transition-all duration-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`}>
+          <div className="bg-white rounded-3xl p-4 sm:p-5 shadow-sm border border-slate-200 flex flex-col md:flex-row items-center justify-between gap-4">
+            {/* Quick Scale Buttons */}
+            <div className="flex flex-wrap items-center gap-2 justify-center md:justify-start w-full md:w-auto">
+              <span className="text-xs font-bold text-slate-500 mr-1 hidden sm:inline">Ölçek:</span>
               {quickScales.map((s) => (
                 <button
                   key={s.count}
                   onClick={() => setBabyCount(s.count)}
-                  className={`px-3 py-1.5 rounded-xl text-xs transition-all border flex items-center gap-1.5 cursor-pointer leading-tight ${
+                  className={`px-3 py-1.5 rounded-xl text-xs transition-all border flex items-center gap-1.5 cursor-pointer leading-none ${
                     babyCount === s.count
-                      ? 'bg-navy text-white border-navy font-bold shadow-xs scale-102'
-                      : 'bg-white text-slate-600 hover:border-slate-300 border-slate-200 hover:bg-slate-50'
+                      ? 'bg-navy text-white border-navy font-bold shadow-sm scale-102 ring-1 ring-sky-400/40'
+                      : 'bg-slate-50 text-slate-600 hover:border-slate-300 border-slate-200 hover:bg-slate-100'
                   }`}
                 >
-                  <span className="text-sm leading-none">{s.emoji}</span>
-                  <span className="font-bold text-[11px]">{s.label}</span>
-                  <span className={`text-[10px] ${babyCount === s.count ? 'text-white/70' : 'text-slate-400'}`}>({s.sub})</span>
+                  <span className="text-sm">{s.emoji}</span>
+                  <span className="font-bold text-xs">{s.label}</span>
+                  <span className={`text-[11px] ${babyCount === s.count ? 'text-white/80' : 'text-slate-400'}`}>({s.count.toLocaleString('tr-TR')})</span>
                 </button>
               ))}
+            </div>
+
+            {/* Live Slider + Display Counter */}
+            <div className="flex items-center gap-3.5 w-full md:w-auto justify-end">
+              <div className="relative flex-1 md:w-48">
+                <input
+                  type="range"
+                  min={100}
+                  max={15000}
+                  step={100}
+                  value={babyCount}
+                  onChange={(e) => setBabyCount(Number(e.target.value))}
+                  className="w-full h-2.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#0284C7]"
+                />
+              </div>
+
+              <div className="inline-flex items-baseline gap-2 bg-gradient-to-r from-navy via-[#0d3461] to-navy px-4 py-2 rounded-2xl shadow-md text-white shrink-0">
+                <span className="text-xl sm:text-2xl font-black text-turquoise font-mono tracking-tight">
+                  {babyCount.toLocaleString('tr-TR')}
+                </span>
+                <span className="text-xs font-bold text-white/80 uppercase tracking-wider">Bebek</span>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* ── 4 IMPACT CARDS (COMPACT & RESPONSIVE) ── */}
-        <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 max-w-5xl mx-auto mb-4 transition-all duration-700 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+        {/* ── 4 IMPACT CARDS (GRID) ── */}
+        <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl 2xl:max-w-[1280px] mx-auto mb-3.5 transition-all duration-500 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`}>
           {cards.map((card, idx) => {
             const Icon = card.icon;
             const isOpen = openSource === idx;
             return (
               <div
                 key={idx}
-                className={`bg-gradient-to-br ${card.gradFrom} to-white rounded-2xl border ${card.border} shadow-2xs hover:shadow-md transition-all duration-300 overflow-hidden flex flex-col justify-between`}
+                className={`bg-gradient-to-br ${card.gradFrom} via-white to-white rounded-3xl border ${card.border} shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between p-4 sm:p-5`}
               >
-                {/* Card header */}
-                <div className="p-3.5 sm:p-4">
+                <div>
                   <div className="flex items-center justify-between mb-2">
-                    <div className="flex items-center gap-2">
-                      <div className="text-xl leading-none">{card.emoji}</div>
-                      <div className={`w-7 h-7 rounded-lg ${card.iconBg} ${card.iconColor} flex items-center justify-center`}>
-                        <Icon size={14} />
+                    <div className="flex items-center gap-1.5">
+                      <span className="text-lg leading-none">{card.emoji}</span>
+                      <div className={`w-6 h-6 rounded-lg ${card.iconBg} ${card.iconColor} flex items-center justify-center`}>
+                        <Icon size={13} />
                       </div>
                     </div>
                     <span className={`text-[9px] font-bold px-2 py-0.5 rounded-full ${card.badgeBg}`}>
@@ -291,43 +275,42 @@ export default function SocialImpactCalculator({ onOpenDemoModal }: SocialImpact
                     </span>
                   </div>
 
-                  {/* Big number */}
-                  <div className={`text-2xl sm:text-3xl font-black ${card.valueColor} font-mono mb-1 tracking-tight`}>
-                    {typeof card.value === 'number' ? card.value.toLocaleString('tr-TR') : card.value}
-                    <span className="text-xs font-bold ml-1.5 opacity-70">{card.unit}</span>
+                  {/* Big stat number */}
+                  <div className={`text-2xl sm:text-3xl font-black ${card.valueColor} font-mono mb-1 tracking-tight flex items-baseline gap-1`}>
+                    {card.value.toLocaleString('tr-TR')}
+                    <span className="text-[11px] font-semibold text-slate-500 uppercase">{card.unit}</span>
                   </div>
 
-                  <h4 className="text-xs font-bold text-slate-800 mb-1 leading-snug line-clamp-2">
+                  <h4 className="text-xs font-bold text-slate-900 mb-1 leading-snug line-clamp-1">
                     {card.title}
                   </h4>
 
-                  <p className="text-[11px] text-slate-600 leading-relaxed line-clamp-2">
+                  <p className="text-[11px] text-slate-600 leading-tight line-clamp-2 mb-2">
                     {card.story}
                   </p>
 
-                  {/* Why it matters */}
-                  <div className={`mt-2 p-2 rounded-lg ${card.iconBg} border ${card.border}`}>
+                  <div className={`p-1.5 rounded-lg ${card.iconBg} border ${card.border}`}>
                     <p className={`text-[10px] font-semibold ${card.iconColor} leading-tight line-clamp-2`}>
                       💡 {card.why}
                     </p>
                   </div>
                 </div>
 
-                {/* Source accordion */}
-                <div className="border-t border-slate-100/80 bg-slate-50/30">
+                {/* Science source drawer */}
+                <div className="mt-2 pt-2 border-t border-slate-100">
                   <button
                     onClick={() => setOpenSource(isOpen ? null : idx)}
-                    className="w-full flex items-center justify-between px-3 py-1.5 text-[10px] text-slate-500 hover:text-slate-700 hover:bg-slate-50 transition-colors"
+                    className="w-full flex items-center justify-between text-[10px] text-slate-500 hover:text-slate-800 transition-colors"
                   >
                     <span className="flex items-center gap-1 font-semibold truncate">
-                      <BookOpen size={11} />
-                      <span>{card.sourceLabel}</span>
+                      <BookOpen size={10} />
+                      <span className="truncate">{card.sourceLabel}</span>
                     </span>
-                    {isOpen ? <ChevronUp size={12} /> : <ChevronDown size={12} />}
+                    {isOpen ? <ChevronUp size={11} /> : <ChevronDown size={11} />}
                   </button>
                   {isOpen && (
-                    <div className="px-3 pb-2 text-[10px] text-slate-500 leading-relaxed bg-white border-t border-slate-100">
-                      <p className="pt-1.5">{card.sourceDetail}</p>
+                    <div className="mt-1 p-2 text-[10px] text-slate-600 leading-relaxed bg-white rounded-lg border border-slate-200">
+                      {card.sourceDetail}
                     </div>
                   )}
                 </div>
@@ -336,58 +319,34 @@ export default function SocialImpactCalculator({ onOpenDemoModal }: SocialImpact
           })}
         </div>
 
-        {/* ── DARK SUMMARY PANEL (COMPACT) ── */}
-        <div className={`max-w-5xl mx-auto mb-4 transition-all duration-700 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-          <div className="bg-gradient-to-br from-[#0B2545] via-[#0d3461] to-[#071e37] rounded-2xl p-4 sm:p-5 text-white shadow-lg relative overflow-hidden">
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 relative">
-              {[
-                { val: motorRisk.toLocaleString('tr-TR'), label: 'Motor İpucu Tespiti', sub: 'Nöromotor & Kas', color: 'text-teal-400' },
-                { val: skinDigest.toLocaleString('tr-TR'), label: 'Cilt & Sindirim Tespiti', sub: 'WHO Kılavuzu', color: 'text-rose-400' },
-                { val: anxiousMoms.toLocaleString('tr-TR'), label: 'Anne Yanında Destek', sub: 'WHO Türkiye %21.4', color: 'text-blue-400' },
-                { val: avoidableER.toLocaleString('tr-TR'), label: 'Önlenebilir Acil', sub: 'AAP / HSB %52', color: 'text-emerald-400' },
-              ].map((item, i) => (
-                <div key={i} className="p-2.5 rounded-xl bg-white/[0.06] border border-white/[0.07] text-center">
-                  <span className={`block text-xl sm:text-2xl font-black ${item.color} font-mono`}>
-                    {item.val}
-                  </span>
-                  <span className="text-[10px] font-medium text-white/80 mt-0.5 block leading-tight truncate">{item.label}</span>
-                  <span className="text-[9px] text-white/40">{item.sub}</span>
-                </div>
-              ))}
-            </div>
-
-            <div className="flex flex-col sm:flex-row items-center justify-between text-[10px] text-white/50 gap-1 pt-3 mt-3 border-t border-white/[0.06]">
-              <span className="flex items-center gap-1.5">
-                <Sparkles size={11} className="text-turquoise" />
-                Uluslararası pediatri kılavuzları ve WHO verileriyle modellenmiştir.
-              </span>
-              <span className="text-white/40">Tanı koymaz; erken farkındalık ve hekim köprüsü kurar.</span>
-            </div>
-          </div>
-        </div>
-
-        {/* ── CTA (COMPACT INLINE) ── */}
-        <div className={`max-w-5xl mx-auto transition-all duration-700 delay-400 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-          <div className="p-3.5 sm:p-4 rounded-2xl bg-white border border-slate-200 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-3">
-            <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-navy/5 text-navy flex items-center justify-center shrink-0">
-                <FileText size={18} />
+        {/* ── PROTOCOL & INSTITUTIONAL FOOTER BAR ── */}
+        <div className={`max-w-5xl mx-auto transition-all duration-500 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`}>
+          <div className="p-3 rounded-2xl bg-[#0B2545] text-white shadow-md flex flex-col sm:flex-row items-center justify-between gap-3 border border-white/10">
+            <div className="flex items-center gap-2.5 min-w-0">
+              <div className="w-8 h-8 rounded-xl bg-white/10 text-turquoise flex items-center justify-center shrink-0">
+                <FileText size={16} />
               </div>
-              <div>
-                <h4 className="text-xs sm:text-sm font-bold text-navy">
-                  Kurumsal Protokol & Meclis Karar Dosyası
-                </h4>
-                <p className="text-[11px] text-slate-500">
-                  Protokol dosyasını, bilimsel kaynakları ve bütçe tablosunu talep edin.
+              <div className="min-w-0">
+                <div className="flex items-center gap-2">
+                  <h4 className="text-xs font-bold text-white truncate">
+                    Kurumsal İş Birliği & Meclis Karar Dosyası
+                  </h4>
+                  <span className="text-[9px] font-mono bg-turquoise/20 text-turquoise px-1.5 py-0.5 rounded font-bold hidden md:inline">
+                    Resmî Protokol
+                  </span>
+                </div>
+                <p className="text-[10px] text-white/60 truncate">
+                  DSÖ & AAP bilimsel kaynakları, bütçe etki tablosu ve protokol şablonu.
                 </p>
               </div>
             </div>
+
             <button
               onClick={() => handleOpenModal(babyCount)}
-              className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-gradient-to-r from-coral to-[#e8634f] text-white font-bold text-xs shrink-0 flex items-center justify-center gap-2 shadow-md shadow-coral/20 hover:shadow-lg hover:scale-102 transition-all cursor-pointer"
+              className="w-full sm:w-auto px-4 py-2 rounded-xl bg-gradient-to-r from-coral to-[#e8634f] text-white font-bold text-xs shrink-0 flex items-center justify-center gap-1.5 shadow-md shadow-coral/30 hover:scale-102 transition-all cursor-pointer"
             >
               <span>Protokol Dosyasını Talep Edin</span>
-              <ArrowRight size={14} />
+              <ArrowRight size={13} />
             </button>
           </div>
         </div>

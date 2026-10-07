@@ -172,7 +172,7 @@ function HeroAppScreen({
             </div>
 
             {/* Video Motion Skeleton SVG with Glowing Landmarks */}
-            <div className="relative w-full h-36 flex items-center justify-center my-auto">
+            <div className="relative w-full h-40 sm:h-44 flex items-center justify-center my-auto">
               <svg viewBox="0 0 160 120" className="w-full h-full stroke-sky-400 stroke-[2] fill-none drop-shadow-[0_0_8px_rgba(56,189,248,0.5)]">
                 {/* Torso / Omurga Ekseni */}
                 <line x1="80" y1="42" x2="80" y2="70" stroke="#38BDF8" strokeWidth="2.5" />
@@ -382,7 +382,7 @@ export default function HeroSection() {
 
   return (
     <section
-      className="relative overflow-hidden pt-32 sm:pt-36 lg:pt-40 pb-20 sm:pb-28 bg-gradient-to-b from-[#FFFFFF] via-[#F8FBFE] via-35%-[#F0F8FF] via-70%-[#E1F1FD] to-[#D5ECFB]"
+      className="relative overflow-hidden py-1 sm:py-2 lg:py-3 w-full bg-transparent"
     >
       {/* Spectacular ambient glowing aurora orbs - radiant sky cyan, warm peach & mint */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -415,147 +415,157 @@ export default function HeroSection() {
         />
       </div>
 
-      <div className="relative z-10 max-w-6xl mx-auto px-4 md:px-8 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
+      <div className="relative z-10 max-w-7xl 2xl:max-w-[1360px] mx-auto w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 xl:gap-16 items-center">
 
           {/* SOL KOLON — MANŞET & DEĞER ÖNERMESİ */}
           <div className="lg:col-span-7 flex flex-col items-start hero-fade-left">
             
             {/* Luminous System Indicator Pill with 3D Mascot */}
-            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/95 border border-sky-200/90 text-sky-950 text-xs font-bold tracking-wider uppercase mb-5 shadow-xs backdrop-blur-md">
-              <Image
-                src="/images/mascot.png"
-                alt="Dijital Büyükanne Maskot"
-                width={20}
-                height={20}
-                className="w-5 h-5 object-contain"
-              />
-              <span>0–24 AY BEBEK VE AİLE DESTEK EKOSİSTEMİ</span>
+            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/95 border border-sky-200/90 text-sky-950 text-xs font-bold tracking-wider uppercase mb-3 sm:mb-4 shadow-xs backdrop-blur-md">
+              <div className="w-5 h-5 rounded-full bg-sky-50 border border-sky-200/80 flex items-center justify-center overflow-hidden shrink-0">
+                <Image
+                  src="/images/mascot.png"
+                  alt="Dijital Büyükanne Maskot"
+                  width={18}
+                  height={18}
+                  className="w-full h-full object-contain"
+                />
+              </div>
+              <span className="font-extrabold text-[#0B1E3B] tracking-normal">0–24 AY BEBEK VE AİLE DESTEK EKOSİSTEMİ</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse hidden sm:inline-block" />
+              <span className="text-[10px] text-emerald-700 font-mono font-bold hidden sm:inline">KLİNİK STANDART</span>
             </div>
 
             {/* H1 — Dramatik, İç Açıcı ve Güven Veren Başlık */}
-            <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] font-black text-[#0B1E3B] leading-[1.1] mb-5 tracking-tight">
+            <h1 className="text-3xl sm:text-4xl lg:text-[45px] xl:text-[50px] font-black text-[#0B1E3B] leading-[1.12] mb-3.5 tracking-tight">
               Her bebeğin bir{' '}
               <span className="relative inline-block">
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0284C7] via-[#0EA5E9] to-[#FF5A43]">
                   Dijital Büyükannesi
                 </span>
-                <span className="absolute -bottom-1 left-0 w-full h-[3px] bg-gradient-to-r from-[#0284C7] via-[#0EA5E9] to-[#FF5A43] rounded-full opacity-70" />
+                <span className="absolute -bottom-1 left-0 w-full h-[3.5px] bg-gradient-to-r from-[#0284C7] via-[#0EA5E9] to-[#FF5A43] rounded-full opacity-80" />
               </span>{' '}
               olsun.
             </h1>
 
             {/* Description — Sade, Empatik ve Vizyoner */}
-            <p className="text-slate-600 text-base sm:text-lg leading-relaxed mb-6 max-w-xl font-normal">
-              Geleneksel büyükanne şefkatini modern <strong>yapay zekâ teknolojisiyle</strong> buluşturuyoruz. Bebeğinizin hareketini, cildini ve gelişimini <strong>evden takip edin</strong> — gece 03:00&apos;te bile uzman gibi yanınızdayız.
+            <p className="text-slate-600 text-sm sm:text-base lg:text-[16px] leading-relaxed mb-4 sm:mb-5 max-w-xl font-normal">
+              Geleneksel büyükanne şefkatini modern <strong>klinik yapay zekâ teknolojisiyle</strong> buluşturuyoruz. Bebeğinizin nöromotor hareketini, cildini ve gelişimini ev konforunda uzman hekim güvencesiyle takip edin.
             </p>
 
             {/* Primary & Secondary Action Buttons */}
-            <div className="flex flex-wrap items-center gap-3.5 w-full max-w-xl mb-7">
+            <div className="flex flex-wrap items-center gap-3 w-full max-w-xl mb-4 sm:mb-5">
               <button
                 onClick={() => {
                   window.dispatchEvent(new CustomEvent('open-system-story-modal'));
                 }}
-                className="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-coral via-[#FF6D55] to-[#f0442b] hover:from-coral-600 text-white font-black text-xs sm:text-sm flex items-center gap-2.5 shadow-xl shadow-coral/30 hover:scale-105 active:scale-95 transition-all cursor-pointer group"
+                className="px-5 py-2.5 sm:py-3 rounded-2xl bg-gradient-to-r from-coral via-[#FF6D55] to-[#f0442b] hover:from-coral-600 text-white font-black text-xs sm:text-sm flex items-center gap-2.5 shadow-lg shadow-coral/25 hover:shadow-xl hover:shadow-coral/35 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer group"
               >
-                <Play size={16} className="fill-white group-hover:scale-110 transition-transform" />
+                <Play size={15} className="fill-white group-hover:scale-110 transition-transform" />
                 <span>Nasıl Çalışır? Canlı Sinematik Tur</span>
               </button>
 
               <a
                 href="#sosyal-etki"
-                className="px-5 py-3.5 rounded-2xl bg-white hover:bg-slate-50 text-slate-800 font-bold text-xs sm:text-sm flex items-center gap-2 border border-slate-200 shadow-sm hover:border-sky-300 transition-all cursor-pointer"
+                className="px-4.5 py-2.5 sm:py-3 rounded-2xl bg-white hover:bg-slate-50 text-slate-800 font-bold text-xs sm:text-sm flex items-center gap-2 border border-slate-200 shadow-xs hover:border-sky-300 hover:text-sky-700 transition-all cursor-pointer"
               >
-                <TrendingUp size={16} className="text-[#0284C7]" />
+                <TrendingUp size={15} className="text-[#0284C7]" />
                 <span>Sosyal Etkiyi Simüle Et</span>
               </a>
             </div>
 
-            {/* 3 Somut Hizmet Kartı — Yaptığımız İşi Anında Yansıtan Alan */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full max-w-xl mb-7">
+            {/* 3 Somut Hizmet Kartı — İnteraktif Ekran Değiştirici */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 w-full max-w-xl">
               {/* Hizmet 1: Hareket Analizi */}
               <div
                 onClick={() => setActiveScreen('video')}
-                className={`p-3.5 rounded-2xl border transition-all cursor-pointer text-left ${
+                className={`p-3 sm:p-3.5 rounded-2xl border transition-all cursor-pointer text-left relative overflow-hidden group ${
                   activeScreen === 'video'
-                    ? 'bg-white border-sky-400 ring-2 ring-sky-400/25 shadow-md -translate-y-0.5'
-                    : 'bg-white/90 border-slate-200/80 hover:bg-white hover:border-sky-300 shadow-xs'
+                    ? 'bg-white border-sky-400 ring-2 ring-sky-400/25 shadow-md shadow-sky-500/10'
+                    : 'bg-white/85 border-slate-200/80 hover:bg-white hover:border-sky-300 hover:shadow-xs'
                 }`}
               >
-                <div className="flex items-center gap-1.5 text-sky-900 font-bold text-xs mb-1">
-                  <Activity size={14} className="text-sky-600" />
-                  <span>0–6 Ay Hareket</span>
+                {activeScreen === 'video' && (
+                  <div className="absolute top-0 right-0 w-12 h-12 bg-sky-500/10 rounded-bl-full pointer-events-none" />
+                )}
+                <div className="flex items-center justify-between mb-1.5">
+                  <div className="flex items-center gap-1.5 text-sky-950 font-black text-xs">
+                    <div className={`w-6 h-6 rounded-lg flex items-center justify-center ${activeScreen === 'video' ? 'bg-sky-500 text-white' : 'bg-sky-100 text-sky-600'}`}>
+                      <Activity size={13} />
+                    </div>
+                    <span>0–6 Ay Hareket</span>
+                  </div>
+                  <span className={`text-[9px] font-mono font-bold px-1.5 py-0.5 rounded ${activeScreen === 'video' ? 'bg-sky-100 text-sky-700' : 'bg-slate-100 text-slate-500'}`}>
+                    60 FPS
+                  </span>
                 </div>
-                <p className="text-[11px] text-slate-500 leading-snug">
-                  Kısa videodan nörolojik ve kas hastalıkları ile motor gelişim ve simetri takibi.
+                <p className="text-[11px] text-slate-600 leading-snug">
+                  18 eklem Prechtl GMs nörolojik ve kas motor takibi.
                 </p>
               </div>
 
               {/* Hizmet 2: Bez & Cilt */}
               <div
                 onClick={() => setActiveScreen('scan')}
-                className={`p-3.5 rounded-2xl border transition-all cursor-pointer text-left ${
+                className={`p-3 sm:p-3.5 rounded-2xl border transition-all cursor-pointer text-left relative overflow-hidden group ${
                   activeScreen === 'scan'
-                    ? 'bg-white border-sky-400 ring-2 ring-sky-400/25 shadow-md -translate-y-0.5'
-                    : 'bg-white/90 border-slate-200/80 hover:bg-white hover:border-sky-300 shadow-xs'
+                    ? 'bg-white border-indigo-400 ring-2 ring-indigo-400/25 shadow-md shadow-indigo-500/10'
+                    : 'bg-white/85 border-slate-200/80 hover:bg-white hover:border-indigo-300 hover:shadow-xs'
                 }`}
               >
-                <div className="flex items-center gap-1.5 text-sky-950 font-bold text-xs mb-1">
-                  <ScanLine size={14} className="text-sky-600" />
-                  <span>Bez & Cilt Analizi</span>
+                {activeScreen === 'scan' && (
+                  <div className="absolute top-0 right-0 w-12 h-12 bg-indigo-500/10 rounded-bl-full pointer-events-none" />
+                )}
+                <div className="flex items-center justify-between mb-1.5">
+                  <div className="flex items-center gap-1.5 text-indigo-950 font-black text-xs">
+                    <div className={`w-6 h-6 rounded-lg flex items-center justify-center ${activeScreen === 'scan' ? 'bg-indigo-600 text-white' : 'bg-indigo-100 text-indigo-600'}`}>
+                      <ScanLine size={13} />
+                    </div>
+                    <span>Bez & Cilt</span>
+                  </div>
+                  <span className={`text-[9px] font-mono font-bold px-1.5 py-0.5 rounded ${activeScreen === 'scan' ? 'bg-indigo-100 text-indigo-700' : 'bg-slate-100 text-slate-500'}`}>
+                    9 Seviye
+                  </span>
                 </div>
-                <p className="text-[11px] text-slate-500 leading-snug">
-                  Pediatrik skalalarla fotoğraftan renk ve döküntü ön taraması.
+                <p className="text-[11px] text-slate-600 leading-snug">
+                  Fotoğraftan dışkı rengi ve pişik optik taraması.
                 </p>
               </div>
 
               {/* Hizmet 3: Asistan */}
               <div
                 onClick={() => setActiveScreen('assistant')}
-                className={`p-3.5 rounded-2xl border transition-all cursor-pointer text-left ${
+                className={`p-3 sm:p-3.5 rounded-2xl border transition-all cursor-pointer text-left relative overflow-hidden group ${
                   activeScreen === 'assistant'
-                    ? 'bg-white border-coral ring-2 ring-coral/25 shadow-md -translate-y-0.5'
-                    : 'bg-white/90 border-slate-200/80 hover:bg-white hover:border-coral/40 shadow-xs'
+                    ? 'bg-white border-coral ring-2 ring-coral/25 shadow-md shadow-coral/10'
+                    : 'bg-white/85 border-slate-200/80 hover:bg-white hover:border-coral/40 hover:shadow-xs'
                 }`}
               >
-                <div className="flex items-center gap-1.5 text-coral font-bold text-xs mb-1">
-                  <MessageCircle size={14} className="text-coral" />
-                  <span>7/24 Dijital Asistan</span>
+                {activeScreen === 'assistant' && (
+                  <div className="absolute top-0 right-0 w-12 h-12 bg-coral/10 rounded-bl-full pointer-events-none" />
+                )}
+                <div className="flex items-center justify-between mb-1.5">
+                  <div className="flex items-center gap-1.5 text-coral font-black text-xs">
+                    <div className={`w-6 h-6 rounded-lg flex items-center justify-center ${activeScreen === 'assistant' ? 'bg-coral text-white' : 'bg-coral/10 text-coral'}`}>
+                      <MessageCircle size={13} />
+                    </div>
+                    <span>7/24 Asistan</span>
+                  </div>
+                  <span className={`text-[9px] font-mono font-bold px-1.5 py-0.5 rounded ${activeScreen === 'assistant' ? 'bg-coral/15 text-coral-700' : 'bg-slate-100 text-slate-500'}`}>
+                    Canlı AI
+                  </span>
                 </div>
-                <p className="text-[11px] text-slate-500 leading-snug">
-                  Panik yapmadan uyku, beslenme ve güvenilir hekim yönlendirmesi.
+                <p className="text-[11px] text-slate-600 leading-snug">
+                  Uyku, beslenme ve güvenilir klinik yönlendirme.
                 </p>
-              </div>
-            </div>
-
-            {/* Bilimsel Güvenlik, Uzman Hekim Kontrolü & Pediatri Onayı */}
-            <div className="flex items-start sm:items-center gap-3 text-slate-700 text-xs sm:text-sm bg-white/95 border border-sky-100 p-3.5 rounded-2xl shadow-xs backdrop-blur-md mb-2">
-              <ShieldCheck size={20} className="text-sky-600 shrink-0 mt-0.5 sm:mt-0" />
-              <div className="leading-relaxed">
-                <span className="font-bold text-[#0B1E3B]">Yapay zekâ tek başına karar vermez:</span> Tüm taramalar pediatri bilim kurulu standartlarındadır; kritik veya riskli bulgularda sonuçlar <strong>uzman hekimlerimizin ve danışmanlarımızın kontrolü</strong> eşliğinde aileye ve hekime sevk protokolüyle aktarılır.
-              </div>
-            </div>
-
-            {/* Sosyal Kanıt — 3 Stat Rozeti */}
-            <div className="flex flex-wrap items-center gap-3 mt-3">
-              <div className="flex items-center gap-2 bg-white/95 border border-sky-100 px-3.5 py-2 rounded-xl shadow-xs text-xs">
-                <span className="text-[#0284C7] font-black text-sm">12.400+</span>
-                <span className="text-slate-500 font-medium">Güvenen Aile</span>
-              </div>
-              <div className="flex items-center gap-2 bg-white/95 border border-sky-100 px-3.5 py-2 rounded-xl shadow-xs text-xs">
-                <span className="text-[#0284C7] font-black text-sm">15+</span>
-                <span className="text-slate-500 font-medium">Uzman Hekim</span>
-              </div>
-              <div className="flex items-center gap-2 bg-white/95 border border-coral/20 px-3.5 py-2 rounded-xl shadow-xs text-xs">
-                <span className="text-coral font-black text-sm">24 Ay</span>
-                <span className="text-slate-500 font-medium">Kesintisiz Takip</span>
               </div>
             </div>
           </div>
 
           {/* SAĞ KOLON — İNTERAKTİF TELEFON VE ROZETLER */}
           <div className="lg:col-span-5 flex justify-center lg:justify-end hero-fade-right">
-            <div className="relative animate-float-slow w-full max-w-[340px] sm:max-w-[360px]">
+            <div className="relative animate-float-slow w-full max-w-[360px] lg:max-w-[390px] xl:max-w-[410px]">
               
               {/* Luminous Phone Glow Effect */}
               <div
@@ -566,38 +576,40 @@ export default function HeroSection() {
               {/* Yüzen Rozet 1: Kinematik Video */}
               <button
                 onClick={() => setActiveScreen('video')}
-                className={`hidden sm:flex items-center gap-2 absolute -left-8 top-12 backdrop-blur-xl text-xs font-bold px-3.5 py-2 rounded-2xl shadow-xl border transition-all duration-300 cursor-pointer z-20 ${
+                className={`hidden sm:flex items-center gap-2.5 absolute -left-10 lg:-left-12 top-10 backdrop-blur-xl px-4 py-2.5 rounded-2xl shadow-xl border transition-all duration-300 cursor-pointer z-20 ${
                   activeScreen === 'video'
-                    ? 'bg-white text-sky-950 border-sky-300 ring-2 ring-sky-400/30 scale-105'
+                    ? 'bg-white text-sky-950 border-sky-300 ring-2 ring-sky-400/30 scale-105 shadow-sky-500/15'
                     : 'bg-white/95 text-slate-700 border-sky-100 hover:scale-105'
                 }`}
               >
-                <span className="w-2 h-2 rounded-full bg-coral animate-ping" />
-                <span>🎥 18 Eklem Nöromotor Takibi</span>
+                <span className="w-2.5 h-2.5 rounded-full bg-coral animate-ping shrink-0" />
+                <div className="text-left">
+                  <div className="text-xs font-black text-[#0B1E3B] flex items-center gap-1.5">
+                    <span>🎥 18 Eklem Nöromotor Takibi</span>
+                  </div>
+                  <div className="text-[10px] text-slate-500 font-mono">Prechtl GMs Standardı</div>
+                </div>
               </button>
 
               {/* Yüzen Rozet 2: Hekim Köprüsü */}
-              <div className="hidden sm:flex items-center gap-2 absolute -right-6 bottom-16 bg-white/95 text-[#0B1E3B] text-xs font-bold px-3.5 py-2 rounded-2xl shadow-xl border border-sky-100 backdrop-blur-md z-20">
-                <CheckCircle2 size={14} className="text-sky-600" />
-                <span>🩺 Uzman Hekim Köprüsü</span>
+              <div className="hidden sm:flex items-center gap-2.5 absolute -right-8 lg:-right-10 bottom-12 bg-white/95 text-[#0B1E3B] px-4 py-2.5 rounded-2xl shadow-xl border border-sky-100 backdrop-blur-xl z-20">
+                <div className="w-7 h-7 rounded-full bg-sky-100 flex items-center justify-center text-sky-600 shrink-0">
+                  <CheckCircle2 size={16} />
+                </div>
+                <div className="text-left">
+                  <div className="text-xs font-black text-[#0B1E3B]">🩺 Uzman Hekim Köprüsü</div>
+                  <div className="text-[10px] text-emerald-600 font-bold">Klinik Doğrulama Güvencesi</div>
+                </div>
               </div>
 
               {/* The Phone Shell */}
-              <PhoneMockup size="lg" dark label="Canlı Mobil Deneyim">
+              <PhoneMockup size="hero" dark label="Canlı Mobil Deneyim">
                 <HeroAppScreen activeScreen={activeScreen} setActiveScreen={setActiveScreen} />
               </PhoneMockup>
             </div>
           </div>
 
         </div>
-      </div>
-
-      {/* Aşağı Kaydır İndikatörü */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 animate-bounce z-10 pointer-events-none">
-        <span className="text-slate-600 text-[10px] tracking-widest uppercase font-bold bg-white/90 px-3 py-1 rounded-full border border-indigo-100 shadow-xs backdrop-blur-md">
-          Aşağı Kaydır
-        </span>
-        <ChevronDown size={14} className="text-indigo-600" />
       </div>
 
       <style>{`

@@ -470,12 +470,12 @@ export default function InclusiveAccess() {
   const stageData = isSupported ? currentStage.supported : currentStage.unsupported;
 
   return (
-    <section className="py-8 md:py-12 px-4 md:px-8 bg-gradient-to-b from-[#F5F8FD] via-white to-[#F5F8FD] text-[#13193E] relative overflow-hidden min-h-[calc(100vh-4rem)] flex flex-col justify-center" id="kapsayici-erisim">
+    <section className="py-2 px-2 sm:px-4 bg-transparent text-[#13193E] relative overflow-hidden w-full flex flex-col justify-center my-auto" id="kapsayici-erisim">
       {/* Background radial glows */}
       <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-indigo-200/30 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-10 left-0 w-[500px] h-[500px] bg-coral/10 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="max-w-6xl mx-auto relative z-10 w-full">
+      <div className="max-w-7xl 2xl:max-w-[1360px] mx-auto relative z-10 w-full">
         
         {/* Compact Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-4">
@@ -656,7 +656,7 @@ export default function InclusiveAccess() {
             </div>
 
             {/* Child SVG Character */}
-            <div className="scale-90 transform-origin-center">
+            <div className="w-full flex items-center justify-center">
               <ChildGrowthVisual stageIndex={activeStage} isSupported={isSupported} />
             </div>
 
@@ -668,65 +668,6 @@ export default function InclusiveAccess() {
               <p className="text-[9px] text-turquoise">BabySensAI Nörogelişim İzlemi</p>
             </div>
           </div>
-        </div>
-
-        {/* 4 Inclusive Target Group Cards */}
-        <div className="mt-14">
-          <div className="text-center mb-6">
-            <p className="text-xs font-bold text-turquoise tracking-widest uppercase">Kapsayıcı Hizmet Alanlarımız</p>
-            <h3 className="text-xl sm:text-2xl font-bold text-white mt-1">Kimler İçin Hayati Bir Değer Taşır?</h3>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div className="glass-card-dark rounded-2xl p-5 border border-turquoise/20 hover:border-turquoise/50 transition-all">
-              <div className="w-10 h-10 rounded-xl bg-turquoise/20 text-turquoise flex items-center justify-center mb-3 font-bold">
-                <Activity size={20} />
-              </div>
-              <h4 className="text-sm font-bold text-white mb-1.5">Prematüre Doğan Bebekler</h4>
-              <p className="text-xs text-white/60 leading-relaxed">
-                Erken doğan bebeklerde nörolojik ve motor takip hayati önem taşır; evde dijital video izlemi süreci hızlandırır.
-              </p>
-            </div>
-
-            <div className="glass-card-dark rounded-2xl p-5 border border-coral/20 hover:border-coral/50 transition-all">
-              <div className="w-10 h-10 rounded-xl bg-coral/20 text-coral flex items-center justify-center mb-3 font-bold">
-                <Brain size={20} />
-              </div>
-              <h4 className="text-sm font-bold text-white mb-1.5">Serebral Palsi & Motor Risk</h4>
-              <p className="text-xs text-white/60 leading-relaxed">
-                General Movements (GMs) benzeri spontan hareket taramaları, kalıcı engellilik riskini erken aşamada azaltır.
-              </p>
-            </div>
-
-            <div className="glass-card-dark rounded-2xl p-5 border border-white/15 hover:border-white/40 transition-all">
-              <div className="w-10 h-10 rounded-xl bg-white/15 text-white flex items-center justify-center mb-3 font-bold">
-                <TrendingUp size={20} />
-              </div>
-              <h4 className="text-sm font-bold text-white mb-1.5">Gelişimsel Takip İhtiyacı</h4>
-              <p className="text-xs text-white/60 leading-relaxed">
-                Oturma, dönme veya yürümede aksama yaşayan bebekler için düzenli ve yapılandırılmış egzersiz rehberliği.
-              </p>
-            </div>
-
-            <div className="glass-card-dark rounded-2xl p-5 border border-turquoise/20 hover:border-turquoise/50 transition-all">
-              <div className="w-10 h-10 rounded-xl bg-turquoise/20 text-turquoise flex items-center justify-center mb-3 font-bold">
-                <HeartHandshake size={20} />
-              </div>
-              <h4 className="text-sm font-bold text-white mb-1.5">Eşit Sağlık Erişimi</h4>
-              <p className="text-xs text-white/60 leading-relaxed">
-                Sosyoekonomik imkânı kısıtlı ailelerin uzman fizyoterapist ve hekim desteğine teknolojiyle ücretsiz erişebilmesi.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Responsible AI Disclaimer */}
-        <div className="mt-10 p-4 rounded-2xl bg-white/5 border border-white/10 text-center max-w-3xl mx-auto">
-          <p className="text-[11px] text-white/60 leading-relaxed">
-            <span className="font-bold text-turquoise">Bilgilendirme ve Etik İlke: </span>
-            DijitalBüyükanne ve BabySensAI klinik kesin tanı koymaz. Amacımız, 0–24 ay nöroplastisite penceresinde ailelerin 
-            erken farkındalık kazanmasını ve ihtiyaç duyulduğunda en doğru çocuk hekimlerine ve fizyoterapistlere zaman kaybetmeden ulaşmasını sağlamaktır.
-          </p>
         </div>
 
       </div>

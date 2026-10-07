@@ -180,7 +180,7 @@ export default function KurumlarPage() {
                 </a>
 
                 <Link
-                  href="/#sosyal-etki"
+                  href="/etkimiz"
                   className="text-turquoise hover:text-white transition-colors text-sm font-semibold inline-flex items-center gap-1.5 px-3 py-2 group"
                 >
                   <span>Sosyal Etki Simülatörü</span>

@@ -103,67 +103,67 @@ export default function MotionAnalysis() {
     return points.join(' ');
   }, [progress]);
 
-  // Dynamic Joint Coordinates calculated per frame
+  // Dynamic Joint Coordinates calculated per frame (centered so legs and feet are 100% visible)
   const t = progress * 0.15;
   const isTummy = activeScenarioIndex === 1;
 
   // Head
-  const headX = 140 + Math.sin(t * 0.9) * 4;
-  const headY = isTummy ? 45 + Math.sin(t * 1.2) * 5 : 50 + Math.sin(t * 0.8) * 4;
+  const headX = 140 + Math.sin(t * 0.9) * 3;
+  const headY = isTummy ? 28 + Math.sin(t * 1.2) * 3 : 32 + Math.sin(t * 0.8) * 3;
 
   // Torso center
   const chestX = 140;
-  const chestY = isTummy ? 85 : 95;
+  const chestY = isTummy ? 56 : 62;
   const pelvisX = 140 + Math.sin(t * 0.5) * 2;
-  const pelvisY = isTummy ? 125 : 135;
+  const pelvisY = isTummy ? 86 : 92;
 
   // Left Arm (upper & hand)
-  const lElbowX = isTummy ? 100 + Math.cos(t) * 4 : 95 + Math.cos(t) * 10;
-  const lElbowY = isTummy ? 95 : 90 + Math.sin(t * 1.1) * 8;
-  const lHandX = isTummy ? 85 + Math.sin(t) * 3 : 70 + Math.cos(t * 1.3) * 12;
-  const lHandY = isTummy ? 120 : 80 + Math.sin(t * 1.4) * 10;
+  const lElbowX = isTummy ? 104 + Math.cos(t) * 4 : 100 + Math.cos(t) * 7;
+  const lElbowY = isTummy ? 64 : 60 + Math.sin(t * 1.1) * 5;
+  const lHandX = isTummy ? 92 + Math.sin(t) * 3 : 78 + Math.cos(t * 1.3) * 9;
+  const lHandY = isTummy ? 82 : 54 + Math.sin(t * 1.4) * 7;
 
   // Right Arm (upper & hand)
-  const rElbowX = isTummy ? 180 + Math.sin(t) * 4 : 185 + Math.sin(t) * 10;
-  const rElbowY = isTummy ? 95 : 90 + Math.cos(t * 1.1) * 8;
-  const rHandX = isTummy ? 195 + Math.cos(t) * 3 : 210 + Math.sin(t * 1.3) * 12;
-  const rHandY = isTummy ? 120 : 80 + Math.cos(t * 1.4) * 10;
+  const rElbowX = isTummy ? 176 + Math.sin(t) * 4 : 180 + Math.sin(t) * 7;
+  const rElbowY = isTummy ? 64 : 60 + Math.cos(t * 1.1) * 5;
+  const rHandX = isTummy ? 188 + Math.cos(t) * 3 : 202 + Math.sin(t * 1.3) * 9;
+  const rHandY = isTummy ? 82 : 54 + Math.cos(t * 1.4) * 7;
 
   // Left Leg (knee & foot)
-  const lKneeX = isTummy ? 115 + Math.sin(t * 0.8) * 5 : 110 + Math.sin(t) * 8;
-  const lKneeY = isTummy ? 155 : 165 + Math.cos(t * 1.2) * 10;
-  const lFootX = isTummy ? 105 + Math.cos(t) * 6 : 95 + Math.sin(t * 1.3) * 12;
-  const lFootY = isTummy ? 180 : 195 + Math.cos(t * 1.5) * 12;
+  const lKneeX = isTummy ? 122 + Math.sin(t * 0.8) * 4 : 118 + Math.sin(t) * 6;
+  const lKneeY = isTummy ? 110 : 116 + Math.cos(t * 1.2) * 6;
+  const lFootX = isTummy ? 114 + Math.cos(t) * 4 : 106 + Math.sin(t * 1.3) * 8;
+  const lFootY = isTummy ? 130 : 138 + Math.cos(t * 1.5) * 8;
 
   // Right Leg (knee & foot)
-  const rKneeX = isTummy ? 165 + Math.cos(t * 0.8) * 5 : 170 + Math.cos(t) * 8;
-  const rKneeY = isTummy ? 155 : 165 + Math.sin(t * 1.2) * 10;
-  const rFootX = isTummy ? 175 + Math.sin(t) * 6 : 185 + Math.cos(t * 1.3) * 12;
-  const rFootY = isTummy ? 180 : 195 + Math.sin(t * 1.5) * 12;
+  const rKneeX = isTummy ? 158 + Math.cos(t * 0.8) * 4 : 162 + Math.cos(t) * 6;
+  const rKneeY = isTummy ? 110 : 116 + Math.sin(t * 1.2) * 6;
+  const rFootX = isTummy ? 166 + Math.sin(t) * 4 : 174 + Math.cos(t * 1.3) * 8;
+  const rFootY = isTummy ? 130 : 138 + Math.sin(t * 1.5) * 8;
 
   return (
-    <section className="py-8 md:py-12 px-4 md:px-8 bg-white relative overflow-hidden min-h-[calc(100vh-4rem)] flex flex-col justify-center" id="hareket-analizi">
+    <section className="py-2 px-2 sm:px-4 bg-transparent relative overflow-hidden w-full flex flex-col justify-center my-auto" id="hareket-analizi">
       {/* Decorative ambient blur */}
       <div className="absolute top-1/3 -right-20 w-96 h-96 bg-turquoise/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-10 -left-20 w-80 h-80 bg-coral/5 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="max-w-6xl mx-auto relative z-10 w-full">
-        {/* Compact Header */}
-        <div className="text-center max-w-3xl mx-auto mb-5">
-          <div className="inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-turquoise bg-turquoise/5 border border-turquoise/15 px-3.5 py-1 rounded-full mb-2">
+      <div className="max-w-7xl 2xl:max-w-[1360px] mx-auto relative z-10 w-full">
+        {/* Header */}
+        <div className="text-center max-w-3xl mx-auto mb-2.5">
+          <div className="inline-flex items-center gap-1.5 text-[11px] font-bold tracking-wider uppercase text-turquoise bg-turquoise/10 border border-turquoise/20 px-3.5 py-1 rounded-full mb-1.5 shadow-2xs">
             <span className="w-1.5 h-1.5 rounded-full bg-turquoise animate-pulse" />
-            <span>AI Hareket Analizi Stüdyosu</span>
+            <span>AI Hareket Analizi Stüdyosu (Prechtl GMs)</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold leading-tight text-navy">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black leading-tight text-navy">
             Bir video, bebeğinizin gelişiminde binlerce veri noktası sunar.
           </h2>
-          <p className="mt-2 text-xs sm:text-sm text-navy/60 leading-relaxed max-w-2xl mx-auto">
-            BabySensAI derin öğrenme algoritmaları, 0–6 ay bebeğinizin spontan hareketlerini analiz ederek erken gelişimsel farkındalık sağlar.
+          <p className="mt-1 text-xs sm:text-sm text-navy/70 leading-relaxed max-w-2xl mx-auto">
+            0–6 ay spontan hareketlerini analiz ederek erken gelişimsel farkındalık sağlar.
           </p>
         </div>
 
         {/* Scenario Selector Tabs */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-6">
+        <div className="flex flex-wrap items-center justify-center gap-2 mb-3.5">
           {scenarios.map((sc, idx) => (
             <button
               key={sc.id}
@@ -171,72 +171,72 @@ export default function MotionAnalysis() {
                 setActiveScenarioIndex(idx);
                 setProgress(15);
               }}
-              className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all duration-300 flex items-center gap-2 cursor-pointer ${
+              className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-2 ${
                 activeScenarioIndex === idx
-                  ? 'bg-gradient-to-r from-navy to-[#0f3454] text-white shadow-md scale-102 border-2 border-turquoise'
-                  : 'bg-soft-gray text-navy/70 hover:bg-turquoise/10 hover:text-navy border border-gray-200 hover:border-turquoise/30'
+                  ? 'bg-navy text-white shadow-md border border-turquoise ring-1 ring-turquoise/40 scale-102'
+                  : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200'
               }`}
             >
-              <span className={`w-2 h-2 rounded-full ${activeScenarioIndex === idx ? 'bg-turquoise animate-pulse' : 'bg-navy/30'}`} />
+              <span className={`w-2 h-2 rounded-full ${activeScenarioIndex === idx ? 'bg-turquoise animate-pulse' : 'bg-slate-400'}`} />
               {sc.title}
             </button>
           ))}
         </div>
 
         {/* Main Workspace Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
           
           {/* LEFT 5 COLS: Dynamic Stepper & Active Scenario Info */}
           <div className="lg:col-span-5 flex flex-col gap-3">
             
             {/* Active Scenario Card */}
-            <div className="bg-gradient-to-br from-[#082A46] via-[#093254] to-[#0e3b61] text-white p-4 sm:p-5 rounded-2xl shadow-lg border border-white/10 relative overflow-hidden">
+            <div className="bg-gradient-to-br from-[#082A46] via-[#093254] to-[#0e3b61] text-white p-4 sm:p-5 rounded-3xl shadow-lg border border-white/10 relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-turquoise/15 rounded-full blur-2xl pointer-events-none" />
               
-              <div className="flex items-center justify-between gap-2 mb-2">
+              <div className="flex items-center justify-between gap-2 mb-1.5">
                 <span className="bg-turquoise/20 text-turquoise text-[10px] font-mono font-bold px-2.5 py-0.5 rounded-full border border-turquoise/30">
                   {currentScenario.focus}
                 </span>
-                <span className="text-white/60 text-[11px] font-semibold">{currentScenario.ageRange}</span>
+                <span className="text-white/70 text-xs font-semibold">{currentScenario.ageRange}</span>
               </div>
 
               <h4 className="text-base font-bold text-white mb-1">{currentScenario.title}</h4>
-              <p className="text-[11px] text-white/80 leading-relaxed mb-3">{currentScenario.description}</p>
+              <p className="text-xs text-white/80 leading-relaxed mb-3">{currentScenario.description}</p>
 
               {/* Real-time score cards */}
-              <div className="grid grid-cols-2 gap-2 pt-2.5 border-t border-white/15">
-                <div className="bg-white/10 rounded-xl p-2.5 border border-white/5 backdrop-blur-sm">
-                  <p className="text-[9px] text-white/60 uppercase tracking-wider font-semibold">Motor & Kas Akıcılığı</p>
-                  <p className="text-sm font-extrabold text-emerald-300 font-mono mt-0.5">{currentScenario.metrics.gma}</p>
+              <div className="grid grid-cols-2 gap-2.5 pt-2.5 border-t border-white/15">
+                <div className="bg-white/10 rounded-2xl p-2.5 border border-white/10">
+                  <p className="text-[10px] text-white/70 uppercase tracking-wider font-semibold">Motor & Kas Akıcılığı</p>
+                  <p className="text-base font-black text-emerald-300 font-mono mt-0.5">{currentScenario.metrics.gma}</p>
                 </div>
-                <div className="bg-white/10 rounded-xl p-2.5 border border-white/5 backdrop-blur-sm">
-                  <p className="text-[9px] text-white/60 uppercase tracking-wider font-semibold">Bilateral Simetri</p>
-                  <p className="text-sm font-extrabold text-turquoise font-mono mt-0.5">{currentScenario.metrics.symmetry}</p>
+                <div className="bg-white/10 rounded-2xl p-2.5 border border-white/10">
+                  <p className="text-[10px] text-white/70 uppercase tracking-wider font-semibold">Bilateral Simetri</p>
+                  <p className="text-base font-black text-turquoise font-mono mt-0.5">{currentScenario.metrics.symmetry}</p>
                 </div>
               </div>
             </div>
 
             {/* Step Indicators */}
-            <div className="flex flex-col gap-2.5">
+            <div className="flex flex-col gap-2">
               {steps.map((step) => {
                 const Icon = step.icon;
                 return (
                   <div
                     key={step.label}
-                    className="premium-card flex items-center gap-3.5 p-3.5 rounded-2xl bg-white border border-gray-100/90 shadow-sm hover:border-turquoise/40 hover:shadow-card-hover transition-all duration-300 group cursor-default"
+                    className="flex items-center gap-3 p-3 rounded-2xl bg-white border border-gray-200/90 shadow-2xs hover:border-turquoise/50 transition-all cursor-default"
                   >
-                    <div className={`w-10 h-10 rounded-xl ${step.iconBg} flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300`}>
-                      <Icon className={`w-5 h-5 ${step.color}`} />
+                    <div className={`w-9 h-9 rounded-xl ${step.iconBg} flex items-center justify-center flex-shrink-0`}>
+                      <Icon className={`w-4 h-4 ${step.color}`} />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="font-bold text-xs md:text-sm text-navy group-hover:text-turquoise transition-colors truncate">
+                      <p className="font-bold text-xs sm:text-sm text-navy truncate">
                         {step.label}
                       </p>
-                      <p className="text-[11px] text-navy/60 leading-tight line-clamp-1 mt-0.5">
+                      <p className="text-[11px] text-slate-500 leading-snug truncate">
                         {step.desc}
                       </p>
                     </div>
-                    <CheckCircle2 size={16} className="text-turquoise opacity-70 group-hover:opacity-100 transition-opacity flex-shrink-0" />
+                    <CheckCircle2 size={16} className="text-turquoise opacity-80 flex-shrink-0" />
                   </div>
                 );
               })}
@@ -244,10 +244,10 @@ export default function MotionAnalysis() {
           </div>
 
           {/* RIGHT 7 COLS: Interactive Video Studio & Live Kinematics Display */}
-          <div className="lg:col-span-7 flex flex-col gap-3">
+          <div className="lg:col-span-7 flex flex-col gap-2">
             
             {/* The Video Monitor Screen */}
-            <div className="relative w-full aspect-[16/10] md:aspect-[16/11] bg-[#071726] rounded-3xl overflow-hidden shadow-2xl border-4 border-slate-900 group select-none flex flex-col justify-between">
+            <div className="relative w-full aspect-[16/10] h-[360px] sm:h-[390px] lg:h-[410px] bg-[#071726] rounded-3xl overflow-hidden shadow-2xl border-2 border-slate-900 group select-none flex flex-col justify-between">
               
               {/* Studio Canvas Background (Simulated Video Feed) */}
               <div className="absolute inset-0 bg-gradient-to-b from-[#092238] via-[#071c2f] to-[#04101b]">
@@ -271,36 +271,36 @@ export default function MotionAnalysis() {
               )}
 
               {/* Top Video HUD Bar */}
-              <div className="relative z-20 p-3.5 flex items-center justify-between text-white border-b border-white/10 bg-slate-950/60 backdrop-blur-md">
-                <div className="flex items-center gap-2.5">
+              <div className="relative z-20 px-3.5 py-2.5 flex items-center justify-between text-white border-b border-white/10 bg-slate-950/70 backdrop-blur-md">
+                <div className="flex items-center gap-2">
                   <span className="flex h-2.5 w-2.5 relative">
                     {isPlaying && <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75" />}
                     <span className={`relative inline-flex rounded-full h-2.5 w-2.5 ${isPlaying ? 'bg-red-500' : 'bg-gray-400'}`} />
                   </span>
-                  <span className="font-mono text-[10px] tracking-wider uppercase font-bold text-white/90">
+                  <span className="font-mono text-xs tracking-wider uppercase font-bold text-white/90">
                     {isPlaying ? 'CANLI AI VİDEO İŞLEME' : 'DURAKLATILDI'}
                   </span>
-                  <span className="hidden sm:inline-block text-[9px] font-mono text-white/40 border-l border-white/20 pl-2">
+                  <span className="hidden sm:inline-block text-[10px] font-mono text-white/50 border-l border-white/20 pl-2">
                     4K • 60 FPS • RAW
                   </span>
                 </div>
 
                 <div className="flex items-center gap-2">
-                  <div className="flex items-center gap-1 bg-turquoise/20 border border-turquoise/40 text-turquoise text-[10px] font-mono px-2.5 py-0.5 rounded-full font-bold">
-                    <Sparkles size={10} />
+                  <div className="flex items-center gap-1 bg-turquoise/20 border border-turquoise/40 text-turquoise text-[11px] font-mono px-2.5 py-0.5 rounded-full font-bold">
+                    <Sparkles size={11} />
                     <span>PoseTracker v2.4</span>
                   </div>
-                  <span className="font-mono text-[10px] text-white/70 bg-white/10 px-2 py-0.5 rounded">
+                  <span className="font-mono text-[11px] text-white/80 bg-white/10 px-2 py-0.5 rounded font-bold">
                     FRM #{String(Math.floor(progress * 4.2)).padStart(3, '0')}
                   </span>
                 </div>
               </div>
 
               {/* Center Infant Pose Simulation (Kinematic Video Stream) */}
-              <div className="relative z-10 flex-1 flex items-center justify-center p-4">
+              <div className="relative z-10 flex-1 flex items-center justify-center px-4 py-2">
                 
-                {/* SVG Skeleton & Joint Vectors */}
-                <svg viewBox="0 0 280 220" className="w-full h-full max-w-[420px] drop-shadow-[0_0_12px_rgba(20,187,183,0.35)]">
+                {/* SVG Skeleton & Joint Vectors (Centered viewBox so entire infant from head to toes is fully visible) */}
+                <svg viewBox="0 0 280 160" className="w-full h-full max-w-[440px] drop-shadow-[0_0_12px_rgba(20,187,183,0.35)]">
                   <defs>
                     {/* Heatmap Gradients */}
                     <radialGradient id="heatGlow" cx="50%" cy="50%" r="50%">
@@ -391,20 +391,20 @@ export default function MotionAnalysis() {
                   <p className="font-mono text-[9px]">Sapma: <span className="text-turquoise font-bold">±%0.8 (Normal)</span></p>
                 </div>
 
-                {/* Live Kinematics Telemetry Waveform */}
+                {/* Live Kinematics Telemetry Waveform (Positioned in corner so center infant skeleton is unobstructed) */}
                 {showTelemetry && (
-                  <div className="absolute bottom-2 left-4 right-4 bg-black/60 backdrop-blur-md rounded-2xl p-2.5 border border-white/10 flex items-center justify-between gap-3 pointer-events-none">
+                  <div className="absolute bottom-2.5 right-3 bg-black/75 backdrop-blur-md rounded-xl p-2 px-3 border border-white/15 flex items-center gap-2.5 pointer-events-none shadow-lg">
                     <div className="flex flex-col">
-                      <span className="text-[8px] font-mono text-white/60 uppercase">Akıcılık Hız Eğrisi</span>
-                      <span className="text-[10px] font-mono text-emerald-400 font-bold">3.2 cm/sn (Stabil)</span>
+                      <span className="text-[8px] font-mono text-white/50 uppercase leading-none">Hız Eğrisi</span>
+                      <span className="text-[10px] font-mono text-emerald-400 font-bold leading-tight mt-0.5">3.2 cm/s</span>
                     </div>
                     {/* SVG Wave */}
-                    <div className="w-32 sm:w-44 h-7 overflow-hidden">
+                    <div className="w-20 sm:w-28 h-5 overflow-hidden">
                       <svg viewBox="0 0 200 40" className="w-full h-full">
                         <polyline
                           fill="none"
                           stroke="#14BBB7"
-                          strokeWidth="2"
+                          strokeWidth="2.5"
                           strokeLinecap="round"
                           points={wavePoints}
                         />
@@ -518,12 +518,11 @@ export default function MotionAnalysis() {
           </div>
         </div>
 
-        {/* Disclaimer Note */}
-        <div className="mt-14 bg-soft-gray border-l-4 border-turquoise rounded-2xl p-5 md:p-6 max-w-3xl mx-auto shadow-sm flex items-start gap-3.5">
-          <Info size={20} className="text-turquoise shrink-0 mt-0.5" />
-          <p className="text-xs md:text-sm text-navy/70 leading-relaxed">
-            <strong className="font-bold text-navy">Önemli Bilgilendirme: </strong>
-            DijitalBüyükanne ve BabySensAI teknolojisi tanı ve klinik teşhis koymaz. Hizmet, ailelere erken farkındalık kazandırmak, bebeğin gelişim aşamalarını düzenli kayıt altına almak ve gerektiğinde doğru uzman hekime başvurmayı kolaylaştırmak amacıyla tasarlanmıştır.
+        {/* Clean Footnote */}
+        <div className="mt-2.5 text-center max-w-3xl mx-auto">
+          <p className="text-[11px] text-slate-500 font-medium">
+            <span className="font-bold text-navy">Önemli Bilgilendirme: </span>
+            BabySensAI video analiz teknolojisi tanı koymaz; 0–6 ay nöromotor gelişiminde erken farkındalık sağlayarak gerektiğinde hekim yönlendirmesini kolaylaştırır.
           </p>
         </div>
       </div>

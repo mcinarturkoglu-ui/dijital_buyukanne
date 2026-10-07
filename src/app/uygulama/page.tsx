@@ -333,7 +333,95 @@ export default function UygulamaPage() {
         </div>
 
         {/* ─────────────────────────────────────────────────────────────
-            5. KURUMSAL WHITE-LABEL BANNER
+            5. MOBİL İNDİRME & ERKEN ERİŞİM BÖLÜMÜ (#indir)
+            ───────────────────────────────────────────────────────────── */}
+        <div id="indir" className="scroll-mt-28 mb-12 bg-white rounded-3xl p-8 sm:p-12 border border-slate-200/90 shadow-lg">
+          <div className="max-w-3xl mx-auto text-center mb-8">
+            <span className="text-xs uppercase font-mono font-bold tracking-widest text-[#0284C7] block mb-2">
+              ERKEN ERİŞİM & PİLOT KULLANIM
+            </span>
+            <h3 className="text-2xl sm:text-3xl font-black text-[#0B1E3B] tracking-tight mb-3">
+              DijitalBüyükanne Mobil Uygulaması
+            </h3>
+            <p className="text-slate-600 text-sm leading-relaxed">
+              Uygulamamız şu anda Samsun pilot bölgesi ve anlaşmalı belediyelerimizin protokol kapsamındaki aileleriyle aktif olarak kullanılmaktadır. Genel App Store ve Google Play lansmanı çok yakında gerçekleşecektir.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {/* iOS Kartı */}
+            <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col justify-between text-left">
+              <div>
+                <div className="w-12 h-12 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-[#0B1E3B] mb-4 shadow-2xs">
+                  <Download size={22} className="text-[#0284C7]" />
+                </div>
+                <div className="flex items-center gap-2 mb-1">
+                  <h4 className="font-bold text-base text-[#0B1E3B]">Apple iOS</h4>
+                  <span className="text-[10px] font-mono font-bold bg-sky-100 text-[#0284C7] px-2 py-0.5 rounded-full">TestFlight</span>
+                </div>
+                <p className="text-xs text-slate-600 leading-relaxed mb-4">
+                  iOS 15.0 ve üzeri iPhone modelleriyle tam uyumludur. Pilot ailelerimiz için TestFlight üzerinden aktiftir.
+                </p>
+              </div>
+              <div className="pt-3 border-t border-slate-200/80">
+                <span className="text-xs font-semibold text-slate-500 block mb-1">Durum:</span>
+                <span className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-lg">
+                  <CheckCircle2 size={13} /> Pilot Kullanımda
+                </span>
+              </div>
+            </div>
+
+            {/* Android Kartı */}
+            <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col justify-between text-left">
+              <div>
+                <div className="w-12 h-12 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-[#0B1E3B] mb-4 shadow-2xs">
+                  <Download size={22} className="text-emerald-500" />
+                </div>
+                <div className="flex items-center gap-2 mb-1">
+                  <h4 className="font-bold text-base text-[#0B1E3B]">Google Android</h4>
+                  <span className="text-[10px] font-mono font-bold bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full">Erken Erişim</span>
+                </div>
+                <p className="text-xs text-slate-600 leading-relaxed mb-4">
+                  Android 9.0 ve üzeri cihazlar için optimize edilmiştir. Kamera ve AI hızlandırma desteği içerir.
+                </p>
+              </div>
+              <div className="pt-3 border-t border-slate-200/80">
+                <span className="text-xs font-semibold text-slate-500 block mb-1">Durum:</span>
+                <span className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-lg">
+                  <CheckCircle2 size={13} /> Pilot Kullanımda
+                </span>
+              </div>
+            </div>
+
+            {/* Kurumsal Aktivasyon Kartı */}
+            <div className="p-6 rounded-2xl bg-gradient-to-br from-sky-50 to-indigo-50/50 border border-sky-200 flex flex-col justify-between text-left">
+              <div>
+                <div className="w-12 h-12 rounded-xl bg-white border border-sky-200 flex items-center justify-center text-coral mb-4 shadow-2xs">
+                  <QrCode size={22} />
+                </div>
+                <div className="flex items-center gap-2 mb-1">
+                  <h4 className="font-bold text-base text-[#0B1E3B]">Kurumsal Aktivasyon</h4>
+                  <span className="text-[10px] font-mono font-bold bg-coral/10 text-coral px-2 py-0.5 rounded-full">Protokol</span>
+                </div>
+                <p className="text-xs text-slate-600 leading-relaxed mb-4">
+                  Belediyenizden veya kurumunuzdan aldığınız aktivasyon kodunu uygulamaya girerek tüm yapay zekâ analizlerini anında ücretsiz açabilirsiniz.
+                </p>
+              </div>
+              <div className="pt-3 border-t border-sky-200/80">
+                <Link
+                  href="/kurumlar#form"
+                  className="text-xs font-bold text-[#0284C7] hover:underline inline-flex items-center gap-1"
+                >
+                  <span>Kurumunuz için protokol başlatın</span>
+                  <ArrowRight size={12} />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* ─────────────────────────────────────────────────────────────
+            6. KURUMSAL WHITE-LABEL BANNER
             ───────────────────────────────────────────────────────────── */}
         <div className="bg-gradient-to-r from-[#0B1E3B] via-[#0E2850] to-[#0A1F3D] rounded-3xl p-8 sm:p-12 text-white shadow-xl flex flex-col lg:flex-row items-center justify-between gap-8 border border-white/10">
           <div className="max-w-2xl text-center lg:text-left">

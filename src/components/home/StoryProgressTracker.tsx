@@ -62,25 +62,28 @@ export default function StoryProgressTracker() {
       aria-label="Sayfa Navigasyon Çubuğu"
       className="fixed right-3 xl:right-6 top-1/2 -translate-y-1/2 z-40 hidden lg:flex flex-col items-end select-none pointer-events-auto"
     >
-      <div className="bg-slate-950/80 backdrop-blur-xl p-2 rounded-2xl border border-white/10 shadow-2xl flex flex-col gap-2.5">
+      <div className="relative bg-slate-950/85 backdrop-blur-xl p-3 rounded-2xl border border-sky-400/20 shadow-2xl flex flex-col gap-3">
+        {/* Continuous Pipeline Connector Line */}
+        <div className="absolute right-[19px] top-6 bottom-6 w-0.5 bg-gradient-to-b from-sky-400/40 via-sky-300 to-sky-400/40 pointer-events-none" />
+
         {chapters.map((ch) => {
           const isActive = activeChapter === ch.id;
           return (
             <button
               key={ch.id}
               onClick={() => scrollToChapter(ch.id)}
-              className="group flex items-center justify-end gap-2.5 transition-all focus:outline-none"
+              className="group flex items-center justify-end gap-3 transition-all focus:outline-none relative z-10"
               title={`${ch.actNumber} • ${ch.title}`}
             >
               {/* Tooltip / Label */}
               <div
                 className={`flex items-center gap-1.5 px-3 py-1 rounded-xl text-xs transition-all duration-200 pointer-events-none whitespace-nowrap shadow-sm ${
                   isActive
-                    ? 'opacity-100 translate-x-0 bg-white text-navy font-bold'
+                    ? 'opacity-100 translate-x-0 bg-white text-[#0B1E3B] font-bold shadow-md'
                     : 'opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 bg-slate-900/90 text-white/90 border border-white/10 font-medium'
                 }`}
               >
-                <span className={`font-mono text-[10px] ${isActive ? 'text-turquoise' : 'text-slate-400'}`}>
+                <span className={`font-mono text-[10px] ${isActive ? 'text-sky-600' : 'text-slate-400'}`}>
                   {ch.actNumber}
                 </span>
                 <span>{ch.shortLabel}</span>
@@ -90,12 +93,12 @@ export default function StoryProgressTracker() {
               <div
                 className={`relative flex items-center justify-center rounded-full transition-all duration-300 ${
                   isActive
-                    ? 'w-6 h-6 bg-turquoise/20 border border-turquoise text-turquoise'
-                    : 'w-4 h-4 bg-white/10 hover:bg-white/30 border border-white/10'
+                    ? 'w-6 h-6 bg-sky-500/25 border-2 border-sky-400 text-sky-400 ring-4 ring-sky-400/20'
+                    : 'w-4 h-4 bg-slate-800 hover:bg-slate-700 border border-white/20'
                 }`}
               >
                 {isActive ? (
-                  <span className="w-2 h-2 rounded-full bg-turquoise shadow-[0_0_8px_rgba(13,177,173,0.8)]" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-sky-400 shadow-[0_0_10px_rgba(56,189,248,1)] animate-pulse" />
                 ) : (
                   <span className="w-1 h-1 rounded-full bg-white/40" />
                 )}
