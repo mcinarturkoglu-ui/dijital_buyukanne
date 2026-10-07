@@ -7,7 +7,7 @@ import { Instagram, Twitter, Linkedin, Youtube, Baby, ArrowUpRight, Heart } from
 
 export default function Footer() {
   const pathname = usePathname();
-  if (pathname === "/" || pathname === "/sunum") return null;
+  if (pathname === "/" || pathname === "/sunum" || pathname === "/rotary") return null;
 
   return (
     <footer className="relative bg-gradient-to-b from-[#1E234D] via-[#161A3A] to-[#0E1128] text-white overflow-hidden">

@@ -11,7 +11,7 @@ export interface SlideInfo {
   category: string;
 }
 
-export const slides: SlideInfo[] = [
+export const defaultSlides: SlideInfo[] = [
   { id: 'bolum-1', badge: '01 / 13', title: 'Ekosistem & Bütünsel Vizyon', shortName: 'Vizyon', category: 'Giriş' },
   { id: 'bolum-2', badge: '02 / 13', title: '0–24 Ay Gelişim Simülatörü', shortName: 'Gelişim', category: 'Simülatör' },
   { id: 'bolum-3', badge: '03 / 13', title: 'Geleneksel vs. Dijital Dönüşüm', shortName: 'Karşılaştırma', category: 'Klinik Fark' },
@@ -27,14 +27,23 @@ export const slides: SlideInfo[] = [
   { id: 'bolum-13', badge: '13 / 13', title: 'Büyük Katılım & Ortaklık Çağrısı', shortName: 'Katılım (CTA)', category: 'Gelecek' },
 ];
 
-export default function FullpageDeckContainer({ children }: { children: React.ReactNode }) {
+export const slides = defaultSlides;
+
+export default function FullpageDeckContainer({
+  children,
+  slides: customSlides,
+}: {
+  children: React.ReactNode;
+  slides?: SlideInfo[];
+}) {
+  const activeSlides = customSlides || defaultSlides;
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const isLockedRef = useRef(false);
 
   const goToSlide = useCallback((index: number) => {
-    if (index < 0 || index >= slides.length) return;
+    if (index < 0 || index >= activeSlides.length) return;
     setCurrentSlideIndex(index);
-  }, []);
+  }, [activeSlides]);
 
   // Hardware-accelerated wheel scroll controller
   useEffect(() => {
@@ -47,7 +56,7 @@ export default function FullpageDeckContainer({ children }: { children: React.Re
 
       if (e.deltaY > 0) {
         // Scroll down -> next slide
-        if (currentSlideIndex < slides.length - 1) {
+        if (currentSlideIndex < activeSlides.length - 1) {
           isLockedRef.current = true;
           setCurrentSlideIndex((prev) => prev + 1);
           setTimeout(() => {
@@ -68,7 +77,7 @@ export default function FullpageDeckContainer({ children }: { children: React.Re
 
     window.addEventListener('wheel', handleWheel, { passive: false });
     return () => window.removeEventListener('wheel', handleWheel);
-  }, [currentSlideIndex]);
+  }, [currentSlideIndex, activeSlides.length]);
 
   // Keyboard navigation (Arrow keys, PageUp/PageDown, Space)
   useEffect(() => {
@@ -77,7 +86,7 @@ export default function FullpageDeckContainer({ children }: { children: React.Re
 
       if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ') {
         e.preventDefault();
-        if (currentSlideIndex < slides.length - 1) {
+        if (currentSlideIndex < activeSlides.length - 1) {
           isLockedRef.current = true;
           setCurrentSlideIndex((prev) => prev + 1);
           setTimeout(() => {
@@ -98,7 +107,7 @@ export default function FullpageDeckContainer({ children }: { children: React.Re
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [currentSlideIndex]);
+  }, [currentSlideIndex, activeSlides.length]);
 
   // Touch swipe support for mobile & tablets
   useEffect(() => {
@@ -113,7 +122,7 @@ export default function FullpageDeckContainer({ children }: { children: React.Re
       const diff = touchStartY - e.changedTouches[0].clientY;
 
       if (Math.abs(diff) > 40) {
-        if (diff > 0 && currentSlideIndex < slides.length - 1) {
+        if (diff > 0 && currentSlideIndex < activeSlides.length - 1) {
           isLockedRef.current = true;
           setCurrentSlideIndex((prev) => prev + 1);
           setTimeout(() => {
@@ -136,7 +145,7 @@ export default function FullpageDeckContainer({ children }: { children: React.Re
       window.removeEventListener('touchstart', handleTouchStart);
       window.removeEventListener('touchend', handleTouchEnd);
     };
-  }, [currentSlideIndex]);
+  }, [currentSlideIndex, activeSlides]);
 
   return (
     <div className="fixed inset-x-0 bottom-0 top-[5.25rem] overflow-hidden bg-[#FAFBFD] z-10 select-none">
@@ -146,7 +155,7 @@ export default function FullpageDeckContainer({ children }: { children: React.Re
         className="fixed right-2.5 top-1/2 -translate-y-1/2 z-40 select-none pointer-events-auto"
       >
         <div className="flex flex-col items-center gap-2 py-2.5 px-1 bg-slate-900/60 backdrop-blur-md rounded-full border border-white/10 shadow-lg">
-          {slides.map((s, idx) => {
+          {activeSlides.map((s, idx) => {
             const isActive = currentSlideIndex === idx;
             return (
               <button
@@ -185,12 +194,12 @@ export default function FullpageDeckContainer({ children }: { children: React.Re
 
       {/* Floating Bottom Navigation Stepper */}
       <footer className="fixed bottom-3.5 left-1/2 -translate-x-1/2 z-30 flex items-center gap-2 pointer-events-auto">
-        {currentSlideIndex < slides.length - 1 ? (
+        {currentSlideIndex < activeSlides.length - 1 ? (
           <button
             onClick={() => goToSlide(currentSlideIndex + 1)}
             className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/95 hover:bg-white text-slate-800 hover:text-sky-600 text-xs font-bold shadow-md border border-slate-200/90 transition-all hover:-translate-y-0.5 cursor-pointer"
           >
-            <span>Sonraki: {slides[currentSlideIndex + 1].shortName}</span>
+            <span>Sonraki: {activeSlides[currentSlideIndex + 1].shortName}</span>
             <ChevronDown className="w-3.5 h-3.5 text-sky-500 animate-bounce" />
           </button>
         ) : (
@@ -198,7 +207,7 @@ export default function FullpageDeckContainer({ children }: { children: React.Re
             onClick={() => goToSlide(0)}
             className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#0B1E3B] text-white hover:bg-sky-700 text-xs font-bold shadow-md transition-all hover:-translate-y-0.5 cursor-pointer"
           >
-            <span>Başa Dön (01 / 13)</span>
+            <span>Başa Dön (01 / {activeSlides.length})</span>
             <ChevronUp className="w-3.5 h-3.5 text-sky-400" />
           </button>
         )}

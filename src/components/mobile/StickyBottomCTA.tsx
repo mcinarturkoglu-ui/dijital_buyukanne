@@ -6,7 +6,7 @@ import { Sparkles, Building2, Download } from "lucide-react";
 
 export default function StickyBottomCTA() {
   const pathname = usePathname();
-  if (pathname === "/" || pathname === "/sunum") return null;
+  if (pathname === "/" || pathname === "/sunum" || pathname === "/rotary") return null;
 
   const isInstitutionPage =
     pathname.startsWith("/kurumlar") ||
