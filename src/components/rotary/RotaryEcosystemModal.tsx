@@ -234,7 +234,7 @@ export default function RotaryEcosystemModal({ isOpen, onClose }: RotaryEcosyste
   const current = steps[activeStep];
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-900/80 backdrop-blur-md animate-fade-in">
+    <div role="dialog" aria-modal="true" className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-900/80 backdrop-blur-md animate-fade-in">
       
       {/* Modal Dialog Card */}
       <div
@@ -406,7 +406,7 @@ export default function RotaryEcosystemModal({ isOpen, onClose }: RotaryEcosyste
 
           <div className="flex items-center gap-2 w-full sm:w-auto">
             <a
-              href="#etki-hesaplayici"
+              href="#rotary-6"
               onClick={onClose}
               className="flex-1 sm:flex-none px-4 py-2.5 rounded-xl border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 font-bold text-xs text-center transition-all cursor-pointer"
             >

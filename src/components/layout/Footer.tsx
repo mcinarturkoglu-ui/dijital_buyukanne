@@ -139,7 +139,7 @@ export default function Footer() {
               {[
                 { href: "/kurumlar", label: "Kurumlar İçin" },
                 { href: "/kurumlar#pilot", label: "Pilot Program" },
-                { href: "/kurumlar#destek", label: "Destekçi Ol" },
+                { href: "/kurumlar#form", label: "Destekçi Ol" },
                 { href: "/etkimiz", label: "Etki Raporları" },
               ].map((link) => (
                 <li key={link.href}>
@@ -204,7 +204,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-white/30 text-sm flex items-center gap-1.5">
-            © 2024 DijitalBüyükanne. Tüm hakları saklıdır.
+            © {new Date().getFullYear()} DijitalBüyükanne. Tüm hakları saklıdır.
             <Heart size={12} className="text-coral/50 fill-coral/50" />
           </p>
           <div className="flex items-center gap-6">

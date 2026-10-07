@@ -414,7 +414,10 @@ export default function SystemStoryModal() {
 
   // Açılışta 1 saniye sonra otomatik açılma (sessionStorage kontrolüyle)
   useEffect(() => {
-    const hasSeen = sessionStorage.getItem('db_story_modal_seen');
+    let hasSeen: string | null = null;
+    try {
+      hasSeen = sessionStorage.getItem('db_story_modal_seen');
+    } catch {}
     if (!hasSeen) {
       const timer = setTimeout(() => {
         setIsOpen(true);
@@ -457,7 +460,9 @@ export default function SystemStoryModal() {
   }, [isOpen, isPlaying, currentScene, scenes.length]);
 
   const handleClose = () => {
-    sessionStorage.setItem('db_story_modal_seen', 'true');
+    try {
+      sessionStorage.setItem('db_story_modal_seen', 'true');
+    } catch {}
     setIsOpen(false);
   };
 
@@ -504,7 +509,7 @@ export default function SystemStoryModal() {
           2. SİNEMATİK AÇILIR ANİMASYON PENCERESİ (MODAL)
           ───────────────────────────────────────────────────────────── */}
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-950/80 backdrop-blur-md animate-fade-in">
+        <div role="dialog" aria-modal="true" className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-950/80 backdrop-blur-md animate-fade-in">
           {/* Modal Container */}
           <div className="relative w-full max-w-2xl bg-gradient-to-b from-[#111936] to-[#0A1024] text-white rounded-3xl sm:rounded-[32px] border border-white/15 shadow-2xl overflow-hidden flex flex-col max-h-[92vh]">
             

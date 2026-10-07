@@ -4,7 +4,7 @@ export function organizationSchema() {
     "@type": "Organization",
     name: "DijitalBüyükanne",
     url: "https://dijitalbuyukanne.com",
-    logo: "https://dijitalbuyukanne.com/images/logo.svg",
+    logo: "https://dijitalbuyukanne.com/images/logo.png",
     description:
       "DijitalBüyükanne; aileleri, uzmanları, teknolojiyi ve sosyal destek sağlayan kurumları aynı dijital ekosistemde buluşturan 0–24 ay bebek ve aile destek platformudur.",
     sameAs: [],

@@ -39,6 +39,17 @@ export default function FullpageDeckContainer({
   const activeSlides = customSlides || defaultSlides;
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const isLockedRef = useRef(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Olay; deck dışında (portal ile açılan modallar), form alanında veya açık bir modal varken
+  // geldiyse slayt değiştirme ve tarayıcının varsayılan davranışını engelleme.
+  const shouldIgnoreEvent = useCallback((e: Event) => {
+    if (document.querySelector('[aria-modal="true"]')) return true;
+    const target = e.target as HTMLElement | null;
+    if (!target || target === document.body || target === document.documentElement) return false;
+    if (target.closest('input, textarea, select, [contenteditable="true"]')) return true;
+    return !containerRef.current?.contains(target);
+  }, []);
 
   const goToSlide = useCallback((index: number) => {
     if (index < 0 || index >= activeSlides.length) return;
@@ -48,6 +59,7 @@ export default function FullpageDeckContainer({
   // Hardware-accelerated wheel scroll controller
   useEffect(() => {
     const handleWheel = (e: WheelEvent) => {
+      if (shouldIgnoreEvent(e)) return;
       // Prevent browser default page scrolling
       e.preventDefault();
 
@@ -77,12 +89,12 @@ export default function FullpageDeckContainer({
 
     window.addEventListener('wheel', handleWheel, { passive: false });
     return () => window.removeEventListener('wheel', handleWheel);
-  }, [currentSlideIndex, activeSlides.length]);
+  }, [currentSlideIndex, activeSlides.length, shouldIgnoreEvent]);
 
   // Keyboard navigation (Arrow keys, PageUp/PageDown, Space)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (isLockedRef.current) return;
+      if (isLockedRef.current || shouldIgnoreEvent(e)) return;
 
       if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ') {
         e.preventDefault();
@@ -107,18 +119,20 @@ export default function FullpageDeckContainer({
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [currentSlideIndex, activeSlides.length]);
+  }, [currentSlideIndex, activeSlides.length, shouldIgnoreEvent]);
 
   // Touch swipe support for mobile & tablets
   useEffect(() => {
     let touchStartY = 0;
+    let ignoreTouch = false;
 
     const handleTouchStart = (e: TouchEvent) => {
+      ignoreTouch = shouldIgnoreEvent(e);
       touchStartY = e.touches[0].clientY;
     };
 
     const handleTouchEnd = (e: TouchEvent) => {
-      if (isLockedRef.current) return;
+      if (isLockedRef.current || ignoreTouch) return;
       const diff = touchStartY - e.changedTouches[0].clientY;
 
       if (Math.abs(diff) > 40) {
@@ -145,10 +159,29 @@ export default function FullpageDeckContainer({
       window.removeEventListener('touchstart', handleTouchStart);
       window.removeEventListener('touchend', handleTouchEnd);
     };
-  }, [currentSlideIndex, activeSlides]);
+  }, [currentSlideIndex, activeSlides, shouldIgnoreEvent]);
+
+  // URL hash'i (#bolum-12, #rotary-6 veya slayt içindeki bir bölüm id'si) ilgili slayta götürür
+  useEffect(() => {
+    const syncWithHash = () => {
+      const id = decodeURIComponent(window.location.hash.slice(1));
+      if (!id) return;
+      const slideEl = document.getElementById(id)?.closest('.fullpage-slide');
+      const index = activeSlides.findIndex((s) => s.id === slideEl?.id);
+      if (index >= 0) setCurrentSlideIndex(index);
+      // Tarayıcının hash için yaptığı otomatik kaydırmayı sıfırla (slaytlar transform ile taşınıyor)
+      requestAnimationFrame(() => {
+        if (containerRef.current) containerRef.current.scrollTop = 0;
+      });
+    };
+
+    syncWithHash();
+    window.addEventListener('hashchange', syncWithHash);
+    return () => window.removeEventListener('hashchange', syncWithHash);
+  }, [activeSlides]);
 
   return (
-    <div className="fixed inset-x-0 bottom-0 top-[5.25rem] overflow-hidden bg-[#FAFBFD] z-10 select-none">
+    <div ref={containerRef} className="fixed inset-x-0 bottom-0 top-[5.25rem] overflow-hidden bg-[#FAFBFD] z-10 select-none">
       {/* Right Side Stage Navigation Rail (Ultra-Slim Minimalist Dots) */}
       <nav
         aria-label="Sunum Yol Haritası"

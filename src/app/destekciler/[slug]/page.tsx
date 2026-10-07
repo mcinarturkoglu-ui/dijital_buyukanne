@@ -1,21 +1,14 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import fs from "fs";
-import path from "path";
 import { ArrowLeft, MapPin, Calendar, Heart, Users, CheckCircle, Info } from "lucide-react";
 import supportersData from "@/data/supporters.json";
+import { generatePageMetadata } from "@/lib/metadata";
 
-export const dynamic = "force-dynamic";
+const supporters: any[] = supportersData.supporters || [];
 
-function getLiveSupporters(): any[] {
-  try {
-    const dataFilePath = path.join(process.cwd(), "src/data/supporters.json");
-    const content = fs.readFileSync(dataFilePath, "utf-8");
-    return JSON.parse(content).supporters || [];
-  } catch {
-    return supportersData.supporters || [];
-  }
-}
+// Yalnızca supporters.json'daki destekçiler için sayfa üretilir; diğer slug'lar 404 döner
+export const dynamicParams = false;
 
 interface Props {
   params: {
@@ -23,16 +16,24 @@ interface Props {
   };
 }
 
-export async function generateStaticParams() {
-  const supporters = getLiveSupporters();
+export function generateStaticParams() {
   return supporters.map((s) => ({
     slug: s.slug,
   }));
 }
 
+export function generateMetadata({ params }: Props): Metadata {
+  const supporter = supporters.find((s) => s.slug === params.slug);
+  if (!supporter) return {};
+  return generatePageMetadata({
+    title: supporter.name,
+    description: supporter.description,
+    path: `/destekciler/${supporter.slug}`,
+  });
+}
+
 export default function DestekciDetailPage({ params }: Props) {
-  const supporters = getLiveSupporters();
-  const supporter = supporters.find((s: any) => s.slug === params.slug);
+  const supporter = supporters.find((s) => s.slug === params.slug);
 
   if (!supporter) {
     notFound();
@@ -61,7 +62,7 @@ export default function DestekciDetailPage({ params }: Props) {
         <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div className="flex items-center gap-5">
             <div
-              className="w-16 h-16 md:w-20 md:md-20 rounded-3xl flex items-center justify-center font-bold text-white text-xl md:text-2xl shadow-lg flex-shrink-0"
+              className="w-16 h-16 md:w-20 md:h-20 rounded-3xl flex items-center justify-center font-bold text-white text-xl md:text-2xl shadow-lg flex-shrink-0"
               style={{ backgroundColor: supporter.color || "#14BBB7" }}
             >
               {supporter.shortName?.slice(0, 2) || "DB"}
