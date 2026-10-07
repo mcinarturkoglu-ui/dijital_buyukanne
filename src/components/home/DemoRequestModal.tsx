@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { X, Building2, CheckCircle2, Send, Sparkles, Phone, Mail, User, MapPin } from 'lucide-react';
 
 interface DemoRequestModalProps {
@@ -67,8 +68,10 @@ export default function DemoRequestModal({
     onClose();
   };
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-y-auto">
+  // Modal, transform uygulanan slayt kapsayıcısının dışına (body'ye) taşınır; aksi halde
+  // `position: fixed` kapsayıcıya göre konumlanır ve ekran dışında kalır.
+  return createPortal(
+    <div role="dialog" aria-modal="true" className="fixed inset-0 z-[60] flex items-center justify-center p-4 overflow-y-auto">
       {/* Backdrop */}
       <div
         className="fixed inset-0 bg-navy/80 backdrop-blur-md transition-opacity"
@@ -84,6 +87,7 @@ export default function DemoRequestModal({
         {/* Close Button */}
         <button
           onClick={onClose}
+          aria-label="Kapat"
           className="absolute top-5 right-5 w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 text-navy/70 hover:text-navy flex items-center justify-center transition-all"
         >
           <X size={18} />
@@ -292,6 +296,7 @@ export default function DemoRequestModal({
           </div>
         )}
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }

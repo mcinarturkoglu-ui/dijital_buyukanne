@@ -1,31 +1,13 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { Building2, MapPin, ArrowRight, Sparkles, ShieldCheck, Heart, Award, Users, CheckCircle2 } from "lucide-react";
 import supportersData from "@/data/supporters.json";
 
-const STORAGE_KEY = 'dijitalbuyukanne_admin_supporters';
-const DELETED_IDS_KEY = 'dijitalbuyukanne_deleted_supporter_ids';
-
 export default function DestekcilerPage() {
   const [filter, setFilter] = useState("all");
-  const [supporters, setSupporters] = useState<any[]>(supportersData.supporters || []);
-
-  useEffect(() => {
-    try {
-      const deletedIds: string[] = JSON.parse(localStorage.getItem(DELETED_IDS_KEY) || '[]');
-      const localData = localStorage.getItem(STORAGE_KEY);
-      if (localData) {
-        const parsed = JSON.parse(localData);
-        if (Array.isArray(parsed)) {
-          setSupporters(parsed.filter((s: any) => !deletedIds.includes(s.id)));
-        }
-      }
-    } catch {
-      // ignore
-    }
-  }, []);
+  const supporters: any[] = supportersData.supporters || [];
 
   const categories = [
     { id: "all", label: "Tüm Destekçiler" },

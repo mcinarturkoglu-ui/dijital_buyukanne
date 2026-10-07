@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import config from "@/data/config.json";
 
-const { siteName, siteUrl, defaultOgImage } = config.seo;
+const { siteName, siteUrl } = config.seo;
 
 interface MetadataOptions {
   title?: string;
@@ -15,14 +15,16 @@ export function generatePageMetadata({
   title,
   description = "DijitalBüyükanne; aileleri, uzmanları, teknolojiyi ve sosyal destek sağlayan kurumları aynı dijital ekosistemde buluşturan 0–24 ay bebek ve aile destek platformudur.",
   path = "/",
-  ogImage = defaultOgImage,
+  // app/opengraph-image.tsx ile build sırasında üretilen varsayılan paylaşım görseli
+  ogImage = "/opengraph-image",
   noIndex = false,
 }: MetadataOptions = {}): Metadata {
   const fullTitle = title ? `${title} | ${siteName}` : `${siteName} — Her bebeğin bir Dijital Büyükannesi olsun`;
   const url = `${siteUrl}${path}`;
 
   return {
-    title: fullTitle,
+    // Kök layout'taki "%s | DijitalBüyükanne" şablonu başlığa ikinci kez eklenmesin
+    title: { absolute: fullTitle },
     description,
     metadataBase: new URL(siteUrl),
     alternates: {
