@@ -501,7 +501,7 @@ export default function HeroSection() {
                   </span>
                 </div>
                 <p className="text-[11px] text-slate-600 leading-snug">
-                  18 eklem Prechtl GMs nörolojik ve kas motor takibi.
+                  18 eklem nörolojik ve kas motor takibi.
                 </p>
               </div>
 
@@ -587,7 +587,7 @@ export default function HeroSection() {
                   <div className="text-xs font-black text-[#0B1E3B] flex items-center gap-1.5">
                     <span>🎥 18 Eklem Nöromotor Takibi</span>
                   </div>
-                  <div className="text-[10px] text-slate-500 font-mono">Prechtl GMs Standardı</div>
+                  <div className="text-[10px] text-slate-500 font-mono">Kas & Nörolojik Bozukluk Takibi</div>
                 </div>
               </button>
 

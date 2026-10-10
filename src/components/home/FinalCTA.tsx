@@ -75,7 +75,7 @@ export default function FinalCTA() {
                     <span>Erken Teşhise Köprü</span>
                   </div>
                   <p className="text-[11px] text-white/70 leading-snug">
-                    Prechtl GMs & Derma-41 ile doğru zamanda uzmana sevk.
+                    Nöromotor & Derma-41 analizleriyle doğru zamanda uzmana sevk.
                   </p>
                 </div>
 

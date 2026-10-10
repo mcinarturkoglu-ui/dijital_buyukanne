@@ -115,7 +115,7 @@ export default function RotarySimulatorSlide() {
               <div className="flex items-center justify-between mb-2">
                 <span className="text-2xl">👶</span>
                 <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-[#17458F]/10 text-[#17458F]">
-                  %4,4 Prechtl GMs
+                  %4,4 Nöromotor Risk
                 </span>
               </div>
               <div className="text-3xl font-black text-[#17458F] font-mono leading-none mb-1.5">

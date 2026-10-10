@@ -15,7 +15,7 @@ export const defaultSlides: SlideInfo[] = [
   { id: 'bolum-1', badge: '01 / 13', title: 'Ekosistem & Bütünsel Vizyon', shortName: 'Vizyon', category: 'Giriş' },
   { id: 'bolum-2', badge: '02 / 13', title: '0–24 Ay Gelişim Simülatörü', shortName: 'Gelişim', category: 'Simülatör' },
   { id: 'bolum-3', badge: '03 / 13', title: 'Geleneksel vs. Dijital Dönüşüm', shortName: 'Karşılaştırma', category: 'Klinik Fark' },
-  { id: 'bolum-4', badge: '04 / 13', title: 'AI Hareket Analizi (Prechtl GMs)', shortName: 'Hareket', category: 'Tarama 1' },
+  { id: 'bolum-4', badge: '04 / 13', title: 'AI Hareket & Kas Motor Analizi', shortName: 'Hareket', category: 'Tarama 1' },
   { id: 'bolum-5', badge: '05 / 13', title: 'AI Cilt Analizi (Derma-41)', shortName: 'Cilt', category: 'Tarama 2' },
   { id: 'bolum-6', badge: '06 / 13', title: 'AI Bez & Dışkı Analizi (DSÖ)', shortName: 'Bez & Dışkı', category: 'Tarama 3' },
   { id: 'bolum-7', badge: '07 / 13', title: '7/24 Dijital Aile Asistanı', shortName: 'Asistan', category: 'Rehberlik' },

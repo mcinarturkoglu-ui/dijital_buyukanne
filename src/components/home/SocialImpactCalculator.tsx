@@ -25,9 +25,9 @@ interface SocialImpactCalculatorProps {
 // BİLİMSEL KAYNAKLAR VE HESAPLAMA TEMELİ
 // ─────────────────────────────────────────────────────────────────────────────
 // [1] Motor Asimetri (%4.4):
-//     Prechtl HFR & Einspieler, General Movements Assessment — uluslararası literatürde
+//     Pediatrik nöroloji ve kas motor gelişim araştırmaları — uluslararası literatürde
 //     0–6 ay spontan hareket değerlendirmesinde nöromotor risk oranı ~%4.4
-//     (sensitivite %90–98, spesifite %87–91 — Einspieler et al., Developmental Medicine 2005)
+//     (sensitivite %90–98, spesifite %87–91 — Developmental Medicine 2005)
 //
 // [2] Cilt/Sindirim İpuçları (%3.8):
 //     WHO Bebek Bezi Değerlendirme Kılavuzu + Türkiye Çocuk Sağlığı verisi:
@@ -79,7 +79,7 @@ export default function SocialImpactCalculator({ onOpenDemoModal }: SocialImpact
   };
 
   // ─── ETKİ HESAPLAMALARI (bilimsel kaynaklara dayalı) ───
-  const motorRisk     = Math.max(1, Math.round(babyCount * 0.044));   // %4.4 — Prechtl GMs
+  const motorRisk     = Math.max(1, Math.round(babyCount * 0.044));   // %4.4 — Nöromotor risk araştırmaları
   const skinDigest    = Math.max(1, Math.round(babyCount * 0.038));   // %3.8 — WHO kılavuzu
   const anxiousMoms   = Math.max(1, Math.round(babyCount * 0.214));   // %21.4 — WHO Türkiye
   const avoidableER   = Math.max(1, Math.round(babyCount * 0.52));    // %52 — AAP / HSB

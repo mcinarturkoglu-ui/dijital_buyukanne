@@ -13,7 +13,6 @@ export default function DestekcilerPage() {
     { id: "all", label: "Tüm Destekçiler" },
     { id: "belediye", label: "Belediyeler" },
     { id: "akademi", label: "Üniversite & Ar-Ge" },
-    { id: "stk", label: "Sivil Toplum & STK" },
     { id: "sirket", label: "Teknoloji Şirketleri" },
   ];
 

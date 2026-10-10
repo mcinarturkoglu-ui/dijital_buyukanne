@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Menu, X, ChevronRight, FileText, ExternalLink, Phone, Newspaper } from "lucide-react";
+import { Menu, X, ChevronRight, ExternalLink, Phone, Newspaper } from "lucide-react";
 
 const navLinks = [
   { href: "/uygulama", label: "Uygulama" },
@@ -134,24 +134,8 @@ export default function Header() {
               })}
             </nav>
 
-            {/* Masaüstü Sağ Butonlar (PDF Sunum + Kurumsal Demo + SAĞ EN KÖŞEDE Dış Bağlantılar) */}
+            {/* Masaüstü Sağ Butonlar (Kurumsal Demo + SAĞ EN KÖŞEDE Dış Bağlantılar) */}
             <div className="hidden lg:flex items-center gap-2.5 shrink-0">
-              
-              {/* PDF Sunum Butonu */}
-              <Link
-                href={isRotary ? "/sunum?deck=rotary" : "/sunum"}
-                target="_blank"
-                className={`px-3.5 py-2 text-xs xl:text-sm font-bold rounded-full transition-all flex items-center gap-1.5 shadow-2xs group ${
-                  isRotary
-                    ? "bg-[#17458F] text-[#F7A81B] border border-[#F7A81B]/50 hover:bg-[#123670]"
-                    : "bg-slate-100 hover:bg-slate-200 text-slate-700 hover:text-[#0B1E3B] border border-slate-200"
-                }`}
-                title={isRotary ? "Rotary Resmî Sunum Dosyasını İncele" : "Kurumsal Sunum Dosyasını İncele"}
-              >
-                <FileText size={15} className={isRotary ? "text-[#F7A81B]" : "text-[#0284C7] group-hover:scale-110 transition-transform"} />
-                <span>{isRotary ? "Rotary Sunum" : "Kurumsal Sunum"}</span>
-              </Link>
-
               {/* Kurumsal Demo Butonu */}
               <Link
                 href="/kurumlar"
@@ -295,19 +279,6 @@ export default function Header() {
 
           {/* Mobil Eylemler */}
           <div className="pt-3 mt-1 border-t border-slate-200 flex flex-col gap-2">
-            <Link
-              href={isRotary ? "/sunum?deck=rotary" : "/sunum"}
-              target="_blank"
-              onClick={() => setMobileOpen(false)}
-              className={`w-full py-2.5 text-center text-xs font-bold rounded-xl border flex items-center justify-center gap-2 ${
-                isRotary
-                  ? "border-[#F7A81B]/50 bg-[#17458F] text-[#F7A81B]"
-                  : "border-sky-200 bg-sky-50 text-[#0284C7]"
-              }`}
-            >
-              <FileText size={15} />
-              <span>{isRotary ? "Rotary Resmî Sunumu" : "Kurumsal Sunum Dosyası"}</span>
-            </Link>
             <Link
               href="/kurumlar"
               onClick={() => setMobileOpen(false)}

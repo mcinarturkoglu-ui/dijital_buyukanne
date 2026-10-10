@@ -34,23 +34,7 @@
       "featured": true,
       "color": "#059669"
     },
-    {
-      "id": "rotary-2430",
-      "slug": "rotary-2430",
-      "name": "Rotary Bölge 2430 Federasyonu",
-      "shortName": "ROTARY 2430",
-      "type": "stk",
-      "city": "Ankara / Bölgesel",
-      "logo": "/images/supporters/rotary-logo.svg",
-      "program": "Anne ve Çocuk Sağlığı Sosyal Etki Hareketi",
-      "description": "The Rotary Foundation (TRF) Anne & Çocuk Sağlığı odak alanı kapsamında, sosyoekonomik açıdan dezavantajlı ailelere ulaştırılan teknolojik destek fonu.",
-      "families": 450,
-      "babies": 600,
-      "startDate": "2024",
-      "active": true,
-      "featured": true,
-      "color": "#D97706"
-    },
+
     {
       "id": "adapha-yapay-zeka",
       "slug": "adapha-yapay-zeka",

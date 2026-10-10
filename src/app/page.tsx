@@ -3,7 +3,7 @@ import FullpageDeckContainer from "@/components/home/FullpageDeckContainer";
 import FullpageSlide from "@/components/home/FullpageSlide";
 import SystemStoryModal from "@/components/home/SystemStoryModal";
 import HeroSection from "@/components/home/HeroSection";
-import EcosystemPulseTicker from "@/components/home/EcosystemPulseTicker";
+
 import TimelineSection from "@/components/home/TimelineSection";
 import ProblemSolutionCompare from "@/components/home/ProblemSolutionCompare";
 import MotionAnalysis from "@/components/home/MotionAnalysis";
@@ -40,11 +40,8 @@ export default function HomePage() {
       <FullpageDeckContainer>
         {/* 01: Ekosistem & Bütünsel Vizyon */}
         <FullpageSlide id="bolum-1" badge="01 / 13" category="GİRİŞ VE VİZYON" theme="light">
-          <div className="w-full h-full flex flex-col justify-between items-center my-auto py-2 sm:py-3">
-            <div className="w-full flex-1 flex flex-col justify-center">
-              <HeroSection />
-            </div>
-            <EcosystemPulseTicker />
+          <div className="w-full h-full flex items-center justify-center my-auto py-2 sm:py-3">
+            <HeroSection />
           </div>
         </FullpageSlide>
 
@@ -62,7 +59,7 @@ export default function HomePage() {
           </div>
         </FullpageSlide>
 
-        {/* 04: AI Hareket Analizi (Prechtl GMs) */}
+        {/* 04: AI Hareket ve Kas Motor Analizi */}
         <FullpageSlide id="bolum-4" badge="04 / 13" category="TARAMA PROTOKOLÜ 1: HAREKET" theme="slate">
           <div className="w-full h-full flex items-center justify-center my-auto">
             <MotionAnalysis />

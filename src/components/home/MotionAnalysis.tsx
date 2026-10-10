@@ -152,7 +152,7 @@ export default function MotionAnalysis() {
         <div className="text-center max-w-3xl mx-auto mb-2.5">
           <div className="inline-flex items-center gap-1.5 text-[11px] font-bold tracking-wider uppercase text-turquoise bg-turquoise/10 border border-turquoise/20 px-3.5 py-1 rounded-full mb-1.5 shadow-2xs">
             <span className="w-1.5 h-1.5 rounded-full bg-turquoise animate-pulse" />
-            <span>AI Hareket Analizi Stüdyosu (Prechtl GMs)</span>
+            <span>AI Hareket Analizi & Kas Motor Takip Stüdyosu</span>
           </div>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black leading-tight text-navy">
             Bir video, bebeğinizin gelişiminde binlerce veri noktası sunar.

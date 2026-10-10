@@ -8,7 +8,7 @@ const fourWayTests = [
   {
     number: '1. SORU',
     question: 'Gerçeğe uygun mu?',
-    answer: 'Avrupa Pediatri ve nöromotor hastalık standartlarında, Einspieler & Prechtl metodolojisine sadık kalınarak geliştirilmiş kinematik algoritma (%90–98 klinik korelasyon).',
+    answer: 'Avrupa Pediatri ve nöromotor hastalık standartlarında, nörolojik ve kas motor tarama metodolojilerine uygun olarak geliştirilmiş kinematik algoritma (%90–98 klinik korelasyon).',
     badge: 'Bilimsel Kanıt',
     icon: '🔬',
   },

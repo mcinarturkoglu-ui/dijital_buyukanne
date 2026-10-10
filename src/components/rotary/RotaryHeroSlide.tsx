@@ -169,7 +169,7 @@ function RotaryAppScreen({
             <div className="flex items-center justify-between text-[8px] font-mono text-white/90 pb-1 border-b border-white/10">
               <span className="flex items-center gap-1 text-[#F7A81B] font-bold bg-[#F7A81B]/15 px-2 py-0.5 rounded-full border border-[#F7A81B]/30">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#F7A81B] animate-pulse" />
-                60 FPS PRECHTL GMs
+                60 FPS HAREKET ANALİZİ
               </span>
               <span className="text-sky-300 font-bold bg-sky-400/15 px-2 py-0.5 rounded-full border border-sky-400/30">
                 Rotary Güvencesi: %98.4
@@ -444,7 +444,7 @@ export default function RotaryHeroSlide({
                     </span>
                   </div>
                   <p className="text-[11px] text-slate-600 leading-snug">
-                    18 eklem Prechtl GMs nörolojik ve kas motor erken teşhisi.
+                    18 eklem nörolojik ve kas motor erken teşhisi.
                   </p>
                 </div>
 
@@ -516,7 +516,7 @@ export default function RotaryHeroSlide({
                   style={{ background: 'radial-gradient(circle, #F7A81B 0%, #17458F 60%, transparent 80%)' }}
                 />
 
-                {/* Yüzen Rozet 1: Prechtl GMs */}
+                {/* Yüzen Rozet 1: Kas ve Nöromotor Takibi */}
                 <button
                   onClick={() => setActiveScreen('video')}
                   className={`hidden sm:flex items-center gap-2.5 absolute -left-10 lg:-left-12 top-10 backdrop-blur-xl px-4 py-2.5 rounded-2xl shadow-xl border transition-all duration-300 cursor-pointer z-20 ${
@@ -530,7 +530,7 @@ export default function RotaryHeroSlide({
                     <div className="text-xs font-black text-[#17458F] flex items-center gap-1.5">
                       <span>🎥 18 Eklem Nöromotor Takibi</span>
                     </div>
-                    <div className="text-[10px] text-slate-500 font-mono">Prechtl GMs Standardı</div>
+                    <div className="text-[10px] text-slate-500 font-mono">Kas & Nörolojik Bozukluk Takibi</div>
                   </div>
                 </button>
 

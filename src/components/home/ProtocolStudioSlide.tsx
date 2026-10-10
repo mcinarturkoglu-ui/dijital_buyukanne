@@ -13,7 +13,7 @@ export default function ProtocolStudioSlide() {
     {
       id: 'motion' as const,
       name: '1. AI Hareket Analizi',
-      standard: 'Prechtl GMs Standardı',
+      standard: 'Kas & Nöromotor Parametreleri',
       icon: Video,
       color: 'text-sky-600',
       activeBg: 'bg-sky-600 text-white shadow-md shadow-sky-500/20',

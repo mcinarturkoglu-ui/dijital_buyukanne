@@ -18,7 +18,7 @@ export default function InclusiveTargetAudiences() {
       icon: Brain,
       title: 'Serebral Palsi & Motor Risk',
       badge: 'Nöroplastisite',
-      desc: 'General Movements (GMs) benzeri spontan hareket taramaları, kalıcı engellilik riskini erken aşamada azaltır.',
+      desc: 'Kas ve nöromotor gelişim taramaları, kalıcı engellilik riskini erken aşamada fark etmeyi sağlar.',
       color: 'text-rose-600',
       bg: 'bg-rose-50',
       border: 'border-rose-200',

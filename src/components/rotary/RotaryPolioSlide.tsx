@@ -78,7 +78,7 @@ export default function RotaryPolioSlide() {
             <div className="flex items-center gap-4 text-xs text-slate-500 pt-1">
               <span className="flex items-center gap-1.5 font-semibold text-[#17458F]">
                 <ShieldCheck size={15} />
-                Einspieler & Prechtl GMs Standardı
+                Nörolojik ve Kas Hastalıkları Takip Standardı
               </span>
               <span>•</span>
               <span className="flex items-center gap-1.5 font-semibold text-emerald-700">
